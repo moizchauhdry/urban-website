@@ -9,7 +9,12 @@ function FleetCardInner({ item }) {
       </div>
 
       <div className="fleet-body flex flex-1 flex-col">
-        <h3>{item.title}</h3>
+        <h3 className="fleet-card-title">
+          {item.title}
+          {item.badge ? (
+            <span className="fleet-badge">{item.badge}</span>
+          ) : null}
+        </h3>
         <p>{item.description}</p>
         <div className="fleet-specs">
           {item.specs.map((s) => (

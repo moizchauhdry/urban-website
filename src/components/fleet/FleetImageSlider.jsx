@@ -1,14 +1,16 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { FleetCarouselDots } from './FleetCarouselDots.jsx'
+import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
-const AUTOPLAY_MS = 4800
+const AUTOPLAY_MS = 4500
+const FADE_MS = 500
 
 function cx(...parts) {
   return parts.filter(Boolean).join(' ')
 }
 
 /**
- * In-card image gallery only: crossfading slides + pagination dots.
- * State is local — each fleet card mounts its own instance.
+ * In-card image gallery: crossfade, drag/swipe, dots, autoplay.
  */
 function FleetImageSliderInner({ images }) {
   const [index, setIndex] = useState(0)
@@ -19,6 +21,14 @@ function FleetImageSliderInner({ images }) {
     setIndex(((i % n) + n) % n)
   }, [n])
 
+  const goNext = useCallback(() => {
+    setIndex((i) => (i + 1) % n)
+  }, [n])
+
+  const goPrev = useCallback(() => {
+    setIndex((i) => (i - 1 + n) % n)
+  }, [n])
+
   useEffect(() => {
     if (n < 2) return undefined
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -26,11 +36,13 @@ function FleetImageSliderInner({ images }) {
 
     const id = window.setInterval(() => {
       if (pausedRef.current) return
-      setIndex((i) => (i + 1) % n)
+      goNext()
     }, AUTOPLAY_MS)
 
     return () => window.clearInterval(id)
-  }, [n])
+  }, [goNext, n])
+
+  const swipe = usePointerSwipe(goNext, goPrev, n >= 2, 36)
 
   if (n === 0) return null
 
@@ -50,44 +62,47 @@ function FleetImageSliderInner({ images }) {
         if (!e.currentTarget.contains(e.relatedTarget)) pausedRef.current = false
       }}
     >
-      <div className="fleet-slider-viewport relative h-[200px] w-full overflow-hidden bg-white transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] will-change-transform">
+      <div
+        className="fleet-slider-viewport fleet-slider-viewport--draggable"
+        style={{ '--fleet-fade-ms': `${FADE_MS}ms` }}
+        onPointerDown={(e) => {
+          e.stopPropagation()
+          swipe.onPointerDown(e)
+        }}
+        onPointerUp={(e) => {
+          e.stopPropagation()
+          swipe.onPointerUp(e)
+        }}
+        onPointerCancel={(e) => {
+          e.stopPropagation()
+          swipe.onPointerCancel()
+        }}
+      >
         {images.map((img, i) => (
-          <img
+          <div
             key={`${img.src}-${i}`}
-            src={img.src}
-            alt={img.alt}
-            loading={i === 0 ? 'eager' : 'lazy'}
-            decoding="async"
-            className={cx(
-              'pointer-events-none absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-500 ease-out',
-              i === index ? 'z-[1] opacity-100' : 'z-0 opacity-0',
-            )}
+            className={cx('fleet-slider-image-wrap', i === index && 'is-active')}
             aria-hidden={i !== index}
-          />
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              draggable={false}
+              className="fleet-slider-photo"
+            />
+          </div>
         ))}
       </div>
 
       {n > 1 ? (
-        <div
-          className="fleet-dots flex justify-center gap-2 bg-white px-2 pb-3 pt-2"
-          role="group"
-          aria-label="Vehicle photos"
-        >
-          {images.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Show photo ${i + 1} of ${n}`}
-              aria-current={i === index || undefined}
-              className={cx(
-                'h-2 shrink-0 rounded-full border-0 bg-[#ddd] p-0 transition-all duration-200 ease-out',
-                'cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FCB813]',
-                i === index ? 'w-6 rounded-md bg-[#0a0a0a]' : 'w-2',
-              )}
-              onClick={() => goTo(i)}
-            />
-          ))}
-        </div>
+        <FleetCarouselDots
+          count={n}
+          active={index}
+          onSelect={goTo}
+          ariaLabel="Vehicle photos"
+        />
       ) : null}
     </div>
   )

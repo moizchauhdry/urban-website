@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { REVIEWS } from '../../data/reviews.js'
 import ReviewsCarousel from '../reviews/ReviewsCarousel.jsx'
+import trustPilot from '../../assets/icons/trust-pilot.svg'
+import googleIcon from '../../assets/icons/google.svg'
 
 function usePerView() {
   const [w, setW] = useState(() =>
@@ -39,14 +41,8 @@ export default function ReviewsSection() {
           </h2>
           <div className="reviews-rating">
             <strong className="reviews-rating-score">4.6/5</strong>
-            <div className="stars-row">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star-half-stroke" />
-            </div>
-            <div className="google-icon">G</div>
+            <img className="reviews-rating-icon" src={googleIcon} alt="Google" width={34} height={34} />
+            <img className="reviews-rating-icon" src={trustPilot} alt="Trustpilot" width={34} height={34} />
             <span className="google-text">Based on 150 reviews</span>
           </div>
         </div>

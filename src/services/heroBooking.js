@@ -1,6 +1,5 @@
 /**
- * Hero booking payload — shape matches the hero form for a future API.
- * @typedef {Object} HeroBookingPayload
+ * @typedef {Object} HeroBookingFormData
  * @property {'distance'|'hourly'} bookingType
  * @property {string} name
  * @property {string} email
@@ -14,7 +13,7 @@
  * @property {string} travel
  * @property {string} passengers
  * @property {string} luggage
- * @property {string} submittedAt ISO timestamp
+ * @property {string} hours
  */
 
 export const HERO_BOOKING_INITIAL = {
@@ -31,37 +30,113 @@ export const HERO_BOOKING_INITIAL = {
   travel: '',
   passengers: '',
   luggage: '',
+  hours: '',
 }
 
 /**
- * Build the payload sent to the API (or logged during development).
- * @param {typeof HERO_BOOKING_INITIAL} formData
- * @returns {HeroBookingPayload}
+ * @param {HeroBookingFormData & { phone?: string }} formData
  */
 export function buildHeroBookingPayload(formData) {
   return {
     ...formData,
+    liveUrl: typeof window !== 'undefined' ? window.location.href : '',
     submittedAt: new Date().toISOString(),
   }
 }
 
+function getBookingApiBaseUrl() {
+  const base = import.meta.env.VITE_BOOKING_API_URL?.trim().replace(/\/$/, '')
+  if (!base) {
+    throw new Error(
+      'Booking API is not configured. Add VITE_BOOKING_API_URL to your .env file (see SETUP.md).',
+    )
+  }
+  return base
+}
+
+function getSuccessPageUrl() {
+  const url = import.meta.env.VITE_BOOKING_SUCCESS_URL?.trim()
+  if (!url) {
+    throw new Error(
+      'Success page URL is not configured. Add VITE_BOOKING_SUCCESS_URL to your .env file (see SETUP.md).',
+    )
+  }
+  return url
+}
+
 /**
- * Submit hero booking. Replace the body with `fetch()` when the API is ready.
- * @param {HeroBookingPayload} payload
- * @returns {Promise<{ ok: true, payload: HeroBookingPayload }>}
+ * Request body for the booking API.
+ * @param {ReturnType<typeof buildHeroBookingPayload>} payload
  */
-export async function submitHeroBooking(payload) {
-  if (import.meta.env.DEV) {
-    console.info('[Hero booking]', payload)
+function buildApiRequestBody(payload) {
+  const body = {
+    name: payload.name,
+    email: payload.email,
+    phone: payload.phone,
+    date: payload.date,
+    time: payload.time,
+    fleet: payload.fleet,
+    pickup: payload.pickup,
+    destination: payload.destination,
+    service_type: payload.serviceType,
+    travel: payload.travel,
+    passengers: payload.passengers,
+    luggage: payload.luggage,
+    live_url: payload.liveUrl,
   }
 
-  // TODO: integrate API
-  // const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(payload),
-  // })
-  // if (!res.ok) throw new Error('Booking failed')
+  if (payload.bookingType === 'hourly' && payload.hours) {
+    body.hour = payload.hours
+    body.hours = payload.hours
+  }
 
-  return { ok: true, payload }
+  return body
+}
+
+/**
+ * POST booking to API, then redirect to the success page.
+ * @param {ReturnType<typeof buildHeroBookingPayload>} payload
+ * @returns {Promise<{ ok: true }>}
+ */
+export async function submitHeroBooking(payload) {
+  const serviceType = payload.bookingType
+  if (serviceType !== 'distance' && serviceType !== 'hourly') {
+    throw new Error('Invalid booking type')
+  }
+
+  if (serviceType === 'hourly' && !payload.hours?.trim()) {
+    throw new Error('Please enter the number of hours for hourly service.')
+  }
+
+  const url = `${getBookingApiBaseUrl()}/${serviceType}`
+  const body = buildApiRequestBody(payload)
+
+  if (import.meta.env.DEV) {
+    console.info('[Hero booking] POST', url, body)
+  }
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    let message = `Booking failed (${res.status})`
+    const contentType = res.headers.get('content-type') || ''
+    if (contentType.includes('application/json')) {
+      const data = await res.json()
+      message = data.message || data.error || message
+    } else {
+      const text = await res.text()
+      if (text) message = text
+    }
+    throw new Error(message)
+  }
+
+  window.location.assign(getSuccessPageUrl())
+  return { ok: true }
 }

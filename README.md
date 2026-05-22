@@ -4,6 +4,14 @@ The **visual design is preserved** by importing the compiled stylesheet as **`sr
 
 Tailwind is configured with **`preflight: false`** so Tailwind’s reset does not fight the legacy CSS. You can still add Tailwind utility classes in new components.
 
+## First-time setup (required)
+
+The hero booking form and Google address fields need a local `.env` file.
+
+1. Copy `.env.example` to `.env`
+2. Add your Google Maps API key and booking URLs (see **[SETUP.md](./SETUP.md)** for step-by-step instructions)
+3. Restart the dev server after editing `.env`
+
 ## Commands
 
 ```bash

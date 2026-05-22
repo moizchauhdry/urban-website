@@ -50,9 +50,20 @@ export function useUrbanEliteInteractions(isHome) {
       ['.trusted-inner > p', 'reveal d1'],
       ['.how-works-cta', 'reveal d2'],
     ]
+    const noStaggerSelectors = new Set([
+      '.fleet-card',
+      '.why-card',
+      '.service-card',
+      '.review-card',
+      '.trusted-stat',
+      '.airport-card',
+      '.faq-item',
+      '.step',
+    ])
     revealMap.forEach(([sel, cls]) => {
       document.querySelectorAll(sel).forEach((el, i) => {
         cls.split(' ').forEach((c) => el.classList.add(c))
+        if (noStaggerSelectors.has(sel)) return
         const siblingIdx = i % 6
         if (siblingIdx > 0) el.classList.add('d' + Math.min(siblingIdx, 5))
       })

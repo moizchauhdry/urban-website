@@ -9,6 +9,7 @@ import {
   buildHeroBookingPayload,
   submitHeroBooking,
 } from '../../services/heroBooking.js'
+import PlacesAutocompleteInput from '../common/PlacesAutocompleteInput.jsx'
 
 function nationalExamplePlaceholder(country) {
   if (!country) return 'Enter a phone number'
@@ -52,13 +53,11 @@ export default function Hero() {
   }
 
   const handleBookingType = (bookingType) => {
-    setFormData((prev) => ({ ...prev, bookingType }))
-  }
-
-  const resetForm = () => {
-    setFormData({ ...HERO_BOOKING_INITIAL })
-    setPhone(undefined)
-    setPhoneCountry('US')
+    setFormData((prev) => ({
+      ...prev,
+      bookingType,
+      hours: bookingType === 'hourly' ? prev.hours : '',
+    }))
   }
 
   const handleSubmit = async (e) => {
@@ -71,11 +70,11 @@ export default function Hero() {
     setIsSubmitting(true)
     try {
       await submitHeroBooking(payload)
-      resetForm()
-      window.alert('Booking submitted!')
     } catch (err) {
       console.error('[Hero booking]', err)
-      window.alert('Something went wrong. Please try again or call (888) 881-6610.')
+      window.alert(
+        err instanceof Error ? err.message : 'Something went wrong. Please try again or call (888) 881-6610.',
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -95,7 +94,10 @@ export default function Hero() {
           <div className="hero-badge">
             <i className="fa-solid fa-star" /> Rated #1 car and Limo Service
           </div>
-          <h1>Premium Connecticut Car Service</h1>
+          <h1 className="hero-title">
+            <span className="hero-title-line">Premium Connecticut</span>{' '}
+            <span className="hero-title-line">Car Service</span>
+          </h1>
           <p className="hero-desc">
             Travel in comfort with a Connecticut car service designed for people who want a smooth and stress free
             experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
@@ -217,23 +219,40 @@ export default function Hero() {
                 <option value="Stretch Limo">Stretch Limo</option>
               </select>
             </div>
+            {formData.bookingType === 'hourly' && (
+              <div className="form-group full">
+                <label htmlFor="hero-hours">Hours*</label>
+                <input
+                  id="hero-hours"
+                  type="number"
+                  name="hours"
+                  value={formData.hours}
+                  onChange={handleChange}
+                  min="1"
+                  step="1"
+                  placeholder="Number of hours"
+                  required
+                />
+              </div>
+            )}
             <div className="form-group">
-              <label>Pick-up</label>
-              <input
-                type="text"
+              <label htmlFor="hero-pickup">Pick-up</label>
+              <PlacesAutocompleteInput
+                id="hero-pickup"
                 name="pickup"
                 value={formData.pickup}
                 onChange={handleChange}
-                autoComplete="street-address"
+                placeholder="Search pick-up address"
               />
             </div>
             <div className="form-group">
-              <label>Destination</label>
-              <input
-                type="text"
+              <label htmlFor="hero-destination">Destination</label>
+              <PlacesAutocompleteInput
+                id="hero-destination"
                 name="destination"
                 value={formData.destination}
                 onChange={handleChange}
+                placeholder="Search destination address"
               />
             </div>
             <div className="form-group">
