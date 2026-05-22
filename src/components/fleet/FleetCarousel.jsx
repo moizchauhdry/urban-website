@@ -6,6 +6,21 @@ import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 const GAP_PX = 10
 const AUTOPLAY_MS = 5000
 
+function FleetCarouselControls({ onPrev, onNext }) {
+  return (
+    <div className="fleet-carousel-controls">
+      <div className="review-nav services-nav">
+        <button type="button" onClick={onPrev} aria-label="Previous vehicle">
+          <i className="fa-solid fa-arrow-left" />
+        </button>
+        <button type="button" onClick={onNext} aria-label="Next vehicle">
+          <i className="fa-solid fa-arrow-right" />
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function useFleetPerView() {
   const [w, setW] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth : 1280,
@@ -150,6 +165,8 @@ function FleetCarouselSingle({ items }) {
         pausedRef.current = false
       }}
     >
+      <FleetCarouselControls onPrev={goPrev} onNext={goNext} />
+
       <div
         ref={viewportRef}
         className="fleet-mobile-carousel-viewport fleet-carousel-viewport--draggable"
@@ -335,6 +352,7 @@ function FleetCarouselWindow({ items, visible }) {
         </div>
       </div>
 
+      <FleetCarouselControls onPrev={goPrev} onNext={goNext} />
       <FleetCarouselDots count={n} active={focusIndex} onSelect={goTo} />
     </div>
   )

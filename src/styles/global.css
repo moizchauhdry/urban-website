@@ -495,8 +495,8 @@ header{
 }
 .fleet-slider-photo{
   width:100%;
-  height:100%;
-  object-fit:contain;
+  height: 95%;
+  object-fit:cover;
   object-position:center;
   display:block;
 }
@@ -523,12 +523,35 @@ header{
 
 /* Fleet section carousel */
 .fleet-carousel{
+  position:relative;
   width:100%;
   padding:20px 0 0;
+}
+.fleet-carousel-controls{
+  display:flex;
+  position:static;
+  justify-content:center;
+  margin:0 auto 18px;
+  pointer-events:none;
+}
+.fleet-carousel-controls .review-nav{
+  margin-top:0;
+}
+.fleet-carousel-controls .review-nav button{
+  pointer-events:auto;
 }
 .fleet-carousel > .fleet-carousel-dots{
   margin-top:34px;
   margin-bottom:0;
+}
+@media (min-width: 721px) {
+  .fleet-carousel-controls{
+    position:absolute;
+    top:-54px;
+    right:14px;
+    margin:0;
+    justify-content:flex-end;
+  }
 }
 .fleet-desktop-carousel-viewport,
 .fleet-mobile-carousel-viewport{
@@ -1287,7 +1310,7 @@ header.scrolled{
   .fleet-mobile-carousel-slide-inner,
   .why-carousel-slide-inner{
     display:flex;width:100%;
-    padding:0 16px;
+    /* padding:0 16px; */
     box-sizing:border-box;
   }
   .why-carousel .why-card{
