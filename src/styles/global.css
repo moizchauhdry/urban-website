@@ -456,23 +456,31 @@ header{
 
 /* Fleet: in-card image slider (dots live inside each .fleet-card; see FleetImageSlider.jsx) */
 .fleet-img.fleet-img--with-slider{
-  height:auto;display:block;padding:0;overflow:visible;
+  width:100%;
+  height:auto;
+  display:block;
+  padding:0;
+  overflow:hidden;
+  background:#fff;
 }
 .fleet-slider-root{
   width:100%;
 }
+/* Fixed ratio frame — scales with card width (Retina / browser zoom safe) */
 .fleet-slider-viewport{
   position:relative;
   width:100%;
-  height:310px;
+  aspect-ratio:var(--fleet-slider-aspect, 5 / 4);
+  height:auto;
+  min-height:0;
+  overflow:hidden;
   background:#fff;
+  contain:layout style;
 }
 /* Rounded clip per slide — only this wrapper, not the outer viewport */
 .fleet-slider-image-wrap{
   position:absolute;
-  top:14px;left:14px;
-  width:calc(100% - 28px);
-  height:calc(100% - 28px);
+  inset:14px;
   border-radius:20px;
   overflow:hidden;
   opacity:0;
@@ -493,12 +501,48 @@ header{
   opacity:1;
   z-index:1;
 }
-.fleet-slider-photo{
+
+/* Slide 1: SVG hero art — padded stage, never scale past clip (no cropping) */
+.fleet-slider-image-wrap--primary{
+  background:#fff;
+}
+.fleet-slider-primary-stage{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* padding:12px 14px; */
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.fleet-slider-photo--primary{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center center;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+
+/* Slides 2–3: real photos — uniform cover fill */
+.fleet-slider-image-wrap--photo{
+  background:#fff;
+}
+.fleet-slider-photo--photo{
+  position:absolute;
+  inset:0;
   width:100%;
-  height: 95%;
+  height:100%;
+  max-width:none;
   object-fit:cover;
   object-position:center;
   display:block;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 
 /* Fleet carousel dots (section + in-card galleries) */
@@ -1118,7 +1162,7 @@ footer{
   transition:transform .7s cubic-bezier(.2,.7,.2,1);
 }
 .fleet-card:hover .fleet-img:not(.fleet-img--with-slider){ transform:scale(1.1) }
-.fleet-card:hover .fleet-slider-image-wrap.is-active .fleet-slider-photo{
+.fleet-card:hover .fleet-slider-image-wrap--photo.is-active .fleet-slider-photo--photo{
   transform:scale(1.02);
   transition:transform .7s cubic-bezier(.2,.7,.2,1);
 }
@@ -1332,12 +1376,16 @@ header.scrolled{
   .fleet-mobile-carousel-slide .fleet-body p{
     min-height:3.75em;
   }
-  .fleet-slider-viewport{height:200px}
+  .fleet-slider-viewport{
+    --fleet-slider-aspect:9 / 5;
+    height:auto;
+  }
   .fleet-slider-image-wrap{
-    top:8px;left:8px;
-    width:calc(100% - 16px);
-    height:calc(100% - 16px);
+    inset:8px;
     border-radius:14px;
+  }
+  .fleet-slider-primary-stage{
+    padding:8px 10px;
   }
   .fleet-slider-root .fleet-carousel-dots{
     padding:6px 8px 4px;

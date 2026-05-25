@@ -78,22 +78,42 @@ function FleetImageSliderInner({ images }) {
           swipe.onPointerCancel()
         }}
       >
-        {images.map((img, i) => (
-          <div
-            key={`${img.src}-${i}`}
-            className={cx('fleet-slider-image-wrap', i === index && 'is-active')}
-            aria-hidden={i !== index}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              loading={i === 0 ? 'eager' : 'lazy'}
-              decoding="async"
-              draggable={false}
-              className="fleet-slider-photo"
-            />
-          </div>
-        ))}
+        {images.map((img, i) => {
+          const isPrimary = i === 0
+          return (
+            <div
+              key={`${img.src}-${i}`}
+              className={cx(
+                'fleet-slider-image-wrap',
+                isPrimary ? 'fleet-slider-image-wrap--primary' : 'fleet-slider-image-wrap--photo',
+                i === index && 'is-active',
+              )}
+              aria-hidden={i !== index}
+            >
+              {isPrimary ? (
+                <div className="fleet-slider-primary-stage">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="eager"
+                    decoding="async"
+                    draggable={false}
+                    className="fleet-slider-photo fleet-slider-photo--primary"
+                  />
+                </div>
+              ) : (
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className="fleet-slider-photo fleet-slider-photo--photo"
+                />
+              )}
+            </div>
+          )
+        })}
       </div>
 
       {n > 1 ? (
