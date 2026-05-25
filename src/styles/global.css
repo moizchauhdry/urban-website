@@ -516,6 +516,22 @@ header{
   box-sizing:border-box;
   overflow:hidden;
 }
+.fleet-slider-skeleton{
+  border-radius:inherit;
+  pointer-events:none;
+}
+.fleet-slider-photo.is-loading{
+  opacity:0;
+}
+.fleet-slider-photo.is-loaded{
+  opacity:1;
+  transition:opacity .35s ease-out;
+}
+.fleet-slider-photo--primary.is-loaded,
+.fleet-slider-photo--primary.is-loading{
+  position:relative;
+  z-index:1;
+}
 .fleet-slider-photo--primary{
   display:block;
   width:auto;
@@ -535,6 +551,7 @@ header{
 .fleet-slider-photo--photo{
   position:absolute;
   inset:0;
+  z-index:1;
   width:100%;
   height:100%;
   max-width:none;

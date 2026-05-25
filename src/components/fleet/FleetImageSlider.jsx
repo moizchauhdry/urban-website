@@ -9,6 +9,64 @@ function cx(...parts) {
   return parts.filter(Boolean).join(' ')
 }
 
+/** Single slide image with skeleton until fully loaded (cached-safe). */
+function FleetSliderSlideImage({ src, alt, isPrimary, eager }) {
+  const [loadedSrc, setLoadedSrc] = useState(null)
+  const loaded = loadedSrc === src
+
+  const setImgRef = useCallback(
+    (node) => {
+      if (node?.complete && node.naturalWidth > 0) setLoadedSrc(src)
+    },
+    [src],
+  )
+
+  const markLoaded = useCallback(() => setLoadedSrc(src), [src])
+
+  const photoClass = cx(
+    'fleet-slider-photo',
+    isPrimary ? 'fleet-slider-photo--primary' : 'fleet-slider-photo--photo',
+    loaded ? 'is-loaded' : 'is-loading',
+  )
+
+  const skeleton = !loaded ? (
+    <span
+      className="fleet-slider-skeleton absolute inset-0 z-0 animate-pulse bg-neutral-200"
+      aria-hidden="true"
+    />
+  ) : null
+
+  const img = (
+    <img
+      ref={setImgRef}
+      src={src}
+      alt={alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      draggable={false}
+      className={photoClass}
+      onLoad={markLoaded}
+      onError={markLoaded}
+    />
+  )
+
+  if (isPrimary) {
+    return (
+      <div className="fleet-slider-primary-stage">
+        {skeleton}
+        {img}
+      </div>
+    )
+  }
+
+  return (
+    <>
+      {skeleton}
+      {img}
+    </>
+  )
+}
+
 /**
  * In-card image gallery: crossfade, drag/swipe, dots, autoplay.
  */
@@ -90,27 +148,12 @@ function FleetImageSliderInner({ images }) {
               )}
               aria-hidden={i !== index}
             >
-              {isPrimary ? (
-                <div className="fleet-slider-primary-stage">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="eager"
-                    decoding="async"
-                    draggable={false}
-                    className="fleet-slider-photo fleet-slider-photo--primary"
-                  />
-                </div>
-              ) : (
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                  className="fleet-slider-photo fleet-slider-photo--photo"
-                />
-              )}
+              <FleetSliderSlideImage
+                src={img.src}
+                alt={img.alt}
+                isPrimary={isPrimary}
+                eager={isPrimary || i === index}
+              />
             </div>
           )
         })}
