@@ -50,7 +50,7 @@ function ServicesIntro() {
   )
 }
 
-function MobilePageCarousel({ pages, onPrev, onNext }) {
+function MobilePageCarousel({ pages, onPrevRef, onNextRef }) {
   const pageCount = pages.length
   const [page, setPage] = useState(0)
   const [noTransition, setNoTransition] = useState(false)
@@ -85,9 +85,9 @@ function MobilePageCarousel({ pages, onPrev, onNext }) {
   }, [page, pageCount, snapAfter])
 
   useEffect(() => {
-    onPrev.current = goPrev
-    onNext.current = goNext
-  }, [goPrev, goNext, onPrev, onNext])
+    onPrevRef.current = goPrev
+    onNextRef.current = goNext
+  }, [goPrev, goNext, onPrevRef, onNextRef])
 
   const onTouchStart = useCallback((e) => {
     touchStartX.current = e.touches[0]?.clientX ?? null
@@ -147,7 +147,7 @@ function MobilePageCarousel({ pages, onPrev, onNext }) {
   )
 }
 
-function DesktopWindowCarousel({ items, visible, onPrev, onNext }) {
+function DesktopWindowCarousel({ items, visible, onPrevRef, onNextRef }) {
   const viewportRef = useRef(null)
   const [viewportW, setViewportW] = useState(0)
   const [start, setStart] = useState(0)
@@ -208,9 +208,9 @@ function DesktopWindowCarousel({ items, visible, onPrev, onNext }) {
   }, [maxStart, snapAfter, start])
 
   useEffect(() => {
-    onPrev.current = goPrev
-    onNext.current = goNext
-  }, [goPrev, goNext, onPrev, onNext])
+    onPrevRef.current = goPrev
+    onNextRef.current = goNext
+  }, [goPrev, goNext, onPrevRef, onNextRef])
 
   const onTouchStart = useCallback((e) => {
     touchStartX.current = e.touches[0]?.clientX ?? null
@@ -288,16 +288,16 @@ export default function ServicesCarousel() {
           <MobilePageCarousel
             key="mobile"
             pages={pages}
-            onPrev={prevRef}
-            onNext={nextRef}
+            onPrevRef={prevRef}
+            onNextRef={nextRef}
           />
         ) : (
           <DesktopWindowCarousel
             key={perView}
             items={SERVICE_ITEMS}
             visible={perView}
-            onPrev={prevRef}
-            onNext={nextRef}
+            onPrevRef={prevRef}
+            onNextRef={nextRef}
           />
         )}
         <div className="services-carousel-controls">
