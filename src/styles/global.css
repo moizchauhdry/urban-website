@@ -387,7 +387,7 @@ header{
 }
 .places-suggestions button:hover,
 .places-suggestions button.is-active{background:#fff8e1}
-.places-suggestions-main{font-weight:600;font-size:13px}
+.places-suggestions-main{font-weight:400;font-size:13px}
 .places-suggestions-secondary{font-size:12px;color:#666}
 .places-autocomplete-hint{
   margin:6px 0 0;font-size:11px;line-height:1.4;color:#b45309;
