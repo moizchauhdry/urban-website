@@ -3,7 +3,7 @@ import { hasGoogleMapsApiKey, loadGoogleMapsPlaces } from '../../lib/loadGoogleM
 
 const MIN_CHARS = 2
 
-function useDebouncedCallback(callback, delay) {
+function useDebouncedCallbackWithCancel(callback, delay) {
   const timeoutRef = useRef(null)
   const callbackRef = useRef(callback)
   callbackRef.current = callback
@@ -15,13 +15,22 @@ function useDebouncedCallback(callback, delay) {
     [],
   )
 
-  return useCallback(
+  const cancel = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }, [])
+
+  const debounced = useCallback(
     (...args) => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
       timeoutRef.current = setTimeout(() => callbackRef.current(...args), delay)
     },
     [delay],
   )
+
+  return { debounced, cancel }
 }
 
 /** @returns {Promise<Array<{ id: string, description: string, placePrediction?: object, legacyPrediction?: object }>>} */
@@ -84,25 +93,6 @@ async function fetchPlacePredictions(input, sessionToken) {
       },
     )
   })
-}
-
-/**
- * Use the autocomplete label the user picked; formattedAddress often drops venue names.
- * @param {string} suggestion
- * @param {{ displayName?: string, formattedAddress?: string, name?: string, formatted_address?: string } | null | undefined} details
- */
-function resolveSelectedAddress(suggestion, details) {
-  const label = suggestion?.trim()
-  if (label) return label
-
-  const name = details?.displayName || details?.name
-  const formatted = details?.formattedAddress || details?.formatted_address
-
-  if (name && formatted) {
-    return formatted.includes(name) ? formatted : `${name}, ${formatted}`
-  }
-
-  return formatted || name || ''
 }
 
 /**
@@ -196,60 +186,69 @@ export default function PlacesAutocompleteInput({
     }
   }
 
-  const debouncedFetch = useDebouncedCallback((input) => {
-    runFetch(input)
-  }, 250)
+  const { debounced: debouncedFetch, cancel: cancelDebouncedFetch } =
+    useDebouncedCallbackWithCancel((input) => {
+      runFetch(input)
+    }, 250)
 
-  const selectPrediction = async (item) => {
-    const suggestionLabel = item.description?.trim() ?? ''
-    let placeDetails = null
-
-    try {
-      if (item.placePrediction?.toPlace) {
-        const place = item.placePrediction.toPlace()
-        await place.fetchFields({ fields: ['formattedAddress', 'displayName'] })
-        placeDetails = {
-          displayName: place.displayName,
-          formattedAddress: place.formattedAddress,
-        }
-        if (placesLibRef.current?.AutocompleteSessionToken) {
-          sessionTokenRef.current = new placesLibRef.current.AutocompleteSessionToken()
-        }
-      } else if (item.legacyPrediction) {
-        const div = document.createElement('div')
-        const placesService = new window.google.maps.places.PlacesService(div)
-        await new Promise((resolve) => {
-          placesService.getDetails(
-            {
-              placeId: item.legacyPrediction.place_id,
-              fields: ['formatted_address', 'name'],
-              sessionToken: sessionTokenRef.current,
-            },
-            (place, status) => {
-              if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                placeDetails = place
-              }
-              if (placesLibRef.current?.AutocompleteSessionToken) {
-                sessionTokenRef.current = new placesLibRef.current.AutocompleteSessionToken()
-              }
-              resolve()
-            },
-          )
-        })
-      }
-    } catch (err) {
-      if (import.meta.env.DEV) {
-        console.warn('[Places] place details failed:', err)
-      }
+  const refreshSessionToken = useCallback(() => {
+    if (placesLibRef.current?.AutocompleteSessionToken) {
+      sessionTokenRef.current = new placesLibRef.current.AutocompleteSessionToken()
     }
+  }, [])
 
-    const address = resolveSelectedAddress(suggestionLabel, placeDetails)
+  /** Complete Places session in background (billing); UI uses suggestion text immediately. */
+  const finalizePlaceSession = useCallback(
+    (item) => {
+      void (async () => {
+        try {
+          if (item.placePrediction?.toPlace) {
+            const place = item.placePrediction.toPlace()
+            await place.fetchFields({ fields: ['formattedAddress', 'displayName'] })
+            refreshSessionToken()
+          } else if (item.legacyPrediction) {
+            const div = document.createElement('div')
+            const placesService = new window.google.maps.places.PlacesService(div)
+            await new Promise((resolve) => {
+              placesService.getDetails(
+                {
+                  placeId: item.legacyPrediction.place_id,
+                  fields: ['formatted_address', 'name'],
+                  sessionToken: sessionTokenRef.current,
+                },
+                () => {
+                  refreshSessionToken()
+                  resolve()
+                },
+              )
+            })
+          }
+        } catch (err) {
+          if (import.meta.env.DEV) {
+            console.warn('[Places] place details failed:', err)
+          }
+        }
+      })()
+    },
+    [refreshSessionToken],
+  )
 
-    onChangeRef.current({ target: { name, value: address } })
-    setSuggestions([])
-    setOpen(false)
-    setActiveIndex(-1)
-  }
+  const selectPrediction = useCallback(
+    (item) => {
+      cancelDebouncedFetch()
+
+      const address = item.description?.trim() ?? ''
+
+      onChangeRef.current({ target: { name, value: address } })
+      setSuggestions([])
+      setOpen(false)
+      setActiveIndex(-1)
+      setLoading(false)
+
+      finalizePlaceSession(item)
+    },
+    [cancelDebouncedFetch, finalizePlaceSession, name],
+  )
 
   const handleInputChange = (e) => {
     onChange(e)
@@ -334,8 +333,10 @@ export default function PlacesAutocompleteInput({
               <button
                 type="button"
                 className={index === activeIndex ? 'is-active' : undefined}
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => selectPrediction(item)}
+                onMouseDown={(e) => {
+                  e.preventDefault()
+                  selectPrediction(item)
+                }}
               >
                 <span className="places-suggestions-main">{item.description}</span>
               </button>
