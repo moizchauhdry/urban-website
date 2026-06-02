@@ -64,6 +64,12 @@ function getSuccessPageUrl() {
   return url
 }
 
+/** Canonical site URL sent to the portal (must match a website registered in the portal). */
+function getBookingLiveUrl(fallbackUrl) {
+  const override = import.meta.env.VITE_BOOKING_LIVE_URL?.trim()
+  return override || fallbackUrl
+}
+
 /**
  * Request body for the booking API.
  * @param {ReturnType<typeof buildHeroBookingPayload>} payload
@@ -82,7 +88,7 @@ function buildApiRequestBody(payload) {
     travel: payload.travel,
     passengers: payload.passengers,
     luggage: payload.luggage,
-    live_url: payload.liveUrl,
+    live_url: getBookingLiveUrl(payload.liveUrl),
   }
 
   if (payload.bookingType === 'hourly' && payload.hours) {
@@ -124,17 +130,21 @@ export async function submitHeroBooking(payload) {
     body: JSON.stringify(body),
   })
 
+  const contentType = res.headers.get('content-type') || ''
+  let data = null
+  if (contentType.includes('application/json')) {
+    data = await res.json()
+  } else if (!res.ok) {
+    const text = await res.text()
+    throw new Error(text || `Booking failed (${res.status})`)
+  }
+
   if (!res.ok) {
-    let message = `Booking failed (${res.status})`
-    const contentType = res.headers.get('content-type') || ''
-    if (contentType.includes('application/json')) {
-      const data = await res.json()
-      message = data.message || data.error || message
-    } else {
-      const text = await res.text()
-      if (text) message = text
-    }
-    throw new Error(message)
+    throw new Error(data?.message || data?.error || `Booking failed (${res.status})`)
+  }
+
+  if (data && data.success === false) {
+    throw new Error(data.message || data.error || 'Booking could not be completed.')
   }
 
   window.location.assign(getSuccessPageUrl())

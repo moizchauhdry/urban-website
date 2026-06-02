@@ -20,6 +20,7 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
 | `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
 | `VITE_BOOKING_SUCCESS_URL` | Redirect after successful booking |
+| `VITE_BOOKING_LIVE_URL` | Optional. Canonical site URL sent as `live_url` (portal must have this domain registered) |
 
 Example:
 
@@ -52,6 +53,13 @@ VITE_BOOKING_SUCCESS_URL=https://areacarservice.com/thank-you/
 Logic: `src/services/heroBooking.js`
 
 **CORS errors locally?** The booking API must allow your origin, or add a Vite proxy.
+
+### Book Now fails on Vercel but env vars look correct
+
+1. Hard-refresh the site (cached JS may still show “not configured”).
+2. Confirm the built bundle includes your API URL (DevTools → Network → open `index-*.js` → search for `portal.`).
+3. The portal matches bookings by `live_url`. On a Vercel URL, set `VITE_BOOKING_LIVE_URL` to your production domain (e.g. `https://urbanelitelimo.com/`) and ensure that domain is **registered in the limo portal** for this client.
+4. If the API returns `success: false`, fix portal/website setup — that is not a missing `.env` issue.
 
 ---
 
