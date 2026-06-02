@@ -249,7 +249,12 @@ header{
   padding:80px 0 100px;
   min-height:680px;
 }
-.hero .container{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.hero .container{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;
+  align-items:start;
+}
+.hero-content{align-self:start}
+.booking-card{align-self:start}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.1);backdrop-filter:blur(8px);
@@ -339,6 +344,33 @@ header{
 .booking-card .form-group-phone .PhoneInputCountry{margin-right:2px}
 /* Google Places suggestions (pick-up / destination) */
 .places-autocomplete{position:relative}
+.places-autocomplete input.places-autocomplete-input--loading{
+  padding-right:92px;
+}
+.places-autocomplete-status{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:#888;
+  pointer-events:none;
+  z-index:2;
+  white-space:nowrap;
+}
+.places-autocomplete-spinner{
+  flex-shrink:0;
+  width:14px;
+  height:14px;
+  border:2px solid #e0e0e0;
+  border-top-color:var(--yellow);
+  border-radius:50%;
+  animation:placesSpinner .7s linear infinite;
+}
+@keyframes placesSpinner{to{transform:rotate(360deg)}}
 .places-suggestions{
   position:absolute;left:0;right:0;top:calc(100% + 4px);
   z-index:10000;margin:0;padding:4px 0;list-style:none;
@@ -357,9 +389,6 @@ header{
 .places-suggestions button.is-active{background:#fff8e1}
 .places-suggestions-main{font-weight:600;font-size:13px}
 .places-suggestions-secondary{font-size:12px;color:#666}
-.places-autocomplete-status{
-  display:block;font-size:11px;color:#888;margin-top:4px;
-}
 .places-autocomplete-hint{
   margin:6px 0 0;font-size:11px;line-height:1.4;color:#b45309;
 }
@@ -909,27 +938,39 @@ header{
 
 /* JOURNEY */
 .journey{
-  background:#f5f5f5;padding:60px 0;
+  background:#f5f5f5;padding:60px 0 0;
   position:relative;overflow:hidden;text-align:center;
+  min-height:320px;
 }
-.journey-cars{
-  position:absolute;top:50%;transform:translateY(-50%);
+.journey-car-slot{
+  position:absolute;
+  bottom:0;
+  width:min(34%, 440px);
   height:240px;
-  background-size:contain;background-position:center;background-repeat:no-repeat;
+  display:flex;
+  align-items:flex-end;
+  pointer-events:none;
 }
-.journey-car-left{
-  left:0;width:32%;
-  background-image:url('https://images.unsplash.com/photo-1601057463999-58cc02c3a587?w=600&q=80');
-  background-size:cover;background-position:right center;
-  border-radius:0 12px 12px 0;
+.journey-car-slot--left{
+  left:0;
+  justify-content:flex-start;
 }
-.journey-car-right{
-  right:0;width:32%;
-  background-image:url('https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&q=80');
-  background-size:cover;background-position:left center;
-  border-radius:12px 0 0 12px;
+.journey-car-slot--left .journey-car-img{
+  margin-bottom:14px;
 }
-.journey .container{position:relative;z-index:1;max-width:600px}
+.journey-car-slot--right{
+  right:0;
+  justify-content:flex-end;
+}
+.journey-car-img{
+  display:block;
+  height:220px;
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  object-position:center bottom;
+}
+.journey .container{position:relative;z-index:1;max-width:600px;padding-bottom:60px}
 .journey h2{font-size:34px;font-weight:700;margin-bottom:14px}
 .journey p{color:var(--muted);font-size:14.5px;margin-bottom:24px}
 
@@ -1069,7 +1110,6 @@ footer{
   0%,100% { box-shadow:0 0 20px rgba(252,184,19,.15) }
   50%     { box-shadow:0 0 40px rgba(252,184,19,.35) }
 }
-@keyframes carDrift { 0%,100% { transform:translate3d(0,0,0) } 50% { transform:translate3d(8px,-4px,0) } }
 
 /* Hero atmospheric glow */
 .hero{ overflow:hidden; perspective:1500px }
@@ -1268,8 +1308,6 @@ footer{
 .step:hover{ transform:translate3d(0,-6px,0) }
 
 /* Journey cars subtle drift */
-.journey-car-left,.journey-car-right{ animation:carDrift 6s ease-in-out infinite }
-.journey-car-right{ animation-delay:-3s }
 
 /* Airport cards: 3D + title shift */
 .airport-card{
@@ -1453,7 +1491,8 @@ header.scrolled{
   .hero-badge,
   .hero-desc,
   .hero-features{display:none}
-  .journey-cars{display:none}
+  .journey-cars,
+  .journey-car-slot{display:none}
   .trusted{padding:50px 0}
   .content-img{height:300px}
 
