@@ -210,11 +210,9 @@ export default function Hero() {
               <label>Select Fleet</label>
               <select name="fleet" value={formData.fleet} onChange={handleChange}>
                 <option value="">—Please choose an option—</option>
-                <option value="Economy Sedan">Economy Sedan</option>
+                <option value="Sedan">Sedan</option>
                 <option value="Luxury Sedan">Luxury Sedan</option>
-                <option value="Mini SUV">Mini SUV</option>
                 <option value="Full-Size SUVs">Full-Size SUVs</option>
-                <option value="Premium SUVs">Premium SUVs</option>
                 <option value="Sprinter Van">Sprinter Van</option>
                 <option value="Stretch Limo">Stretch Limo</option>
               </select>

@@ -71,29 +71,39 @@ function getBookingLiveUrl(fallbackUrl) {
 }
 
 /**
- * Request body for the booking API.
+ * Map form travel value to portal travel_type (matches areacarservice booking-form.js).
+ * @param {string} travel
+ */
+function mapTravelType(travel) {
+  const normalized = travel.trim().toLowerCase()
+  if (normalized === 'round trip') return 'Round Trip'
+  return 'One way'
+}
+
+/**
+ * Request body for the booking API (field names must match portal expectations).
  * @param {ReturnType<typeof buildHeroBookingPayload>} payload
  */
 function buildApiRequestBody(payload) {
   const body = {
+    project_name: 'ACS',
     name: payload.name,
     email: payload.email,
     phone: payload.phone,
-    date: payload.date,
-    time: payload.time,
-    fleet: payload.fleet,
-    pickup: payload.pickup,
-    destination: payload.destination,
-    service_type: payload.serviceType,
-    travel: payload.travel,
-    passengers: payload.passengers,
-    luggage: payload.luggage,
+    pickup_date: payload.date,
+    pickup_time: payload.time,
+    vehicle_id: payload.fleet,
+    pickup_location: payload.pickup,
+    drop_location: payload.destination,
+    service: payload.serviceType,
+    travel_type: mapTravelType(payload.travel || 'One way'),
+    no_of_passengers: payload.passengers,
+    no_of_luggage: payload.luggage,
     live_url: getBookingLiveUrl(payload.liveUrl),
   }
 
   if (payload.bookingType === 'hourly' && payload.hours) {
-    body.hour = payload.hours
-    body.hours = payload.hours
+    body.no_of_hours = payload.hours
   }
 
   return body
