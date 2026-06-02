@@ -87,6 +87,25 @@ async function fetchPlacePredictions(input, sessionToken) {
 }
 
 /**
+ * Use the autocomplete label the user picked; formattedAddress often drops venue names.
+ * @param {string} suggestion
+ * @param {{ displayName?: string, formattedAddress?: string, name?: string, formatted_address?: string } | null | undefined} details
+ */
+function resolveSelectedAddress(suggestion, details) {
+  const label = suggestion?.trim()
+  if (label) return label
+
+  const name = details?.displayName || details?.name
+  const formatted = details?.formattedAddress || details?.formatted_address
+
+  if (name && formatted) {
+    return formatted.includes(name) ? formatted : `${name}, ${formatted}`
+  }
+
+  return formatted || name || ''
+}
+
+/**
  * Address input with Google Places suggestions.
  */
 export default function PlacesAutocompleteInput({
@@ -182,13 +201,17 @@ export default function PlacesAutocompleteInput({
   }, 250)
 
   const selectPrediction = async (item) => {
-    let address = item.description
+    const suggestionLabel = item.description?.trim() ?? ''
+    let placeDetails = null
 
     try {
       if (item.placePrediction?.toPlace) {
         const place = item.placePrediction.toPlace()
         await place.fetchFields({ fields: ['formattedAddress', 'displayName'] })
-        address = place.formattedAddress || place.displayName || address
+        placeDetails = {
+          displayName: place.displayName,
+          formattedAddress: place.formattedAddress,
+        }
         if (placesLibRef.current?.AutocompleteSessionToken) {
           sessionTokenRef.current = new placesLibRef.current.AutocompleteSessionToken()
         }
@@ -204,7 +227,7 @@ export default function PlacesAutocompleteInput({
             },
             (place, status) => {
               if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                address = place?.formatted_address || place?.name || address
+                placeDetails = place
               }
               if (placesLibRef.current?.AutocompleteSessionToken) {
                 sessionTokenRef.current = new placesLibRef.current.AutocompleteSessionToken()
@@ -219,6 +242,8 @@ export default function PlacesAutocompleteInput({
         console.warn('[Places] place details failed:', err)
       }
     }
+
+    const address = resolveSelectedAddress(suggestionLabel, placeDetails)
 
     onChangeRef.current({ target: { name, value: address } })
     setSuggestions([])
@@ -280,17 +305,19 @@ export default function PlacesAutocompleteInput({
         placeholder={placeholder}
         autoComplete={autoComplete}
         disabled={disabled}
+        className={loading && placesReady ? 'places-autocomplete-input--loading' : undefined}
         role="combobox"
         aria-expanded={showList}
         aria-controls={listId}
         aria-autocomplete="list"
         aria-busy={loading}
       />
-      {loading && placesReady && (
-        <span className="places-autocomplete-status" aria-hidden="true">
-          Searching…
+      {loading && placesReady ? (
+        <span className="places-autocomplete-status" role="status" aria-live="polite">
+          <span className="places-autocomplete-spinner" aria-hidden="true" />
+          <span className="places-autocomplete-status-text">Searching…</span>
         </span>
-      )}
+      ) : null}
       {apiKeyMissing && import.meta.env.DEV && (
         <p className="places-autocomplete-hint">
           Add <code>VITE_GOOGLE_MAPS_API_KEY</code> to <code>.env</code> and restart{' '}
