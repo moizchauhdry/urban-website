@@ -1,6 +1,6 @@
 /**
- * URL folder on urbanelitelimo.com for each regional landing (one `dist/` copy per folder).
- * Add a slug here, then deploy the same build to `/var/www/urbanelitelimo/<slug>/`.
+ * Public URL paths on urbanelitelimo.com (one app deploy; Apache routes each slug).
+ * After adding a slug, update deploy/apache-wordpress-snippet.txt RewriteRule and rebuild.
  */
 export const REGIONS = [
   { slug: 'connecticut', label: 'Connecticut Car Service' },

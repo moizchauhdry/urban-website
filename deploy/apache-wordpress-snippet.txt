@@ -1,0 +1,15 @@
+# Add these lines to /var/www/urbanelitelimo/.htaccess
+# ABOVE the WordPress "# BEGIN WordPress" block (do not replace WordPress rules).
+#
+# Upload the built app once to: /var/www/urbanelitelimo/urban-app/
+# (change "urban-app" if you set VITE_DEPLOY_PATH to something else)
+
+# BEGIN Urban Elite React
+<IfModule mod_rewrite.c>
+RewriteRule ^urban-app/ - [L]
+RewriteRule ^(connecticut|florida|illinois|new-york)(/.*)?$ /urban-app/index.html [L]
+</IfModule>
+# END Urban Elite React
+
+# When adding a region, update the second RewriteRule regex AND src/config/regions.js,
+# then rebuild and redeploy urban-app/ only.

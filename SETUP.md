@@ -20,6 +20,7 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
 | `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
 | `VITE_BOOKING_SUCCESS_URL` | Redirect after successful booking |
+| `VITE_DEPLOY_PATH` | Optional. Single server folder URL path (default `/urban-app/`). |
 
 Example:
 
@@ -66,46 +67,47 @@ VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 
 ---
 
-## Deploy under WordPress (regional paths)
+## Deploy under WordPress (one folder, many region URLs)
 
-WordPress stays at the domain root. This app is **one build** copied into a folder per region:
+WordPress stays at `/var/www/urbanelitelimo/`. Upload this app **once**:
 
-| URL | Server folder |
-|-----|----------------|
-| `https://urbanelitelimo.com/connecticut/` | `/var/www/urbanelitelimo/connecticut/` |
-| `https://urbanelitelimo.com/florida/` | `/var/www/urbanelitelimo/florida/` |
-| … | same `dist/` contents in each folder |
+| What | Path |
+|------|------|
+| Built files | `/var/www/urbanelitelimo/urban-app/` |
+| Connecticut page | `https://urbanelitelimo.com/connecticut/` |
+| Florida page | `https://urbanelitelimo.com/florida/` |
+| … | routed by Apache, not separate folders |
 
-Slugs are defined in `src/config/regions.js`. Add a row there, then deploy to a matching folder name.
+Region slugs: `src/config/regions.js`. Deploy path (default `urban-app`): optional `VITE_DEPLOY_PATH=/urban-app/` in `.env`.
 
-1. **Build** (relative asset paths — works in every region folder):
+### 1. Build
 
-   ```bash
-   npm run build
-   ```
+```bash
+npm run build
+```
 
-2. **Upload** the contents of `dist/` into each region directory (not the `dist` folder itself):
+### 2. Upload once
 
-   ```bash
-   for region in connecticut florida illinois new-york; do
-     rsync -avz --delete dist/ user@server:/var/www/urbanelitelimo/$region/
-     sudo chown -R www-data:www-data /var/www/urbanelitelimo/$region
-   done
-   ```
+```bash
+rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/urban-app/
+ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/urban-app'
+```
 
-3. **Apache** — `public/.htaccess` is included in `dist/` so refresh on e.g. `/connecticut/about` returns `index.html`.
+### 3. Apache (WordPress root `.htaccess`)
 
-4. **Google Maps** — allow `https://urbanelitelimo.com/connecticut/*` (and each region path) on your API key.
+Copy the block from `deploy/apache-wordpress-snippet.txt` into `/var/www/urbanelitelimo/.htaccess` **above** `# BEGIN WordPress`. That sends `/connecticut`, `/florida`, etc. to `urban-app/index.html` while assets load from `/urban-app/assets/...`.
 
-5. **Booking portal** — register each live URL you use, e.g. `https://urbanelitelimo.com/connecticut/`.
+When you add a region, update the RewriteRule in that snippet and in `regions.js`, then rebuild and rsync again (only `urban-app/`).
 
-6. **Verify** — open each regional URL, confirm assets load under that path, refresh `/connecticut/about`, test Book Now.
+### 4. Maps, booking, verify
 
-**Local dev** — default `http://localhost:5173/`. To test a region path:
+- Google Maps referrers: `https://urbanelitelimo.com/connecticut/*` (each region you use).
+- Booking portal: register each `live_url`, e.g. `https://urbanelitelimo.com/connecticut/`.
+- Test: `/connecticut/`, refresh `/connecticut/about`, Book Now.
 
-`http://localhost:5173/connecticut/` (Vite rewrites region URLs to the SPA).
+**Local dev** — `http://localhost:5173/connecticut/` (region URLs rewritten to the SPA).
 
-**New region** — add `{ slug, label }` in `src/config/regions.js`, rebuild, rsync `dist/` to `/var/www/urbanelitelimo/<slug>/`.
+**Custom deploy folder** — set `VITE_DEPLOY_PATH=/my-app/` in `.env`, rebuild, upload to `/var/www/urbanelitelimo/my-app/`, and change `urban-app` in the Apache snippet to `my-app`.
 
 ---
 

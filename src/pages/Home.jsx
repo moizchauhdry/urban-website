@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useRegion } from '../context/RegionContext.jsx'
 import Hero from '../components/sections/Hero.jsx'
 import Fleet from '../components/sections/Fleet.jsx'
 import WhyDifferent from '../components/sections/WhyDifferent.jsx'
@@ -12,11 +13,17 @@ import JourneySection from '../components/sections/JourneySection.jsx'
 import AirportsSection from '../components/sections/AirportsSection.jsx'
 import FaqSection from '../components/sections/FaqSection.jsx'
 
+const DEFAULT_TITLE =
+  'Reliable Connecticut Car Service for Airports and Long Distance Travel | Urban Elite Limo'
+
 export default function Home() {
+  const { region } = useRegion()
+
   useEffect(() => {
-    document.title =
-      'Reliable Connecticut Car Service for Airports and Long Distance Travel | Urban Elite Limo'
-  }, [])
+    document.title = region
+      ? `${region.label} | Urban Elite Limo`
+      : DEFAULT_TITLE
+  }, [region])
 
   return (
     <>

@@ -1,18 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { REGION_SLUGS } from './src/config/regions.js'
+import { normalizeDeployPath } from './src/config/deployPath.js'
 
-/** Dev/preview: serve index.html for /connecticut, /florida, etc. */
-function regionSpaFallback(slugs) {
+const deployPath = normalizeDeployPath(process.env.VITE_DEPLOY_PATH)
+const deploySegment = deployPath.replace(/^\/|\/$/g, '')
+
+/** Dev/preview: region URLs (e.g. /connecticut) serve the SPA from the deploy path. */
+function regionSpaFallback(slugs, basePath) {
   const escaped = slugs.map((s) => s.replace(/-/g, '\\-'))
   const regionPath = new RegExp(`^/(${escaped.join('|')})(/|$)`)
-  const skip =
-    /^\/(@|src|node_modules|assets|api)|\.[a-zA-Z0-9]+$|[?&]/
+  const skip = new RegExp(
+    `^/(?:${deploySegment}|@|src|node_modules|assets|api)(?:/|$)|\\.[a-zA-Z0-9]+$`,
+  )
 
   const middleware = (req, _res, next) => {
     const path = req.url?.split('?')[0] ?? ''
     if (!skip.test(path) && regionPath.test(path)) {
-      req.url = '/'
+      req.url = basePath
     }
     next()
   }
@@ -30,7 +35,6 @@ function regionSpaFallback(slugs) {
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Relative assets: one build works in /connecticut/, /florida/, etc.
-  base: process.env.VITE_BASE_PATH || './',
-  plugins: [react(), regionSpaFallback(REGION_SLUGS)],
+  base: deployPath,
+  plugins: [react(), regionSpaFallback(REGION_SLUGS, deployPath)],
 })
