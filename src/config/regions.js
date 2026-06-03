@@ -1,6 +1,6 @@
 /**
- * Public URL paths on urbanelitelimo.com (one app deploy; Apache routes each slug).
- * After adding a slug, update deploy/apache-wordpress-snippet.txt RewriteRule and rebuild.
+ * Regional pages under the deploy prefix, e.g. `/moiz/connecticut`.
+ * `slug` is the URL segment after `/moiz/`.
  */
 export const REGIONS = [
   { slug: 'connecticut', label: 'Connecticut Car Service' },
@@ -11,9 +11,21 @@ export const REGIONS = [
 
 export const REGION_SLUGS = REGIONS.map((r) => r.slug)
 
-/** In-app routes at site root (no region prefix). */
-export const APP_ROUTE_SEGMENTS = ['about', 'services', 'contact']
+export function getRegionBySlug(slug) {
+  return REGIONS.find((r) => r.slug === slug) ?? null
+}
 
-export function isRegionSlug(segment) {
-  return REGION_SLUGS.includes(segment)
+/** Full path after domain, e.g. `moiz/connecticut` */
+export function regionBasePath(region, deploySegment) {
+  return `${deploySegment}/${region.slug}`
+}
+
+export function getRegionPaths(deploySegment) {
+  return REGIONS.map((r) => regionBasePath(r, deploySegment))
+}
+
+export function getRegionFromPathname(pathname, deploySegment) {
+  const parts = pathname.replace(/\/$/, '').split('/').filter(Boolean)
+  if (parts[0] !== deploySegment || parts.length < 2) return null
+  return getRegionBySlug(parts[1]) ?? null
 }

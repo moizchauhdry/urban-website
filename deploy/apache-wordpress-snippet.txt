@@ -1,15 +1,19 @@
 # Add these lines to /var/www/urbanelitelimo/.htaccess
-# ABOVE the WordPress "# BEGIN WordPress" block (do not replace WordPress rules).
+# ABOVE the WordPress "# BEGIN WordPress" block.
 #
-# Upload the built app once to: /var/www/urbanelitelimo/urban-app/
-# (change "urban-app" if you set VITE_DEPLOY_PATH to something else)
+# Upload dist/ once to: /var/www/urbanelitelimo/moiz/
 
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
-RewriteRule ^urban-app/ - [L]
-RewriteRule ^(connecticut|florida|illinois|new-york)(/.*)?$ /urban-app/index.html [L]
+RewriteRule ^moiz/ - [L]
+RewriteRule ^moiz/(connecticut|florida|illinois|new-york)(/.*)?$ /moiz/index.html [L]
+RewriteRule ^moiz/?$ /moiz/index.html [L]
 </IfModule>
 # END Urban Elite React
 
-# When adding a region, update the second RewriteRule regex AND src/config/regions.js,
-# then rebuild and redeploy urban-app/ only.
+# URLs:
+#   https://urbanelitelimo.com/moiz/
+#   https://urbanelitelimo.com/moiz/connecticut/
+#   https://urbanelitelimo.com/moiz/florida/
+
+# When adding a region, update the RewriteRule AND src/config/regions.js, rebuild, rsync moiz/.

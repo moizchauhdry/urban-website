@@ -1,29 +1,35 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { REGION_SLUGS } from './src/config/regions.js'
+import { getRegionPaths } from './src/config/regions.js'
 import { normalizeDeployPath } from './src/config/deployPath.js'
 
 const deployPath = normalizeDeployPath(process.env.VITE_DEPLOY_PATH)
 const deploySegment = deployPath.replace(/^\/|\/$/g, '')
+const regionPaths = getRegionPaths(deploySegment)
 
-/** Dev/preview: region URLs (e.g. /connecticut) serve the SPA from the deploy path. */
-function regionSpaFallback(slugs, basePath) {
-  const escaped = slugs.map((s) => s.replace(/-/g, '\\-'))
+/** Dev/preview: `/moiz`, `/moiz/connecticut`, etc. serve the SPA. */
+function moizSpaFallback(regionPaths, basePath) {
+  const escaped = regionPaths.map((p) => p.replace(/-/g, '\\-').replace(/\//g, '/'))
   const regionPath = new RegExp(`^/(${escaped.join('|')})(/|$)`)
+  const appRoot = new RegExp(`^/${deploySegment}/?$`)
   const skip = new RegExp(
-    `^/(?:${deploySegment}|@|src|node_modules|assets|api)(?:/|$)|\\.[a-zA-Z0-9]+$`,
+    `^/${deploySegment}/assets/|^(?:/@|src|node_modules|api)(?:/|$)|\\.[a-zA-Z0-9]+$`,
   )
 
   const middleware = (req, _res, next) => {
     const path = req.url?.split('?')[0] ?? ''
-    if (!skip.test(path) && regionPath.test(path)) {
+    if (skip.test(path)) {
+      next()
+      return
+    }
+    if (appRoot.test(path) || regionPath.test(path)) {
       req.url = basePath
     }
     next()
   }
 
   return {
-    name: 'region-spa-fallback',
+    name: 'moiz-spa-fallback',
     configureServer(server) {
       server.middlewares.use(middleware)
     },
@@ -36,5 +42,5 @@ function regionSpaFallback(slugs, basePath) {
 // https://vite.dev/config/
 export default defineConfig({
   base: deployPath,
-  plugins: [react(), regionSpaFallback(REGION_SLUGS, deployPath)],
+  plugins: [react(), moizSpaFallback(regionPaths, deployPath)],
 })
