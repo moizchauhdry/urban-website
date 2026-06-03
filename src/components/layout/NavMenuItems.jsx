@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { appHash, regionUrl } from '../../lib/appBase.js'
+import { REGIONS } from '../../config/regions.js'
 import { ext } from './navConfig.js'
 
 /**
@@ -13,14 +15,15 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
       <>
         <Link to="/">Home</Link>
         <a href={ext('/about-us/')}>About Us</a>
-        <a href="/#fleet">Fleet</a>
+        <a href={appHash('fleet')}>Fleet</a>
         <div className="has-sub">
           <a href="#">Service Areas</a>
           <div className="submenu">
-            <a href="#">Connecticut Car Service</a>
-            <a href="https://urbanelitelimo.com/state/florida-car-service/">Florida Car Service</a>
-            <a href="https://urbanelitelimo.com/state/illinois-car-service/">Illinois Car Service</a>
-            <a href="https://urbanelitelimo.com/state/new-york-car-service/">New York Car Service</a>
+            {REGIONS.map(({ slug, label }) => (
+              <a key={slug} href={regionUrl(slug)}>
+                {label}
+              </a>
+            ))}
           </div>
         </div>
         <a href={ext('/our-services/')}>Our Services</a>
@@ -37,7 +40,7 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
       <a className="mobile-menu__link" href={ext('/about-us/')} onClick={close}>
         About Us
       </a>
-      <a className="mobile-menu__link" href="/#fleet" onClick={close}>
+      <a className="mobile-menu__link" href={appHash('fleet')} onClick={close}>
         Fleet
       </a>
 
@@ -47,30 +50,16 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
           <i className="fa-solid fa-chevron-down mobile-menu__chev" aria-hidden />
         </summary>
         <div className="mobile-menu__sub">
-          <a className="mobile-menu__sublink" href="#" onClick={close}>
-            Connecticut Car Service
-          </a>
-          <a
-            className="mobile-menu__sublink"
-            href="https://urbanelitelimo.com/state/florida-car-service/"
-            onClick={close}
-          >
-            Florida Car Service
-          </a>
-          <a
-            className="mobile-menu__sublink"
-            href="https://urbanelitelimo.com/state/illinois-car-service/"
-            onClick={close}
-          >
-            Illinois Car Service
-          </a>
-          <a
-            className="mobile-menu__sublink"
-            href="https://urbanelitelimo.com/state/new-york-car-service/"
-            onClick={close}
-          >
-            New York Car Service
-          </a>
+          {REGIONS.map(({ slug, label }) => (
+            <a
+              key={slug}
+              className="mobile-menu__sublink"
+              href={regionUrl(slug)}
+              onClick={close}
+            >
+              {label}
+            </a>
+          ))}
         </div>
       </details>
 

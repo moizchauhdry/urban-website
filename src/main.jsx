@@ -5,10 +5,11 @@ import './styles/global.css'
 import 'react-phone-number-input/style.css'
 import './index.css'
 import App from './App.jsx'
+import { getRouterBasename } from './lib/appBase.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={getRouterBasename()}>
       <App />
     </BrowserRouter>
   </StrictMode>,

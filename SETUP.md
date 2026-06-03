@@ -66,6 +66,49 @@ VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 
 ---
 
+## Deploy under WordPress (regional paths)
+
+WordPress stays at the domain root. This app is **one build** copied into a folder per region:
+
+| URL | Server folder |
+|-----|----------------|
+| `https://urbanelitelimo.com/connecticut/` | `/var/www/urbanelitelimo/connecticut/` |
+| `https://urbanelitelimo.com/florida/` | `/var/www/urbanelitelimo/florida/` |
+| … | same `dist/` contents in each folder |
+
+Slugs are defined in `src/config/regions.js`. Add a row there, then deploy to a matching folder name.
+
+1. **Build** (relative asset paths — works in every region folder):
+
+   ```bash
+   npm run build
+   ```
+
+2. **Upload** the contents of `dist/` into each region directory (not the `dist` folder itself):
+
+   ```bash
+   for region in connecticut florida illinois new-york; do
+     rsync -avz --delete dist/ user@server:/var/www/urbanelitelimo/$region/
+     sudo chown -R www-data:www-data /var/www/urbanelitelimo/$region
+   done
+   ```
+
+3. **Apache** — `public/.htaccess` is included in `dist/` so refresh on e.g. `/connecticut/about` returns `index.html`.
+
+4. **Google Maps** — allow `https://urbanelitelimo.com/connecticut/*` (and each region path) on your API key.
+
+5. **Booking portal** — register each live URL you use, e.g. `https://urbanelitelimo.com/connecticut/`.
+
+6. **Verify** — open each regional URL, confirm assets load under that path, refresh `/connecticut/about`, test Book Now.
+
+**Local dev** — default `http://localhost:5173/`. To test a region path:
+
+`http://localhost:5173/connecticut/` (Vite rewrites region URLs to the SPA).
+
+**New region** — add `{ slug, label }` in `src/config/regions.js`, rebuild, rsync `dist/` to `/var/www/urbanelitelimo/<slug>/`.
+
+---
+
 ## Checklist
 
 - [ ] `npm install` + `.env` from `.env.example`
