@@ -8,6 +8,9 @@
 RewriteEngine On
 RewriteBase /
 
+# Redirect index.html in URL to folder root (avoids blank React page)
+RewriteRule ^urban-app/index\.html$ /urban-app/ [R=301,L]
+
 # Static files (JS, CSS, images) from urban-app/
 RewriteRule ^urban-app/ - [L]
 

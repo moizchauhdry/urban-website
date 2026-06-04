@@ -7,6 +7,9 @@ import './index.css'
 import App from './App.jsx'
 import { RegionProvider } from './context/RegionContext.jsx'
 import { getRouterBasename } from './lib/appBase.js'
+import { normalizeAppUrl } from './lib/browserPath.js'
+
+normalizeAppUrl()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
