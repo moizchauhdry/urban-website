@@ -1,13 +1,20 @@
-# Add to /var/www/urbanelitelimo/.htaccess ABOVE "# BEGIN WordPress"
+# Paste at line 1 of /var/www/urbanelitelimo/.htaccess (BEFORE "# BEGIN WordPress")
 #
-# Upload dist/ to:
-#   /var/www/urbanelitelimo/connecticut-black-car-and-limo-service/
+# Files on disk:  /var/www/urbanelitelimo/urban-app/
+# Public URL:     https://urbanelitelimo.com/connecticut-black-car-and-limo-service/
 
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
-RewriteRule ^connecticut-black-car-and-limo-service/ - [L]
-RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /connecticut-black-car-and-limo-service/index.html [L]
+RewriteEngine On
+RewriteBase /
+
+# Static files (JS, CSS, images) from urban-app/
+RewriteRule ^urban-app/ - [L]
+
+# Public URL → React index.html
+RewriteCond %{REQUEST_URI} ^/connecticut-black-car-and-limo-service(/.*)?$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /urban-app/index.html [L]
 </IfModule>
 # END Urban Elite React
-
-# https://urbanelitelimo.com/connecticut-black-car-and-limo-service/

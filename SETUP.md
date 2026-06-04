@@ -74,7 +74,8 @@ Upload the built app to a folder that matches the public URL:
 | What | Path |
 |------|------|
 | Live URL | `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/` |
-| Server folder | `/var/www/urbanelitelimo/connecticut-black-car-and-limo-service/` |
+| Server folder (upload dist here) | `/var/www/urbanelitelimo/urban-app/` |
+| Assets in browser | `https://urbanelitelimo.com/urban-app/assets/...` |
 
 ### 1. Build
 
@@ -85,19 +86,23 @@ npm run build
 ### 2. Upload
 
 ```bash
-rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/connecticut-black-car-and-limo-service/
-ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/connecticut-black-car-and-limo-service'
+rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/urban-app/
+ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/urban-app'
 ```
 
-### 3. Apache
+### 3. Apache or Nginx
 
-Copy `deploy/apache-wordpress-snippet.txt` into `/var/www/urbanelitelimo/.htaccess` **above** `# BEGIN WordPress`.
+**Apache:** paste `deploy/apache-wordpress-snippet.txt` at **line 1** of `/var/www/urbanelitelimo/.htaccess` (before `# BEGIN WordPress`).
+
+**Nginx:** use `deploy/nginx-snippet.conf` (`.htaccess` is ignored).
+
+**WordPress 404?** See `deploy/FIX-404.md` (usually missing upload, wrong `.htaccess` position, or a WP page with the same slug).
 
 ### 4. Verify
 
 - Google Maps: `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/*`
 - Booking portal: register that URL as `live_url`
-- Test the URL; assets should load from `/connecticut-black-car-and-limo-service/assets/...`
+- Test the URL; assets should load from `/urban-app/assets/...`
 
 **Local dev** — `http://localhost:5173/connecticut-black-car-and-limo-service/`
 

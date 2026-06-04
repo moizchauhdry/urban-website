@@ -1,7 +1,10 @@
-/** Public URL folder name (matches WordPress page slug). */
+/** Public URL (what visitors see in the browser). */
 export const SITE_APP_SEGMENT = 'connecticut-black-car-and-limo-service'
 
-export const DEFAULT_DEPLOY_PATH = `/${SITE_APP_SEGMENT}/`
+/** Server folder where you upload dist/ (under /var/www/urbanelitelimo/). */
+export const DEFAULT_DEPLOY_FOLDER = 'urban-app'
+
+export const DEFAULT_DEPLOY_PATH = `/${DEFAULT_DEPLOY_FOLDER}/`
 
 /** Shared deploy path normalizer (safe for vite.config and the app). */
 export function normalizeDeployPath(raw) {
