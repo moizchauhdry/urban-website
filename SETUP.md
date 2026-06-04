@@ -20,7 +20,7 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
 | `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
 | `VITE_BOOKING_SUCCESS_URL` | Redirect after successful booking |
-| `VITE_DEPLOY_PATH` | Optional. Single server folder URL path (default `/moiz/` for testing). |
+| `VITE_DEPLOY_PATH` | Optional. App URL path (default `/connecticut-black-car-and-limo-service/`). |
 
 Example:
 
@@ -67,20 +67,14 @@ VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 
 ---
 
-## Deploy under WordPress (one folder, many region URLs)
+## Deploy under WordPress
 
-WordPress stays at `/var/www/urbanelitelimo/`. Upload this app **once**:
+Upload the built app to a folder that matches the public URL:
 
 | What | Path |
 |------|------|
-| Built files | `/var/www/urbanelitelimo/moiz/` |
-| Server folder (one upload) | `/var/www/urbanelitelimo/moiz/` |
-| Connecticut (custom URL) | `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/` |
-| Other regions (optional) | `https://urbanelitelimo.com/moiz/florida/` etc. |
-
-Each region’s public `path` is set in `src/config/regions.js` (not always under `/moiz/`).
-
-Region slugs: `src/config/regions.js`. Deploy prefix (default `moiz`): `VITE_DEPLOY_PATH=/moiz/` in `.env`.
+| Live URL | `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/` |
+| Server folder | `/var/www/urbanelitelimo/connecticut-black-car-and-limo-service/` |
 
 ### 1. Build
 
@@ -88,28 +82,24 @@ Region slugs: `src/config/regions.js`. Deploy prefix (default `moiz`): `VITE_DEP
 npm run build
 ```
 
-### 2. Upload once
+### 2. Upload
 
 ```bash
-rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/moiz/
-ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/moiz'
+rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/connecticut-black-car-and-limo-service/
+ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/connecticut-black-car-and-limo-service'
 ```
 
-### 3. Apache (WordPress root `.htaccess`)
+### 3. Apache
 
-Copy the block from `deploy/apache-wordpress-snippet.txt` into `/var/www/urbanelitelimo/.htaccess` **above** `# BEGIN WordPress`. That sends `/moiz/connecticut`, etc. to `moiz/index.html` while assets load from `/moiz/assets/...`.
+Copy `deploy/apache-wordpress-snippet.txt` into `/var/www/urbanelitelimo/.htaccess` **above** `# BEGIN WordPress`.
 
-When you add a region, update the RewriteRule in that snippet and in `regions.js`, then rebuild and rsync again (only `moiz/`).
+### 4. Verify
 
-### 4. Maps, booking, verify
-
-- Google Maps referrers: `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/*`
-- Booking portal: register `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/`
-- Test that URL, refresh `.../about`, Book Now.
+- Google Maps: `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/*`
+- Booking portal: register that URL as `live_url`
+- Test the URL; assets should load from `/connecticut-black-car-and-limo-service/assets/...`
 
 **Local dev** — `http://localhost:5173/connecticut-black-car-and-limo-service/`
-
-**Production folder name** — change `VITE_DEPLOY_PATH` and the `moiz` segments in the Apache snippet to your final folder name (e.g. `urban-app`).
 
 ---
 

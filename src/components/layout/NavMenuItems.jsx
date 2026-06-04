@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { appHash, regionUrl } from '../../lib/appBase.js'
-import { REGIONS } from '../../config/regions.js'
+import { REGIONS, SERVICE_AREA_LINKS } from '../../config/regions.js'
 import { ext } from './navConfig.js'
 
 /**
@@ -21,6 +21,11 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
           <div className="submenu">
             {REGIONS.map(({ slug, label }) => (
               <a key={slug} href={regionUrl(slug)}>
+                {label}
+              </a>
+            ))}
+            {SERVICE_AREA_LINKS.map(({ label, href }) => (
+              <a key={href} href={href}>
                 {label}
               </a>
             ))}
@@ -55,6 +60,16 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
               key={slug}
               className="mobile-menu__sublink"
               href={regionUrl(slug)}
+              onClick={close}
+            >
+              {label}
+            </a>
+          ))}
+          {SERVICE_AREA_LINKS.map(({ label, href }) => (
+            <a
+              key={href}
+              className="mobile-menu__sublink"
+              href={href}
               onClick={close}
             >
               {label}

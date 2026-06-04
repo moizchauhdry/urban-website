@@ -1,34 +1,31 @@
-/**
- * Public URL paths on urbanelitelimo.com (files live once under /moiz/ on the server).
- * `path` = URL after the domain; `slug` = internal id for app logic.
- */
+import { SITE_APP_SEGMENT } from './deployPath.js'
+
+/** App is served at `/connecticut-black-car-and-limo-service/` */
 export const REGIONS = [
   {
     slug: 'connecticut',
-    path: 'connecticut-black-car-and-limo-service',
+    path: SITE_APP_SEGMENT,
     label: 'Connecticut Car Service',
-  },
-  {
-    slug: 'florida',
-    path: 'moiz/florida',
-    label: 'Florida Car Service',
-  },
-  {
-    slug: 'illinois',
-    path: 'moiz/illinois',
-    label: 'Illinois Car Service',
-  },
-  {
-    slug: 'new-york',
-    path: 'moiz/new-york',
-    label: 'New York Car Service',
   },
 ]
 
-export const REGION_SLUGS = REGIONS.map((r) => r.slug)
-
-/** Paths used in dev server + Apache rewrites, e.g. `connecticut-black-car-and-limo-service` */
 export const REGION_PATHS = REGIONS.map((r) => r.path)
+
+/** Other states still on WordPress (shown in nav/footer). */
+export const SERVICE_AREA_LINKS = [
+  {
+    label: 'Florida Car Service',
+    href: 'https://urbanelitelimo.com/state/florida-car-service/',
+  },
+  {
+    label: 'Illinois Car Service',
+    href: 'https://urbanelitelimo.com/state/illinois-car-service/',
+  },
+  {
+    label: 'New York Car Service',
+    href: 'https://urbanelitelimo.com/state/new-york-car-service/',
+  },
+]
 
 export function getRegionBySlug(slug) {
   return REGIONS.find((r) => r.slug === slug) ?? null

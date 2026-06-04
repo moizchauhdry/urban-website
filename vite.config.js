@@ -6,11 +6,9 @@ import { normalizeDeployPath } from './src/config/deployPath.js'
 const deployPath = normalizeDeployPath(process.env.VITE_DEPLOY_PATH)
 const deploySegment = deployPath.replace(/^\/|\/$/g, '')
 
-/** Dev/preview: `/moiz`, `/moiz/connecticut`, etc. serve the SPA. */
-function moizSpaFallback(regionPaths, basePath) {
-  const escaped = regionPaths.map((p) => p.replace(/-/g, '\\-').replace(/\//g, '/'))
-  const regionPath = new RegExp(`^/(${escaped.join('|')})(/|$)`)
-  const appRoot = new RegExp(`^/${deploySegment}/?$`)
+function appSpaFallback(publicPaths, basePath) {
+  const escaped = publicPaths.map((p) => p.replace(/-/g, '\\-').replace(/\//g, '/'))
+  const appPath = new RegExp(`^/(${escaped.join('|')})(/|$)`)
   const skip = new RegExp(
     `^/${deploySegment}/assets/|^(?:/@|src|node_modules|api)(?:/|$)|\\.[a-zA-Z0-9]+$`,
   )
@@ -21,14 +19,14 @@ function moizSpaFallback(regionPaths, basePath) {
       next()
       return
     }
-    if (appRoot.test(path) || regionPath.test(path)) {
+    if (appPath.test(path)) {
       req.url = basePath
     }
     next()
   }
 
   return {
-    name: 'moiz-spa-fallback',
+    name: 'app-spa-fallback',
     configureServer(server) {
       server.middlewares.use(middleware)
     },
@@ -41,5 +39,5 @@ function moizSpaFallback(regionPaths, basePath) {
 // https://vite.dev/config/
 export default defineConfig({
   base: deployPath,
-  plugins: [react(), moizSpaFallback(REGION_PATHS, deployPath)],
+  plugins: [react(), appSpaFallback(REGION_PATHS, deployPath)],
 })

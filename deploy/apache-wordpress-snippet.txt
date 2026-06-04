@@ -1,18 +1,13 @@
-# Add these lines to /var/www/urbanelitelimo/.htaccess
-# ABOVE the WordPress "# BEGIN WordPress" block.
+# Add to /var/www/urbanelitelimo/.htaccess ABOVE "# BEGIN WordPress"
 #
-# Upload dist/ once to: /var/www/urbanelitelimo/moiz/
+# Upload dist/ to:
+#   /var/www/urbanelitelimo/connecticut-black-car-and-limo-service/
 
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
-RewriteRule ^moiz/ - [L]
-RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /moiz/index.html [L]
-RewriteRule ^moiz/(florida|illinois|new-york)(/.*)?$ /moiz/index.html [L]
-RewriteRule ^moiz/?$ /moiz/index.html [L]
+RewriteRule ^connecticut-black-car-and-limo-service/ - [L]
+RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /connecticut-black-car-and-limo-service/index.html [L]
 </IfModule>
 # END Urban Elite React
 
-# Live URL:
-#   https://urbanelitelimo.com/connecticut-black-car-and-limo-service/
-
-# New custom URL: add `path` in src/config/regions.js, add a RewriteRule above, rebuild, rsync moiz/.
+# https://urbanelitelimo.com/connecticut-black-car-and-limo-service/

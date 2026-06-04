@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import urbanFooterLogo from '../../assets/icons/urban-footer-logo.svg'
 import { regionUrl } from '../../lib/appBase.js'
-import { REGIONS } from '../../config/regions.js'
+import { REGIONS, SERVICE_AREA_LINKS } from '../../config/regions.js'
 import { useHomeLogoClick } from '../../hooks/useHomeLogoClick.js'
 
 export default function Footer() {
@@ -54,6 +54,11 @@ export default function Footer() {
               {REGIONS.map(({ slug, label }) => (
                 <li key={slug}>
                   <a href={regionUrl(slug)}>{label.replace(/ Car Service$/, '')}</a>
+                </li>
+              ))}
+              {SERVICE_AREA_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <a href={href}>{label.replace(/ Car Service$/, '')}</a>
                 </li>
               ))}
             </ul>
