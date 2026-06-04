@@ -2,7 +2,7 @@ import { getRegionBySlug, getRegionFromPathname } from '../config/regions.js'
 import { DEPLOY_SEGMENT } from '../config/deploy.js'
 
 /**
- * React Router basename, e.g. `/connecticut-black-car-and-limo-service`.
+ * React Router basename, e.g. `/connecticut-black-car-service`.
  */
 export function getRouterBasename() {
   if (typeof window === 'undefined') return undefined

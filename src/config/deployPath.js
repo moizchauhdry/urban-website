@@ -1,5 +1,5 @@
 /** Public URL (what visitors see in the browser). */
-export const SITE_APP_SEGMENT = 'connecticut-black-car-and-limo-service'
+export const SITE_APP_SEGMENT = 'connecticut-black-car-service'
 
 /** Server folder where you upload dist/ (under /var/www/urbanelitelimo/). */
 export const DEFAULT_DEPLOY_FOLDER = 'urban-app'

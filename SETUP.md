@@ -20,7 +20,7 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
 | `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
 | `VITE_BOOKING_SUCCESS_URL` | Redirect after successful booking |
-| `VITE_DEPLOY_PATH` | Optional. App URL path (default `/connecticut-black-car-and-limo-service/`). |
+| `VITE_DEPLOY_PATH` | Optional. App URL path (default `/connecticut-black-car-service/`). |
 
 Example:
 
@@ -73,7 +73,7 @@ Upload the built app to a folder that matches the public URL:
 
 | What | Path |
 |------|------|
-| Live URL | `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/` |
+| Live URL | `https://urbanelitelimo.com/connecticut-black-car-service/` |
 | Server folder (upload dist here) | `/var/www/urbanelitelimo/urban-app/` |
 | Assets in browser | `https://urbanelitelimo.com/urban-app/assets/...` |
 
@@ -100,11 +100,11 @@ ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/urban-a
 
 ### 4. Verify
 
-- Google Maps: `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/*`
+- Google Maps: `https://urbanelitelimo.com/connecticut-black-car-service/*`
 - Booking portal: register that URL as `live_url`
 - Test the URL; assets should load from `/urban-app/assets/...`
 
-**Local dev** — `http://localhost:5173/connecticut-black-car-and-limo-service/`
+**Local dev** — `http://localhost:5173/connecticut-black-car-service/`
 
 ---
 

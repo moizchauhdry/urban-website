@@ -1,6 +1,6 @@
 import { SITE_APP_SEGMENT } from './deployPath.js'
 
-/** App is served at `/connecticut-black-car-and-limo-service/` */
+/** Public URL: `/connecticut-black-car-service/` (files in `/urban-app/`) */
 export const REGIONS = [
   {
     slug: 'connecticut',

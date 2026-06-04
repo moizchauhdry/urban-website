@@ -1,23 +1,17 @@
-# Paste at line 1 of /var/www/urbanelitelimo/.htaccess (BEFORE "# BEGIN WordPress")
+# Paste at LINE 1 of /var/www/urbanelitelimo/.htaccess (BEFORE "# BEGIN WordPress")
 #
-# Files on disk:  /var/www/urbanelitelimo/urban-app/
-# Public URL:     https://urbanelitelimo.com/connecticut-black-car-and-limo-service/
+# Files:  /var/www/urbanelitelimo/urban-app/
+# Public: https://urbanelitelimo.com/connecticut-black-car-service/
 
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
 
-# Redirect index.html in URL to folder root (avoids blank React page)
 RewriteRule ^urban-app/index\.html$ /urban-app/ [R=301,L]
-
-# Static files (JS, CSS, images) from urban-app/
 RewriteRule ^urban-app/ - [L]
 
-# Public URL → React index.html
-RewriteCond %{REQUEST_URI} ^/connecticut-black-car-and-limo-service(/.*)?$ [NC]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /urban-app/index.html [L]
+RewriteRule ^connecticut-black-car-service/?$ /urban-app/index.html [L]
+RewriteRule ^connecticut-black-car-service/ /urban-app/index.html [L]
 </IfModule>
 # END Urban Elite React
