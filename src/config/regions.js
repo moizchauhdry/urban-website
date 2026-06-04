@@ -1,6 +1,8 @@
 import { SITE_APP_SEGMENT } from './deployPath.js'
 
-/** Public URL: `/connecticut-black-car-service/` (files in `/urban-app/`) */
+/**
+ * Public URL: `/connecticut-black-car-service/` (files in `/urban-app/`).
+ */
 export const REGIONS = [
   {
     slug: 'connecticut',
@@ -33,10 +35,11 @@ export function getRegionBySlug(slug) {
 
 export function getRegionFromPathname(pathname) {
   const normalized = pathname.replace(/\/$/, '') || '/'
-  return (
-    REGIONS.find((r) => {
-      const base = `/${r.path}`
-      return normalized === base || normalized.startsWith(`${base}/`)
-    }) ?? null
-  )
+  const publicBase = `/${SITE_APP_SEGMENT}`
+
+  if (normalized === publicBase || normalized.startsWith(`${publicBase}/`)) {
+    return REGIONS[0]
+  }
+
+  return null
 }

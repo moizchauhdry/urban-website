@@ -1,7 +1,12 @@
-# Paste at LINE 1 of /var/www/urbanelitelimo/.htaccess (BEFORE "# BEGIN WordPress")
+# OPTION A (recommended if root rules fail): physical folder + .htaccess
 #
-# Files:  /var/www/urbanelitelimo/urban-app/
-# Public: https://urbanelitelimo.com/connecticut-black-car-service/
+#   mkdir -p /var/www/urbanelitelimo/connecticut-black-car-service
+#   cp deploy/connecticut-black-car-service.htaccess \
+#      /var/www/urbanelitelimo/connecticut-black-car-service/.htaccess
+#
+# App files stay in urban-app/ only.
+#
+# OPTION B: paste at LINE 1 of /var/www/urbanelitelimo/.htaccess (before WordPress)
 
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
@@ -15,3 +20,6 @@ RewriteRule ^connecticut-black-car-service/?$ /urban-app/index.html [L]
 RewriteRule ^connecticut-black-car-service/ /urban-app/index.html [L]
 </IfModule>
 # END Urban Elite React
+
+# Public: https://urbanelitelimo.com/connecticut-black-car-service/
+# Files:  /var/www/urbanelitelimo/urban-app/

@@ -1,0 +1,11 @@
+# /var/www/urbanelitelimo/connecticut-black-car-service/.htaccess
+# Empty folder OK — app files live in /urban-app/
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /connecticut-black-car-service/
+
+RewriteRule ^index\.html$ /connecticut-black-car-service/ [R=301,L]
+RewriteRule ^(.+)$ /urban-app/index.html [L]
+RewriteRule ^$ /urban-app/index.html [L]
+</IfModule>
