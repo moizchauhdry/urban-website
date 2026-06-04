@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import urbanFooterLogo from '../../assets/icons/urban-footer-logo.svg'
 import { useHomeLogoClick } from '../../hooks/useHomeLogoClick.js'
+import Icon from '../common/Icon.jsx'
 
 export default function Footer() {
   const onHomeLogoClick = useHomeLogoClick()
@@ -22,10 +23,10 @@ export default function Footer() {
             </Link>
             <div className="footer-contact">
               <a href="tel:8888816610">
-                <i className="fa-solid fa-phone" /> (888) 881-6610
+                <Icon name="phone" size={14} /> (888) 881-6610
               </a>
               <a href="mailto:info@urbanelitelimo.com">
-                <i className="fa-solid fa-envelope" /> info@urbanelitelimo.com
+                <Icon name="envelope" size={14} /> info@urbanelitelimo.com
               </a>
             </div>
           </div>
@@ -66,14 +67,14 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Follow Us</h4>
             <div className="footer-social">
-              <a href="#">
-                <i className="fa-brands fa-facebook-f" />
+              <a href="#" aria-label="Facebook">
+                <Icon name="facebook-f" size={16} />
               </a>
-              <a href="#">
-                <i className="fa-brands fa-twitter" />
+              <a href="#" aria-label="Twitter">
+                <Icon name="twitter" size={16} />
               </a>
-              <a href="#">
-                <i className="fa-brands fa-youtube" />
+              <a href="#" aria-label="YouTube">
+                <Icon name="youtube" size={16} />
               </a>
             </div>
           </div>

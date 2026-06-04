@@ -1,0 +1,1 @@
+var e=`/urban-app/assets/full-size-suv3-DuV6DlNk.webp`;export{e as default};

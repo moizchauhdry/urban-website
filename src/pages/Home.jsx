@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import Hero from '../components/sections/Hero.jsx'
-import Fleet from '../components/sections/Fleet.jsx'
-import WhyDifferent from '../components/sections/WhyDifferent.jsx'
-import PlanningBanner from '../components/sections/PlanningBanner.jsx'
-import ReviewsSection from '../components/sections/ReviewsSection.jsx'
-import Services from '../components/sections/Services.jsx'
-import ContentBlocks from '../components/sections/ContentBlocks.jsx'
-import TrustedStats from '../components/sections/TrustedStats.jsx'
-import HowItWorks from '../components/sections/HowItWorks.jsx'
-import JourneySection from '../components/sections/JourneySection.jsx'
-import AirportsSection from '../components/sections/AirportsSection.jsx'
-import FaqSection from '../components/sections/FaqSection.jsx'
+
+const Fleet = lazy(() => import('../components/sections/Fleet.jsx'))
+const WhyDifferent = lazy(() => import('../components/sections/WhyDifferent.jsx'))
+const PlanningBanner = lazy(() => import('../components/sections/PlanningBanner.jsx'))
+const ReviewsSection = lazy(() => import('../components/sections/ReviewsSection.jsx'))
+const Services = lazy(() => import('../components/sections/Services.jsx'))
+const ContentBlocks = lazy(() => import('../components/sections/ContentBlocks.jsx'))
+const TrustedStats = lazy(() => import('../components/sections/TrustedStats.jsx'))
+const HowItWorks = lazy(() => import('../components/sections/HowItWorks.jsx'))
+const JourneySection = lazy(() => import('../components/sections/JourneySection.jsx'))
+const AirportsSection = lazy(() => import('../components/sections/AirportsSection.jsx'))
+const FaqSection = lazy(() => import('../components/sections/FaqSection.jsx'))
 
 export default function Home() {
   useEffect(() => {
@@ -21,17 +22,19 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Fleet />
-      <WhyDifferent />
-      <PlanningBanner />
-      <ReviewsSection />
-      <Services />
-      <ContentBlocks />
-      <TrustedStats />
-      <HowItWorks />
-      <JourneySection />
-      <AirportsSection />
-      <FaqSection />
+      <Suspense fallback={null}>
+        <Fleet />
+        <WhyDifferent />
+        <PlanningBanner />
+        <ReviewsSection />
+        <Services />
+        <ContentBlocks />
+        <TrustedStats />
+        <HowItWorks />
+        <JourneySection />
+        <AirportsSection />
+        <FaqSection />
+      </Suspense>
     </>
   )
 }

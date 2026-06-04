@@ -4,24 +4,48 @@ import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
 const AUTOPLAY_MS = 4500
 const FADE_MS = 500
+/** Matches .fleet-slider-viewport aspect-ratio 5/4 at 800px reference width */
+const FLEET_IMG_WIDTH = 800
+const FLEET_IMG_HEIGHT = 640
 
 function cx(...parts) {
   return parts.filter(Boolean).join(' ')
 }
 
 /** Single slide image with skeleton until fully loaded (cached-safe). */
-function FleetSliderSlideImage({ src, alt, isPrimary, eager }) {
+function FleetSliderSlideImage({ src, loadSrc, alt, isPrimary, shouldLoad, priorityLoad }) {
+  const [dynamicSrc, setDynamicSrc] = useState(null)
   const [loadedSrc, setLoadedSrc] = useState(null)
-  const loaded = loadedSrc === src
+
+  const canLoad = shouldLoad && (priorityLoad || !isPrimary)
+  const staticSrc = src && !(isPrimary && !priorityLoad) ? src : null
+  const resolvedSrc = staticSrc ?? dynamicSrc
+  const loaded = Boolean(resolvedSrc && loadedSrc === resolvedSrc)
+
+  useEffect(() => {
+    if (staticSrc || !loadSrc || !canLoad) return undefined
+
+    let cancelled = false
+    loadSrc().then((mod) => {
+      if (!cancelled) setDynamicSrc(mod.default)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [staticSrc, loadSrc, canLoad])
 
   const setImgRef = useCallback(
     (node) => {
-      if (node?.complete && node.naturalWidth > 0) setLoadedSrc(src)
+      if (node?.complete && node.naturalWidth > 0 && resolvedSrc) {
+        setLoadedSrc(resolvedSrc)
+      }
     },
-    [src],
+    [resolvedSrc],
   )
 
-  const markLoaded = useCallback(() => setLoadedSrc(src), [src])
+  const markLoaded = useCallback(() => {
+    if (resolvedSrc) setLoadedSrc(resolvedSrc)
+  }, [resolvedSrc])
 
   const photoClass = cx(
     'fleet-slider-photo',
@@ -36,12 +60,18 @@ function FleetSliderSlideImage({ src, alt, isPrimary, eager }) {
     />
   ) : null
 
+  if (!resolvedSrc) {
+    return skeleton
+  }
+
   const img = (
     <img
       ref={setImgRef}
-      src={src}
+      src={resolvedSrc}
       alt={alt}
-      loading={eager ? 'eager' : 'lazy'}
+      width={FLEET_IMG_WIDTH}
+      height={FLEET_IMG_HEIGHT}
+      loading={isPrimary && priorityLoad ? 'eager' : 'lazy'}
       decoding="async"
       draggable={false}
       className={photoClass}
@@ -70,7 +100,7 @@ function FleetSliderSlideImage({ src, alt, isPrimary, eager }) {
 /**
  * In-card image gallery: crossfade, drag/swipe, dots, autoplay.
  */
-function FleetImageSliderInner({ images }) {
+function FleetImageSliderInner({ images, priorityLoad = true }) {
   const [index, setIndex] = useState(0)
   const pausedRef = useRef(false)
   const n = images.length
@@ -138,21 +168,27 @@ function FleetImageSliderInner({ images }) {
       >
         {images.map((img, i) => {
           const isPrimary = i === 0
+          const isActive = i === index
+          const shouldLoad = isPrimary || isActive
+          const slideKey = img.src ?? img.alt
+
           return (
             <div
-              key={`${img.src}-${i}`}
+              key={`${slideKey}-${i}`}
               className={cx(
                 'fleet-slider-image-wrap',
                 isPrimary ? 'fleet-slider-image-wrap--primary' : 'fleet-slider-image-wrap--photo',
-                i === index && 'is-active',
+                isActive && 'is-active',
               )}
-              aria-hidden={i !== index}
+              aria-hidden={!isActive}
             >
               <FleetSliderSlideImage
                 src={img.src}
+                loadSrc={img.loadSrc}
                 alt={img.alt}
                 isPrimary={isPrimary}
-                eager={isPrimary || i === index}
+                shouldLoad={shouldLoad}
+                priorityLoad={priorityLoad}
               />
             </div>
           )

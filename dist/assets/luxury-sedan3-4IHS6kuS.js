@@ -1,0 +1,1 @@
+var e=`/urban-app/assets/luxury-sedan3-Bo_qTrUu.webp`;export{e as default};

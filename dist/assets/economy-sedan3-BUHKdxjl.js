@@ -1,0 +1,1 @@
+var e=`/urban-app/assets/economy-sedan3-HKGbpiPv.webp`;export{e as default};

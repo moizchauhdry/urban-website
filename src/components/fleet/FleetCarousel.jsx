@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import Icon from '../common/Icon.jsx'
 import { FleetCard } from './FleetCard.jsx'
 import { FleetCarouselDots } from './FleetCarouselDots.jsx'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
@@ -11,10 +12,10 @@ function FleetCarouselControls({ onPrev, onNext }) {
     <div className="fleet-carousel-controls">
       <div className="review-nav services-nav">
         <button type="button" onClick={onPrev} aria-label="Previous vehicle">
-          <i className="fa-solid fa-arrow-left" />
+          <Icon name="arrow-left" size={14} />
         </button>
         <button type="button" onClick={onNext} aria-label="Next vehicle">
-          <i className="fa-solid fa-arrow-right" />
+          <Icon name="arrow-right" size={14} />
         </button>
       </div>
     </div>
@@ -148,7 +149,7 @@ function FleetCarouselSingle({ items }) {
       <div className="fleet-carousel">
         <div ref={viewportRef} className="fleet-mobile-carousel-viewport">
           <div className="fleet-mobile-carousel-slide-inner">
-            {items[0] ? <FleetCard item={items[0]} /> : null}
+            {items[0] ? <FleetCard item={items[0]} priorityLoad /> : null}
           </div>
         </div>
       </div>
@@ -196,7 +197,7 @@ function FleetCarouselSingle({ items }) {
               }
             >
               <div className="fleet-mobile-carousel-slide-inner">
-                <FleetCard item={item} />
+                <FleetCard item={item} priorityLoad={idx === slideIndex} />
               </div>
             </div>
           ))}
@@ -340,13 +341,13 @@ function FleetCarouselWindow({ items, visible }) {
           }}
           onTransitionEnd={onTransitionEnd}
         >
-          {items.map((item) => (
+          {items.map((item, i) => (
             <div
               key={item.id}
               className="fleet-desktop-carousel-cell"
               style={cardW > 0 ? { flex: `0 0 ${cardW}px` } : undefined}
             >
-              <FleetCard item={item} />
+              <FleetCard item={item} priorityLoad={i >= start && i < start + visible} />
             </div>
           ))}
         </div>

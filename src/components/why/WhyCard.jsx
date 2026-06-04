@@ -17,6 +17,8 @@ function CleanFleetIcon() {
   )
 }
 
+import Icon from '../common/Icon.jsx'
+
 export default function WhyCard({ item }) {
   return (
     <article className="why-card">
@@ -24,7 +26,7 @@ export default function WhyCard({ item }) {
         {item.icon === 'clean-fleet' ? (
           <CleanFleetIcon />
         ) : (
-          <i className={item.icon} aria-hidden="true" />
+          <Icon name={item.icon} size={28} />
         )}
       </div>
       <h4>{item.title}</h4>

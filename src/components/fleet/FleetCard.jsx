@@ -1,11 +1,12 @@
 import { memo } from 'react'
+import Icon from '../common/Icon.jsx'
 import { FleetImageSlider } from './FleetImageSlider.jsx'
 
-function FleetCardInner({ item }) {
+function FleetCardInner({ item, priorityLoad = true }) {
   return (
     <article className="fleet-card flex h-full flex-col">
       <div className={`fleet-img shrink-0 ${item.imgClass} fleet-img--with-slider`}>
-        <FleetImageSlider images={item.images} />
+        <FleetImageSlider images={item.images} priorityLoad={priorityLoad} />
       </div>
 
       <div className="fleet-body flex flex-1 flex-col">
@@ -19,7 +20,7 @@ function FleetCardInner({ item }) {
         <div className="fleet-specs">
           {item.specs.map((s) => (
             <div className="spec" key={s.text}>
-              <i className={s.icon} /> {s.text}
+              <Icon name={s.icon} size={14} /> {s.text}
             </div>
           ))}
         </div>
