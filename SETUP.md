@@ -74,10 +74,11 @@ WordPress stays at `/var/www/urbanelitelimo/`. Upload this app **once**:
 | What | Path |
 |------|------|
 | Built files | `/var/www/urbanelitelimo/moiz/` |
-| App root | `https://urbanelitelimo.com/moiz/` |
-| Connecticut | `https://urbanelitelimo.com/moiz/connecticut/` |
-| Florida | `https://urbanelitelimo.com/moiz/florida/` |
-| … | under `/moiz/<slug>/`; one upload folder on the server |
+| Server folder (one upload) | `/var/www/urbanelitelimo/moiz/` |
+| Connecticut (custom URL) | `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/` |
+| Other regions (optional) | `https://urbanelitelimo.com/moiz/florida/` etc. |
+
+Each region’s public `path` is set in `src/config/regions.js` (not always under `/moiz/`).
 
 Region slugs: `src/config/regions.js`. Deploy prefix (default `moiz`): `VITE_DEPLOY_PATH=/moiz/` in `.env`.
 
@@ -102,11 +103,11 @@ When you add a region, update the RewriteRule in that snippet and in `regions.js
 
 ### 4. Maps, booking, verify
 
-- Google Maps referrers: `https://urbanelitelimo.com/moiz/connecticut/*` (each region path).
-- Booking portal: register each `live_url`, e.g. `https://urbanelitelimo.com/moiz/connecticut/`.
-- Test: `/moiz/connecticut/`, refresh `/moiz/connecticut/about`, Book Now.
+- Google Maps referrers: `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/*`
+- Booking portal: register `https://urbanelitelimo.com/connecticut-black-car-and-limo-service/`
+- Test that URL, refresh `.../about`, Book Now.
 
-**Local dev** — `http://localhost:5173/moiz/connecticut/`
+**Local dev** — `http://localhost:5173/connecticut-black-car-and-limo-service/`
 
 **Production folder name** — change `VITE_DEPLOY_PATH` and the `moiz` segments in the Apache snippet to your final folder name (e.g. `urban-app`).
 

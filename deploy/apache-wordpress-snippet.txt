@@ -6,14 +6,13 @@
 # BEGIN Urban Elite React
 <IfModule mod_rewrite.c>
 RewriteRule ^moiz/ - [L]
-RewriteRule ^moiz/(connecticut|florida|illinois|new-york)(/.*)?$ /moiz/index.html [L]
+RewriteRule ^connecticut-black-car-and-limo-service(/.*)?$ /moiz/index.html [L]
+RewriteRule ^moiz/(florida|illinois|new-york)(/.*)?$ /moiz/index.html [L]
 RewriteRule ^moiz/?$ /moiz/index.html [L]
 </IfModule>
 # END Urban Elite React
 
-# URLs:
-#   https://urbanelitelimo.com/moiz/
-#   https://urbanelitelimo.com/moiz/connecticut/
-#   https://urbanelitelimo.com/moiz/florida/
+# Live URL:
+#   https://urbanelitelimo.com/connecticut-black-car-and-limo-service/
 
-# When adding a region, update the RewriteRule AND src/config/regions.js, rebuild, rsync moiz/.
+# New custom URL: add `path` in src/config/regions.js, add a RewriteRule above, rebuild, rsync moiz/.

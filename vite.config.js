@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { getRegionPaths } from './src/config/regions.js'
+import { REGION_PATHS } from './src/config/regions.js'
 import { normalizeDeployPath } from './src/config/deployPath.js'
 
 const deployPath = normalizeDeployPath(process.env.VITE_DEPLOY_PATH)
 const deploySegment = deployPath.replace(/^\/|\/$/g, '')
-const regionPaths = getRegionPaths(deploySegment)
 
 /** Dev/preview: `/moiz`, `/moiz/connecticut`, etc. serve the SPA. */
 function moizSpaFallback(regionPaths, basePath) {
@@ -42,5 +41,5 @@ function moizSpaFallback(regionPaths, basePath) {
 // https://vite.dev/config/
 export default defineConfig({
   base: deployPath,
-  plugins: [react(), moizSpaFallback(regionPaths, deployPath)],
+  plugins: [react(), moizSpaFallback(REGION_PATHS, deployPath)],
 })

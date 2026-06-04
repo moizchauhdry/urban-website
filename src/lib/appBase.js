@@ -1,29 +1,27 @@
-import {
-  getRegionBySlug,
-  getRegionFromPathname,
-  regionBasePath,
-} from '../config/regions.js'
+import { getRegionBySlug, getRegionFromPathname } from '../config/regions.js'
 import { DEPLOY_SEGMENT } from '../config/deploy.js'
 
 /**
- * React Router basename, e.g. `/moiz/connecticut` or `/moiz` for the app root.
+ * React Router basename from the public URL, e.g. `/connecticut-black-car-and-limo-service`.
  */
 export function getRouterBasename() {
   if (typeof window === 'undefined') return undefined
 
+  const region = getRegionFromPathname(window.location.pathname)
+  if (region) return `/${region.path}`
+
   const parts = window.location.pathname.split('/').filter(Boolean)
-  if (parts[0] !== DEPLOY_SEGMENT) return undefined
+  if (parts[0] === DEPLOY_SEGMENT && parts.length === 1) {
+    return `/${DEPLOY_SEGMENT}`
+  }
 
-  if (parts.length === 1) return `/${DEPLOY_SEGMENT}`
-
-  const region = getRegionBySlug(parts[1])
-  return region ? `/${regionBasePath(region, DEPLOY_SEGMENT)}` : undefined
+  return undefined
 }
 
-/** Active region slug from the URL, e.g. `connecticut`, or null at `/moiz/`. */
+/** Active region slug from the URL, e.g. `connecticut`, or null. */
 export function getCurrentRegionSlug() {
   if (typeof window === 'undefined') return null
-  return getRegionFromPathname(window.location.pathname, DEPLOY_SEGMENT)?.slug ?? null
+  return getRegionFromPathname(window.location.pathname)?.slug ?? null
 }
 
 /** Prefix for in-app links on the current deployment. */
@@ -32,15 +30,13 @@ export function getAppBase() {
   return basename ? `${basename}/` : '/'
 }
 
-/** Regional landing URL, e.g. `/moiz/connecticut`. */
+/** Regional landing URL from site root. */
 export function regionUrl(slug) {
   const region = getRegionBySlug(slug)
-  return region
-    ? `/${regionBasePath(region, DEPLOY_SEGMENT)}`
-    : `/${DEPLOY_SEGMENT}/${slug.replace(/^\//, '')}`
+  return region ? `/${region.path}` : `/${slug.replace(/^\//, '')}`
 }
 
-/** Hash link on the current base, e.g. `/moiz/connecticut/#fleet`. */
+/** Hash link on the current base. */
 export function appHash(fragment) {
   const id = fragment.replace(/^#/, '')
   return `${getAppBase()}#${id}`
