@@ -1,11 +1,17 @@
-# /var/www/urbanelitelimo/connecticut-black-car-service/.htaccess
-# Empty folder OK — app files live in /urban-app/
+# This file is copied into dist/ automatically (from public/.htaccess).
+# After npm run build, it lives at:
+#   connecticut-black-car-service/.htaccess
+#
+# SPA fallback for /about etc. (same pattern as urban-app)
+
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /connecticut-black-car-service/
 
 RewriteRule ^index\.html$ /connecticut-black-car-service/ [R=301,L]
-RewriteRule ^(.+)$ /urban-app/index.html [L]
-RewriteRule ^$ /urban-app/index.html [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /connecticut-black-car-service/index.html [L]
 </IfModule>

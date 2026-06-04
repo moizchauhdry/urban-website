@@ -67,15 +67,15 @@ VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 
 ---
 
-## Deploy under WordPress
+## Deploy under WordPress (same as urban-app)
 
-Upload the built app to a folder that matches the public URL:
+Upload `dist/` to a folder named like the public URL:
 
 | What | Path |
 |------|------|
 | Live URL | `https://urbanelitelimo.com/connecticut-black-car-service/` |
-| Server folder (upload dist here) | `/var/www/urbanelitelimo/urban-app/` |
-| Assets in browser | `https://urbanelitelimo.com/urban-app/assets/...` |
+| Server folder | `/var/www/urbanelitelimo/connecticut-black-car-service/` |
+| Assets | `/connecticut-black-car-service/assets/...` |
 
 ### 1. Build
 
@@ -83,34 +83,24 @@ Upload the built app to a folder that matches the public URL:
 npm run build
 ```
 
-### 2. Upload
+### 2. Upload (full dist contents)
 
 ```bash
-rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/urban-app/
-ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/urban-app'
+rsync -avz --delete dist/ root@YOUR_SERVER:/var/www/urbanelitelimo/connecticut-black-car-service/
+ssh root@YOUR_SERVER 'chown -R www-data:www-data /var/www/urbanelitelimo/connecticut-black-car-service'
 ```
 
-### 3. Apache or Nginx (public URL)
+Remove old `urban-app/` folder on the server if you no longer need it.
 
-**Recommended (WordPress 404 fix):** create an empty folder and copy the folder `.htaccess`:
+### 3. WordPress
 
-```bash
-mkdir -p /var/www/urbanelitelimo/connecticut-black-car-service
-cp deploy/connecticut-black-car-service.htaccess \
-   /var/www/urbanelitelimo/connecticut-black-car-service/.htaccess
-```
-
-**Alternative:** paste `deploy/apache-wordpress-snippet.txt` at **line 1** of `/var/www/urbanelitelimo/.htaccess` (before `# BEGIN WordPress`).
-
-**Nginx:** use `deploy/nginx-snippet.conf` (`.htaccess` is ignored).
-
-**WordPress 404 on live?** See `deploy/FIX-404.md`.
+- Trash any **Page** with slug `connecticut-black-car-service`
+- Remove root `.htaccess` rules that rewrite this URL to `urban-app/`
 
 ### 4. Verify
 
-- Google Maps: `https://urbanelitelimo.com/connecticut-black-car-service/*`
-- Booking portal: register that URL as `live_url`
-- Test the URL; assets should load from `/urban-app/assets/...`
+- `https://urbanelitelimo.com/connecticut-black-car-service/`
+- DevTools → `/connecticut-black-car-service/assets/index-*.js` → **200**
 
 **Local dev** — `http://localhost:5173/connecticut-black-car-service/`
 

@@ -1,7 +1,7 @@
 import { SITE_APP_SEGMENT } from './deployPath.js'
 
 /**
- * Public URL: `/connecticut-black-car-service/` (files in `/urban-app/`).
+ * Public URL and deploy folder: `/connecticut-black-car-service/`.
  */
 export const REGIONS = [
   {

@@ -1,25 +1,19 @@
-# OPTION A (recommended if root rules fail): physical folder + .htaccess
+# Usually NOT needed if you upload dist/ to the folder below (same as urban-app setup).
 #
-#   mkdir -p /var/www/urbanelitelimo/connecticut-black-car-service
-#   cp deploy/connecticut-black-car-service.htaccess \
-#      /var/www/urbanelitelimo/connecticut-black-car-service/.htaccess
+# Upload dist/ contents to:
+#   /var/www/urbanelitelimo/connecticut-black-car-service/
 #
-# App files stay in urban-app/ only.
+# Live URL:
+#   https://urbanelitelimo.com/connecticut-black-car-service/
 #
-# OPTION B: paste at LINE 1 of /var/www/urbanelitelimo/.htaccess (before WordPress)
-
+# WordPress will serve real files before index.php when the folder exists.
+# Trash any WP Page with slug "connecticut-black-car-service".
+#
+# Optional — only if /about refresh returns 404, add at line 1 of root .htaccess:
+#
 # BEGIN Urban Elite React
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-
-RewriteRule ^urban-app/index\.html$ /urban-app/ [R=301,L]
-RewriteRule ^urban-app/ - [L]
-
-RewriteRule ^connecticut-black-car-service/?$ /urban-app/index.html [L]
-RewriteRule ^connecticut-black-car-service/ /urban-app/index.html [L]
-</IfModule>
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteRule ^connecticut-black-car-service/ - [L]
+# </IfModule>
 # END Urban Elite React
-
-# Public: https://urbanelitelimo.com/connecticut-black-car-service/
-# Files:  /var/www/urbanelitelimo/urban-app/

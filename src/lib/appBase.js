@@ -1,9 +1,8 @@
 import { getRegionBySlug, getRegionFromPathname } from '../config/regions.js'
 import { DEPLOY_SEGMENT } from '../config/deploy.js'
-import { SITE_APP_SEGMENT } from '../config/deployPath.js'
 
 /**
- * React Router basename, e.g. `/connecticut-black-car-service`.
+ * React Router basename — same folder as deploy path, e.g. `/connecticut-black-car-service`.
  */
 export function getRouterBasename() {
   if (typeof window === 'undefined') return undefined
@@ -12,9 +11,6 @@ export function getRouterBasename() {
   if (region) return `/${region.path}`
 
   const parts = window.location.pathname.split('/').filter(Boolean)
-
-  if (parts[0] === SITE_APP_SEGMENT) return `/${SITE_APP_SEGMENT}`
-
   if (parts[0] === DEPLOY_SEGMENT) return `/${DEPLOY_SEGMENT}`
 
   return undefined
