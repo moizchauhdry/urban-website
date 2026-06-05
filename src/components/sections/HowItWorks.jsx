@@ -1,3 +1,5 @@
+import Icon from '../common/Icon.jsx'
+
 export default function HowItWorks() {
   return (
     <section className="section">
@@ -7,21 +9,21 @@ export default function HowItWorks() {
         <div className="steps-grid">
           <div className="step">
             <div className="step-icon">
-              <i className="fa-solid fa-car-side" />
+              <Icon name="car-side" size={28} />
             </div>
             <h3>Choose Your Car</h3>
             <p>Browse our premium fleet and select the perfect vehicle for your needs.</p>
           </div>
           <div className="step">
             <div className="step-icon">
-              <i className="fa-solid fa-calendar-check" />
+              <Icon name="calendar-check" size={28} />
             </div>
             <h3>Book Instantly</h3>
             <p>Complete your reservation in under 2 minutes with our streamlined process.</p>
           </div>
           <div className="step">
             <div className="step-icon">
-              <i className="fa-solid fa-route" />
+              <Icon name="route" size={28} />
             </div>
             <h3>Enjoy your Ride</h3>
             <p>Chauffeur assigned to your Ride and start your journey.</p>

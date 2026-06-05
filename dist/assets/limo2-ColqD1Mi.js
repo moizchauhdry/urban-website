@@ -1,0 +1,1 @@
+var e=`/urban-app/assets/limo2-jMJApBGI.webp`;export{e as default};

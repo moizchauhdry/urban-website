@@ -34,6 +34,7 @@ body{
   -webkit-font-smoothing:antialiased;
   /* overflow-x:hidden; */
 }
+.icon{display:inline-block;vertical-align:-0.125em;flex-shrink:0}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
@@ -244,10 +245,20 @@ header{
 /* HERO */
 .hero{
   position:relative;
-  /* Background image is set in Hero.jsx (Vite import) */
   color:#fff;
   padding:80px 0 100px;
   min-height:680px;
+  isolation:isolate;
+}
+.hero-bg-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+  pointer-events:none;
 }
 .hero .container{
   display:grid;grid-template-columns:1.1fr 1fr;gap:60px;
@@ -262,7 +273,7 @@ header{
   padding:8px 18px;border-radius:30px;font-size:13px;
   margin-bottom:24px;
 }
-.hero-badge i{color:var(--yellow);font-size:11px}
+.hero-badge .icon{color:var(--yellow)}
 .hero h1,
 .hero-title{
   font-size:50px;font-weight:700;line-height:1.1;
@@ -281,7 +292,7 @@ header{
   transition:all .2s;
 }
 .hero-phone:hover{background:var(--yellow-dark);transform:translateY(-2px)}
-.hero-phone i{font-size:14px}
+.hero-phone .icon{font-size:14px}
 .hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:540px}
 .hero-features .feat{
   display:flex;align-items:center;gap:10px;
@@ -289,7 +300,7 @@ header{
   border:1px solid rgba(255,255,255,.15);
   padding:12px 18px;border-radius:8px;font-size:14px;
 }
-.hero-features .feat i{color:var(--yellow)}
+.hero-features .feat .icon{color:var(--yellow)}
 
 /* BOOKING FORM */
 .booking-card{
@@ -301,6 +312,12 @@ header{
   border-radius:14px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
   padding:24px;
+}
+.booking-card--loading{
+  min-height:520px;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
 .form-tabs{
   display:flex;background:#f5f5f5;border-radius:30px;padding:4px;margin-bottom:22px;
@@ -475,7 +492,7 @@ header{
   padding-bottom:18px;border-bottom:1px solid var(--border);
 }
 .fleet-specs .spec{display:flex;align-items:center;gap:8px;font-size:13px;color:#444}
-.fleet-specs .spec i{color:var(--yellow);width:16px}
+.fleet-specs .spec .icon{color:var(--yellow);width:16px}
 .btn-quote{
   display:block;width:100%;text-align:center;
   background:#0a0a0a;color:#fff;padding:11px;border-radius:6px;
@@ -754,7 +771,7 @@ header{
 .reviews-rating-icon{
   display:block;width:34px;height:34px;object-fit:contain;flex-shrink:0;
 }
-.stars-row i{color:var(--yellow);font-size:18px}
+.stars-row .icon{color:var(--yellow);font-size:18px}
 .google-icon{
   width:34px;height:34px;border-radius:50%;
   background:#fff;display:flex;align-items:center;justify-content:center;
@@ -775,7 +792,7 @@ header{
   box-shadow:0 2px 12px rgba(0,0,0,.04);
 }
 .review-stars{margin-bottom:12px}
-.review-stars i{color:var(--yellow);font-size:13px}
+.review-stars .icon{color:var(--yellow);font-size:13px}
 .review-text{font-size:13.5px;color:#444;line-height:1.65;margin-bottom:18px}
 .review-author{font-size:14px;font-weight:600;color:#111}
 .review-nav{display:flex;justify-content:center;gap:10px;margin-top:30px}
@@ -988,9 +1005,9 @@ header{
   transition:transform .25s;
 }
 .airport-card:hover{transform:translateY(-4px)}
-.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/jfk.jpg')}
-.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/lga.jpg')}
-.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/bradley.png')}
+.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/jfk.webp')}
+.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/lga.webp')}
+.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/bradley.webp')}
 .airport-card.a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/icons/newark.webp')}
 .airport-card-body{
   position:absolute;bottom:0;left:0;right:0;padding:24px;
@@ -1021,8 +1038,8 @@ details.faq-item .faq-answer{
   padding:18px 22px;font-size:14px;color:var(--muted);line-height:1.7;
 }
 .faq-image{
-  border-radius:14px;overflow:hidden;height:580px;
-  background:url('../assets/icons/faqs.svg') center/cover no-repeat;
+  border-radius:14px;overflow:hidden;width:100%;height:580px;
+  object-fit:cover;
   box-shadow:0 12px 40px rgba(0,0,0,.12);
 }
 
@@ -1058,7 +1075,7 @@ footer{
   transition:color .2s;
 }
 .footer-contact a:hover{color:var(--yellow)}
-.footer-contact i{color:var(--yellow);width:18px;text-align:center}
+.footer-contact .icon{color:var(--yellow);width:18px;text-align:center}
 .footer-col h4{
   font-size:15px;font-weight:700;margin-bottom:20px;
   color:#fff;letter-spacing:.02em;
@@ -1100,9 +1117,9 @@ footer{
 }
 @keyframes floatSlow { 0%,100% { transform:translate3d(0,0,0) } 50% { transform:translate3d(0,-12px,0) } }
 @keyframes pulseRing {
-  0%   { box-shadow:0 0 0 0 rgba(252,184,19,.5) }
-  70%  { box-shadow:0 0 0 18px rgba(252,184,19,0) }
-  100% { box-shadow:0 0 0 0 rgba(252,184,19,0) }
+  0%   { transform:scale(1); opacity:0.55 }
+  70%  { transform:scale(1.4); opacity:0 }
+  100% { transform:scale(1.4); opacity:0 }
 }
 @keyframes pulseScale { 0%,100% { transform:scale(1) } 50% { transform:scale(1.06) } }
 @keyframes shimmer { 0% { background-position:-200% center } 100% { background-position:200% center } }
@@ -1134,7 +1151,10 @@ footer{
 .hero-phone { animation:scaleIn .75s .8s cubic-bezier(.4,1.6,.6,1) both; position:relative }
 .hero-phone::before{
   content:''; position:absolute; inset:0; border-radius:30px;
-  animation:pulseRing 2.4s 2.5s ease-out infinite; pointer-events:none;
+  border:2px solid rgba(252,184,19,.45);
+  animation:pulseRing 2.4s 2.5s ease-out infinite;
+  pointer-events:none;
+  will-change:transform,opacity;
 }
 .hero-features .feat { animation:fadeInUp .7s ease both; transition:transform .3s, background .3s, border-color .3s }
 .hero-features .feat:nth-child(1){ animation-delay:.95s }
@@ -1458,7 +1478,7 @@ header.scrolled{
     padding-bottom:12px;
   }
   .fleet-specs .spec{font-size:12px;gap:6px}
-  .fleet-specs .spec i{width:14px;font-size:12px}
+  .fleet-specs .spec .icon{width:14px}
   .fleet-card .btn-quote{padding:10px;font-size:13px}
   .fleet-card:hover{
     transform:translateY(-3px);

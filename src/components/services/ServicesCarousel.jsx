@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import Icon from '../common/Icon.jsx'
 import { SERVICE_ITEMS } from '../../data/serviceItems.js'
 import ServiceCard from './ServiceCard.jsx'
 
@@ -30,10 +31,10 @@ function NavArrows({ onPrev, onNext }) {
   return (
     <div className="review-nav services-nav">
       <button type="button" onClick={onPrev} aria-label="Previous services">
-        <i className="fa-solid fa-arrow-left" />
+        <Icon name="arrow-left" size={14} />
       </button>
       <button type="button" onClick={onNext} aria-label="Next services">
-        <i className="fa-solid fa-arrow-right" />
+        <Icon name="arrow-right" size={14} />
       </button>
     </div>
   )

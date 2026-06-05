@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Icon from '../common/Icon.jsx'
 import { ext } from './navConfig.js'
 
 /**
@@ -44,7 +45,7 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
       <details className="mobile-menu__details">
         <summary className="mobile-menu__summary">
           <span>Service Areas</span>
-          <i className="fa-solid fa-chevron-down mobile-menu__chev" aria-hidden />
+          <Icon name="chevron-down" size={12} className="mobile-menu__chev" />
         </summary>
         <div className="mobile-menu__sub">
           <a className="mobile-menu__sublink" href="#" onClick={close}>

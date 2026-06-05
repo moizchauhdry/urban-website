@@ -135,7 +135,10 @@ export function useUrbanEliteInteractions(isHome) {
         window.requestAnimationFrame(() => {
           const sc = window.pageYOffset
           if (isHome && hero && sc < 900) {
-            hero.style.backgroundPosition = `center calc(50% + ${sc * 0.25}px)`
+            const heroBg = hero.querySelector('.hero-bg-img')
+            if (heroBg) {
+              heroBg.style.objectPosition = `center calc(50% + ${sc * 0.25}px)`
+            }
           }
           const header = document.querySelector('header')
           if (header) header.classList.toggle('scrolled', sc > 30)

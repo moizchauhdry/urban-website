@@ -6,7 +6,10 @@ const MIN_CHARS = 2
 function useDebouncedCallbackWithCancel(callback, delay) {
   const timeoutRef = useRef(null)
   const callbackRef = useRef(callback)
-  callbackRef.current = callback
+
+  useEffect(() => {
+    callbackRef.current = callback
+  }, [callback])
 
   useEffect(
     () => () => {
@@ -114,6 +117,7 @@ export default function PlacesAutocompleteInput({
   const placesLibRef = useRef(null)
   const placesReadyRef = useRef(false)
   const valueRef = useRef(value)
+  const initPromiseRef = useRef(null)
 
   const [placesReady, setPlacesReady] = useState(false)
   const [loadError, setLoadError] = useState(null)
@@ -124,47 +128,50 @@ export default function PlacesAutocompleteInput({
 
   const apiKeyMissing = !hasGoogleMapsApiKey()
 
-  onChangeRef.current = onChange
-  valueRef.current = value
-
   useEffect(() => {
+    onChangeRef.current = onChange
+    valueRef.current = value
+  }, [onChange, value])
+
+  const ensurePlacesLib = useCallback(() => {
     if (apiKeyMissing) {
       setLoadError('missing-key')
-      return
+      return Promise.resolve(false)
     }
-
-    let cancelled = false
-
-    loadGoogleMapsPlaces()
-      .then((lib) => {
-        if (cancelled) return
-        placesLibRef.current = lib
-        sessionTokenRef.current = new lib.AutocompleteSessionToken()
-        placesReadyRef.current = true
-        setPlacesReady(true)
-        setLoadError(null)
-        if (valueRef.current.trim().length >= MIN_CHARS) {
-          runFetch(valueRef.current)
-        }
-      })
-      .catch((err) => {
-        if (cancelled) return
-        placesReadyRef.current = false
-        setLoadError(err.message)
-        if (import.meta.env.DEV) {
-          console.warn('[Places autocomplete]', err.message)
-        }
-      })
-
-    return () => {
-      cancelled = true
+    if (placesReadyRef.current) return Promise.resolve(true)
+    if (!initPromiseRef.current) {
+      initPromiseRef.current = loadGoogleMapsPlaces()
+        .then((lib) => {
+          placesLibRef.current = lib
+          sessionTokenRef.current = new lib.AutocompleteSessionToken()
+          placesReadyRef.current = true
+          setPlacesReady(true)
+          setLoadError(null)
+          return true
+        })
+        .catch((err) => {
+          initPromiseRef.current = null
+          placesReadyRef.current = false
+          setLoadError(err.message)
+          if (import.meta.env.DEV) {
+            console.warn('[Places autocomplete]', err.message)
+          }
+          return false
+        })
     }
+    return initPromiseRef.current
   }, [apiKeyMissing])
 
   const runFetch = async (input) => {
-    if (!placesReadyRef.current || input.trim().length < MIN_CHARS) {
+    if (input.trim().length < MIN_CHARS) {
       setSuggestions([])
       setOpen(false)
+      setLoading(false)
+      return
+    }
+
+    const ready = await ensurePlacesLib()
+    if (!ready || !placesReadyRef.current) {
       setLoading(false)
       return
     }
@@ -296,10 +303,7 @@ export default function PlacesAutocompleteInput({
         onChange={handleInputChange}
         onKeyDown={placesReady ? handleKeyDown : undefined}
         onFocus={() => {
-          if (suggestions.length) setOpen(true)
-          else if (value.trim().length >= MIN_CHARS && placesReady) {
-            runFetch(value)
-          }
+          if (suggestions.length && placesReadyRef.current) setOpen(true)
         }}
         placeholder={placeholder}
         autoComplete={autoComplete}

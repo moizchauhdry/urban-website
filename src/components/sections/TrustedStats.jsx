@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../common/Icon.jsx'
 
 /**
  * Stat labels + final strings (counter runs in React state — no imperative DOM, so values always render).
  */
 const STATS = [
-  { target: '10,000+', label: 'Happy Customers', iconClass: 'fa-solid fa-users' },
-  { target: '30+', label: 'Available Cars', iconClass: 'fa-solid fa-car' },
-  { target: '10+', label: 'Locations', iconClass: 'fa-solid fa-location-dot' },
-  { target: '4.5 Star', label: 'Average Rating', iconClass: 'fa-solid fa-star' },
+  { target: '10,000+', label: 'Happy Customers', icon: 'users' },
+  { target: '30+', label: 'Available Cars', icon: 'car' },
+  { target: '10+', label: 'Locations', icon: 'location-dot' },
+  { target: '4.5 Star', label: 'Average Rating', icon: 'star' },
 ]
 
 function parseStat(targetStr) {
@@ -81,7 +82,7 @@ export default function TrustedStats() {
           {STATS.map((s, i) => (
             <div className="trusted-stat" key={s.target}>
               <div className="ic">
-                <i className={s.iconClass} />
+                <Icon name={s.icon} size={28} />
               </div>
               <h3>{lines[i]}</h3>
               <p>{s.label}</p>

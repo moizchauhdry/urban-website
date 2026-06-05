@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import Icon from '../common/Icon.jsx'
 import { ReviewCard } from './ReviewCard.jsx'
 
 const GAP_PX = 24
@@ -7,7 +8,7 @@ function AsideColumn() {
   return (
     <div className="review-aside">
       <div className="quote-icon">
-        <i className="fa-solid fa-quote-left" />
+        <Icon name="quote-left" size={32} />
       </div>
       <h3>
         What Our
@@ -24,10 +25,10 @@ function NavArrows({ onPrev, onNext }) {
   return (
     <div className="review-nav">
       <button type="button" onClick={onPrev} aria-label="Previous reviews">
-        <i className="fa-solid fa-arrow-left" />
+        <Icon name="arrow-left" size={14} />
       </button>
       <button type="button" onClick={onNext} aria-label="Next reviews">
-        <i className="fa-solid fa-arrow-right" />
+        <Icon name="arrow-right" size={14} />
       </button>
     </div>
   )

@@ -1,3 +1,5 @@
+import faqImage from '../../assets/icons/faqs.webp'
+
 export default function FaqSection() {
   return (
     <section className="faq-section">
@@ -47,7 +49,16 @@ export default function FaqSection() {
               </div>
             </details>
           </div>
-          <div className="faq-image" />
+          <img
+            src={faqImage}
+            alt=""
+            className="faq-image"
+            width={560}
+            height={580}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+          />
         </div>
       </div>
     </section>
