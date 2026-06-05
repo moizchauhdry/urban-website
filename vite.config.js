@@ -31,7 +31,7 @@ function injectHeroPreload() {
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/urban-app/' : '/',
+  base: mode === 'production' ? '/connecticut-black-car-service/' : '/',
   plugins: [react(), injectHeroPreload()],
   build: {
     rollupOptions: {

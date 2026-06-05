@@ -1,1 +1,0 @@
-var e=`/urban-app/assets/economy-sedan2-K9OyJlQr.webp`;export{e as default};

@@ -1,0 +1,1 @@
+var e=`/connecticut-black-car-service/assets/first-class-sedan2-BRvr75Bc.webp`;export{e as default};

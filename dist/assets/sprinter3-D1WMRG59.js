@@ -1,1 +1,0 @@
-var e=`/urban-app/assets/sprinter3-Bll5A7nL.webp`;export{e as default};

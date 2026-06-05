@@ -1,1 +1,0 @@
-var e=`/urban-app/assets/limo3-COQ3cunL.webp`;export{e as default};

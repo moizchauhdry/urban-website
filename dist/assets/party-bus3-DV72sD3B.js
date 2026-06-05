@@ -1,1 +1,0 @@
-var e=`/urban-app/assets/party-bus3-Cj83i0Vc.webp`;export{e as default};

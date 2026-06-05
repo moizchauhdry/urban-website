@@ -1,1 +1,0 @@
-var e=`/urban-app/assets/moto-coach2-ylyTcgOK.webp`;export{e as default};
