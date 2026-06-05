@@ -30,7 +30,7 @@ html{
   overflow-x:hidden;
 }
 body{
-  font-family:'Poppins',sans-serif;color:var(--text);line-height:1.6;background:#fff;
+  font-family:'Poppins',system-ui,-apple-system,sans-serif;color:var(--text);line-height:1.6;background:#fff;
   -webkit-font-smoothing:antialiased;
   /* overflow-x:hidden; */
 }
@@ -318,6 +318,9 @@ header{
   background:#fff;
   border-radius:14px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+.booking-card-slot{
+  min-height:520px;
 }
 .form-tabs{
   display:flex;background:#f5f5f5;border-radius:30px;padding:4px;margin-bottom:22px;
@@ -1511,6 +1514,28 @@ header.scrolled{
   .hero-badge,
   .hero-desc,
   .hero-features{display:none}
+  /* Mobile CLS: no entrance animations or invisible reveal states */
+  .hero::before,
+  .hero::after{animation:none !important}
+  .hero-badge,
+  .hero h1,
+  .hero-desc,
+  .hero-phone,
+  .hero-features .feat,
+  .booking-card{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+  .reveal{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+  .booking-card-slot,
+  .booking-card{
+    min-height:780px;
+  }
   .journey-cars,
   .journey-car-slot{display:none}
   .trusted{padding:50px 0}

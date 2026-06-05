@@ -1,11 +1,14 @@
-import { lazy, Suspense } from 'react'
+import { useEffect } from 'react'
 import heroBg from '../../assets/icons/hero-bg.webp'
 import Icon from '../common/Icon.jsx'
-
-const HeroBookingForm = lazy(() => import('./HeroBookingForm.jsx'))
+import HeroBookingForm from './HeroBookingForm.jsx'
 
 /** Connecticut hero + booking card */
 export default function Hero() {
+  useEffect(() => {
+    document.getElementById('static-hero-lcp')?.remove()
+  }, [])
+
   return (
     <section className="hero">
       <img
@@ -53,9 +56,9 @@ export default function Hero() {
           </div>
         </div>
 
-        <Suspense fallback={<div className="booking-card booking-card--loading" aria-hidden="true" />}>
+        <div className="booking-card-slot">
           <HeroBookingForm />
-        </Suspense>
+        </div>
       </div>
     </section>
   )

@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-/** Inject hero LCP preload into built HTML so the image fetch starts before JS runs. */
-function injectHeroPreload() {
+/**
+ * Inject hero LCP preload + static hero img so mobile paints before React boots.
+ * Also strip heavy phone-input preloads that hurt mobile bandwidth.
+ */
+function injectHeroLcp() {
   let base = '/'
   return {
-    name: 'inject-hero-preload',
+    name: 'inject-hero-lcp',
     apply: 'build',
     configResolved(config) {
       base = config.base
@@ -21,9 +24,17 @@ function injectHeroPreload() {
         if (!heroAsset) return html
 
         const href = `${base}${heroAsset.fileName}`.replace(/([^:]\/)\/+/g, '$1')
-        const tag = `<link rel="preload" as="image" href="${href}" fetchpriority="high" />`
+        const preload = `<link rel="preload" as="image" href="${href}" fetchpriority="high" />`
+        const staticHero = `<img id="static-hero-lcp" src="${href}" alt="" width="800" height="458" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
 
-        return html.replace('</head>', `    ${tag}\n  </head>`)
+        let out = html
+          .replace(/<link rel="modulepreload"[^>]*phone-input[^>]*>\s*/g, '')
+          .replace(/<link rel="modulepreload"[^>]*google-maps[^>]*>\s*/g, '')
+          .replace(/<link rel="stylesheet"[^>]*phone-input[^>]*>\s*/g, '')
+          .replace('</head>', `    ${preload}\n  </head>`)
+          .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
+
+        return out
       },
     },
   }
@@ -32,7 +43,7 @@ function injectHeroPreload() {
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/connecticut-black-car-service/' : '/',
-  plugins: [react(), injectHeroPreload()],
+  plugins: [react(), injectHeroLcp()],
   build: {
     rollupOptions: {
       output: {

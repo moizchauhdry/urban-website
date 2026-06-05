@@ -24,9 +24,9 @@
 
     <style>
 
-      body{margin:0;background:#0a0a0a;font-family:system-ui,-apple-system,sans-serif}
+      body{margin:0;background:#0a0a0a;font-family:system-ui,-apple-system,sans-serif;position:relative}
 
-      #root{min-height:100vh}
+      #root{min-height:100vh;position:relative;z-index:1}
 
     </style>
 
@@ -34,7 +34,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Non-blocking fonts (Poppins only) -->
+    <!-- Poppins: optional avoids layout shift when font swaps on slow mobile -->
 
     <link
 
@@ -42,7 +42,7 @@
 
       as="style"
 
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
 
       onload="this.onload=null;this.rel='stylesheet'"
 
@@ -52,7 +52,7 @@
 
       <link
 
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
 
         rel="stylesheet"
 

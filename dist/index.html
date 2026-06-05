@@ -24,9 +24,9 @@
 
     <style>
 
-      body{margin:0;background:#0a0a0a;font-family:system-ui,-apple-system,sans-serif}
+      body{margin:0;background:#0a0a0a;font-family:system-ui,-apple-system,sans-serif;position:relative}
 
-      #root{min-height:100vh}
+      #root{min-height:100vh;position:relative;z-index:1}
 
     </style>
 
@@ -34,7 +34,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Non-blocking fonts (Poppins only) -->
+    <!-- Poppins: optional avoids layout shift when font swaps on slow mobile -->
 
     <link
 
@@ -42,7 +42,7 @@
 
       as="style"
 
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
 
       onload="this.onload=null;this.rel='stylesheet'"
 
@@ -52,7 +52,7 @@
 
       <link
 
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
 
         rel="stylesheet"
 
@@ -60,20 +60,19 @@
 
     </noscript>
 
-    <script type="module" crossorigin src="/connecticut-black-car-service/assets/index-5da9PbF0.js"></script>
+    <script type="module" crossorigin src="/connecticut-black-car-service/assets/index-C0ECb7Pp.js"></script>
     <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/rolldown-runtime-S-ySWqyJ.js">
-    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/phone-input-DqubODSl.js">
     <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/react-vendor-CiUj4N6A.js">
     <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/Icon-DUuRiZzC.js">
-    <link rel="stylesheet" crossorigin href="/connecticut-black-car-service/assets/phone-input-Rkh5BCSq.css">
-    <link rel="stylesheet" crossorigin href="/connecticut-black-car-service/assets/index-70RXkaMK.css">
+    <link rel="stylesheet" crossorigin href="/connecticut-black-car-service/assets/index-DyYPcxFU.css">
       <link rel="preload" as="image" href="/connecticut-black-car-service/assets/hero-bg-CjNH2z14.webp" fetchpriority="high" />
   </head>
 
   <body>
 
+    <img id="static-hero-lcp" src="/connecticut-black-car-service/assets/hero-bg-CjNH2z14.webp" alt="" width="800" height="458" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />
     <div id="root"></div>
-
+
 
   </body>
 
