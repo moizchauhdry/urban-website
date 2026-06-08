@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import Icon from '../common/Icon.jsx'
+import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 import WhyCard from './WhyCard.jsx'
 
@@ -134,14 +134,13 @@ export default function WhyMobileCarousel({ items }) {
         </div>
       </div>
 
-      <div className="review-nav why-carousel-nav">
-        <button type="button" onClick={goPrev} aria-label="Previous feature">
-          <Icon name="arrow-left" size={14} />
-        </button>
-        <button type="button" onClick={goNext} aria-label="Next feature">
-          <Icon name="arrow-right" size={14} />
-        </button>
-      </div>
+      <CarouselNavButtons
+        className="why-carousel-nav"
+        onPrev={goPrev}
+        onNext={goNext}
+        prevLabel="Previous feature"
+        nextLabel="Next feature"
+      />
     </div>
   )
 }

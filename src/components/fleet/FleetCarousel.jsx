@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import Icon from '../common/Icon.jsx'
+import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { FleetCard } from './FleetCard.jsx'
 import { FleetCarouselDots } from './FleetCarouselDots.jsx'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
@@ -10,14 +10,13 @@ const AUTOPLAY_MS = 5000
 function FleetCarouselControls({ onPrev, onNext }) {
   return (
     <div className="fleet-carousel-controls">
-      <div className="review-nav services-nav">
-        <button type="button" onClick={onPrev} aria-label="Previous vehicle">
-          <Icon name="arrow-left" size={14} />
-        </button>
-        <button type="button" onClick={onNext} aria-label="Next vehicle">
-          <Icon name="arrow-right" size={14} />
-        </button>
-      </div>
+      <CarouselNavButtons
+        className="services-nav"
+        onPrev={onPrev}
+        onNext={onNext}
+        prevLabel="Previous vehicle"
+        nextLabel="Next vehicle"
+      />
     </div>
   )
 }

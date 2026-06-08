@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { Quote } from 'lucide-react'
-import Icon from '../common/Icon.jsx'
+import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { ReviewCard } from './ReviewCard.jsx'
 
 const GAP_PX = 24
@@ -31,14 +31,12 @@ function AsideColumn() {
 
 function NavArrows({ onPrev, onNext }) {
   return (
-    <div className="review-nav">
-      <button type="button" onClick={onPrev} aria-label="Previous reviews">
-        <Icon name="arrow-left" size={14} />
-      </button>
-      <button type="button" onClick={onNext} aria-label="Next reviews">
-        <Icon name="arrow-right" size={14} />
-      </button>
-    </div>
+    <CarouselNavButtons
+      onPrev={onPrev}
+      onNext={onNext}
+      prevLabel="Previous reviews"
+      nextLabel="Next reviews"
+    />
   )
 }
 
