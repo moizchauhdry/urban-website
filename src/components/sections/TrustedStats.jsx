@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import Icon from '../common/Icon.jsx'
+import { Car, MapPin, Star, Users } from 'lucide-react'
 
-/**
- * Stat labels + final strings (counter runs in React state — no imperative DOM, so values always render).
- */
 const STATS = [
-  { target: '10,000+', label: 'Happy Customers', icon: 'users' },
-  { target: '30+', label: 'Available Cars', icon: 'car' },
-  { target: '10+', label: 'Locations', icon: 'location-dot' },
-  { target: '4.5 Star', label: 'Average Rating', icon: 'star' },
+  { target: '10,000+', label: 'Happy Customers', Icon: Users },
+  { target: '30+', label: 'Available Cars', Icon: Car },
+  { target: '10+', label: 'Locations', Icon: MapPin },
+  { target: '4.5 Star', label: 'Average Rating', Icon: Star, filled: true },
 ]
 
 function parseStat(targetStr) {
@@ -79,15 +76,25 @@ export default function TrustedStats() {
           their Travel Needs
         </p>
         <div className="trusted-grid">
-          {STATS.map((s, i) => (
-            <div className="trusted-stat" key={s.target}>
-              <div className="ic">
-                <Icon name={s.icon} size={28} />
+          {STATS.map((s, i) => {
+            const StatIcon = s.Icon
+            return (
+              <div className="trusted-stat" key={s.target}>
+                <div className="ic">
+                  <StatIcon
+                    size={28}
+                    strokeWidth={1.75}
+                    {...(s.filled
+                      ? { fill: 'currentColor', stroke: 'currentColor' }
+                      : {})}
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3>{lines[i]}</h3>
+                <p>{s.label}</p>
               </div>
-              <h3>{lines[i]}</h3>
-              <p>{s.label}</p>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <a href="#" className="btn-yellow">
           Get a Free Quote

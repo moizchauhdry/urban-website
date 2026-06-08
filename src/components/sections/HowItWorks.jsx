@@ -1,4 +1,22 @@
-import Icon from '../common/Icon.jsx'
+import { CalendarCheck, Car, Route } from 'lucide-react'
+
+const STEPS = [
+  {
+    Icon: Car,
+    title: 'Choose Your Car',
+    description: 'Browse our premium fleet and select the perfect vehicle for your needs.',
+  },
+  {
+    Icon: CalendarCheck,
+    title: 'Book Instantly',
+    description: 'Complete your reservation in under 2 minutes with our streamlined process.',
+  },
+  {
+    Icon: Route,
+    title: 'Enjoy your Ride',
+    description: 'Chauffeur assigned to your Ride and start your journey.',
+  },
+]
 
 export default function HowItWorks() {
   return (
@@ -7,27 +25,18 @@ export default function HowItWorks() {
         <h2 className="section-title">How it works</h2>
         <p className="section-sub">Book a Ride in 3 simple steps. It&apos;s that easy!</p>
         <div className="steps-grid">
-          <div className="step">
-            <div className="step-icon">
-              <Icon name="car-side" size={28} />
-            </div>
-            <h3>Choose Your Car</h3>
-            <p>Browse our premium fleet and select the perfect vehicle for your needs.</p>
-          </div>
-          <div className="step">
-            <div className="step-icon">
-              <Icon name="calendar-check" size={28} />
-            </div>
-            <h3>Book Instantly</h3>
-            <p>Complete your reservation in under 2 minutes with our streamlined process.</p>
-          </div>
-          <div className="step">
-            <div className="step-icon">
-              <Icon name="route" size={28} />
-            </div>
-            <h3>Enjoy your Ride</h3>
-            <p>Chauffeur assigned to your Ride and start your journey.</p>
-          </div>
+          {STEPS.map((step) => {
+            const StepIcon = step.Icon
+            return (
+              <div className="step" key={step.title}>
+                <div className="step-icon">
+                  <StepIcon size={28} strokeWidth={1.75} aria-hidden="true" />
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            )
+          })}
         </div>
         <div className="how-works-cta">
           <a href="#" className="btn-yellow">

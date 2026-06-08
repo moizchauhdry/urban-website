@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
+import ScrollRevealInit from '../components/common/ScrollRevealInit.jsx'
 import Hero from '../components/sections/Hero.jsx'
 
 const Fleet = lazy(() => import('../components/sections/Fleet.jsx'))
@@ -23,6 +24,7 @@ export default function Home() {
     <>
       <Hero />
       <Suspense fallback={null}>
+        <ScrollRevealInit />
         <Fleet />
         <WhyDifferent />
         <PlanningBanner />

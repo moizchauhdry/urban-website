@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { Quote } from 'lucide-react'
 import Icon from '../common/Icon.jsx'
 import { ReviewCard } from './ReviewCard.jsx'
 
@@ -8,7 +9,14 @@ function AsideColumn() {
   return (
     <div className="review-aside">
       <div className="quote-icon">
-        <Icon name="quote-left" size={32} />
+        <Quote
+          size={36}
+          fill="var(--yellow)"
+          stroke="var(--yellow)"
+          strokeWidth={1.5}
+          aria-hidden="true"
+          style={{ width: 36, height: 36, flexShrink: 0 }}
+        />
       </div>
       <h3>
         What Our

@@ -18,14 +18,24 @@ function injectHeroLcp() {
       handler(html, ctx) {
         if (!ctx.bundle) return html
 
-        const heroAsset = Object.values(ctx.bundle).find(
-          (item) => item.type === 'asset' && /hero-bg/i.test(item.fileName),
-        )
-        if (!heroAsset) return html
+        const findHeroAsset = (pattern) =>
+          Object.values(ctx.bundle).find(
+            (item) => item.type === 'asset' && pattern.test(item.fileName),
+          )
 
-        const href = `${base}${heroAsset.fileName}`.replace(/([^:]\/)\/+/g, '$1')
-        const preload = `<link rel="preload" as="image" href="${href}" fetchpriority="high" />`
-        const staticHero = `<img id="static-hero-lcp" src="${href}" alt="" width="800" height="458" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+        const heroSm = findHeroAsset(/hero-bg-800/i)
+        const heroLg = findHeroAsset(/hero-bg-1440/i)
+        if (!heroSm || !heroLg) return html
+
+        const toHref = (fileName) =>
+          `${base}${fileName}`.replace(/([^:]\/)\/+/g, '$1')
+        const smHref = toHref(heroSm.fileName)
+        const lgHref = toHref(heroLg.fileName)
+        const srcset = `${smHref} 800w, ${lgHref} 1440w`
+        const sizes = '(max-width: 1024px) 800px, 1440px'
+
+        const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
+        const staticHero = `<img id="static-hero-lcp" src="${lgHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
 
         let out = html
           .replace(/<link rel="modulepreload"[^>]*phone-input[^>]*>\s*/g, '')

@@ -16,7 +16,10 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
         <a href={ext('/about-us/')}>About Us</a>
         <a href="/#fleet">Fleet</a>
         <div className="has-sub">
-          <a href="#">Service Areas</a>
+          <a href="#" className="has-sub__trigger">
+            Service Areas
+            <Icon name="chevron-down" size={10} className="nav-chevron" />
+          </a>
           <div className="submenu">
             <a href="#">Connecticut Car Service</a>
             <a href="https://urbanelitelimo.com/state/florida-car-service/">Florida Car Service</a>
