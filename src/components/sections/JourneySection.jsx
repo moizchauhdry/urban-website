@@ -5,10 +5,10 @@ export default function JourneySection() {
   return (
     <section className="journey">
       <div className="journey-car-slot journey-car-slot--left" aria-hidden="true">
-        <img src={leftCar} alt="" className="journey-car-img" width={425} height={244} draggable={false} decoding="async" />
+        <img src={leftCar} alt="" className="journey-car-img" width={425} height={244} loading="lazy" draggable={false} decoding="async" />
       </div>
       <div className="journey-car-slot journey-car-slot--right" aria-hidden="true">
-        <img src={rightCar} alt="" className="journey-car-img" width={407} height={274} draggable={false} decoding="async" />
+        <img src={rightCar} alt="" className="journey-car-img" width={407} height={274} loading="lazy" draggable={false} decoding="async" />
       </div>
       <div className="container">
         <h2>Start Your Journey Today</h2>

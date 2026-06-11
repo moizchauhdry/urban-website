@@ -8,7 +8,7 @@ import {
 } from '../../data/heroBg.js'
 import Icon from '../common/Icon.jsx'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
-import HeroBookingForm from './HeroBookingForm.jsx'
+import HeroDeferredBooking from './HeroDeferredBooking.jsx'
 
 /** Connecticut hero + booking card */
 export default function Hero() {
@@ -76,9 +76,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="booking-card-slot">
-          <HeroBookingForm />
-        </div>
+        <HeroDeferredBooking />
       </div>
     </section>
   )
