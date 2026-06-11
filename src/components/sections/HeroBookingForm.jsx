@@ -1,10 +1,15 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getExampleNumber } from 'libphonenumber-js/max'
 import examples from 'libphonenumber-js/examples.mobile.json'
 import PhoneInput, { getCountries, getCountryCallingCode } from 'react-phone-number-input/max'
 import en from 'react-phone-number-input/locale/en.json'
 import 'react-phone-number-input/style.css'
-import { HERO_BOOKING_INITIAL, buildHeroBookingPayload, submitHeroBooking } from '../../services/heroBooking.js'
+import {
+  HERO_BOOKING_INITIAL,
+  buildHeroBookingPayload,
+  fetchBookingFleetOptions,
+  submitHeroBooking,
+} from '../../services/heroBooking.js'
 import PlacesAutocompleteInput from '../common/PlacesAutocompleteInput.jsx'
 
 function nationalExamplePlaceholder(country) {
@@ -38,7 +43,31 @@ export default function HeroBookingForm() {
   const phoneLabels = useMemo(() => buildLabelsWithCallingCodes(), [])
   const phonePlaceholder = useMemo(() => nationalExamplePlaceholder(phoneCountry), [phoneCountry])
   const [formData, setFormData] = useState(HERO_BOOKING_INITIAL)
+  const [fleetOptions, setFleetOptions] = useState([])
+  const [fleetOptionsError, setFleetOptionsError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+
+    fetchBookingFleetOptions()
+      .then((options) => {
+        if (!cancelled) {
+          setFleetOptions(options)
+          setFleetOptionsError('')
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          console.error('[Hero booking] fleet options', err)
+          setFleetOptionsError('Fleet options could not be loaded. Please refresh or call (888) 881-6610.')
+        }
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -139,17 +168,26 @@ export default function HeroBookingForm() {
           <input type="time" name="time" value={formData.time} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label>Select Fleet</label>
-          <select name="fleet" value={formData.fleet} onChange={handleChange}>
-            <option value="">—Please choose an option—</option>
-            <option value="Economy Sedan">Economy Sedan</option>
-            <option value="Luxury Sedan">Luxury Sedan</option>
-            <option value="Mini SUV">Mini SUV</option>
-            <option value="Full-Size SUVs">Full-Size SUVs</option>
-            <option value="Premium SUVs">Premium SUVs</option>
-            <option value="Sprinter Van">Sprinter Van</option>
-            <option value="Stretch Limo">Stretch Limo</option>
+          <label>Select Fleet*</label>
+          <select
+            name="fleet"
+            value={formData.fleet}
+            onChange={handleChange}
+            required
+            disabled={fleetOptions.length === 0}
+          >
+            <option value="">
+              {fleetOptions.length === 0 ? 'Loading fleet options…' : '—Please choose an option—'}
+            </option>
+            {fleetOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
+          {fleetOptionsError ? (
+            <p className="places-autocomplete-hint places-autocomplete-hint--error">{fleetOptionsError}</p>
+          ) : null}
         </div>
         {formData.bookingType === 'hourly' && (
           <div className="form-group full">

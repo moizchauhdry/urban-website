@@ -54,6 +54,40 @@ function getBookingApiBaseUrl() {
   return base
 }
 
+/** @returns {string} */
+function getBookingStoreDataUrl() {
+  const override = import.meta.env.VITE_BOOKING_STORE_DATA_URL?.trim()
+  if (override) return override.replace(/\/$/, '')
+
+  const apiUrl = new URL(getBookingApiBaseUrl())
+  return `${apiUrl.origin}/api/urban/booking/store-data`
+}
+
+/**
+ * Fleet labels from the portal (vehicle_id must match these names exactly).
+ * @returns {Promise<Array<{ value: string, label: string }>>}
+ */
+export async function fetchBookingFleetOptions() {
+  const res = await fetch(getBookingStoreDataUrl(), {
+    headers: { Accept: 'application/json' },
+  })
+
+  if (!res.ok) {
+    throw new Error(`Could not load fleet options (${res.status})`)
+  }
+
+  const json = await res.json()
+  const vehicles = json?.data?.vehicles
+  if (!Array.isArray(vehicles) || vehicles.length === 0) {
+    throw new Error('No fleet options available from the booking portal.')
+  }
+
+  return vehicles.map((vehicle) => ({
+    value: vehicle.label,
+    label: vehicle.label,
+  }))
+}
+
 function getSuccessPageUrl() {
   const url = import.meta.env.VITE_BOOKING_SUCCESS_URL?.trim()
   if (!url) {
@@ -77,7 +111,7 @@ function getBookingLiveUrl(fallbackUrl) {
 function mapTravelType(travel) {
   const normalized = travel.trim().toLowerCase()
   if (normalized === 'round trip') return 'Round Trip'
-  return 'One way'
+  return 'One Way'
 }
 
 /**
@@ -122,6 +156,10 @@ export async function submitHeroBooking(payload) {
 
   if (serviceType === 'hourly' && !payload.hours?.trim()) {
     throw new Error('Please enter the number of hours for hourly service.')
+  }
+
+  if (!payload.fleet?.trim()) {
+    throw new Error('Please select a fleet.')
   }
 
   const url = `${getBookingApiBaseUrl()}/${serviceType}`
