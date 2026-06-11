@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import Icon from '../common/Icon.jsx'
+import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { SERVICE_ITEMS } from '../../data/serviceItems.js'
 import ServiceCard from './ServiceCard.jsx'
 
@@ -29,14 +29,13 @@ function chunkItems(items, size) {
 
 function NavArrows({ onPrev, onNext }) {
   return (
-    <div className="review-nav services-nav">
-      <button type="button" onClick={onPrev} aria-label="Previous services">
-        <Icon name="arrow-left" size={14} />
-      </button>
-      <button type="button" onClick={onNext} aria-label="Next services">
-        <Icon name="arrow-right" size={14} />
-      </button>
-    </div>
+    <CarouselNavButtons
+      className="services-nav"
+      onPrev={onPrev}
+      onNext={onNext}
+      prevLabel="Previous services"
+      nextLabel="Next services"
+    />
   )
 }
 

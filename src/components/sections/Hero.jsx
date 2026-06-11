@@ -1,6 +1,13 @@
 import { useEffect } from 'react'
-import heroBg from '../../assets/icons/hero-bg.webp'
+import {
+  HERO_BG_DEFAULT,
+  HERO_BG_HEIGHT,
+  HERO_BG_SIZES,
+  HERO_BG_SRCSET,
+  HERO_BG_WIDTH,
+} from '../../data/heroBg.js'
 import Icon from '../common/Icon.jsx'
+import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import HeroBookingForm from './HeroBookingForm.jsx'
 
 /** Connecticut hero + booking card */
@@ -12,11 +19,13 @@ export default function Hero() {
   return (
     <section className="hero">
       <img
-        src={heroBg}
+        src={HERO_BG_DEFAULT}
+        srcSet={HERO_BG_SRCSET}
+        sizes={HERO_BG_SIZES}
         alt=""
         className="hero-bg-img"
-        width={800}
-        height={458}
+        width={HERO_BG_WIDTH}
+        height={HERO_BG_HEIGHT}
         fetchPriority="high"
         loading="eager"
         decoding="async"
@@ -37,22 +46,33 @@ export default function Hero() {
             friendly service and dependable transport to JFK , LGA or NYC without rushing or worrying about traffic.
             Your ride stays simple, safe and well planned.
           </p>
-          <a href="tel:8888816610" className="hero-phone">
-            <Icon name="phone" size={16} /> (888) 881-6610
+          <a href={HERO_PHONE.href} className="hero-phone">
+            <img
+              src={HERO_PHONE.icon}
+              alt={HERO_PHONE.iconAlt}
+              className="hero-phone-icon"
+              width={20}
+              height={20}
+              decoding="async"
+              draggable={false}
+            />
+            {HERO_PHONE.label}
           </a>
           <div className="hero-features">
-            <div className="feat">
-              <Icon name="shield-halved" size={14} /> Licensed & Insured
-            </div>
-            <div className="feat">
-              <Icon name="car" size={14} /> Latest Model Fleet
-            </div>
-            <div className="feat">
-              <Icon name="id-card" size={14} /> Licensed Chauffeurs
-            </div>
-            <div className="feat">
-              <Icon name="plane" size={14} /> flight monitoring
-            </div>
+            {HERO_FEATURES.map((feat) => (
+              <div className="feat" key={feat.label}>
+                <img
+                  src={feat.icon}
+                  alt={feat.iconAlt}
+                  className="feat-icon"
+                  width={20}
+                  height={20}
+                  decoding="async"
+                  draggable={false}
+                />
+                {feat.label}
+              </div>
+            ))}
           </div>
         </div>
 

@@ -33,7 +33,6 @@ const PHOTOS = [
 ]
 
 const VECTOR_ASSETS = [
-  'hero-bg.svg',
   'economy-sedan.svg',
   'first-class-sedan.svg',
   'luxury-sedan.svg',
@@ -70,7 +69,35 @@ async function toWebp(inputName) {
   return `${base}.webp`
 }
 
+/** Hero: two responsive WebPs from SVG (800w mobile LCP, 1440w sharp desktop). */
+async function optimizeHero() {
+  const input = path.join(ASSETS, 'hero-bg.svg')
+  try {
+    await fs.access(input)
+  } catch {
+    console.warn('skip (missing): hero-bg.svg')
+    return
+  }
+
+  const variants = [
+    { name: 'hero-bg-800.webp', width: 800, quality: 82 },
+    { name: 'hero-bg-1440.webp', width: 1440, quality: 85 },
+  ]
+
+  for (const { name, width, quality } of variants) {
+    const output = path.join(ASSETS, name)
+    await sharp(input, { density: 144 })
+      .rotate()
+      .resize({ width, withoutEnlargement: false })
+      .webp({ quality, effort: 4 })
+      .toFile(output)
+    const { size } = await fs.stat(output)
+    console.log(`✓ ${name} (${Math.round(size / 1024)} KiB)`)
+  }
+}
+
 console.log('Optimizing fleet + hero images…')
+await optimizeHero()
 for (const name of PHOTOS) {
   await toWebp(name)
 }

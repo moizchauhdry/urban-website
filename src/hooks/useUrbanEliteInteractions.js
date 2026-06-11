@@ -24,71 +24,7 @@ export function useUrbanEliteInteractions(isHome) {
       tabHandlers.forEach(([tab, h]) => tab.removeEventListener('click', h))
     })
 
-    // 2. Auto-tag elements for scroll reveal
-    const revealMap = [
-      ['.center-tag', 'reveal'],
-      ['.section-title', 'reveal'],
-      ['.section-sub', 'reveal d1'],
-      ['.fleet-card', 'reveal scale'],
-      ['.why-card', 'reveal'],
-      ['.service-card', 'reveal scale'],
-      ['.reviews-rating', 'reveal d1'],
-      ['.review-card', 'reveal'],
-      ['.review-aside', 'reveal d1'],
-      ['.trusted-stat', 'reveal scale'],
-      ['.step', 'reveal'],
-      ['.airport-card', 'reveal scale'],
-      ['.faq-item', 'reveal'],
-      ['.faq-image', 'reveal d1'],
-      ['.planning h2', 'reveal'],
-      ['.planning p', 'reveal d1'],
-      ['.planning .btn-yellow', 'reveal d2'],
-      ['.journey h2', 'reveal'],
-      ['.journey p', 'reveal d1'],
-      ['.journey .btn-yellow', 'reveal d2'],
-      ['.trusted h2', 'reveal'],
-      ['.trusted-inner > p', 'reveal d1'],
-      ['.how-works-cta', 'reveal d2'],
-    ]
-    const noStaggerSelectors = new Set([
-      '.fleet-card',
-      '.why-card',
-      '.service-card',
-      '.review-card',
-      '.trusted-stat',
-      '.airport-card',
-      '.faq-item',
-      '.step',
-    ])
-    revealMap.forEach(([sel, cls]) => {
-      document.querySelectorAll(sel).forEach((el, i) => {
-        cls.split(' ').forEach((c) => el.classList.add(c))
-        if (noStaggerSelectors.has(sel)) return
-        const siblingIdx = i % 6
-        if (siblingIdx > 0) el.classList.add('d' + Math.min(siblingIdx, 5))
-      })
-    })
-
-    document.querySelectorAll('.content-block').forEach((block) => {
-      const cols = block.children
-      if (cols[0]) cols[0].classList.add('reveal')
-      if (cols[1]) cols[1].classList.add('reveal', 'd1')
-    })
-
-    // 3. IntersectionObserver — trigger reveals
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in')
-            io.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' },
-    )
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
-    cleanups.push(() => io.disconnect())
+    // Scroll reveal → useScrollReveal() in MainLayout (handles lazy-loaded sections)
 
     // Trusted stats counter moved to TrustedStats.jsx (React state) — imperative DOM updates fought React and stuck on "0".
 

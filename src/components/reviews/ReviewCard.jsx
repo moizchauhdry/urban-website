@@ -1,12 +1,22 @@
 import { memo } from 'react'
-import Icon from '../common/Icon.jsx'
+import { Star } from 'lucide-react'
+
+const STAR_SIZE = 14
 
 function ReviewCardInner({ author, text }) {
   return (
     <div className="review-card">
       <div className="review-stars">
         {Array.from({ length: 5 }, (_, i) => (
-          <Icon key={i} name="star" size={14} />
+          <Star
+            key={i}
+            size={STAR_SIZE}
+            fill="var(--yellow)"
+            stroke="var(--yellow)"
+            strokeWidth={1.5}
+            aria-hidden="true"
+            style={{ width: STAR_SIZE, height: STAR_SIZE, flexShrink: 0 }}
+          />
         ))}
       </div>
       <p className="review-text">{text}</p>

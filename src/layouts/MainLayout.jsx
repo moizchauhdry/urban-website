@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/layout/Header.jsx'
 import Footer from '../components/layout/Footer.jsx'
 import { useUrbanEliteInteractions } from '../hooks/useUrbanEliteInteractions.js'
+import { useScrollReveal } from '../hooks/useScrollReveal.js'
 
 /**
  * Shared chrome for every page (header + footer). Header is sticky on desktop;
@@ -13,6 +14,7 @@ export default function MainLayout() {
   const isHome = location.pathname === '/'
 
   useUrbanEliteInteractions(isHome)
+  useScrollReveal()
 
   return (
     <>

@@ -92,6 +92,8 @@ export default function Icon({ name, size = 16, className = '' }) {
       width={size}
       height={size}
       viewBox={viewBox}
+      preserveAspectRatio="xMidYMid meet"
+      style={{ width: size, height: size, flexShrink: 0 }}
       aria-hidden="true"
       focusable="false"
     >
