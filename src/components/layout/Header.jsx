@@ -54,6 +54,7 @@ export default function Header() {
             width={104}
             height={38}
             decoding="async"
+            style={{ aspectRatio: '104 / 38' }}
           />
         </Link>
         <Navbar />

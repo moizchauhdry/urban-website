@@ -1,18 +1,16 @@
 import { useEffect } from 'react'
 import Hero from '../components/sections/Hero.jsx'
-import LazyInView from '../components/common/LazyInView.jsx'
-
-const loadFleet = () => import('../components/sections/Fleet.jsx')
-const loadWhyDifferent = () => import('../components/sections/WhyDifferent.jsx')
-const loadPlanningBanner = () => import('../components/sections/PlanningBanner.jsx')
-const loadReviewsSection = () => import('../components/sections/ReviewsSection.jsx')
-const loadServices = () => import('../components/sections/Services.jsx')
-const loadContentBlocks = () => import('../components/sections/ContentBlocks.jsx')
-const loadTrustedStats = () => import('../components/sections/TrustedStats.jsx')
-const loadHowItWorks = () => import('../components/sections/HowItWorks.jsx')
-const loadJourneySection = () => import('../components/sections/JourneySection.jsx')
-const loadAirportsSection = () => import('../components/sections/AirportsSection.jsx')
-const loadFaqSection = () => import('../components/sections/FaqSection.jsx')
+import Fleet from '../components/sections/Fleet.jsx'
+import WhyDifferent from '../components/sections/WhyDifferent.jsx'
+import PlanningBanner from '../components/sections/PlanningBanner.jsx'
+import ReviewsSection from '../components/sections/ReviewsSection.jsx'
+import Services from '../components/sections/Services.jsx'
+import ContentBlocks from '../components/sections/ContentBlocks.jsx'
+import TrustedStats from '../components/sections/TrustedStats.jsx'
+import HowItWorks from '../components/sections/HowItWorks.jsx'
+import JourneySection from '../components/sections/JourneySection.jsx'
+import AirportsSection from '../components/sections/AirportsSection.jsx'
+import FaqSection from '../components/sections/FaqSection.jsx'
 
 export default function Home() {
   useEffect(() => {
@@ -23,17 +21,17 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <LazyInView load={loadFleet} />
-      <LazyInView load={loadWhyDifferent} />
-      <LazyInView load={loadPlanningBanner} />
-      <LazyInView load={loadReviewsSection} />
-      <LazyInView load={loadServices} />
-      <LazyInView load={loadContentBlocks} />
-      <LazyInView load={loadTrustedStats} />
-      <LazyInView load={loadHowItWorks} />
-      <LazyInView load={loadJourneySection} />
-      <LazyInView load={loadAirportsSection} />
-      <LazyInView load={loadFaqSection} />
+      <Fleet />
+      <WhyDifferent />
+      <PlanningBanner />
+      <ReviewsSection />
+      <Services />
+      <ContentBlocks />
+      <TrustedStats />
+      <HowItWorks />
+      <JourneySection />
+      <AirportsSection />
+      <FaqSection />
     </>
   )
 }
