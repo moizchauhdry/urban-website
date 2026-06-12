@@ -1,10 +1,24 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import HeroBookingFormShell from './HeroBookingFormShell.jsx'
 
 const HeroBookingForm = lazy(() => import('./HeroBookingForm.jsx'))
 
-const bookingPlaceholder = (
-  <div className="booking-card booking-card--loading" aria-hidden="true" />
-)
+const MOBILE_MQ = '(max-width: 720px)'
+
+function scheduleFormLoad(callback) {
+  if (typeof window.requestIdleCallback === 'function') {
+    return window.requestIdleCallback(callback, { timeout: 1200 })
+  }
+  return window.setTimeout(callback, 1)
+}
+
+function cancelFormLoad(id) {
+  if (typeof window.cancelIdleCallback === 'function') {
+    window.cancelIdleCallback(id)
+    return
+  }
+  window.clearTimeout(id)
+}
 
 /** Defers phone-input + Google Places until the booking slot is near the viewport. */
 export default function HeroDeferredBooking() {
@@ -13,18 +27,27 @@ export default function HeroDeferredBooking() {
 
   useEffect(() => {
     const el = slotRef.current
-    if (!el) return
+    if (!el) return undefined
 
     let loaded = false
+    let cancelId = 0
+
     const loadForm = () => {
       if (loaded) return
       loaded = true
       setReady(true)
     }
 
+    const isMobile = window.matchMedia(MOBILE_MQ).matches
+
+    if (isMobile) {
+      cancelId = scheduleFormLoad(loadForm)
+      return () => cancelFormLoad(cancelId)
+    }
+
     if (typeof IntersectionObserver === 'undefined') {
       loadForm()
-      return
+      return undefined
     }
 
     const io = new IntersectionObserver(
@@ -45,11 +68,11 @@ export default function HeroDeferredBooking() {
   return (
     <div className="booking-card-slot" ref={slotRef}>
       {ready ? (
-        <Suspense fallback={bookingPlaceholder}>
+        <Suspense fallback={<HeroBookingFormShell />}>
           <HeroBookingForm />
         </Suspense>
       ) : (
-        bookingPlaceholder
+        <HeroBookingFormShell />
       )}
     </div>
   )

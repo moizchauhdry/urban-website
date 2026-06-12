@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import {
   HERO_BG_DEFAULT,
   HERO_BG_HEIGHT,
@@ -10,15 +10,45 @@ import Icon from '../common/Icon.jsx'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import HeroDeferredBooking from './HeroDeferredBooking.jsx'
 
+function removeStaticHeroLcp() {
+  document.getElementById('static-hero-lcp')?.remove()
+}
+
 /** Connecticut hero + booking card */
 export default function Hero() {
+  const staticRemoved = useRef(false)
+
+  const onHeroBgReady = useCallback((node) => {
+    if (!node) return
+    if (node.complete && node.naturalWidth > 0) {
+      if (!staticRemoved.current) {
+        staticRemoved.current = true
+        removeStaticHeroLcp()
+      }
+      return
+    }
+    const onLoad = () => {
+      if (staticRemoved.current) return
+      staticRemoved.current = true
+      removeStaticHeroLcp()
+    }
+    node.addEventListener('load', onLoad, { once: true })
+  }, [])
+
   useEffect(() => {
-    document.getElementById('static-hero-lcp')?.remove()
+    const staticImg = document.getElementById('static-hero-lcp')
+    if (staticImg instanceof HTMLImageElement && staticImg.complete && staticImg.naturalWidth > 0) {
+      if (!staticRemoved.current) {
+        staticRemoved.current = true
+        removeStaticHeroLcp()
+      }
+    }
   }, [])
 
   return (
     <section className="hero">
       <img
+        ref={onHeroBgReady}
         src={HERO_BG_DEFAULT}
         srcSet={HERO_BG_SRCSET}
         sizes={HERO_BG_SIZES}

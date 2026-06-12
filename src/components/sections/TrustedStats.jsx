@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Car, MapPin, Star, Users } from 'lucide-react'
+import { useMobileLayout } from '../../hooks/useMobileLayout.js'
 
 const STATS = [
   { target: '10,000+', label: 'Happy Customers', Icon: Users, statKey: 'customers' },
@@ -21,13 +22,17 @@ function parseStat(targetStr) {
 }
 
 export default function TrustedStats() {
+  const isMobile = useMobileLayout()
   const sectionRef = useRef(null)
   const [lines, setLines] = useState(() => STATS.map(() => '0'))
   const hasAnimated = useRef(false)
+  const displayLines = isMobile ? STATS.map((s) => s.target) : lines
 
   useEffect(() => {
+    if (isMobile) return undefined
+
     const el = sectionRef.current
-    if (!el) return
+    if (!el) return undefined
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -65,7 +70,7 @@ export default function TrustedStats() {
       io.disconnect()
       hasAnimated.current = false
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <section ref={sectionRef} className="trusted">
@@ -90,7 +95,7 @@ export default function TrustedStats() {
                     aria-hidden="true"
                   />
                 </div>
-                <h3 data-stat={s.statKey}>{lines[i]}</h3>
+                <h3 data-stat={s.statKey}>{displayLines[i]}</h3>
                 <p>{s.label}</p>
               </div>
             )

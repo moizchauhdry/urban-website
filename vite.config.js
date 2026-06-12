@@ -40,8 +40,10 @@ function injectHeroLcp() {
         let out = html
           .replace(/<link rel="modulepreload"[^>]*phone-input[^>]*>\s*/g, '')
           .replace(/<link rel="modulepreload"[^>]*google-maps[^>]*>\s*/g, '')
+          .replace(/<link rel="modulepreload"[^>]*\/Services-[^>]*>\s*/g, '')
+          .replace(/<link rel="modulepreload"[^>]*lucide-[^>]*>\s*/g, '')
           .replace(/<link rel="stylesheet"[^>]*phone-input[^>]*>\s*/g, '')
-          .replace('</head>', `    ${preload}\n  </head>`)
+          .replace('<meta name="viewport"', `${preload}\n    <meta name="viewport"`)
           .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
 
         return out
@@ -58,7 +60,10 @@ export default defineConfig(({ mode }) => ({
     modulePreload: {
       resolveDependencies(_filename, deps) {
         return deps.filter(
-          (dep) => !dep.includes('phone-input') && !dep.includes('google-maps'),
+          (dep) =>
+            !dep.includes('phone-input') &&
+            !dep.includes('google-maps') &&
+            !dep.includes('lucide'),
         )
       },
     },
