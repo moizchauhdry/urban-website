@@ -365,6 +365,7 @@ header{
 }
 .booking-card-slot{
   min-height:660px;
+  contain:layout style;
 }
 .form-tabs{
   display:flex;background:#f5f5f5;border-radius:30px;padding:4px;margin-bottom:22px;
