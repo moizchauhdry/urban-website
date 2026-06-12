@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Car, MapPin, Star, Users } from 'lucide-react'
 
 const STATS = [
-  { target: '10,000+', label: 'Happy Customers', Icon: Users },
-  { target: '30+', label: 'Available Cars', Icon: Car },
-  { target: '10+', label: 'Locations', Icon: MapPin },
-  { target: '4.5 Star', label: 'Average Rating', Icon: Star, filled: true },
+  { target: '10,000+', label: 'Happy Customers', Icon: Users, statKey: 'customers' },
+  { target: '30+', label: 'Available Cars', Icon: Car, statKey: 'cars' },
+  { target: '10+', label: 'Locations', Icon: MapPin, statKey: 'locations' },
+  { target: '4.5 Star', label: 'Average Rating', Icon: Star, filled: true, statKey: 'rating' },
 ]
 
 function parseStat(targetStr) {
@@ -90,7 +90,7 @@ export default function TrustedStats() {
                     aria-hidden="true"
                   />
                 </div>
-                <h3>{lines[i]}</h3>
+                <h3 data-stat={s.statKey}>{lines[i]}</h3>
                 <p>{s.label}</p>
               </div>
             )

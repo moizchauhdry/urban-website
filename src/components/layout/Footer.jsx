@@ -19,6 +19,7 @@ export default function Footer() {
                 width={142}
                 height={52}
                 decoding="async"
+                style={{ aspectRatio: '142 / 52' }}
               />
             </Link>
             <div className="footer-contact">
