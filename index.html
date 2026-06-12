@@ -34,7 +34,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Poppins: optional avoids layout shift when font swaps on slow mobile -->
+    <!-- Poppins: desktop loads early; mobile defers until after first paint (LCP bandwidth) -->
 
     <link
 
@@ -42,11 +42,45 @@
 
       as="style"
 
+      media="(min-width: 721px)"
+
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
 
       onload="this.onload=null;this.rel='stylesheet'"
 
     />
+
+    <script>
+
+      (function () {
+
+        if (!window.matchMedia('(max-width: 720px)').matches) return
+
+        window.addEventListener(
+
+          'load',
+
+          function () {
+
+            var link = document.createElement('link')
+
+            link.rel = 'stylesheet'
+
+            link.href =
+
+              'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional'
+
+            document.head.appendChild(link)
+
+          },
+
+          { once: true },
+
+        )
+
+      })()
+
+    </script>
 
     <noscript>
 

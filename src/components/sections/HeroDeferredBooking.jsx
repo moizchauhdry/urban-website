@@ -1,37 +1,73 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import HeroBookingFormShell from './HeroBookingFormShell.jsx'
 
-const HeroBookingForm = lazy(() => import('./HeroBookingForm.jsx'))
+const MOBILE_MQ = '(max-width: 720px)'
 
-const bookingPlaceholder = (
-  <div className="booking-card booking-card--loading" aria-hidden="true" />
-)
+function scheduleFormLoad(callback) {
+  if (typeof window.requestIdleCallback === 'function') {
+    return window.requestIdleCallback(callback, { timeout: 1200 })
+  }
+  return window.setTimeout(callback, 1)
+}
+
+function cancelFormLoad(id) {
+  if (typeof window.cancelIdleCallback === 'function') {
+    window.cancelIdleCallback(id)
+    return
+  }
+  window.clearTimeout(id)
+}
+
+function loadHeroBookingFormModule() {
+  return import('./HeroBookingForm.jsx')
+}
 
 /** Defers phone-input + Google Places until the booking slot is near the viewport. */
 export default function HeroDeferredBooking() {
   const slotRef = useRef(null)
-  const [ready, setReady] = useState(false)
+  const [FormComponent, setFormComponent] = useState(null)
+  const modulePromiseRef = useRef(null)
+
+  useEffect(() => {
+    modulePromiseRef.current = loadHeroBookingFormModule()
+  }, [])
 
   useEffect(() => {
     const el = slotRef.current
-    if (!el) return
+    if (!el) return undefined
 
-    let loaded = false
-    const loadForm = () => {
-      if (loaded) return
-      loaded = true
-      setReady(true)
+    let cancelled = false
+    let cancelId = 0
+
+    const revealForm = () => {
+      const pending = modulePromiseRef.current ?? loadHeroBookingFormModule()
+      pending.then((mod) => {
+        if (!cancelled) setFormComponent(() => mod.default)
+      })
+    }
+
+    const isMobile = window.matchMedia(MOBILE_MQ).matches
+
+    if (isMobile) {
+      cancelId = scheduleFormLoad(revealForm)
+      return () => {
+        cancelled = true
+        cancelFormLoad(cancelId)
+      }
     }
 
     if (typeof IntersectionObserver === 'undefined') {
-      loadForm()
-      return
+      revealForm()
+      return () => {
+        cancelled = true
+      }
     }
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           io.disconnect()
-          loadForm()
+          revealForm()
         }
       },
       { rootMargin: '80px 0px', threshold: 0 },
@@ -39,18 +75,15 @@ export default function HeroDeferredBooking() {
 
     io.observe(el)
 
-    return () => io.disconnect()
+    return () => {
+      cancelled = true
+      io.disconnect()
+    }
   }, [])
 
   return (
     <div className="booking-card-slot" ref={slotRef}>
-      {ready ? (
-        <Suspense fallback={bookingPlaceholder}>
-          <HeroBookingForm />
-        </Suspense>
-      ) : (
-        bookingPlaceholder
-      )}
+      {FormComponent ? <FormComponent /> : <HeroBookingFormShell />}
     </div>
   )
 }

@@ -2,13 +2,41 @@ import { useEffect } from 'react'
 import {
   bindScrollRevealScanner,
   createScrollRevealScanner,
+  SECTION_SELECTOR,
   unbindScrollRevealScanner,
 } from './scrollReveal.js'
+
+const MOBILE_MQ = '(max-width: 720px)'
+
+function revealAllSectionsImmediately() {
+  document.querySelectorAll(SECTION_SELECTOR).forEach((el) => {
+    el.classList.add('scroll-reveal-section', 'is-visible')
+  })
+}
 
 /** Wires IntersectionObserver + DOM scan for scroll reveal animations. */
 export function useScrollReveal() {
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isMobile = window.matchMedia(MOBILE_MQ).matches
+
+    if (isMobile || reducedMotion) {
+      const markVisible = () => revealAllSectionsImmediately()
+      markVisible()
+      const rootEl = document.getElementById('root')
+      const mo =
+        rootEl &&
+        new MutationObserver(() => {
+          markVisible()
+        })
+      mo?.observe(rootEl, { childList: true, subtree: true })
+      const rescanTimers = [150, 500, 1200].map((ms) => window.setTimeout(markVisible, ms))
+      return () => {
+        rescanTimers.forEach((id) => window.clearTimeout(id))
+        mo?.disconnect()
+      }
+    }
+
     const observed = new WeakSet()
 
     const io = new IntersectionObserver(
