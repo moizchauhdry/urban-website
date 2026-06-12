@@ -303,6 +303,7 @@ export default function PlacesAutocompleteInput({
         onChange={handleInputChange}
         onKeyDown={placesReady ? handleKeyDown : undefined}
         onFocus={() => {
+          void ensurePlacesLib()
           if (suggestions.length && placesReadyRef.current) setOpen(true)
         }}
         placeholder={placeholder}

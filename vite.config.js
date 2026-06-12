@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 /**
  * Inject hero LCP preload + static hero img so mobile paints before React boots.
- * Also strip heavy phone-input preloads that hurt mobile bandwidth.
+ * Also strip heavy phone-input / google-maps preloads that hurt mobile bandwidth.
  */
 function injectHeroLcp() {
   let base = '/'
@@ -35,7 +35,7 @@ function injectHeroLcp() {
         const sizes = '(max-width: 1024px) 800px, 1440px'
 
         const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
-        const staticHero = `<img id="static-hero-lcp" src="${lgHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+        const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
 
         let out = html
           .replace(/<link rel="modulepreload"[^>]*phone-input[^>]*>\s*/g, '')
@@ -55,6 +55,13 @@ export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/connecticut-black-car-service/' : '/',
   plugins: [react(), injectHeroLcp()],
   build: {
+    modulePreload: {
+      resolveDependencies(_filename, deps) {
+        return deps.filter(
+          (dep) => !dep.includes('phone-input') && !dep.includes('google-maps'),
+        )
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -63,6 +70,12 @@ export default defineConfig(({ mode }) => ({
           }
           if (id.includes('@googlemaps/js-api-loader')) {
             return 'google-maps'
+          }
+          if (id.includes('node_modules/lucide-react')) {
+            return 'lucide'
+          }
+          if (id.includes('node_modules/react-router')) {
+            return 'router'
           }
           if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
             return 'react-vendor'

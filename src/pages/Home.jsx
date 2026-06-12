@@ -1,18 +1,18 @@
-import { lazy, Suspense, useEffect } from 'react'
-import ScrollRevealInit from '../components/common/ScrollRevealInit.jsx'
+import { useEffect } from 'react'
 import Hero from '../components/sections/Hero.jsx'
+import LazyInView from '../components/common/LazyInView.jsx'
 
-const Fleet = lazy(() => import('../components/sections/Fleet.jsx'))
-const WhyDifferent = lazy(() => import('../components/sections/WhyDifferent.jsx'))
-const PlanningBanner = lazy(() => import('../components/sections/PlanningBanner.jsx'))
-const ReviewsSection = lazy(() => import('../components/sections/ReviewsSection.jsx'))
-const Services = lazy(() => import('../components/sections/Services.jsx'))
-const ContentBlocks = lazy(() => import('../components/sections/ContentBlocks.jsx'))
-const TrustedStats = lazy(() => import('../components/sections/TrustedStats.jsx'))
-const HowItWorks = lazy(() => import('../components/sections/HowItWorks.jsx'))
-const JourneySection = lazy(() => import('../components/sections/JourneySection.jsx'))
-const AirportsSection = lazy(() => import('../components/sections/AirportsSection.jsx'))
-const FaqSection = lazy(() => import('../components/sections/FaqSection.jsx'))
+const loadFleet = () => import('../components/sections/Fleet.jsx')
+const loadWhyDifferent = () => import('../components/sections/WhyDifferent.jsx')
+const loadPlanningBanner = () => import('../components/sections/PlanningBanner.jsx')
+const loadReviewsSection = () => import('../components/sections/ReviewsSection.jsx')
+const loadServices = () => import('../components/sections/Services.jsx')
+const loadContentBlocks = () => import('../components/sections/ContentBlocks.jsx')
+const loadTrustedStats = () => import('../components/sections/TrustedStats.jsx')
+const loadHowItWorks = () => import('../components/sections/HowItWorks.jsx')
+const loadJourneySection = () => import('../components/sections/JourneySection.jsx')
+const loadAirportsSection = () => import('../components/sections/AirportsSection.jsx')
+const loadFaqSection = () => import('../components/sections/FaqSection.jsx')
 
 export default function Home() {
   useEffect(() => {
@@ -23,20 +23,17 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Suspense fallback={null}>
-        <ScrollRevealInit />
-        <Fleet />
-        <WhyDifferent />
-        <PlanningBanner />
-        <ReviewsSection />
-        <Services />
-        <ContentBlocks />
-        <TrustedStats />
-        <HowItWorks />
-        <JourneySection />
-        <AirportsSection />
-        <FaqSection />
-      </Suspense>
+      <LazyInView load={loadFleet} />
+      <LazyInView load={loadWhyDifferent} />
+      <LazyInView load={loadPlanningBanner} />
+      <LazyInView load={loadReviewsSection} />
+      <LazyInView load={loadServices} />
+      <LazyInView load={loadContentBlocks} />
+      <LazyInView load={loadTrustedStats} />
+      <LazyInView load={loadHowItWorks} />
+      <LazyInView load={loadJourneySection} />
+      <LazyInView load={loadAirportsSection} />
+      <LazyInView load={loadFaqSection} />
     </>
   )
 }

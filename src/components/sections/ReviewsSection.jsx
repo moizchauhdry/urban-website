@@ -41,8 +41,8 @@ export default function ReviewsSection() {
           </h2>
           <div className="reviews-rating">
             <strong className="reviews-rating-score">4.6/5</strong>
-            <img className="reviews-rating-icon" src={googleIcon} alt="Google" width={34} height={34} />
-            <img className="reviews-rating-icon" src={trustPilot} alt="Trustpilot" width={34} height={34} />
+            <img className="reviews-rating-icon" src={googleIcon} alt="Google" width={34} height={34} loading="lazy" decoding="async" />
+            <img className="reviews-rating-icon" src={trustPilot} alt="Trustpilot" width={34} height={34} loading="lazy" decoding="async" />
             <span className="google-text">Based on 150 reviews</span>
           </div>
         </div>
