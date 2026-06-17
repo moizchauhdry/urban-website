@@ -67,7 +67,7 @@ export default function Hero() {
             <Icon name="star" size={11} /> Rated #1 car and Limo Service
           </div>
           <h1 className="hero-title">
-            <span className="hero-title-line">O'Hare Intl Airport (ORD) Car</span>{' '}
+            <span className="hero-title-line">O'Hare Intl Airport (ORD)</span>{' '}
             <span className="hero-title-line">Car Service</span>
           </h1>
           <p className="hero-desc">

@@ -597,16 +597,13 @@ header{
 /* FLEET PAGE */
 .fleet-page-hero{
   width:100%;
-  max-height:420px;
   overflow:hidden;
   background:var(--deep);
 }
 .fleet-page-hero__img{
   display:block;
   width:100%;
-  height:min(52vw,420px);
-  object-fit:cover;
-  object-position:center 40%;
+  height:auto;
 }
 .fleet-page-section{
   background:var(--cloud);
@@ -625,16 +622,13 @@ header{
 /* ABOUT US PAGE */
 .about-page-hero{
   width:100%;
-  max-height:480px;
   overflow:hidden;
   background:var(--deep);
 }
 .about-page-hero__img{
   display:block;
   width:100%;
-  height:min(56vw,480px);
-  object-fit:cover;
-  object-position:center 30%;
+  height:auto;
 }
 .about-page-intro{
   padding-top:56px;
@@ -709,16 +703,13 @@ header{
 /* OUR SERVICES PAGE */
 .services-page-hero{
   width:100%;
-  max-height:480px;
   overflow:hidden;
   background:var(--deep);
 }
 .services-page-hero__img{
   display:block;
   width:100%;
-  height:min(56vw,480px);
-  object-fit:cover;
-  object-position:center 35%;
+  height:auto;
 }
 .services-page-section{
   background:#fff;
@@ -772,16 +763,13 @@ header{
 /* CONTACT US PAGE */
 .contact-page-hero{
   width:100%;
-  max-height:480px;
   overflow:hidden;
   background:var(--deep);
 }
 .contact-page-hero__img{
   display:block;
   width:100%;
-  height:min(56vw,480px);
-  object-fit:cover;
-  object-position:center 35%;
+  height:auto;
 }
 .contact-page-form-section{
   padding:48px 0 56px;
