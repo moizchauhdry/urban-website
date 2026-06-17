@@ -24,89 +24,46 @@
     <!-- Critical shell: avoids blank flash before app CSS loads -->
 
     <style>
-
-      body{margin:0;background:#0a0a0a;font-family:system-ui,-apple-system,sans-serif;position:relative}
-
+      body{margin:0;background:#fff;font-family:system-ui,-apple-system,sans-serif;position:relative}
       #root{min-height:100vh;position:relative;z-index:1}
-
+      @media (max-width:720px){body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}}
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Poppins: desktop loads early; mobile defers until after first paint (LCP bandwidth) -->
+    <!-- Inter: desktop only — mobile uses system fonts for faster LCP -->
 
     <link
-
       rel="preload"
-
       as="style"
-
       media="(min-width: 721px)"
-
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
-
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional"
       onload="this.onload=null;this.rel='stylesheet'"
-
     />
 
-    <script>
-
-      (function () {
-
-        if (!window.matchMedia('(max-width: 720px)').matches) return
-
-        window.addEventListener(
-
-          'load',
-
-          function () {
-
-            var link = document.createElement('link')
-
-            link.rel = 'stylesheet'
-
-            link.href =
-
-              'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional'
-
-            document.head.appendChild(link)
-
-          },
-
-          { once: true },
-
-        )
-
-      })()
-
-    </script>
-
     <noscript>
-
       <link
-
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=optional"
-
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional"
         rel="stylesheet"
-
       />
-
     </noscript>
 
-    <script type="module" crossorigin src="/connecticut-black-car-service/assets/index-BeJuDGXu.js"></script>
-    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/rolldown-runtime-S-ySWqyJ.js">
-    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/router-X6FlOIRI.js">
-    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/react-vendor-CMxTQXpt.js">
-    <link rel="stylesheet" crossorigin href="/connecticut-black-car-service/assets/index-DfKOXko4.css">
+    <script type="module" crossorigin src="/connecticut-black-car-service/assets/index-CwPTJNFb.js"></script>
+    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/rolldown-runtime-jpDsebLB.js">
+    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/router-NNN96tf2.js">
+    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/react-vendor-Kwz0o5kS.js">
+    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/Icon-D9GSX1ci.js">
+    <link rel="modulepreload" crossorigin href="/connecticut-black-car-service/assets/useScrollReveal-CTdjHO1O.js">
+    <link rel="stylesheet" crossorigin href="/connecticut-black-car-service/assets/index-GmvmNIBs.css">
   </head>
 
   <body>
 
     <img id="static-hero-lcp" src="/connecticut-black-car-service/assets/hero-bg-800-CxwKS7xk.webp" srcset="/connecticut-black-car-service/assets/hero-bg-800-CxwKS7xk.webp 800w, /connecticut-black-car-service/assets/hero-bg-1440-CDfzvvvV.webp 1440w" sizes="(max-width: 1024px) 800px, 1440px" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />
     <div id="root"></div>
-
+
 
   </body>
 

@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
  * Header/footer logo: on primary click, go home (if needed) and scroll to top.
  * Modifier keys keep default Link behavior (new tab, etc.).
  */
-export function useHomeLogoClick() {
+export function useHomeLogoClick(homePath = '/') {
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -22,17 +22,17 @@ export function useHomeLogoClick() {
         return
       }
       event.preventDefault()
-      if (location.pathname === '/') {
+      if (location.pathname === homePath) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
         return
       }
-      navigate('/')
+      navigate(homePath)
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' })
         })
       })
     },
-    [location.pathname, navigate]
+    [location.pathname, navigate, homePath],
   )
 }

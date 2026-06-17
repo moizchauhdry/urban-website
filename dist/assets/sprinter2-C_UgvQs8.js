@@ -1,0 +1,1 @@
+var e=`/connecticut-black-car-service/assets/sprinter2-D2nFC892.webp`;export{e as default};

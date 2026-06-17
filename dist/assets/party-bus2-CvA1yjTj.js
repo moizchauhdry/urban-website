@@ -1,0 +1,1 @@
+var e=`/connecticut-black-car-service/assets/party-bus2-CP3y5Fom.webp`;export{e as default};

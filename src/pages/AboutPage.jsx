@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
-import About from '../components/sections/About.jsx'
+import { lazy, Suspense } from 'react'
+
+const AboutUsPage = lazy(() => import('./about-us/AboutUsPage.jsx'))
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = 'About Us | Urban Elite Limo'
-  }, [])
-
-  return <About />
+  return (
+    <Suspense fallback={null}>
+      <AboutUsPage />
+    </Suspense>
+  )
 }

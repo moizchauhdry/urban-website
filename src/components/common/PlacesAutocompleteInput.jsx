@@ -109,6 +109,7 @@ export default function PlacesAutocompleteInput({
   placeholder = 'Start typing an address…',
   autoComplete = 'off',
   disabled = false,
+  required = false,
 }) {
   const listId = useId()
   const wrapperRef = useRef(null)
@@ -309,6 +310,7 @@ export default function PlacesAutocompleteInput({
         placeholder={placeholder}
         autoComplete={autoComplete}
         disabled={disabled}
+        required={required}
         className={loading && placesReady ? 'places-autocomplete-input--loading' : undefined}
         role="combobox"
         aria-expanded={showList}

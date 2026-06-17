@@ -1,0 +1,1 @@
+var e=`/connecticut-black-car-service/assets/first-class-sedan3-_sJWZuw3.webp`;export{e as default};

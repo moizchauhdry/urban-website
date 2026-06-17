@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
-import Contact from '../components/sections/Contact.jsx'
+import { lazy, Suspense } from 'react'
+
+const ContactUsPage = lazy(() => import('./contact-us/ContactUsPage.jsx'))
 
 export default function ContactPage() {
-  useEffect(() => {
-    document.title = 'Contact Us | Urban Elite Limo'
-  }, [])
-
-  return <Contact />
+  return (
+    <Suspense fallback={null}>
+      <ContactUsPage />
+    </Suspense>
+  )
 }

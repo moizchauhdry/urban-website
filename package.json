@@ -8,7 +8,8 @@
     "build": "vite build",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:perf": "npm run build && vite preview"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.0.2",

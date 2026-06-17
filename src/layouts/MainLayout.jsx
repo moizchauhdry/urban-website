@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from '../components/layout/Header.jsx'
-import Footer from '../components/layout/Footer.jsx'
+import Header from '../pages/connecticut/layout/Header.jsx'
+import Footer from '../pages/connecticut/layout/Footer.jsx'
 import { useUrbanEliteInteractions } from '../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
 
