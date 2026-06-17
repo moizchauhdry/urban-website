@@ -144,16 +144,6 @@ export async function fetchBookingFleetOptions() {
   }
 }
 
-function getSuccessPageUrl() {
-  const url = import.meta.env.VITE_BOOKING_SUCCESS_URL?.trim()
-  if (!url) {
-    throw new Error(
-      'Success page URL is not configured. Add VITE_BOOKING_SUCCESS_URL to your .env file (see SETUP.md).',
-    )
-  }
-  return url
-}
-
 /** Canonical site URL sent to the portal (must match a website registered in the portal). */
 function getBookingLiveUrl(fallbackUrl) {
   const override = import.meta.env.VITE_BOOKING_LIVE_URL?.trim()
@@ -200,7 +190,7 @@ function buildApiRequestBody(payload) {
 }
 
 /**
- * POST booking to API, then redirect to the success page.
+ * POST booking to API. Caller handles navigation to the on-site thank-you page.
  * @param {ReturnType<typeof buildHeroBookingPayload>} payload
  * @returns {Promise<{ ok: true }>}
  */
@@ -251,6 +241,5 @@ export async function submitHeroBooking(payload) {
     throw new Error(data.message || data.error || 'Booking could not be completed.')
   }
 
-  window.location.assign(getSuccessPageUrl())
   return { ok: true }
 }

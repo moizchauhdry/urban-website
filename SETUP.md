@@ -19,7 +19,6 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 |----------|----------------|
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
 | `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
-| `VITE_BOOKING_SUCCESS_URL` | Redirect after successful booking |
 | `VITE_BOOKING_LIVE_URL` | Optional. Canonical site URL sent as `live_url` (portal must have this domain registered) |
 
 Example:
@@ -27,7 +26,6 @@ Example:
 ```env
 VITE_GOOGLE_MAPS_API_KEY=your_google_key
 VITE_BOOKING_API_URL=https://portal.arealimoservice.com/api/website/booking/create
-VITE_BOOKING_SUCCESS_URL=https://areacarservice.com/thank-you/
 ```
 
 ---
@@ -48,9 +46,9 @@ VITE_BOOKING_SUCCESS_URL=https://areacarservice.com/thank-you/
 - **Distance** tab → POST `{VITE_BOOKING_API_URL}/distance`
 - **Hourly** tab → POST `.../hourly` (shows required **Hours** field)
 - Body includes form fields + `live_url` (current page URL)
-- Success → redirect to `VITE_BOOKING_SUCCESS_URL`
+- Success → on-site thank-you page (`/thank-you` or `{region}/thank-you` via React Router)
 
-Logic: `src/services/heroBooking.js`
+Logic: `src/components/hero/heroBooking.js`
 
 **CORS errors locally?** The booking API must allow your origin, or add a Vite proxy.
 
@@ -69,7 +67,6 @@ Change only `.env`, then restart the dev server:
 
 ```env
 VITE_BOOKING_API_URL=https://other-portal.example.com/api/website/booking/create
-VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 ```
 
 ---
@@ -77,7 +74,7 @@ VITE_BOOKING_SUCCESS_URL=https://other-site.example.com/thank-you/
 ## Checklist
 
 - [ ] `npm install` + `.env` from `.env.example`
-- [ ] All three `VITE_*` values set
+- [ ] All required `VITE_*` values set
 - [ ] Dev server restarted
 - [ ] Address autocomplete works
 - [ ] Book Now submits and redirects
