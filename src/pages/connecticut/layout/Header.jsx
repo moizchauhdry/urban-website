@@ -1,11 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../components/layout/HeaderBookNow.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
-import MobileMenuPanel, { PANEL_ID } from './MobileMenuPanel.jsx'
 import Navbar from './Navbar.jsx'
+
+const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
+const PANEL_ID = 'site-mobile-menu'
 
 const MOBILE_MQ = '(max-width:720px)'
 
@@ -68,11 +70,15 @@ export default function Header({ logoPath = '/' }) {
         </button>
       </div>
 
-      <MobileMenuPanel
-        open={mobileMenuOpen}
-        onClose={closeMobileMenu}
-        anchorRef={headerAnchorRef}
-      />
+      {mobileMenuOpen ? (
+        <Suspense fallback={null}>
+          <MobileMenuPanel
+            open={mobileMenuOpen}
+            onClose={closeMobileMenu}
+            anchorRef={headerAnchorRef}
+          />
+        </Suspense>
+      ) : null}
     </header>
   )
 }

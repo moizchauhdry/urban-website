@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { HERO_BOOKING_ID } from '../../config/bookingNav.js'
 import HeroBookingFormShell from './HeroBookingFormShell.jsx'
+
+const HERO_BOOKING_ID = 'hero-booking'
 
 function loadHeroBookingFormModule() {
   return import('./HeroBookingForm.jsx')

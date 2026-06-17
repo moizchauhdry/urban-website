@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './layout/Header.jsx'
-import Footer from './layout/Footer.jsx'
+import DeferredFooter from '../../../components/layout/DeferredFooter.jsx'
 import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
 import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
@@ -20,7 +20,7 @@ export default function IllinoisLayout() {
     <>
       <Header key={location.pathname} />
       <Outlet />
-      <Footer />
+      <DeferredFooter />
     </>
   )
 }

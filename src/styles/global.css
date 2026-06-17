@@ -14,8 +14,9 @@
 .brand-logo{display:block;height:auto;width:auto}
 .brand-logo--header{aspect-ratio:104/38}
 .brand-logo--footer{aspect-ratio:104/38}
-.quote-icon svg{width:36px;height:36px;flex-shrink:0}
-.review-star-icon{width:14px;height:14px;flex-shrink:0}
+.quote-icon svg{width:36px;height:36px;flex-shrink:0;color:var(--accent)}
+.review-star-icon{width:14px;height:14px;flex-shrink:0;color:var(--accent)}
+.footer-skeleton{min-height:280px;background:var(--deep)}
 .fleet-image-slider{--fleet-fade-ms:500ms}
 .reviews-carousel-track--paged{
   width:calc(var(--reviews-page-count,1) * 100%);
@@ -127,6 +128,11 @@ header{
   display:inline-flex;align-items:center;gap:5px;
 }
 .menu .has-sub .nav-chevron{color:#000000;flex-shrink:0}
+.nav-chevron--down{
+  display:inline-block;width:10px;height:10px;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);flex-shrink:0;
+}
 .menu .submenu{
   position:absolute;top:100%;left:-12px;background:#fff;
   box-shadow:0 8px 24px rgba(0,0,0,.12);border-radius:8px;
@@ -1060,6 +1066,7 @@ header{
   display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
 }
 .fleet-card{
+  display:flex;flex-direction:column;height:100%;
   background:#fff;border-radius:14px;overflow:hidden;
   border:1px solid rgba(0,0,0,.08);
   box-shadow:
@@ -1084,7 +1091,7 @@ header{
   object-fit:contain;object-position:center;
   display:block;
 }
-.fleet-body{padding:24px}
+.fleet-body{padding:24px;display:flex;flex:1;flex-direction:column}
 .fleet-card-title{
   display:flex;flex-wrap:wrap;align-items:center;gap:8px;
   font-size:22px;font-weight:600;margin-bottom:10px;
@@ -1102,7 +1109,7 @@ header{
 .fleet-specs .spec{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--body)}
 .fleet-specs .spec .icon{color:var(--accent);width:16px;height:16px}
 .btn-quote{
-  display:block;width:100%;text-align:center;
+  display:block;width:100%;text-align:center;margin-top:auto;
   background:var(--accent);color:var(--white);padding:11px;border-radius:6px;
   font-weight:700;font-size:14px;transition:background .2s,transform .25s;
 }
@@ -2381,6 +2388,13 @@ header.scrolled{
     animation:none !important;
     opacity:1 !important;
     transform:none !important;
+  }
+  .section,.trusted,.journey,.planning,.reviews,.content-block{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 480px;
+  }
+  .hero,.header,footer{
+    content-visibility:visible;
   }
   .booking-card-slot,
   .booking-card--loading{

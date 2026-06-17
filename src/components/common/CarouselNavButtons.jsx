@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Icon from './Icon.jsx'
 
 /**
  * Shared prev/next controls for carousels (reviews, fleet, services, why).
@@ -13,10 +13,10 @@ export default function CarouselNavButtons({
   return (
     <div className={`review-nav${className ? ` ${className}` : ''}`}>
       <button type="button" onClick={onPrev} aria-label={prevLabel}>
-        <ChevronLeft size={18} strokeWidth={2} aria-hidden="true" />
+        <Icon name="arrow-left" size={18} />
       </button>
       <button type="button" onClick={onNext} aria-label={nextLabel}>
-        <ChevronRight size={18} strokeWidth={2} aria-hidden="true" />
+        <Icon name="arrow-right" size={18} />
       </button>
     </div>
   )

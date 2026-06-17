@@ -1,9 +1,30 @@
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const criticalCss = readFileSync(path.join(__dirname, 'src/styles/critical.css'), 'utf8')
+
+const SKIP_MODULE_PRELOAD = [
+  'phone-input',
+  'google-maps',
+  'lucide',
+  '/Icon-',
+  'bookingNav',
+  'useScrollToBookingHash',
+  'HomeBelowFold',
+  'DeferredFooter',
+  'HeroBookingForm',
+  'FleetCarousel',
+  'ReviewsCarousel',
+  'ServicesCarousel',
+  'ThankYouPage',
+]
+
 /**
- * Inject hero LCP preload + static hero img so mobile paints before React boots.
- * Also strip heavy phone-input / google-maps preloads that hurt mobile bandwidth.
+ * Hero LCP preload, static hero img, inlined critical CSS, async main stylesheet.
  */
 function injectHeroLcp() {
   let base = '/'
@@ -16,14 +37,25 @@ function injectHeroLcp() {
     const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
     const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
 
-    return html
-      .replace(/<link rel="modulepreload"[^>]*phone-input[^>]*>\s*/g, '')
-      .replace(/<link rel="modulepreload"[^>]*google-maps[^>]*>\s*/g, '')
-      .replace(/<link rel="modulepreload"[^>]*\/Services-[^>]*>\s*/g, '')
-      .replace(/<link rel="modulepreload"[^>]*lucide-[^>]*>\s*/g, '')
+    let out = html
+      .replace(/<link rel="modulepreload"[^>]*>\s*/g, (tag) => {
+        if (SKIP_MODULE_PRELOAD.some((s) => tag.includes(s))) return ''
+        return tag
+      })
       .replace(/<link rel="stylesheet"[^>]*phone-input[^>]*>\s*/g, '')
+      .replace(
+        /<!-- Critical shell:[\s\S]*?<\/style>/,
+        `<style>${criticalCss}</style>`,
+      )
       .replace('<meta name="viewport"', `${preload}\n    <meta name="viewport"`)
       .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
+
+    out = out.replace(
+      /<link rel="stylesheet" crossorigin href="([^"]+\.css)">/,
+      '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="$1"></noscript>',
+    )
+
+    return out
   }
 
   return {
@@ -55,29 +87,22 @@ function injectHeroLcp() {
   }
 }
 
-function resolveBase(mode) {
+function resolveBase() {
   const override = process.env.VITE_BASE_PATH?.trim()
   if (override) return override.endsWith('/') ? override : `${override}/`
-
-  // Vercel and local preview serve from domain root — wrong base breaks LCP (404 assets).
-  if (process.env.VERCEL || mode === 'development') return '/'
-
-  return '/connecticut-black-car-service/'
+  return '/'
 }
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: resolveBase(mode),
+export default defineConfig(() => ({
+  base: resolveBase(),
   plugins: [react(), injectHeroLcp()],
   build: {
+    target: 'es2020',
+    cssMinify: true,
     modulePreload: {
       resolveDependencies(_filename, deps) {
-        return deps.filter(
-          (dep) =>
-            !dep.includes('phone-input') &&
-            !dep.includes('google-maps') &&
-            !dep.includes('lucide'),
-        )
+        return deps.filter((dep) => !SKIP_MODULE_PRELOAD.some((s) => dep.includes(s)))
       },
     },
     rollupOptions: {
@@ -88,9 +113,6 @@ export default defineConfig(({ mode }) => ({
           }
           if (id.includes('@googlemaps/js-api-loader')) {
             return 'google-maps'
-          }
-          if (id.includes('node_modules/lucide-react')) {
-            return 'lucide'
           }
           if (id.includes('node_modules/react-router')) {
             return 'router'

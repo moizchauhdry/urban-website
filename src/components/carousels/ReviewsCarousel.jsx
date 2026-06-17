@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import { Quote } from 'lucide-react'
+import Icon from '../common/Icon.jsx'
 import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { ReviewCard } from './ReviewCard.jsx'
 import { useCssVars } from '../../hooks/useCssVars.js'
@@ -10,13 +10,7 @@ function AsideColumn() {
   return (
     <div className="review-aside">
       <div className="quote-icon">
-        <Quote
-          size={36}
-          fill="var(--accent)"
-          stroke="var(--accent)"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
+        <Icon name="quote-left" size={36} className="quote-icon-svg" />
       </div>
       <h3>
         What Our

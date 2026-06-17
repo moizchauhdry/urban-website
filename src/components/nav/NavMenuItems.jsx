@@ -1,5 +1,4 @@
 import { Link, NavLink } from 'react-router-dom'
-import Icon from '../common/Icon.jsx'
 import {
   ABOUT_US,
   CONTACT_US,
@@ -38,7 +37,7 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
         <div className="has-sub">
           <a href="#" className="has-sub__trigger">
             Service Areas
-            <Icon name="chevron-down" size={10} className="nav-chevron" />
+            <span className="nav-chevron nav-chevron--down" aria-hidden="true" />
           </a>
           <ServiceAreasDesktopSubmenu />
         </div>

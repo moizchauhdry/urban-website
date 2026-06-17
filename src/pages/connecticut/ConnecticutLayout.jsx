@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './layout/Header.jsx'
-import Footer from './layout/Footer.jsx'
+import DeferredFooter from '../../components/layout/DeferredFooter.jsx'
 import { CONNECTICUT_HOME } from './layout/navConfig.js'
 import { useUrbanEliteInteractions } from '../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../hooks/useScrollReveal.js'
@@ -19,7 +19,7 @@ export default function ConnecticutLayout() {
     <>
       <Header key={location.pathname} logoPath={CONNECTICUT_HOME} />
       <Outlet />
-      <Footer logoPath={CONNECTICUT_HOME} />
+      <DeferredFooter logoPath={CONNECTICUT_HOME} />
     </>
   )
 }

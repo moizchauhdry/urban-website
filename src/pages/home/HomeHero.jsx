@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   HERO_BG_DEFAULT,
   HERO_BG_HEIGHT,
@@ -6,33 +6,42 @@ import {
   HERO_BG_SRCSET,
   HERO_BG_WIDTH,
 } from '../connecticut/hero/heroBg.js'
-import Icon from '../../components/common/Icon.jsx'
 import { HERO_FEATURES, HERO_PHONE } from '../connecticut/hero/heroHighlights.js'
 import HeroDeferredBooking from '../../components/hero/HeroDeferredBooking.jsx'
+
+const DESKTOP_MQ = '(min-width: 721px)'
 
 function removeStaticHeroLcp() {
   document.getElementById('static-hero-lcp')?.remove()
 }
 
+function hasStaticHeroLcp() {
+  return Boolean(document.getElementById('static-hero-lcp'))
+}
+
 /** Home page hero — premium car service with booking form. */
 export default function HomeHero() {
   const staticRemoved = useRef(false)
+  const [showDesktopExtras, setShowDesktopExtras] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(DESKTOP_MQ).matches : false,
+  )
+  const [useReactHeroBg, setUseReactHeroBg] = useState(() =>
+    typeof window !== 'undefined' ? !hasStaticHeroLcp() : false,
+  )
 
   const onHeroBgReady = useCallback((node) => {
     if (!node) return
-    if (node.complete && node.naturalWidth > 0) {
-      if (!staticRemoved.current) {
-        staticRemoved.current = true
-        removeStaticHeroLcp()
-      }
-      return
-    }
-    const onLoad = () => {
+    const done = () => {
       if (staticRemoved.current) return
       staticRemoved.current = true
       removeStaticHeroLcp()
+      setUseReactHeroBg(true)
     }
-    node.addEventListener('load', onLoad, { once: true })
+    if (node.complete && node.naturalWidth > 0) {
+      done()
+      return
+    }
+    node.addEventListener('load', done, { once: true })
   }, [])
 
   useEffect(() => {
@@ -41,30 +50,43 @@ export default function HomeHero() {
       if (!staticRemoved.current) {
         staticRemoved.current = true
         removeStaticHeroLcp()
+        setUseReactHeroBg(true)
       }
     }
   }, [])
 
+  useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_MQ)
+    const onChange = () => setShowDesktopExtras(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
   return (
     <section className="hero">
-      <img
-        ref={onHeroBgReady}
-        src={HERO_BG_DEFAULT}
-        srcSet={HERO_BG_SRCSET}
-        sizes={HERO_BG_SIZES}
-        alt=""
-        className="hero-bg-img"
-        width={HERO_BG_WIDTH}
-        height={HERO_BG_HEIGHT}
-        fetchPriority="high"
-        loading="eager"
-        decoding="async"
-        aria-hidden="true"
-      />
+      {useReactHeroBg ? (
+        <img
+          ref={onHeroBgReady}
+          src={HERO_BG_DEFAULT}
+          srcSet={HERO_BG_SRCSET}
+          sizes={HERO_BG_SIZES}
+          alt=""
+          className="hero-bg-img"
+          width={HERO_BG_WIDTH}
+          height={HERO_BG_HEIGHT}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+        />
+      ) : null}
       <div className="container">
         <div className="hero-content">
           <div className="hero-badge">
-            <Icon name="star" size={11} /> Rated #1 Car And Limo Service
+            <span className="hero-badge-star" aria-hidden="true">
+              ★
+            </span>{' '}
+            Rated #1 Car And Limo Service
           </div>
           <h1 className="hero-title">
             <span className="hero-title-line">Black Car Service</span>{' '}
@@ -86,22 +108,25 @@ export default function HomeHero() {
             />
             {HERO_PHONE.label}
           </a>
-          <div className="hero-features">
-            {HERO_FEATURES.map((feat) => (
-              <div className="feat" key={feat.label}>
-                <img
-                  src={feat.icon}
-                  alt={feat.iconAlt}
-                  className="feat-icon"
-                  width={20}
-                  height={20}
-                  decoding="async"
-                  draggable={false}
-                />
-                {feat.label}
-              </div>
-            ))}
-          </div>
+          {showDesktopExtras ? (
+            <div className="hero-features">
+              {HERO_FEATURES.map((feat) => (
+                <div className="feat" key={feat.label}>
+                  <img
+                    src={feat.icon}
+                    alt={feat.iconAlt}
+                    className="feat-icon"
+                    width={20}
+                    height={20}
+                    decoding="async"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                  {feat.label}
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <HeroDeferredBooking />

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useDeferredEffect } from './useDeferredEffect.js'
 import {
   bindScrollRevealScanner,
   createScrollRevealScanner,
@@ -16,25 +16,15 @@ function revealAllSectionsImmediately() {
 
 /** Wires IntersectionObserver + DOM scan for scroll reveal animations. */
 export function useScrollReveal() {
-  useEffect(() => {
+  useDeferredEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isMobile = window.matchMedia(MOBILE_MQ).matches
 
     if (isMobile || reducedMotion) {
       const markVisible = () => revealAllSectionsImmediately()
       markVisible()
-      const rootEl = document.getElementById('root')
-      const mo =
-        rootEl &&
-        new MutationObserver(() => {
-          markVisible()
-        })
-      mo?.observe(rootEl, { childList: true, subtree: true })
-      const rescanTimers = [150, 500, 1200].map((ms) => window.setTimeout(markVisible, ms))
-      return () => {
-        rescanTimers.forEach((id) => window.clearTimeout(id))
-        mo?.disconnect()
-      }
+      const rescan = window.setTimeout(markVisible, 700)
+      return () => window.clearTimeout(rescan)
     }
 
     const observed = new WeakSet()
@@ -77,5 +67,5 @@ export function useScrollReveal() {
       io.disconnect()
       unbindScrollRevealScanner(scan)
     }
-  }, [])
+  }, [], 1200)
 }

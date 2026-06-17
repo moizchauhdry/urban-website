@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { useDeferredEffect } from './useDeferredEffect.js'
 
 /**
  * Ports the original `assets/js/main.js` behavior into React with proper cleanup.
  * Some effects only apply on the home route (`/`).
  */
 export function useUrbanEliteInteractions(isHome) {
-  useEffect(() => {
+  useDeferredEffect(() => {
     const cleanups = []
 
     // 1. Tab switching for booking form
@@ -123,5 +123,5 @@ export function useUrbanEliteInteractions(isHome) {
     return () => {
       cleanups.forEach((fn) => fn())
     }
-  }, [isHome])
+  }, [isHome], 1800)
 }

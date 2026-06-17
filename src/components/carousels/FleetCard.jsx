@@ -4,12 +4,12 @@ import { FleetImageSlider } from './FleetImageSlider.jsx'
 
 function FleetCardInner({ item, priorityLoad = true }) {
   return (
-    <article className="fleet-card flex h-full flex-col">
-      <div className={`fleet-img shrink-0 ${item.imgClass} fleet-img--with-slider`}>
+    <article className="fleet-card">
+      <div className={`fleet-img ${item.imgClass} fleet-img--with-slider`}>
         <FleetImageSlider images={item.images} priorityLoad={priorityLoad} />
       </div>
 
-      <div className="fleet-body flex flex-1 flex-col">
+      <div className="fleet-body">
         <h3 className="fleet-card-title">
           {item.title}
           {item.badge ? (
@@ -24,7 +24,7 @@ function FleetCardInner({ item, priorityLoad = true }) {
             </div>
           ))}
         </div>
-        <a href="#" className="btn-quote mt-auto">
+        <a href="#" className="btn-quote">
           Get A Quote
         </a>
       </div>
