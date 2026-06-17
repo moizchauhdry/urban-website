@@ -7,6 +7,7 @@ const AboutPage = lazy(() => import('../pages/AboutPage.jsx'))
 const ServicesPage = lazy(() => import('../pages/ServicesPage.jsx'))
 const ContactPage = lazy(() => import('../pages/ContactPage.jsx'))
 const FleetPage = lazy(() => import('../pages/FleetPage.jsx'))
+const ThankYouPage = lazy(() => import('../pages/ThankYouPage.jsx'))
 
 const ConnecticutLayout = lazy(() => import('../pages/connecticut/ConnecticutLayout.jsx'))
 const FloridaLayout = lazy(() => import('../pages/florida/FloridaLayout.jsx'))
@@ -107,6 +108,14 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
+        <Route
+          path="/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
       </Route>
 
       <Route
@@ -121,6 +130,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ConnecticutHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/connecticut-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />
@@ -140,6 +157,14 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
+        <Route
+          path="/florida-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
       </Route>
       <Route
         element={
@@ -153,6 +178,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <NewYorkHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/new-york-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />
@@ -172,6 +205,14 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
+        <Route
+          path="/illinois-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
       </Route>
       <Route
         element={
@@ -185,6 +226,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <OhareOrdLimoHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/illinois-car-service/ohare-intl-airport-ord-limo-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />
@@ -204,6 +253,14 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
+        <Route
+          path="/illinois-car-service/ohare-intl-airport-ord-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
       </Route>
       <Route
         element={
@@ -217,6 +274,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ChicagoChauffeurHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/illinois-car-service/chicago-chauffeur-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />
@@ -236,6 +301,14 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
+        <Route
+          path="/illinois-car-service/chicago-airport-car-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
       </Route>
       <Route
         element={
@@ -249,6 +322,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ChicagoLimoHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/illinois-car-service/chicago-limo-service/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />

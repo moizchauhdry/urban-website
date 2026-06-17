@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
+import HeaderBookNow from '../../../../components/layout/HeaderBookNow.jsx'
 import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../../hooks/useMobileScrollLock.js'
 import MobileMenuPanel, { PANEL_ID } from './MobileMenuPanel.jsx'
@@ -51,9 +52,7 @@ export default function Header() {
           <HeaderBrandLogo />
           </Link>
         <Navbar />
-        <a href="#" className="btn-book">
-          Book Now
-        </a>
+        <HeaderBookNow homePath={CHICAGO_CHAUFFEUR_HOME} />
         <button
           type="button"
           className={`menu-toggle${mobileMenuOpen ? ' menu-toggle--open' : ''}`}

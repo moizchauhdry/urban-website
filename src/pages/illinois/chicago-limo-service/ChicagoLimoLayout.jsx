@@ -3,6 +3,7 @@ import Header from './layout/Header.jsx'
 import Footer from './layout/Footer.jsx'
 import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
+import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
 
 const CHICAGO_LIMO_HOME = '/illinois-car-service/chicago-limo-service'
 
@@ -13,6 +14,7 @@ export default function ChicagoLimoLayout() {
 
   useUrbanEliteInteractions(isHome)
   useScrollReveal()
+  useScrollToBookingHash()
 
   return (
     <>

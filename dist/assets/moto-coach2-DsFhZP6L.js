@@ -1,1 +1,0 @@
-var e=`/connecticut-black-car-service/assets/moto-coach2-ylyTcgOK.webp`;export{e as default};

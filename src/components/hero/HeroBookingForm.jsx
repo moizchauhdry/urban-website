@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { getThankYouPath, resolveBookingHome } from '../../config/bookingNav.js'
 import { getExampleNumber } from 'libphonenumber-js/max'
 import examples from 'libphonenumber-js/examples.mobile.json'
 import PhoneInput, { getCountries, getCountryCallingCode } from 'react-phone-number-input/max'
@@ -49,6 +51,8 @@ const SERVICE_TYPE_OPTIONS = [
 
 /** Hero booking card — Distance & Hourly tabs (lazy-loaded with phone input + Google Places). */
 export default function HeroBookingForm() {
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [phone, setPhone] = useState(undefined)
   const [phoneCountry, setPhoneCountry] = useState('US')
   const phoneLabels = useMemo(() => buildLabelsWithCallingCodes(), [])
@@ -106,6 +110,8 @@ export default function HeroBookingForm() {
     setIsSubmitting(true)
     try {
       await submitHeroBooking(payload)
+      const bookingHome = resolveBookingHome(pathname)
+      navigate(getThankYouPath(bookingHome), { state: { returnPath: bookingHome } })
     } catch (err) {
       console.error('[Hero booking]', err)
       window.alert(

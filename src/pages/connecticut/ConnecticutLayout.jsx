@@ -4,6 +4,7 @@ import Footer from './layout/Footer.jsx'
 import { CONNECTICUT_HOME } from './layout/navConfig.js'
 import { useUrbanEliteInteractions } from '../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../hooks/useScrollReveal.js'
+import { useScrollToBookingHash } from '../../hooks/useScrollToBookingHash.js'
 
 /** Layout chrome for the Connecticut car service landing page. */
 export default function ConnecticutLayout() {
@@ -12,6 +13,7 @@ export default function ConnecticutLayout() {
 
   useUrbanEliteInteractions(isHome)
   useScrollReveal()
+  useScrollToBookingHash()
 
   return (
     <>

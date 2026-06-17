@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { HERO_BOOKING_ID } from '../../config/bookingNav.js'
 import HeroBookingFormShell from './HeroBookingFormShell.jsx'
 
 function loadHeroBookingFormModule() {
@@ -45,6 +46,7 @@ export default function HeroDeferredBooking() {
 
   return (
     <div
+      id={HERO_BOOKING_ID}
       className={`booking-card-slot${FormComponent ? '' : ' booking-card-slot--interactive'}${isLoading ? ' booking-card-slot--loading' : ''}`}
       ref={slotRef}
       tabIndex={0}

@@ -3,6 +3,7 @@ import Header from './layout/Header.jsx'
 import Footer from './layout/Footer.jsx'
 import { useUrbanEliteInteractions } from '../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../hooks/useScrollReveal.js'
+import { useScrollToBookingHash } from '../../hooks/useScrollToBookingHash.js'
 
 const FLORIDA_HOME = '/florida-car-service'
 
@@ -13,6 +14,7 @@ export default function FloridaLayout() {
 
   useUrbanEliteInteractions(isHome)
   useScrollReveal()
+  useScrollToBookingHash()
 
   return (
     <>

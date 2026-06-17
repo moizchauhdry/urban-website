@@ -3,6 +3,7 @@ import Header from './layout/Header.jsx'
 import Footer from './layout/Footer.jsx'
 import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
+import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
 
 const OHARE_ORD_LIMO_HOME = '/illinois-car-service/ohare-intl-airport-ord-limo-service'
 
@@ -13,6 +14,7 @@ export default function OhareOrdLimoLayout() {
 
   useUrbanEliteInteractions(isHome)
   useScrollReveal()
+  useScrollToBookingHash()
 
   return (
     <>

@@ -1,6 +1,8 @@
 import leftCar from '../../../../assets/illinois/illinois/journey/left-img.webp'
 import rightCar from '../../../../assets/illinois/illinois/journey/right-img.webp'
 
+import BookNowLink from '../../../../components/layout/BookNowLink.jsx'
+
 export default function JourneySection() {
   return (
     <section className="journey">
@@ -15,9 +17,7 @@ export default function JourneySection() {
         <p>
           Join Thousands of satisfied customers and experience premium car and chauffeur service like never before.
         </p>
-        <a href="#" className="btn-yellow">
-          Book Now!
-        </a>
+        <BookNowLink />
       </div>
     </section>
   )

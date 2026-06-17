@@ -1,1 +1,0 @@
-var e=`/connecticut-black-car-service/assets/full-size-suv2-BAUuuY4w.webp`;export{e as default};

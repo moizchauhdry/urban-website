@@ -1,1 +1,0 @@
-var e=`/connecticut-black-car-service/assets/luxury-sedan2-CPzk4Qig.webp`;export{e as default};
