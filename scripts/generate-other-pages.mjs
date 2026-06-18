@@ -55,6 +55,9 @@ const PAGE_TITLES = [
   'Illinois Car Service',
   'Wisconsin Car Service',
   'Connecticut Car Service',
+  'NYC Limo Service',
+  'Newark Airport Service',
+  'Westchester County Car Service',
 ]
 
 function slugify(title) {
@@ -78,6 +81,7 @@ function heroLines(title) {
     /^(.+?)\s+(Limo Service)$/i,
     /^(.+?)\s+(Airport Limo Service)$/i,
     /^(.+?)\s+(Airport Car Service)$/i,
+    /^(.+?)\s+(Airport Service)$/i,
   ]
   for (const re of matchers) {
     const m = t.match(re)
@@ -131,11 +135,19 @@ function getAirports(title) {
       { code: 'DAL', file: 'newark.webp' },
     ]
   }
-  if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston')) {
+  if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston') || t.startsWith('nyc') || t.includes('westchester')) {
     return [
       { code: 'JFK', file: 'jfk.webp' },
       { code: 'LGA', file: 'lga.webp' },
       { code: 'EWR', file: 'newark.webp' },
+      { code: 'BDL', file: 'bradley.webp' },
+    ]
+  }
+  if (t.includes('newark')) {
+    return [
+      { code: 'EWR', file: 'newark.webp' },
+      { code: 'JFK', file: 'jfk.webp' },
+      { code: 'LGA', file: 'lga.webp' },
       { code: 'BDL', file: 'bradley.webp' },
     ]
   }
@@ -226,7 +238,7 @@ function getAssetRoot(title) {
   ) {
     return 'illinois/illinois'
   }
-  if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston')) {
+  if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston') || t.startsWith('nyc') || t.includes('newark') || t.includes('westchester')) {
     return 'newyork'
   }
   if (
@@ -694,7 +706,7 @@ async function ensureAirportAssets(slug, airports) {
 
 async function generatePage(title) {
   const slug = slugify(title)
-  const pageHome = `/other-pages/${slug}`
+  const pageHome = `/${slug}`
   const prefix = cssPrefix(slug)
   const region = regionLabel(title)
   const lines = heroLines(title)

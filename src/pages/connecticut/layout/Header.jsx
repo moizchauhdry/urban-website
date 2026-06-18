@@ -4,6 +4,7 @@ import { HeaderBrandLogo } from '../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../components/layout/HeaderBookNow.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
+import FifaPromoBanner from '../../../components/layout/FifaPromoBanner.jsx'
 import Navbar from './Navbar.jsx'
 
 const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
@@ -44,6 +45,7 @@ export default function Header({ logoPath = '/' }) {
   }, [mobileMenuOpen, closeMobileMenu])
 
   return (
+    <div className={`site-top-chrome${mobileMenuOpen ? ' site-top-chrome--menu-open' : ''}`}>
     <header
       ref={headerAnchorRef}
       className={mobileMenuOpen ? 'header--menu-open' : ''}
@@ -80,5 +82,7 @@ export default function Header({ logoPath = '/' }) {
         </Suspense>
       ) : null}
     </header>
+    <FifaPromoBanner />
+    </div>
   )
 }

@@ -8,7 +8,6 @@ import {
 } from './heroBg.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from './heroHighlights.js'
 import HeroDeferredBooking from '../../../components/hero/HeroDeferredBooking.jsx'
-import FifaCountdown from './FifaCountdown.jsx'
 import Icon from '../../../components/common/Icon.jsx'
 import trustPilotLogo from '../../../assets/connecticut/reviews/trust-pilot.svg'
 import licensedIcon from '../../../assets/connecticut/hero/fully-licensed.png'
@@ -109,8 +108,6 @@ export default function Hero() {
                 </span>
               ))}
             </div>
-
-            <FifaCountdown />
 
             <p className="fifa-hero__social-proof">
               <span className="fifa-hero__live-dot" aria-hidden="true" />

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route, useParams } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
 
@@ -7,6 +7,7 @@ const AboutPage = lazy(() => import('../pages/AboutPage.jsx'))
 const ServicesPage = lazy(() => import('../pages/ServicesPage.jsx'))
 const ContactPage = lazy(() => import('../pages/ContactPage.jsx'))
 const FleetPage = lazy(() => import('../pages/FleetPage.jsx'))
+const BookNowPage = lazy(() => import('../pages/BookNowPage.jsx'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage.jsx'))
 
 const ConnecticutLayout = lazy(() => import('../pages/connecticut/ConnecticutLayout.jsx'))
@@ -50,6 +51,11 @@ const ChicagoLimoHome = lazy(() => import('../pages/illinois/chicago-limo-servic
 const OtherPageShell = lazy(() => import('../pages/other-pages/OtherPageShell.jsx'))
 const FifaLayout = lazy(() => import('../pages/fifa/FifaLayout.jsx'))
 const FifaHome = lazy(() => import('../pages/fifa/Home.jsx'))
+
+function OtherPageLegacyRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={slug ? `/${slug}` : '/'} replace />
+}
 
 export default function AppRoutes() {
   return (
@@ -109,6 +115,22 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <FleetPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/book-now"
+          element={
+            <Suspense fallback={null}>
+              <BookNowPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/book-now/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
             </Suspense>
           }
         />
@@ -339,16 +361,6 @@ export default function AppRoutes() {
         />
       </Route>
 
-      {/* Extra landing pages — not in main nav; preview at /other-pages/:slug */}
-      <Route
-        path="/other-pages/:slug"
-        element={
-          <Suspense fallback={null}>
-            <OtherPageShell />
-          </Suspense>
-        }
-      />
-
       {/* FIFA World Cup 2026 — preview only; not in main nav */}
       <Route
         element={
@@ -374,6 +386,17 @@ export default function AppRoutes() {
           }
         />
       </Route>
+
+      {/* Extra landing pages — not in main nav; preview at /:slug */}
+      <Route path="/other-pages/:slug" element={<OtherPageLegacyRedirect />} />
+      <Route
+        path="/:slug"
+        element={
+          <Suspense fallback={null}>
+            <OtherPageShell />
+          </Suspense>
+        }
+      />
     </Routes>
   )
 }

@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../connecticut/layout/Header.jsx'
-import PromoBanner from './layout/PromoBanner.jsx'
 import DeferredFooter from '../../components/layout/DeferredFooter.jsx'
 import { FIFA_HOME } from './layout/navConfig.js'
 import { useUrbanEliteInteractions } from '../../hooks/useUrbanEliteInteractions.js'
@@ -20,7 +19,6 @@ export default function FifaLayout() {
   return (
     <div className="fifa-page">
       <Header key={location.pathname} logoPath={FIFA_HOME} />
-      <PromoBanner />
       <Outlet />
       <DeferredFooter logoPath={FIFA_HOME} />
     </div>

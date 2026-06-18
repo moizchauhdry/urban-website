@@ -22,18 +22,18 @@ export default function Home() {
     <>
       <Hero />
       <MatchDayServices />
-      <FifaAirportsSection />
-      <PopularRoutesSection />
-      <JourneySection />
-      <StadiumCoverageSection />
       <MatchDayExperienceSection />
       <Fleet
         title="Match-Day Vehicle Fleet"
         subtitle="From solo fans to 56-person groups find the right vehicle for your FIFA experience."
       />
+      <FifaAirportsSection />
+      <PopularRoutesSection />
+      <JourneySection />
+      <StadiumCoverageSection />
       <WhyUsSection />
-      <BeautifulGameSection />
       <ReviewsSection />
+      <BeautifulGameSection />
       <DontMissOutSection />
     </>
   )

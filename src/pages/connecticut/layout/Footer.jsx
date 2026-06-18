@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FooterBrandLogo } from '../../../components/layout/BrandLogo.jsx'
+import FooterBookNow from '../../../components/layout/FooterBookNow.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import Icon from '../../../components/common/Icon.jsx'
 
@@ -9,6 +10,7 @@ import {
   ILLINOIS_HOME,
   NEW_YORK_HOME,
   ABOUT_US,
+  BOOK_NOW,
   CONTACT_US,
   OUR_SERVICES,
 } from '../../../config/routes.js'
@@ -32,10 +34,14 @@ export default function Footer({ logoPath = '/' }) {
                 <Icon name="envelope" size={14} /> info@urbanelitelimo.com
               </a>
             </div>
+            <FooterBookNow />
           </div>
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
+              <li>
+                <Link to={BOOK_NOW}>Book Now</Link>
+              </li>
               <li>
                 <Link to={ABOUT_US}>About Us</Link>
               </li>

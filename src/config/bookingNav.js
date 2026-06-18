@@ -10,6 +10,7 @@ export const BOOKING_HOME_PATHS = [
   '/florida-car-service',
   '/new-york-car-service',
   '/illinois-car-service',
+  '/book-now',
   '/',
 ]
 

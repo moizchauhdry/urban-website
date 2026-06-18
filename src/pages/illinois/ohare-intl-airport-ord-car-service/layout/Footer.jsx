@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { FooterBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
 import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import Icon from '../../../../components/common/Icon.jsx'
-import { ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_HOME, OUR_SERVICES, CONNECTICUT_HOME } from '../../../../config/routes.js'
+import FooterBookNow from '../../../../components/layout/FooterBookNow.jsx';
+import { BOOK_NOW, ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_HOME, OUR_SERVICES, CONNECTICUT_HOME } from '../../../../config/routes.js';
 
 const OHARE_ORD_CAR_HOME = '/illinois-car-service/ohare-intl-airport-ord-car-service'
 
@@ -25,10 +26,14 @@ export default function Footer() {
                 <Icon name="envelope" size={14} /> info@urbanelitelimo.com
               </a>
             </div>
+            <FooterBookNow />
           </div>
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
+              <li>
+                <Link to={BOOK_NOW}>Book Now</Link>
+              </li>
               <li>
                 <Link to={ABOUT_US}>About Us</Link>
               </li>

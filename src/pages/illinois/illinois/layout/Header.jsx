@@ -6,6 +6,7 @@ import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../../hooks/useMobileScrollLock.js'
 import MobileMenuPanel, { PANEL_ID } from './MobileMenuPanel.jsx'
 import Navbar from './Navbar.jsx'
+import FifaPromoBanner from '../../../../components/layout/FifaPromoBanner.jsx'
 
 const MOBILE_MQ = '(max-width:720px)'
 const ILLINOIS_HOME = '/illinois-car-service'
@@ -43,6 +44,7 @@ export default function Header() {
   }, [mobileMenuOpen, closeMobileMenu])
 
   return (
+    <div className={`site-top-chrome${mobileMenuOpen ? ' site-top-chrome--menu-open' : ''}`}>
     <header
       ref={headerAnchorRef}
       className={mobileMenuOpen ? 'header--menu-open' : ''}
@@ -75,5 +77,7 @@ export default function Header() {
         anchorRef={headerAnchorRef}
       />
     </header>
+    <FifaPromoBanner />
+    </div>
   )
 }

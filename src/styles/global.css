@@ -89,10 +89,120 @@ ul{list-style:none}
 .container{max-width:1240px;margin:0 auto;padding:0 var(--container-padding-x)}
 
 /* HEADER */
+.site-top-chrome{
+  position:sticky;
+  top:0;
+  z-index:100;
+}
 header{
   background:var(--white);
   box-shadow:0 1px 3px rgba(11,14,20,.06);
-  position:sticky;top:0;z-index:100;
+  position:relative;
+}
+
+/* FIFA promo banner — below header on all pages */
+.fifa-promo-banner{
+  background:var(--deep);
+  color:var(--white);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:relative;
+  z-index:1;
+}
+.fifa-promo-banner__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px var(--container-padding-x);
+  min-height:44px;
+}
+.fifa-promo-banner__text{
+  flex:1;
+  min-width:0;
+  display:flex;
+  align-items:center;
+}
+.fifa-promo-banner__message{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:500;
+  white-space:nowrap;
+}
+.fifa-promo-banner__icon{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+  flex-shrink:0;
+}
+.fifa-promo-banner__copy{font-weight:500}
+.fifa-promo-banner__marquee{display:none}
+.fifa-promo-banner__actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+.fifa-promo-banner__cta{
+  display:inline-block;
+  background:var(--white);
+  color:var(--deep);
+  font-size:12px;
+  font-weight:700;
+  padding:7px 14px;
+  border-radius:6px;
+  white-space:nowrap;
+  transition:background .2s,color .2s,transform .2s;
+}
+.fifa-promo-banner__cta:hover{
+  background:var(--cyan);
+  color:var(--deep);
+  transform:translateY(-1px);
+}
+.fifa-promo-banner__close{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  padding:0;
+  border:none;
+  background:transparent;
+  color:var(--white);
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  border-radius:4px;
+  opacity:.85;
+  transition:opacity .2s,background .2s;
+}
+.fifa-promo-banner__close:hover{
+  opacity:1;
+  background:rgba(255,255,255,.12);
+}
+@keyframes fifa-promo-marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+@media (max-width:720px){
+  .fifa-promo-banner__inner{
+    gap:12px;
+    padding:12px var(--container-padding-x);
+  }
+  .fifa-promo-banner__message--static{display:none}
+  .fifa-promo-banner__marquee{
+    display:block;
+    overflow:hidden;
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+  .fifa-promo-banner__marquee-track{
+    display:flex;
+    width:max-content;
+    animation:fifa-promo-marquee 22s linear infinite;
+  }
+  .fifa-promo-banner__marquee-track .fifa-promo-banner__message{padding-right:48px}
 }
 .nav{
   display:flex;align-items:center;justify-content:space-between;
@@ -202,11 +312,11 @@ header{
 .mobile-menu-panel{ display:none }
 
 @media (max-width:720px){
-  header{
+  .site-top-chrome{
     position:relative;
     top:auto;
   }
-  header.header--menu-open{
+  .site-top-chrome.site-top-chrome--menu-open{
     position:fixed;
     top:0;
     left:0;
@@ -214,6 +324,19 @@ header{
     width:100%;
     z-index:101;
     box-shadow:0 4px 24px rgba(0,0,0,.1);
+  }
+  header{
+    position:relative;
+    top:auto;
+  }
+  header.header--menu-open{
+    position:relative;
+    top:auto;
+    left:auto;
+    right:auto;
+    width:auto;
+    z-index:auto;
+    box-shadow:none;
   }
   .mobile-menu-backdrop,
   .mobile-menu-panel{ display:block }
@@ -355,13 +478,19 @@ header{
 .booking-card{align-self:start}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--pearl);
-  border:1px solid var(--border);
-  color:var(--accent);
+  background:var(--deep);
+  border:1px solid transparent;
+  color:var(--white);
   padding:8px 18px;border-radius:30px;font-size:13px;font-weight:600;
   margin-bottom:24px;
 }
-.hero-badge .icon{color:var(--accent)}
+.hero .hero-badge{
+  background:var(--white);
+  color:var(--deep);
+  border-color:rgba(255,255,255,.25);
+}
+.hero-badge .icon{color:inherit}
+.hero .hero-badge .icon{color:var(--deep)}
 .hero h1,
 .hero-title{
   font-size:50px;font-weight:800;line-height:1.1;
@@ -379,7 +508,7 @@ header{
 }
 .hero-phone{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--accent);color:var(--white);
+  background:var(--white);color:var(--deep);
   padding:14px 30px;border-radius:30px;font-weight:700;font-size:16px;
   margin-bottom:30px;
   position:relative;
@@ -393,7 +522,7 @@ header{
   width:20px;height:20px;flex-shrink:0;display:block;
   position:relative;
   z-index:1;
-  filter:brightness(0) invert(1);
+  filter:brightness(0);
 }
 .hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:540px}
 .hero-features .feat{
@@ -580,9 +709,38 @@ header{
 .section{padding:90px 0}
 .section-tag{
   display:inline-block;
-  background:var(--pearl);color:var(--accent);font-weight:600;
+  background:var(--deep);color:var(--white);font-weight:600;
   padding:6px 18px;border-radius:30px;font-size:13px;
-  margin-bottom:14px;
+  margin-bottom:14px;border:none;
+}
+.section-tag__icon{color:inherit}
+/* White pill on dark section backgrounds */
+:is(
+  .hero,
+  .airports,
+  .planning,
+  .trusted,
+  .fifa-why-us,
+  .fifa-match-day-experience,
+  .fifa-beautiful-game,
+  .fifa-dont-miss-out
+) .section-tag{
+  background:var(--white);
+  color:var(--deep);
+}
+.fifa-page [class$='__tag']{
+  background:var(--deep);
+  color:var(--white);
+  border:none;
+}
+:is(
+  .fifa-why-us,
+  .fifa-match-day-experience,
+  .fifa-beautiful-game,
+  .fifa-dont-miss-out
+) [class$='__tag']{
+  background:var(--white);
+  color:var(--deep);
 }
 .section-title{
   font-size:38px;font-weight:800;line-height:1.2;
@@ -598,13 +756,16 @@ header{
 /* FLEET PAGE */
 .fleet-page-hero{
   width:100%;
+  height:clamp(220px,50vh,480px);
   overflow:hidden;
   background:var(--deep);
 }
 .fleet-page-hero__img{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
 }
 .fleet-page-section{
   background:var(--cloud);
@@ -615,7 +776,6 @@ header{
   align-items:center;
   gap:8px;
 }
-.section-tag__icon{color:var(--accent)}
 .fleet-page-grid{margin-top:8px}
 .fleet-page-reviews{padding-top:70px}
 .mobile-menu__link--active{color:var(--accent)}
@@ -623,13 +783,16 @@ header{
 /* ABOUT US PAGE */
 .about-page-hero{
   width:100%;
+  height:clamp(220px,50vh,480px);
   overflow:hidden;
   background:var(--deep);
 }
 .about-page-hero__img{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
 }
 .about-page-intro{
   padding-top:56px;
@@ -704,13 +867,16 @@ header{
 /* OUR SERVICES PAGE */
 .services-page-hero{
   width:100%;
+  height:clamp(220px,50vh,480px);
   overflow:hidden;
   background:var(--deep);
 }
 .services-page-hero__img{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
 }
 .services-page-section{
   background:#fff;
@@ -764,13 +930,16 @@ header{
 /* CONTACT US PAGE */
 .contact-page-hero{
   width:100%;
+  height:clamp(220px,50vh,480px);
   overflow:hidden;
   background:var(--deep);
 }
 .contact-page-hero__img{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
 }
 .contact-page-form-section{
   padding:48px 0 56px;
@@ -851,6 +1020,24 @@ header{
   height:min(52vw,420px);
   min-height:280px;
   border:0;
+}
+
+/* BOOK NOW PAGE */
+.book-now-page{
+  background:var(--cloud);
+  padding:64px 0 90px;
+}
+.book-now-page__sub{
+  max-width:640px;
+  text-transform:capitalize;
+}
+.book-now-page__form{
+  max-width:720px;
+  margin:0 auto;
+}
+.book-now-page .booking-card{
+  box-shadow:0 8px 32px rgba(11,14,20,.08);
+  border:1px solid rgba(0,0,0,.06);
 }
 
 /* THANK YOU */
@@ -1591,8 +1778,15 @@ header{
 }
 .trusted-stat h3{font-size:30px;font-weight:700;margin-bottom:6px;color:#fff}
 .trusted-stat p{color:rgba(255,255,255,.65);font-size:13px;margin:0}
-.trusted .btn-yellow{display:block;margin:0 auto;width:fit-content}
-.trusted .btn-yellow:hover{background:var(--white);color:var(--accent);box-shadow:0 14px 30px rgba(255,255,255,.25)}
+.trusted .btn-yellow{
+  display:block;margin:0 auto;width:fit-content;
+  background:var(--white);color:var(--deep);
+}
+.trusted .btn-yellow:hover{
+  background:var(--cyan);color:var(--deep);
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(11,14,20,.12);
+}
 
 /* HOW IT WORKS */
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1000px;margin:0 auto}
@@ -1840,6 +2034,24 @@ footer{
 }
 .footer-contact a:hover{color:var(--white)}
 .footer-contact .icon{color:var(--white);width:18px;height:18px;text-align:center}
+.footer-book-now{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:18px;
+  padding:11px 26px;
+  border-radius:30px;
+  background:var(--white);
+  color:var(--deep);
+  font-size:14px;
+  font-weight:600;
+  transition:background .2s,color .2s,transform .2s;
+}
+.footer-book-now:hover{
+  background:var(--cyan);
+  color:var(--deep);
+  transform:translateY(-1px);
+}
 .footer-col h4{
   font-size:15px;font-weight:700;margin-bottom:20px;
   color:#fff;letter-spacing:.02em;
@@ -1924,7 +2136,7 @@ footer{
   position:absolute;
   inset:0;
   border-radius:inherit;
-  border:2px solid rgba(255,255,255,.35);
+  border:2px solid rgba(11,14,20,.12);
   animation:pulseRing 2.4s 2.5s ease-out infinite;
   pointer-events:none;
   z-index:0;
