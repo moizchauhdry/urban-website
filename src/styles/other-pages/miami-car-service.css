@@ -1,0 +1,14 @@
+/* Miami Car Service */
+.service-img.op-miami-car-service-s1{background-image:url('../../assets/florida/services/service1.webp')}
+.service-img.op-miami-car-service-s2{background-image:url('../../assets/florida/services/service2.webp')}
+.service-img.op-miami-car-service-s3{background-image:url('../../assets/florida/services/service3.webp')}
+.service-img.op-miami-car-service-s4{background-image:url('../../assets/florida/services/service4.webp')}
+.service-img.op-miami-car-service-s5{background-image:url('../../assets/florida/services/service5.webp')}
+.service-img.op-miami-car-service-s6{background-image:url('../../assets/florida/services/service6.webp')}
+.content-img.op-miami-car-service-i1{background-image:url('../../assets/florida/content-blocks/car-service1.webp')}
+.content-img.op-miami-car-service-i2{background-image:url('../../assets/florida/content-blocks/car-service2.webp')}
+.content-img.op-miami-car-service-i3{background-image:url('../../assets/florida/content-blocks/car-service3.webp')}
+.airport-card.op-miami-car-service-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../../assets/florida/airports/mia.webp')}
+.airport-card.op-miami-car-service-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../../assets/florida/airports/fll.webp')}
+.airport-card.op-miami-car-service-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../../assets/florida/airports/mco.webp')}
+.airport-card.op-miami-car-service-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../../assets/florida/airports/tpa.webp')}

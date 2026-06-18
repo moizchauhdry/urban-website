@@ -1,9 +1,7 @@
-import heroBgSm from '../../../../assets/illinois/chicago-limo-service/hero/hero-bg-800.webp'
-import heroBgLg from '../../../../assets/illinois/chicago-limo-service/hero/hero-bg-1440.webp'
-
-/** Responsive hero LCP — 800w mobile, 1440w desktop (matches SVG artboard). */
-export const HERO_BG_DEFAULT = heroBgLg
-export const HERO_BG_SRCSET = `${heroBgSm} 800w, ${heroBgLg} 1440w`
-export const HERO_BG_SIZES = '(max-width: 1024px) 800px, 1440px'
-export const HERO_BG_WIDTH = 1440
-export const HERO_BG_HEIGHT = 708
+export {
+  HERO_BG_DEFAULT,
+  HERO_BG_HEIGHT,
+  HERO_BG_SIZES,
+  HERO_BG_SRCSET,
+  HERO_BG_WIDTH,
+} from '../../../../config/siteHeroBg.js'

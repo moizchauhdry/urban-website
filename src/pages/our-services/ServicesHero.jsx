@@ -1,4 +1,4 @@
-import servicesHero from '../../assets/our-services/hero/services-hero.jpg'
+import servicesHero from '../../assets/our-services/hero/services-hero.webp'
 
 /** Full-width hero for the Our Services page. */
 export default function ServicesHero() {

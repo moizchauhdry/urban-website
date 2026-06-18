@@ -47,6 +47,8 @@ const ChicagoAirportCarHome = lazy(
 )
 const ChicagoLimoHome = lazy(() => import('../pages/illinois/chicago-limo-service/Home.jsx'))
 
+const OtherPageShell = lazy(() => import('../pages/other-pages/OtherPageShell.jsx'))
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -334,6 +336,16 @@ export default function AppRoutes() {
           }
         />
       </Route>
+
+      {/* Extra landing pages — not in main nav; preview at /other-pages/:slug */}
+      <Route
+        path="/other-pages/:slug"
+        element={
+          <Suspense fallback={null}>
+            <OtherPageShell />
+          </Suspense>
+        }
+      />
     </Routes>
   )
 }

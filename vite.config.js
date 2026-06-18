@@ -28,14 +28,14 @@ const SKIP_MODULE_PRELOAD = [
  */
 function injectHeroLcp() {
   let base = '/'
-  const devHeroSm = '/src/assets/connecticut/hero/hero-bg-800.webp'
-  const devHeroLg = '/src/assets/connecticut/hero/hero-bg-1440.webp'
+  const devHeroSm = '/src/assets/hero_image-800.webp'
+  const devHeroLg = '/src/assets/hero_image-1440.webp'
 
   const injectTags = (html, smHref, lgHref) => {
     const srcset = `${smHref} 800w, ${lgHref} 1440w`
     const sizes = '(max-width: 1024px) 800px, 1440px'
     const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
-    const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="708" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+    const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
 
     let out = html
       .replace(/<link rel="modulepreload"[^>]*>\s*/g, (tag) => {
@@ -72,8 +72,8 @@ function injectHeroLcp() {
               (item) => item.type === 'asset' && pattern.test(item.fileName),
             )
 
-          const heroSm = findHeroAsset(/hero-bg-800/i)
-          const heroLg = findHeroAsset(/hero-bg-1440/i)
+          const heroSm = findHeroAsset(/hero_image-800/i)
+          const heroLg = findHeroAsset(/hero_image-1440/i)
           if (!heroSm || !heroLg) return html
 
           const toHref = (fileName) =>
