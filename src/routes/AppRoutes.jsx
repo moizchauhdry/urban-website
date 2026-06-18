@@ -48,6 +48,8 @@ const ChicagoAirportCarHome = lazy(
 const ChicagoLimoHome = lazy(() => import('../pages/illinois/chicago-limo-service/Home.jsx'))
 
 const OtherPageShell = lazy(() => import('../pages/other-pages/OtherPageShell.jsx'))
+const FifaLayout = lazy(() => import('../pages/fifa/FifaLayout.jsx'))
+const FifaHome = lazy(() => import('../pages/fifa/Home.jsx'))
 
 export default function AppRoutes() {
   return (
@@ -346,6 +348,32 @@ export default function AppRoutes() {
           </Suspense>
         }
       />
+
+      {/* FIFA World Cup 2026 — preview only; not in main nav */}
+      <Route
+        element={
+          <Suspense fallback={null}>
+            <FifaLayout />
+          </Suspense>
+        }
+      >
+        <Route
+          path="/fifa"
+          element={
+            <Suspense fallback={null}>
+              <FifaHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fifa/thank-you"
+          element={
+            <Suspense fallback={null}>
+              <ThankYouPage />
+            </Suspense>
+          }
+        />
+      </Route>
     </Routes>
   )
 }

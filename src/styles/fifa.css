@@ -1,0 +1,1491 @@
+/* FIFA World Cup 2026 landing page — uses site black/white accent only */
+
+/* Promo banner under header */
+.fifa-promo-banner {
+  background: var(--deep);
+  color: var(--white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fifa-promo-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px var(--container-padding-x);
+  min-height: 44px;
+}
+
+.fifa-promo-banner__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.fifa-promo-banner__highlight {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.fifa-promo-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.fifa-promo-banner__cta {
+  display: inline-block;
+  background: var(--white);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.fifa-promo-banner__cta:hover {
+  background: var(--cyan);
+  color: var(--deep);
+  transform: translateY(-1px);
+}
+
+.fifa-promo-banner__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--white);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.85;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.fifa-promo-banner__close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Hero */
+.fifa-hero {
+  position: relative;
+}
+
+.fifa-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.35) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fifa-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.fifa-hero__content {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.fifa-hero__badge {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+}
+
+.fifa-hero__features {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+  max-width: 100%;
+}
+
+.fifa-hero__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.fifa-hero__feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.fifa-hero__feature-icon .icon {
+  color: var(--white);
+}
+
+.fifa-hero__feature-dollar {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fifa-hero__title {
+  font-size: clamp(32px, 4.5vw, 52px);
+  text-transform: none;
+}
+
+.fifa-hero__accent {
+  color: #90ee90;
+}
+
+.fifa-hero__desc {
+  max-width: 620px;
+  margin-bottom: 22px;
+}
+
+.fifa-hero__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.fifa-hero__flags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  max-width: 100%;
+}
+
+.fifa-hero__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.fifa-hero__flag-icon {
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.fifa-hero__flag-icon--us {
+  background: linear-gradient(180deg, #b22234 0 46%, #fff 46% 54%, #b22234 54% 100%);
+}
+
+.fifa-hero__flag-icon--ca {
+  background: linear-gradient(90deg, #ff0000 0 25%, #fff 25% 75%, #ff0000 75% 100%);
+}
+
+.fifa-hero__flag-icon--mx {
+  background: linear-gradient(90deg, #006847 0 33%, #fff 33% 66%, #ce1126 66% 100%);
+}
+
+.fifa-countdown {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 0;
+  backdrop-filter: blur(6px);
+  max-width: 100%;
+}
+
+.fifa-countdown__label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.fifa-countdown--live .fifa-countdown__label::after {
+  content: ' · LIVE';
+  color: #90ee90;
+  font-weight: 800;
+}
+
+.fifa-countdown__ended {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.fifa-countdown__grid {
+  display: flex;
+  gap: 14px;
+}
+
+.fifa-countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+}
+
+.fifa-countdown__value {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--white);
+}
+
+.fifa-countdown__name {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fifa-hero__social-proof {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fifa-hero__live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.fifa-hero__trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 100%;
+}
+
+.fifa-hero__trust-licensed {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fifa-hero__trust-logo {
+  height: 20px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.fifa-hero__trust-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.fifa-hero__trust-icon {
+  filter: brightness(0) invert(1);
+}
+
+.fifa-hero__booking {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.fifa-hero__early-bird {
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 14px 14px 0 0;
+  padding: 14px 18px;
+  text-align: center;
+}
+
+.fifa-hero__early-bird-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.fifa-hero__early-bird-desc {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fifa-hero__booking .booking-card {
+  border-radius: 0 0 14px 14px;
+}
+
+@media (max-width: 720px) {
+  .fifa-promo-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .fifa-promo-banner__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .fifa-hero__features {
+    gap: 8px;
+  }
+
+  .fifa-hero__feature {
+    padding: 9px 14px;
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  .fifa-hero__flags {
+    width: 100%;
+  }
+
+  .fifa-countdown {
+    width: 100%;
+  }
+
+  .fifa-countdown__grid {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .fifa-countdown__unit {
+    min-width: 44px;
+  }
+
+  .fifa-countdown__value {
+    font-size: 22px;
+  }
+
+  .fifa-hero__trust {
+    flex-wrap: wrap;
+  }
+}
+
+/* Match-day services */
+.fifa-match-day {
+  background: var(--white);
+}
+
+.fifa-match-day__head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.fifa-match-day__tag {
+  display: inline-block;
+  background: var(--pearl);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.fifa-match-day__title {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--deep);
+}
+
+.fifa-match-day__sub {
+  margin: 0 auto;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+.fifa-match-day__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.fifa-match-day-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 26px;
+  box-shadow: 0 2px 12px rgba(11, 14, 20, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fifa-match-day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(11, 14, 20, 0.08);
+}
+
+.fifa-match-day-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--pearl);
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.fifa-match-day-card__icon .icon {
+  color: var(--accent);
+}
+
+.fifa-match-day-card__title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.fifa-match-day-card__desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+@media (max-width: 1024px) {
+  .fifa-match-day__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fifa-match-day__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fifa-match-day-card {
+    padding: 22px 20px;
+  }
+}
+
+/* FIFA airports */
+.fifa-airports {
+  background: var(--deep);
+  color: var(--white);
+}
+
+.fifa-airports__head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.fifa-airports__title {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.fifa-airports__sub {
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fifa-airports__features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 28px;
+  padding: 20px 0 32px;
+  margin-bottom: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.fifa-airports__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fifa-airports__feature .icon {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fifa-airports__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.fifa-airport-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 18px 16px 16px;
+  color: var(--deep);
+  min-width: 0;
+}
+
+.fifa-airport-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fifa-airport-card__code {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--deep);
+}
+
+.fifa-airport-card__country {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.fifa-airport-card__country--us {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.fifa-airport-card__country--ca {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.fifa-airport-card__name {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--deep);
+}
+
+.fifa-airport-card__city {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--body);
+}
+
+.fifa-airport-card__city .icon {
+  color: var(--charcoal);
+  flex-shrink: 0;
+}
+
+.fifa-airport-card__link {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--body);
+  transition: color 0.2s;
+}
+
+.fifa-airport-card__link:hover {
+  color: var(--deep);
+}
+
+.fifa-airports__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 18px 22px;
+  color: var(--deep);
+}
+
+.fifa-airports__cta-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--charcoal);
+  max-width: 520px;
+}
+
+.fifa-airports__cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.fifa-airports__cta-btn:hover {
+  background: var(--cyan);
+  color: var(--deep);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1200px) {
+  .fifa-airports__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .fifa-airports__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fifa-airports__cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .fifa-airports__cta-btn {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .fifa-airports__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fifa-airports__features {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Popular routes */
+.fifa-routes {
+  background: var(--white);
+}
+
+.fifa-routes__head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.fifa-routes__tag {
+  display: inline-block;
+  background: var(--pearl);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.fifa-routes__title {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--deep);
+}
+
+.fifa-routes__sub {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+.fifa-routes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.fifa-route-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 22px 0;
+  box-shadow: 0 2px 12px rgba(11, 14, 20, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fifa-route-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(11, 14, 20, 0.08);
+}
+
+.fifa-route-card__badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--pearl);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.fifa-route-card__category {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--body);
+}
+
+.fifa-route-card__route {
+  margin: 0 0 12px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--deep);
+}
+
+.fifa-route-card__route span {
+  font-weight: 400;
+  color: var(--charcoal);
+}
+
+.fifa-route-card__duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--body);
+}
+
+.fifa-route-card__duration .icon {
+  color: var(--body);
+  flex-shrink: 0;
+}
+
+.fifa-route-card__link {
+  display: block;
+  margin-top: auto;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--charcoal);
+  transition: color 0.2s;
+}
+
+.fifa-route-card__link:hover {
+  color: var(--deep);
+}
+
+@media (max-width: 1024px) {
+  .fifa-routes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fifa-routes__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stadium coverage */
+.fifa-stadiums {
+  background: var(--cloud);
+}
+
+.fifa-stadiums__head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.fifa-stadiums__title {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--deep);
+}
+
+.fifa-stadiums__sub {
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+.fifa-stadiums__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.fifa-stadium-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 20px 0;
+  box-shadow: 0 2px 12px rgba(11, 14, 20, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.fifa-stadium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(11, 14, 20, 0.08);
+}
+
+.fifa-stadium-card--featured {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(11, 14, 20, 0.1);
+}
+
+.fifa-stadium-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.fifa-stadium-card__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.fifa-stadium-card__pin .icon {
+  color: var(--accent);
+}
+
+.fifa-stadium-card__matches {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.fifa-stadium-card__name {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--deep);
+}
+
+.fifa-stadium-card__location {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--body);
+}
+
+.fifa-stadium-card__desc {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--charcoal);
+}
+
+.fifa-stadium-card__link {
+  display: block;
+  margin-top: auto;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--body);
+  transition: color 0.2s;
+}
+
+.fifa-stadium-card__link:hover {
+  color: var(--deep);
+}
+
+@media (max-width: 1024px) {
+  .fifa-stadiums__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fifa-stadiums__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Match-day experience (dark banner) */
+.fifa-match-day-experience {
+  background: linear-gradient(180deg, #1a1a1a 0%, var(--deep) 100%);
+  color: var(--white);
+}
+
+.fifa-match-day-experience__head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.fifa-match-day-experience__tag {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.fifa-match-day-experience__title {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.fifa-match-day-experience__sub {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fifa-match-day-experience__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px 20px;
+  margin: 0 0 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.fifa-match-day-experience__item {
+  text-align: center;
+  min-width: 0;
+}
+
+.fifa-match-day-experience__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--accent);
+}
+
+.fifa-match-day-experience__icon .icon {
+  color: var(--accent);
+}
+
+.fifa-match-day-experience__item-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--white);
+}
+
+.fifa-match-day-experience__item-desc {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.fifa-match-day-experience__cta {
+  text-align: center;
+}
+
+.fifa-match-day-experience__btn {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.fifa-match-day-experience__btn:hover {
+  background: var(--cyan);
+  color: var(--deep);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .fifa-match-day-experience__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fifa-match-day-experience__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .fifa-match-day-experience__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FIFA page — Our Fleet section typography */
+.fifa-page #fleet .section-tag {
+  font-weight: 400;
+}
+
+.fifa-page #fleet .section-title {
+  font-weight: 500;
+}
+
+.fifa-page #fleet .section-sub {
+  font-weight: 400;
+}
+
+.fifa-page #fleet .fleet-card-title {
+  font-weight: 500;
+}
+
+.fifa-page #fleet .fleet-badge {
+  font-weight: 500;
+}
+
+.fifa-page #fleet .fleet-specs .spec {
+  font-weight: 400;
+}
+
+.fifa-page #fleet .btn-quote {
+  font-weight: 500;
+}
+
+/* FIFA page — customer reviews section typography */
+.fifa-page .reviews-head .section-title {
+  font-weight: 500;
+}
+
+.fifa-page .review-aside h3 {
+  font-weight: 500;
+}
+
+.fifa-page .review-author {
+  font-weight: 500;
+}
+
+/* Why Us */
+.fifa-why-us {
+  background: var(--deep);
+  color: var(--white);
+}
+
+.fifa-why-us__head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.fifa-why-us__tag {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.fifa-why-us__title {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.fifa-why-us__sub {
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fifa-why-us__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fifa-why-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 22px 20px;
+  min-width: 0;
+}
+
+.fifa-why-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+
+.fifa-why-card__icon .icon {
+  color: var(--white);
+}
+
+.fifa-why-card__dollar {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.fifa-why-card__title {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+.fifa-why-card__desc {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 1024px) {
+  .fifa-why-us__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fifa-why-us__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The Beautiful Game banner */
+.fifa-beautiful-game {
+  position: relative;
+  isolation: isolate;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.fifa-beautiful-game__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fifa-beautiful-game__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fifa-beautiful-game__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+}
+
+.fifa-beautiful-game__tag {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.fifa-beautiful-game__title {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.fifa-beautiful-game__sub {
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 640px) {
+  .fifa-beautiful-game {
+    min-height: 360px;
+    padding: 64px 0;
+  }
+}
+
+/* Don't Miss Out — final CTA banner */
+.fifa-dont-miss-out {
+  background: var(--deep);
+  color: var(--white);
+  text-align: center;
+  padding: 72px 0 80px;
+}
+
+.fifa-dont-miss-out__tag {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.fifa-dont-miss-out__title {
+  margin: 0 0 16px;
+  max-width: 820px;
+  margin-inline: auto;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.fifa-dont-miss-out__sub {
+  margin: 0 auto 32px;
+  max-width: 680px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fifa-dont-miss-out__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.fifa-dont-miss-out__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 148px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.fifa-dont-miss-out__btn:hover {
+  background: var(--cyan);
+  color: var(--deep);
+  transform: translateY(-2px);
+}
+
+.fifa-dont-miss-out__features {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fifa-dont-miss-out__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
+
+.fifa-dont-miss-out__feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.fifa-dont-miss-out__feature-icon .icon {
+  color: var(--white);
+}
+
+.fifa-dont-miss-out__feature-dollar {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .fifa-dont-miss-out {
+    padding: 56px 0 64px;
+  }
+
+  .fifa-dont-miss-out__actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .fifa-dont-miss-out__btn {
+    width: 100%;
+    min-width: 0;
+  }
+}

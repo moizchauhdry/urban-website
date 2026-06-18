@@ -53,8 +53,8 @@
   --body:#8A95A5;
   --charcoal:#555555;
   --border:#E2E7EE;
-  --cyan:#00BCD4;
-  --cyan-dark:#00A3C4;
+  --cyan:#E2E7EE;
+  --cyan-dark:#D1D5DB;
   /* Semantic aliases */
   --text:var(--deep);
   --muted:var(--body);
@@ -161,7 +161,7 @@ header{
   padding:11px 26px;border-radius:30px;border:none;cursor:pointer;
   font-size:14px;transition:all .2s;
 }
-.btn-book:hover{background:var(--cyan);color:var(--white);transform:translateY(-1px)}
+.btn-book:hover{background:var(--cyan);color:var(--deep);transform:translateY(-1px)}
 
 /* Mobile menu toggle (animated hamburger → X); panel/backdrop only ≤720px */
 .menu-toggle{
@@ -387,7 +387,8 @@ header{
   isolation:isolate;
   transition:background .2s,transform .2s,box-shadow .2s;
 }
-.hero-phone:hover{background:var(--cyan);color:var(--white);transform:translateY(-2px)}
+.hero-phone:hover{background:var(--cyan);color:var(--deep);transform:translateY(-2px)}
+.hero-phone:hover .hero-phone-icon{filter:brightness(0)}
 .hero-phone .hero-phone-icon{
   width:20px;height:20px;flex-shrink:0;display:block;
   position:relative;
@@ -573,7 +574,7 @@ header{
   padding:14px;border-radius:8px;border:none;font-weight:700;font-size:15px;
   cursor:pointer;margin-top:8px;transition:all .2s;
 }
-.btn-submit:hover{background:var(--cyan);color:var(--white)}
+.btn-submit:hover{background:var(--cyan);color:var(--deep)}
 
 /* SECTION TITLES */
 .section{padding:90px 0}
@@ -1101,7 +1102,7 @@ header{
   background:var(--accent);color:var(--white);padding:11px;border-radius:6px;
   font-weight:700;font-size:14px;transition:background .2s,transform .25s;
 }
-.btn-quote:hover{background:var(--cyan);color:var(--white);transform:translateY(-2px)}
+.btn-quote:hover{background:var(--cyan);color:var(--deep);transform:translateY(-2px)}
 
 /* Fleet: in-card image slider (dots live inside each .fleet-card; see FleetImageSlider.jsx) */
 .fleet-img.fleet-img--with-slider{
@@ -1369,7 +1370,7 @@ header{
   position:relative;overflow:hidden;
   transition:transform .25s,box-shadow .3s,background .2s,color .2s;
 }
-.btn-yellow:hover{background:var(--cyan);color:var(--white);transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,188,212,.35)}
+.btn-yellow:hover{background:var(--cyan);color:var(--deep);transform:translateY(-2px);box-shadow:0 14px 30px rgba(11,14,20,.12)}
 
 /* REVIEWS */
 .reviews-head{text-align:center;margin-bottom:50px}
@@ -1423,7 +1424,7 @@ header{
   flex-shrink:0;width:18px;height:18px;display:block;
   stroke:currentColor;
 }
-.review-nav button:hover{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.review-nav button:hover{background:var(--cyan);color:var(--deep);border-color:var(--cyan-dark)}
 
 /* Reviews carousel (shell sits in .reviews-grid next to .review-aside) */
 .reviews-carousel-shell{
@@ -1962,14 +1963,14 @@ footer{
 }
 .booking-card.tilt-active{ animation:none }
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
-.form-tab:hover:not(.active){ background:var(--cyan); color:var(--white) }
+.form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
 .form-group input, .form-group select{ transition:border-color .25s, box-shadow .25s, transform .25s }
 .form-group input:focus, .form-group select:focus{
   box-shadow:0 0 0 3px rgba(17,17,17,.1);
   transform:translate3d(0,-1px,0);
 }
 .btn-submit{ position:relative; overflow:hidden; transition:transform .25s, box-shadow .25s }
-.btn-submit:hover{ transform:translate3d(0,-2px,0); box-shadow:0 12px 24px rgba(0,188,212,.35) }
+.btn-submit:hover{ transform:translate3d(0,-2px,0); box-shadow:0 12px 24px rgba(11,14,20,.12) }
 
 /* Section scroll reveal — whole block slides up (used by useScrollReveal) */
 .scroll-reveal-section{

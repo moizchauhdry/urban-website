@@ -5,6 +5,7 @@ export const BOOKING_HOME_PATHS = [
   '/illinois-car-service/chicago-chauffeur-service',
   '/illinois-car-service/chicago-airport-car-service',
   '/illinois-car-service/chicago-limo-service',
+  '/fifa',
   '/connecticut-car-service',
   '/florida-car-service',
   '/new-york-car-service',
