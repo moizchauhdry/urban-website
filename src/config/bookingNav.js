@@ -46,3 +46,15 @@ export function scrollToHeroBooking() {
   el.scrollIntoView({ behavior: 'smooth', block: 'center' })
   return true
 }
+
+export const HERO_BOOKING_PREFILL_EVENT = 'hero-booking-prefill'
+
+/** Push values into the hero booking form (listened to by HeroBookingForm). */
+export function prefillHeroBooking(detail) {
+  window.dispatchEvent(new CustomEvent(HERO_BOOKING_PREFILL_EVENT, { detail }))
+}
+
+export function scrollToHeroBookingWithPrefill(detail) {
+  prefillHeroBooking(detail)
+  return scrollToHeroBooking()
+}

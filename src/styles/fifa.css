@@ -914,7 +914,19 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.fifa-stadium-card:hover {
+.fifa-stadium-card--clickable {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.fifa-stadium-card--clickable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.fifa-stadium-card:hover,
+.fifa-stadium-card--clickable:focus-visible {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(11, 14, 20, 0.08);
 }
@@ -989,7 +1001,8 @@
   transition: color 0.2s;
 }
 
-.fifa-stadium-card__link:hover {
+.fifa-stadium-card--clickable:hover .fifa-stadium-card__link,
+.fifa-stadium-card--clickable:focus-visible .fifa-stadium-card__link {
   color: var(--deep);
 }
 

@@ -6,6 +6,7 @@ export const STADIUM_COVERAGE = [
     location: 'East Rutherford, NJ',
     matches: '8+ Matches',
     description: 'Host Of The FIFA 2026 Final',
+    featured: true,
   },
   {
     id: 'sofi',
@@ -27,7 +28,6 @@ export const STADIUM_COVERAGE = [
     location: 'Miami Gardens, FL',
     matches: '7 Matches',
     description: "South Florida's Marquee Stadium",
-    featured: true,
   },
   {
     id: 'mercedes-benz',

@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getThankYouPath, resolveBookingHome } from '../../config/bookingNav.js'
+import {
+  getThankYouPath,
+  HERO_BOOKING_PREFILL_EVENT,
+  resolveBookingHome,
+} from '../../config/bookingNav.js'
 import { getExampleNumber } from 'libphonenumber-js/max'
 import examples from 'libphonenumber-js/examples.mobile.json'
 import PhoneInput, { getCountries, getCountryCallingCode } from 'react-phone-number-input/max'
@@ -63,6 +67,22 @@ export default function HeroBookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const isHourly = formData.bookingType === 'hourly'
+
+  useEffect(() => {
+    const onPrefill = (event) => {
+      const detail = event.detail
+      if (!detail || typeof detail !== 'object') return
+      setFormData((prev) => ({
+        ...prev,
+        ...(detail.destination != null ? { destination: detail.destination } : {}),
+        ...(detail.pickup != null ? { pickup: detail.pickup } : {}),
+        ...(detail.serviceType != null ? { serviceType: detail.serviceType } : {}),
+      }))
+    }
+
+    window.addEventListener(HERO_BOOKING_PREFILL_EVENT, onPrefill)
+    return () => window.removeEventListener(HERO_BOOKING_PREFILL_EVENT, onPrefill)
+  }, [])
 
   useEffect(() => {
     let cancelled = false
