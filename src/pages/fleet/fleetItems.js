@@ -1,4 +1,3 @@
-import economySedan from '../../assets/fleet/fleet/economy-sedan.webp'
 import firstClassSedan from '../../assets/fleet/fleet/first-class-sedan.webp'
 import luxurySedan from '../../assets/fleet/fleet/luxury-sedan.webp'
 import fullSizeSuv from '../../assets/fleet/fleet/full-size-suv.webp'
@@ -116,29 +115,6 @@ export const fleetPageItems = [
       { icon: 'suitcase', text: '14 Luggage' },
       { icon: 'expand', text: 'Ample Space' },
       { icon: 'chair', text: 'Leather Seating' },
-    ],
-  },
-  {
-    id: 'economy',
-    imgClass: 'economy',
-    title: 'Economy Sedan',
-    description: 'A budget-friendly, comfortable option for solo travelers and couples.',
-    images: [
-      { src: economySedan, alt: 'Economy Sedan — gallery 1 of 3' },
-      {
-        loadSrc: () => import('../../assets/fleet/fleet/economy-sedan2.webp'),
-        alt: 'Economy Sedan — gallery 2 of 3',
-      },
-      {
-        loadSrc: () => import('../../assets/fleet/fleet/economy-sedan3.webp'),
-        alt: 'Economy Sedan — gallery 3 of 3',
-      },
-    ],
-    specs: [
-      { icon: 'user', text: '3 Passengers' },
-      { icon: 'suitcase', text: '2 Luggage' },
-      { icon: 'snowflake', text: 'Climate Control' },
-      { icon: 'couch', text: 'Comfortable Seating' },
     ],
   },
   {

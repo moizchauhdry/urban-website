@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import { FooterBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
 import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import Icon from '../../../../components/common/Icon.jsx'
@@ -10,7 +10,9 @@ import { BOOK_NOW, CONNECTICUT_HOME,
   NEW_YORK_HOME,
   ABOUT_US,
   CONTACT_US,
-  OUR_SERVICES, } from '../../../../config/routes.js';
+  OUR_SERVICES,
+  PRIVACY_POLICY,
+} from '../../../../config/routes.js';
 
 export default function Footer({ logoPath = '/' }) {
   const onHomeLogoClick = useHomeLogoClick(logoPath)
@@ -49,7 +51,7 @@ export default function Footer({ logoPath = '/' }) {
                 <Link to={CONTACT_US}>Contact Us</Link>
               </li>
               <li>
-                <a href="https://urbanelitelimo.com/privacy-policy/">Privacy Policy</a>
+                <Link to={PRIVACY_POLICY}>Privacy Policy</Link>
               </li>
             </ul>
           </div>

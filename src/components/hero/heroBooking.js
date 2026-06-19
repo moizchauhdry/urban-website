@@ -82,9 +82,11 @@ function getBookingStoreDataUrl() {
   return DEFAULT_BOOKING_STORE_DATA_URL
 }
 
+/** Fleet labels excluded from the booking form dropdown. */
+const EXCLUDED_BOOKING_FLEET_LABELS = new Set(['economy sedan'])
+
 /** Last-resort fleet list when the portal store-data request fails. */
 export const HERO_FLEET_FALLBACK_OPTIONS = [
-  { value: 'Economy Sedan', label: 'Economy Sedan' },
   { value: 'Luxury Sedan', label: 'Luxury Sedan' },
   { value: 'Mini SUV', label: 'Mini SUV' },
   { value: 'Full-Size SUVs', label: 'Full-Size SUVs' },
@@ -116,6 +118,7 @@ function parseFleetOptionsFromStoreData(json) {
       return { value: label, label }
     })
     .filter(Boolean)
+    .filter(({ label }) => !EXCLUDED_BOOKING_FLEET_LABELS.has(label.toLowerCase()))
 }
 
 /**

@@ -13,6 +13,7 @@ import {
   BOOK_NOW,
   CONTACT_US,
   OUR_SERVICES,
+  PRIVACY_POLICY,
 } from '../../../config/routes.js'
 
 export default function Footer({ logoPath = '/' }) {
@@ -52,7 +53,7 @@ export default function Footer({ logoPath = '/' }) {
                 <Link to={CONTACT_US}>Contact Us</Link>
               </li>
               <li>
-                <a href="https://urbanelitelimo.com/privacy-policy/">Privacy Policy</a>
+                <Link to={PRIVACY_POLICY}>Privacy Policy</Link>
               </li>
             </ul>
           </div>

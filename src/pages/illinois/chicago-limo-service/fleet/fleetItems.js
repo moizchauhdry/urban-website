@@ -1,4 +1,3 @@
-import economySedan from '../../../../assets/illinois/chicago-limo-service/fleet/economy-sedan.webp'
 import firstClassSedan from '../../../../assets/illinois/chicago-limo-service/fleet/first-class-sedan.webp'
 import luxurySedan from '../../../../assets/illinois/chicago-limo-service/fleet/luxury-sedan.webp'
 import fullSizeSuv from '../../../../assets/illinois/chicago-limo-service/fleet/full-size-suv.webp'
@@ -21,30 +20,6 @@ import motorCoach from '../../../../assets/illinois/chicago-limo-service/fleet/m
  * }>}
  */
 export const fleetItems = [
-  {
-    id: 'economy',
-    imgClass: 'economy',
-    title: 'Economy Sedan',
-    description:
-      'A budget-friendly, comfortable option for solo travelers and couples.',
-    images: [
-      { src: economySedan, alt: 'Economy Sedan — gallery 1 of 3' },
-      {
-        loadSrc: () => import('../../../../assets/illinois/chicago-limo-service/fleet/economy-sedan2.webp'),
-        alt: 'Economy Sedan — gallery 2 of 3',
-      },
-      {
-        loadSrc: () => import('../../../../assets/illinois/chicago-limo-service/fleet/economy-sedan3.webp'),
-        alt: 'Economy Sedan — gallery 3 of 3',
-      },
-    ],
-    specs: [
-      { icon: 'user', text: '3 Passengers' },
-      { icon: 'suitcase', text: '3 Luggage' },
-      { icon: 'snowflake', text: 'Climate Control' },
-      { icon: 'couch', text: 'Comfortable Seating' },
-    ],
-  },
   {
     id: 'first-class',
     imgClass: 'first',

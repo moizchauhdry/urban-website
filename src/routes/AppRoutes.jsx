@@ -8,6 +8,7 @@ const ServicesPage = lazy(() => import('../pages/ServicesPage.jsx'))
 const ContactPage = lazy(() => import('../pages/ContactPage.jsx'))
 const FleetPage = lazy(() => import('../pages/FleetPage.jsx'))
 const BookNowPage = lazy(() => import('../pages/BookNowPage.jsx'))
+const PrivacyPolicyPage = lazy(() => import('../pages/PrivacyPolicyPage.jsx'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage.jsx'))
 
 const ConnecticutLayout = lazy(() => import('../pages/connecticut/ConnecticutLayout.jsx'))
@@ -123,6 +124,14 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <BookNowPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <Suspense fallback={null}>
+              <PrivacyPolicyPage />
             </Suspense>
           }
         />
