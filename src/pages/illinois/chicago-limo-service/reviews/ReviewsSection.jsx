@@ -35,9 +35,9 @@ export default function ReviewsSection() {
       <div className="container">
         <div className="reviews-head">
           <h2 className="section-title">
-            Read reviews
+            Read Reviews
             <br />
-            ride with confidence
+            Ride With Confidence
           </h2>
           <div className="reviews-rating">
             <strong className="reviews-rating-score">4.6/5</strong>

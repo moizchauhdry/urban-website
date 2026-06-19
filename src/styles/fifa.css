@@ -432,7 +432,7 @@
 
 /* FIFA airports */
 .fifa-airports {
-  background: var(--deep);
+  background: var(--dark-section-gradient);
   color: var(--white);
 }
 
@@ -930,7 +930,7 @@
 
 /* Match-day experience (dark banner) */
 .fifa-match-day-experience {
-  background: linear-gradient(180deg, #1a1a1a 0%, var(--deep) 100%);
+  background: var(--dark-section-gradient);
   color: var(--white);
 }
 
@@ -1098,7 +1098,7 @@
 
 /* Why Us */
 .fifa-why-us {
-  background: var(--deep);
+  background: var(--dark-section-gradient);
   color: var(--white);
 }
 
@@ -1274,7 +1274,7 @@
 
 /* Don't Miss Out — final CTA banner */
 .fifa-dont-miss-out {
-  background: var(--deep);
+  background: var(--dark-section-gradient);
   color: var(--white);
   text-align: center;
   padding: 72px 0 80px;

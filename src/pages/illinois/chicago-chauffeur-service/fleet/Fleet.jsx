@@ -20,11 +20,11 @@ export default function Fleet() {
 
         <h2 className="section-title">
 
-          Find your perfect
+          Find Your Perfect
 
           <br />
 
-          vehicle type
+          Vehicle Type
 
         </h2>
 

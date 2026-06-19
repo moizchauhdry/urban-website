@@ -11,9 +11,9 @@ export default function Fleet({
   tag = 'Our Fleet',
   title = (
     <>
-      Find your perfect
+      Find Your Perfect
       <br />
-      vehicle type
+      Vehicle Type
     </>
   ),
   subtitle = DEFAULT_SUBTITLE,

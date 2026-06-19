@@ -7,7 +7,12 @@
 @tailwind utilities;
 
 /* Values moved from former inline styles (visual match preserved) */
-.bg-muted-services{background:#F4F6F9}
+.bg-muted-services{
+  background:var(--dark-section-gradient);
+  color:#fff;
+}
+.bg-muted-services .section-title{color:#fff}
+.bg-muted-services .section-sub{color:rgba(255,255,255,.72)}
 .reviews-rating-score{font-size:18px}
 .how-works-cta{text-align:center;margin-top:30px}
 .section-title.faq-title-heading{text-align:left;margin-bottom:40px}
@@ -16,7 +21,7 @@
 .brand-logo--footer{aspect-ratio:104/38}
 .quote-icon svg{width:36px;height:36px;flex-shrink:0;color:var(--accent)}
 .review-star-icon{width:14px;height:14px;flex-shrink:0;color:var(--accent)}
-.footer-skeleton{min-height:280px;background:var(--deep)}
+.footer-skeleton{min-height:280px;background:var(--dark-section-gradient)}
 .fleet-image-slider{--fleet-fade-ms:500ms}
 .reviews-carousel-track--paged{
   width:calc(var(--reviews-page-count,1) * 100%);
@@ -59,6 +64,10 @@
   --text:var(--deep);
   --muted:var(--body);
   --black:var(--deep);
+  --black-pure:#000000;
+  --black-light:#0B0E14;
+  --black-soft:#2A2A2A;
+  --dark-section-gradient:linear-gradient(135deg,var(--black-pure) 0%,var(--black-light) 52%,var(--black-soft) 100%);
   --dark:var(--accent);
   /* Legacy names mapped to new accent (no gold) */
   --yellow:var(--accent);
@@ -102,7 +111,7 @@ header{
 
 /* FIFA promo banner — below header on all pages */
 .fifa-promo-banner{
-  background:var(--deep);
+  background:var(--dark-section-gradient);
   color:var(--white);
   border-bottom:1px solid rgba(255,255,255,.08);
   position:relative;
@@ -743,7 +752,7 @@ header{
   color:var(--deep);
 }
 .section-title{
-  font-size:38px;font-weight:800;line-height:1.2;
+  font-size:38px;font-weight:600;line-height:1.2;
   text-align:center;margin-bottom:14px;letter-spacing:-.5px;
   color:var(--deep);
 }
@@ -758,7 +767,7 @@ header{
   width:100%;
   height:clamp(220px,50vh,480px);
   overflow:hidden;
-  background:var(--deep);
+  background:var(--dark-section-gradient);
 }
 .fleet-page-hero__img{
   display:block;
@@ -785,7 +794,7 @@ header{
   width:100%;
   height:clamp(220px,50vh,480px);
   overflow:hidden;
-  background:var(--deep);
+  background:var(--dark-section-gradient);
 }
 .about-page-hero__img{
   display:block;
@@ -831,6 +840,7 @@ header{
   max-width:920px;
   color:var(--muted);
   font-size:15px;
+  font-weight:400;
   line-height:1.85;
 }
 .privacy-page__body p{
@@ -842,12 +852,13 @@ header{
 .privacy-page__heading{
   margin:28px 0 12px;
   font-size:15px;
-  font-weight:500;
+  font-weight:400;
   color:var(--deep);
   line-height:1.6;
 }
 .privacy-page__body a{
   color:var(--deep);
+  font-weight:400;
   text-decoration:underline;
   text-underline-offset:2px;
 }
@@ -910,7 +921,7 @@ header{
   width:100%;
   height:clamp(220px,50vh,480px);
   overflow:hidden;
-  background:var(--deep);
+  background:var(--dark-section-gradient);
 }
 .services-page-hero__img{
   display:block;
@@ -963,17 +974,13 @@ header{
   display:block;width:100%;text-align:center;
 }
 .services-page-reviews{padding-top:70px;padding-bottom:90px}
-@media (min-width:721px){
-  .service-page-card:nth-child(10){grid-column:2}
-  .service-page-card:nth-child(11){grid-column:3}
-}
 
 /* CONTACT US PAGE */
 .contact-page-hero{
   width:100%;
   height:clamp(220px,50vh,480px);
   overflow:hidden;
-  background:var(--deep);
+  background:var(--dark-section-gradient);
 }
 .contact-page-hero__img{
   display:block;
@@ -1121,13 +1128,11 @@ header{
   padding-bottom:70px;
 }
 .home-destinations-head{
-  position:relative;
   text-align:center;
   margin-bottom:28px;
-  padding-right:88px;
 }
 .home-destinations-sub{
-  margin:0 auto;
+  margin:0 auto 0;
   text-align:center;
   max-width:560px;
 }
@@ -1139,10 +1144,10 @@ header{
   position:relative;
 }
 .home-destinations-nav{
-  position:absolute;
-  top:-72px;
-  right:0;
-  margin:0;
+  position:static;
+  display:flex;
+  justify-content:center;
+  margin-top:18px;
 }
 .home-step-carousel-viewport{
   overflow:hidden;
@@ -1195,7 +1200,7 @@ header{
   margin:0;
 }
 .home-airports-section{
-  background:var(--deep);
+  background:var(--dark-section-gradient);
   color:#fff;
   padding:90px 0;
   overflow:hidden;
@@ -1581,7 +1586,7 @@ header{
 
 /* PLANNING TRIP */
 .planning{
-  background:var(--deep);
+  background:var(--dark-section-gradient);
   padding:60px 0;text-align:center;
   position:relative;overflow:hidden;
 }
@@ -1798,7 +1803,7 @@ header{
 
 /* TRUSTED */
 .trusted{
-  background:var(--deep);color:#fff;
+  background:var(--dark-section-gradient);color:#fff;
   padding:80px 0;
   width:100%;
 }
@@ -1884,7 +1889,7 @@ header{
 .journey p{color:var(--muted);font-size:14.5px;margin-bottom:24px}
 
 /* TOP AIRPORTS */
-.airports{background:var(--deep);color:#fff;padding:90px 0}
+.airports{background:var(--dark-section-gradient);color:#fff;padding:90px 0}
 .airports .section-title{color:#fff}
 .airports .section-sub{color:rgba(255,255,255,.7)}
 .airports-grid{
@@ -2038,7 +2043,7 @@ details.faq-item .faq-answer{
 
 /* FOOTER — deep black band, grey links, white accents */
 footer{
-  background:var(--deep);color:#fff;
+  background:var(--dark-section-gradient);color:#fff;
   padding:72px 0 40px;
   overflow:hidden;
 }
@@ -2576,21 +2581,11 @@ header.scrolled{
   .why-carousel-nav{margin-top:18px}
   .about-page-title{font-size:32px}
   .about-story-media{order:-1}
-  .service-page-card:nth-child(10),
-  .service-page-card:nth-child(11){grid-column:auto}
   .planning h2,.trusted h2,.journey h2{font-size:26px}
   .fleet-grid,.airports-grid,
   .why-grid,.steps-grid,.trusted-grid,.footer-grid,
   .reviews-grid,.about-features-grid,.about-story-grid,.services-page-grid,.contact-page-form__grid{grid-template-columns:1fr}
   .contact-page-title{font-size:32px}
-  .home-destinations-head{padding-right:0;padding-bottom:52px}
-  .home-destinations-nav{
-    top:auto;
-    bottom:0;
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
-  }
   .home-airports-layout{grid-template-columns:1fr;gap:28px}
   .home-airports-carousel{margin-right:0}
   .home-airport-card{max-width:none;height:280px}

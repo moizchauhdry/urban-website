@@ -41,7 +41,7 @@ function NavArrows({ onPrev, onNext }) {
 function ServicesIntro() {
   return (
     <div className="services-intro">
-      <h2 className="section-title">Our services</h2>
+      <h2 className="section-title">Our Services</h2>
       <p className="section-sub">
         From airport rides to city travel, we&apos;ve got every trip covered with comfort and style.
       </p>

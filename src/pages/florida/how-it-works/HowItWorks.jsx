@@ -22,7 +22,7 @@ export default function HowItWorks() {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="section-title">How it works</h2>
+        <h2 className="section-title">How It Works</h2>
         <p className="section-sub">Book a Ride in 3 simple steps. It&apos;s that easy!</p>
         <div className="steps-grid">
           {STEPS.map((step) => {
