@@ -6,9 +6,9 @@ import {
   HERO_BG_SRCSET,
   HERO_BG_WIDTH,
 } from './heroBg.js'
-import Icon from '../../../../components/common/Icon.jsx'
 import { HERO_FEATURES, HERO_PHONE } from './heroHighlights.js'
 import HeroDeferredBooking from '../../../../components/hero/HeroDeferredBooking.jsx'
+import HeroLiveBadge from '../../../../components/hero/HeroLiveBadge.jsx'
 
 function removeStaticHeroLcp() {
   document.getElementById('static-hero-lcp')?.remove()
@@ -63,9 +63,7 @@ export default function Hero() {
       />
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge">
-            <Icon name="star" size={11} /> Rated #1 car and Limo Service
-          </div>
+          <HeroLiveBadge />
           <h1 className="hero-title">
             <span className="hero-title-line">{"New York"}</span>{' '}
             <span className="hero-title-line">{"Car Service"}</span>

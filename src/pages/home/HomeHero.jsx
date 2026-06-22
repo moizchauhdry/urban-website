@@ -8,6 +8,7 @@ import {
 } from '../connecticut/hero/heroBg.js'
 import { HERO_FEATURES, HERO_PHONE } from '../connecticut/hero/heroHighlights.js'
 import HeroDeferredBooking from '../../components/hero/HeroDeferredBooking.jsx'
+import HeroLiveBadge from '../../components/hero/HeroLiveBadge.jsx'
 
 const DESKTOP_MQ = '(min-width: 721px)'
 
@@ -82,12 +83,7 @@ export default function HomeHero() {
       ) : null}
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge">
-            <span className="hero-badge-star" aria-hidden="true">
-              ★
-            </span>{' '}
-            Rated #1 Car And Limo Service
-          </div>
+          <HeroLiveBadge />
           <h1 className="hero-title">
             <span className="hero-title-line">Black Car Service</span>{' '}
             <span className="hero-title-line hero-title-line--accent">Instant Quote</span>
