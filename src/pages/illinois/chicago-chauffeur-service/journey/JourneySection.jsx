@@ -1,5 +1,5 @@
-import leftCar from '../../../../assets/illinois/chicago-chauffeur-service/journey/left-img.webp'
-import rightCar from '../../../../assets/illinois/chicago-chauffeur-service/journey/right-img.webp'
+import leftCar from '../../../../assets/left_audi.webp'
+import rightCar from '../../../../assets/right_bmw.webp'
 import BookNowLink from '../../../../components/layout/BookNowLink.jsx'
 
 export default function JourneySection() {

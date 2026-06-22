@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Car, MapPin, Star, Users } from 'lucide-react'
+import Icon from '../../../components/common/Icon.jsx'
 import { useMobileLayout } from '../../../hooks/useMobileLayout.js'
 
 const STATS = [
-  { target: '10,000+', label: 'Happy Customers', Icon: Users, statKey: 'customers' },
-  { target: '30+', label: 'Available Cars', Icon: Car, statKey: 'cars' },
-  { target: '10+', label: 'Locations', Icon: MapPin, statKey: 'locations' },
-  { target: '4.5 Star', label: 'Average Rating', Icon: Star, filled: true, statKey: 'rating' },
+  { target: '10,000+', label: 'Happy Customers', icon: 'users', statKey: 'customers' },
+  { target: '30+', label: 'Available Cars', icon: 'car', statKey: 'cars' },
+  { target: '10+', label: 'Locations', icon: 'location-dot', statKey: 'locations' },
+  { target: '4.5 Star', label: 'Average Rating', icon: 'star', filled: true, statKey: 'rating' },
 ]
 
 function parseStat(targetStr) {
@@ -81,25 +81,15 @@ export default function TrustedStats() {
           their Travel Needs
         </p>
         <div className="trusted-grid">
-          {STATS.map((s, i) => {
-            const StatIcon = s.Icon
-            return (
-              <div className="trusted-stat" key={s.target}>
-                <div className="ic">
-                  <StatIcon
-                    size={28}
-                    strokeWidth={1.75}
-                    {...(s.filled
-                      ? { fill: 'currentColor', stroke: 'currentColor' }
-                      : {})}
-                    aria-hidden="true"
-                  />
-                </div>
-                <h3 data-stat={s.statKey}>{displayLines[i]}</h3>
-                <p>{s.label}</p>
+          {STATS.map((s, i) => (
+            <div className="trusted-stat" key={s.target}>
+              <div className="ic">
+                <Icon name={s.icon} size={28} />
               </div>
-            )
-          })}
+              <h3 data-stat={s.statKey}>{displayLines[i]}</h3>
+              <p>{s.label}</p>
+            </div>
+          ))}
         </div>
         <a href="#" className="btn-yellow">
           Get a Free Quote

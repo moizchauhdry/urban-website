@@ -1,3 +1,4 @@
+import BlackStarIcon from '../common/BlackStarIcon.jsx'
 import Icon from '../common/Icon.jsx'
 
 const ICONS = {
@@ -6,7 +7,7 @@ const ICONS = {
   'location-dot': 'location-dot',
   headset: 'headset',
   'id-badge': 'id-badge',
-  'clean-fleet': 'star',
+  'clean-fleet': 'clean-fleet',
 }
 
 export default function WhyCard({ item }) {
@@ -15,7 +16,11 @@ export default function WhyCard({ item }) {
   return (
     <article className="why-card">
       <div className="why-icon">
-        <Icon name={iconName} size={28} />
+        {item.icon === 'clean-fleet' ? (
+          <BlackStarIcon size={24} className="why-star-icon" />
+        ) : (
+          <Icon name={iconName} size={28} />
+        )}
       </div>
       <h4>{item.title}</h4>
       <p>{item.description}</p>

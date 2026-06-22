@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import Icon from '../common/Icon.jsx'
 import { FleetImageSlider } from './FleetImageSlider.jsx'
 
 function FleetCardInner({ item, priorityLoad = true }) {
@@ -20,7 +19,8 @@ function FleetCardInner({ item, priorityLoad = true }) {
         <div className="fleet-specs">
           {item.specs.map((s) => (
             <div className="spec" key={s.text}>
-              <Icon name={s.icon} size={14} /> {s.text}
+              <span className="spec-dot" aria-hidden="true" />
+              {s.text}
             </div>
           ))}
         </div>

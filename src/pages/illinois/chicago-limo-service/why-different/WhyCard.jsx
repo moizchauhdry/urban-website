@@ -1,32 +1,26 @@
-import {
-  Car,
-  Clock,
-  Headset,
-  IdCard,
-  MapPin,
-  Sparkles,
-} from 'lucide-react'
+import BlackStarIcon from '../../../../components/common/BlackStarIcon.jsx'
+import Icon from '../../../../components/common/Icon.jsx'
 
 const ICONS = {
-  car: Car,
-  clock: Clock,
-  'location-dot': MapPin,
-  headset: Headset,
-  'id-badge': IdCard,
-  'clean-fleet': Sparkles,
+  car: 'car',
+  clock: 'clock',
+  'location-dot': 'location-dot',
+  headset: 'headset',
+  'id-badge': 'id-badge',
+  'clean-fleet': 'clean-fleet',
 }
 
 export default function WhyCard({ item }) {
-  const IconComponent = ICONS[item.icon] ?? Car
+  const iconName = ICONS[item.icon] ?? 'car'
 
   return (
     <article className="why-card">
       <div className="why-icon">
-        <IconComponent
-          size={28}
-          strokeWidth={1.75}
-          aria-hidden="true"
-        />
+        {item.icon === 'clean-fleet' ? (
+          <BlackStarIcon size={24} className="why-star-icon" />
+        ) : (
+          <Icon name={iconName} size={28} />
+        )}
       </div>
       <h4>{item.title}</h4>
       <p>{item.description}</p>
