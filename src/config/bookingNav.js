@@ -29,9 +29,26 @@ export function resolveBookingHome(pathname) {
   return '/'
 }
 
-export function getThankYouPath(bookingHome = '/') {
-  if (bookingHome === '/') return '/thank-you'
-  return `${bookingHome}/thank-you`
+/** Digits-only phone for thank-you URL query (matches production format). */
+export function formatThankYouPhone(phone) {
+  return String(phone ?? '').replace(/\D/g, '')
+}
+
+/**
+ * Thank-you URL after hero form submit — always /thank-you/ with email & phone query params.
+ * @param {string} [_bookingHome] Kept for callers; path is always site-wide /thank-you/.
+ * @param {{ email?: string, phone?: string }} [contact]
+ */
+export function getThankYouPath(_bookingHome = '/', contact = {}) {
+  const email = contact.email?.trim()
+  const phone = formatThankYouPhone(contact.phone)
+  const parts = []
+
+  if (email) parts.push(`email=${email}`)
+  if (phone) parts.push(`phone=${phone}`)
+
+  const query = parts.join('&')
+  return query ? `/thank-you/?${query}` : '/thank-you/'
 }
 
 export function getBookNowTarget(pathname) {

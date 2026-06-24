@@ -131,7 +131,9 @@ export default function HeroBookingForm() {
     try {
       await submitHeroBooking(payload)
       const bookingHome = resolveBookingHome(pathname)
-      navigate(getThankYouPath(bookingHome), { state: { returnPath: bookingHome } })
+      navigate(getThankYouPath(bookingHome, { email: payload.email, phone: payload.phone }), {
+        state: { returnPath: bookingHome },
+      })
     } catch (err) {
       console.error('[Hero booking]', err)
       window.alert(
