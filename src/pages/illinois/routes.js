@@ -4,20 +4,8 @@ export const ILLINOIS_HOME = '/illinois-car-service'
 /** @type {{ label: string, path: string }[]} */
 export const ILLINOIS_SUBPAGES = [
   {
-    label: "O'Hare Intl Airport (ORD) Limo Service",
-    path: '/illinois-car-service/ohare-intl-airport-ord-limo-service',
-  },
-  {
-    label: "O'Hare Intl Airport (ORD) Car Service",
-    path: '/illinois-car-service/ohare-intl-airport-ord-car-service',
-  },
-  {
     label: 'Chicago Chauffeur Service',
     path: '/illinois-car-service/chicago-chauffeur-service',
-  },
-  {
-    label: 'Chicago Airport Car Service',
-    path: '/illinois-car-service/chicago-airport-car-service',
   },
   {
     label: 'Chicago Limo Service',

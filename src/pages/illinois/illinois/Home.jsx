@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+
 import Hero from './hero/Hero.jsx'
 import Fleet from './fleet/Fleet.jsx'
 import WhyDifferent from './why-different/WhyDifferent.jsx'
@@ -13,10 +13,7 @@ import AirportsSection from './airports/AirportsSection.jsx'
 import FaqSection from './faqs/FaqSection.jsx'
 
 export default function Home() {
-  useEffect(() => {
-    document.title =
-      'Reliable Illinois Car Service for Airports and Long Distance Travel | Urban Elite Limo'
-  }, [])
+
 
   return (
     <>

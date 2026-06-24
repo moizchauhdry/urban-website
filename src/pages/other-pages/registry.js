@@ -1,11 +1,6 @@
 /** Auto-generated — run node scripts/generate-other-pages.mjs to refresh */
 export const OTHER_PAGES = [
   {
-    "slug": "miami-to-key-west-car-service",
-    "title": "Miami to Key West Car Service",
-    "pageHome": "/miami-to-key-west-car-service"
-  },
-  {
     "slug": "miami-chauffeur-service",
     "title": "Miami Chauffeur Service",
     "pageHome": "/miami-chauffeur-service"
@@ -124,11 +119,6 @@ export const OTHER_PAGES = [
     "slug": "chicago-airport-car-service",
     "title": "Chicago Airport Car Service",
     "pageHome": "/chicago-airport-car-service"
-  },
-  {
-    "slug": "milwaukee-airport-car-service",
-    "title": "Milwaukee Airport Car Service",
-    "pageHome": "/milwaukee-airport-car-service"
   },
   {
     "slug": "milwaukee-airport-limo-service",

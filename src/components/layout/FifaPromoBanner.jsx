@@ -4,7 +4,7 @@ import { FIFA_HOME } from '../../config/routes.js'
 import footballIcon from '../../assets/football.png'
 
 const BANNER_TEXT =
-  'FIFA World Cup 2026 is coming — Book your exclusive stadium transfers in Canada, USA & Mexico'
+  'FIFA World Cup 2026 — Book your exclusive stadium transfers in Canada, USA & Mexico'
 
 function BannerIcon() {
   return (

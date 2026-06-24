@@ -2449,36 +2449,6 @@ header{
 .airport-card.il-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/mco.webp')}
 .airport-card.il-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/tpa.webp')}
 
-/* O'Hare Intl Airport (ORD) Limo Service */
-.service-img.il-ord-limo-s1{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service1.webp')}
-.service-img.il-ord-limo-s2{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service2.webp')}
-.service-img.il-ord-limo-s3{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service3.webp')}
-.service-img.il-ord-limo-s4{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service4.webp')}
-.service-img.il-ord-limo-s5{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service5.webp')}
-.service-img.il-ord-limo-s6{background-image:url('../assets/illinois/ohare-intl-airport-ord-limo-service/services/service6.webp')}
-.content-img.il-ord-limo-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-ord-limo-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-ord-limo-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-ord-limo-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-limo-service/airports/mia.webp')}
-.airport-card.il-ord-limo-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-limo-service/airports/fll.webp')}
-.airport-card.il-ord-limo-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-limo-service/airports/mco.webp')}
-.airport-card.il-ord-limo-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-limo-service/airports/tpa.webp')}
-
-/* O'Hare Intl Airport (ORD) Car Service */
-.service-img.il-ord-car-s1{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service1.webp')}
-.service-img.il-ord-car-s2{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service2.webp')}
-.service-img.il-ord-car-s3{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service3.webp')}
-.service-img.il-ord-car-s4{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service4.webp')}
-.service-img.il-ord-car-s5{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service5.webp')}
-.service-img.il-ord-car-s6{background-image:url('../assets/illinois/ohare-intl-airport-ord-car-service/services/service6.webp')}
-.content-img.il-ord-car-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-ord-car-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-ord-car-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-ord-car-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-car-service/airports/mia.webp')}
-.airport-card.il-ord-car-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-car-service/airports/fll.webp')}
-.airport-card.il-ord-car-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-car-service/airports/mco.webp')}
-.airport-card.il-ord-car-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/ohare-intl-airport-ord-car-service/airports/tpa.webp')}
-
 /* Chicago Chauffeur Service */
 .service-img.il-chi-chauff-s1{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service1.webp')}
 .service-img.il-chi-chauff-s2{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service2.webp')}
@@ -2493,21 +2463,6 @@ header{
 .airport-card.il-chi-chauff-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/fll.webp')}
 .airport-card.il-chi-chauff-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/mco.webp')}
 .airport-card.il-chi-chauff-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/tpa.webp')}
-
-/* Chicago Airport Car Service */
-.service-img.il-chi-airport-s1{background-image:url('../assets/illinois/chicago-airport-car-service/services/service1.webp')}
-.service-img.il-chi-airport-s2{background-image:url('../assets/illinois/chicago-airport-car-service/services/service2.webp')}
-.service-img.il-chi-airport-s3{background-image:url('../assets/illinois/chicago-airport-car-service/services/service3.webp')}
-.service-img.il-chi-airport-s4{background-image:url('../assets/illinois/chicago-airport-car-service/services/service4.webp')}
-.service-img.il-chi-airport-s5{background-image:url('../assets/illinois/chicago-airport-car-service/services/service5.webp')}
-.service-img.il-chi-airport-s6{background-image:url('../assets/illinois/chicago-airport-car-service/services/service6.webp')}
-.content-img.il-chi-airport-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-chi-airport-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-chi-airport-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-chi-airport-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-airport-car-service/airports/mia.webp')}
-.airport-card.il-chi-airport-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-airport-car-service/airports/fll.webp')}
-.airport-card.il-chi-airport-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-airport-car-service/airports/mco.webp')}
-.airport-card.il-chi-airport-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-airport-car-service/airports/tpa.webp')}
 
 /* Chicago Limo Service */
 .service-img.il-chi-limo-s1{background-image:url('../assets/illinois/chicago-limo-service/services/service1.webp')}

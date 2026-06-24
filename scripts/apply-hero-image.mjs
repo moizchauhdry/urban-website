@@ -9,14 +9,12 @@ const EXCLUDED_ASSET_SUFFIXES = [
   'assets/connecticut/hero',
   'assets/florida/hero',
   'assets/newyork/hero',
-  'assets/other-pages/miami-to-key-west-car-service/hero',
 ]
 
 const EXCLUDED_HERO_BG_SUFFIXES = [
   'src/pages/connecticut/hero/heroBg.js',
   'src/pages/newyork/hero/heroBg.js',
   'src/pages/florida/hero/heroBg.js',
-  'src/pages/other-pages/miami-to-key-west-car-service/hero/heroBg.js',
   'src/pages/fifa/hero/heroBg.js',
 ]
 

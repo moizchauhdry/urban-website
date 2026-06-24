@@ -2,7 +2,6 @@
 
 Base URL: `http://localhost:5173`
 
-- **Miami to Key West Car Service** — http://localhost:5173/miami-to-key-west-car-service
 - **Miami Chauffeur Service** — http://localhost:5173/miami-chauffeur-service
 - **Norwalk CT Car Service** — http://localhost:5173/norwalk-ct-car-service
 - **Greenwich CT Car Service** — http://localhost:5173/greenwich-ct-car-service
@@ -27,7 +26,6 @@ Base URL: `http://localhost:5173`
 - **Miami Airport Limo Service** — http://localhost:5173/miami-airport-limo-service
 - **Miami Airport Car Service** — http://localhost:5173/miami-airport-car-service
 - **Chicago Airport Car Service** — http://localhost:5173/chicago-airport-car-service
-- **Milwaukee Airport Car Service** — http://localhost:5173/milwaukee-airport-car-service
 - **Milwaukee Airport Limo Service** — http://localhost:5173/milwaukee-airport-limo-service
 - **BDL Airport Car Service** — http://localhost:5173/bdl-airport-car-service
 - **JFK Airport Car Service** — http://localhost:5173/jfk-airport-car-service

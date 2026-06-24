@@ -1,9 +1,6 @@
 /** Longest paths first so nested Illinois routes resolve correctly. */
 export const BOOKING_HOME_PATHS = [
-  '/illinois-car-service/ohare-intl-airport-ord-limo-service',
-  '/illinois-car-service/ohare-intl-airport-ord-car-service',
   '/illinois-car-service/chicago-chauffeur-service',
-  '/illinois-car-service/chicago-airport-car-service',
   '/illinois-car-service/chicago-limo-service',
   '/fifa',
   '/connecticut-car-service',

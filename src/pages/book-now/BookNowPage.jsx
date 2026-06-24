@@ -1,13 +1,10 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense } from 'react'
 import Icon from '../../components/common/Icon.jsx'
 
 const HeroBookingForm = lazy(() => import('../../components/hero/HeroBookingForm.jsx'))
 
 /** Dedicated booking page — same form as the home hero, standalone layout. */
 export default function BookNowPage() {
-  useEffect(() => {
-    document.title = 'Book Now | Urban Elite Limo'
-  }, [])
 
   return (
     <section className="section book-now-page">

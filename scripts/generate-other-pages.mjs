@@ -16,7 +16,6 @@ const OP_STYLES = path.join(ROOT, 'src/styles/other-pages')
 const FL_AIRPORTS = path.join(ROOT, 'src/assets/florida/airports')
 
 const PAGE_TITLES = [
-  'Miami to Key West Car Service',
   'Miami Chauffeur Service',
   'Norwalk CT Car Service',
   'Greenwich CT Car Service',
@@ -41,7 +40,6 @@ const PAGE_TITLES = [
   'Miami Airport Limo Service',
   'Miami Airport Car Service',
   'Chicago Airport Car Service',
-  'Milwaukee Airport Car Service',
   'Milwaukee Airport Limo Service',
   'BDL Airport Car Service',
   'JFK Airport Car Service',

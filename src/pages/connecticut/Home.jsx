@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+
 import Hero from './hero/Hero.jsx'
 import Fleet from './fleet/Fleet.jsx'
 import WhyDifferent from './why-different/WhyDifferent.jsx'
@@ -14,10 +14,7 @@ import FaqSection from './faqs/FaqSection.jsx'
 
 /** Connecticut car service landing page. */
 export default function Home() {
-  useEffect(() => {
-    document.title =
-      'Reliable Connecticut Car Service for Airports and Long Distance Travel | Urban Elite Limo'
-  }, [])
+
 
   return (
     <>

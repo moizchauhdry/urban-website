@@ -11,10 +11,7 @@ const REGIONAL_PAGES = [
   { pagesDir: 'newyork', title: 'New York Car Service' },
   { pagesDir: 'illinois/illinois', title: 'Illinois Car Service' },
   { pagesDir: 'illinois/chicago-chauffeur-service', title: 'Chicago Chauffeur Service' },
-  { pagesDir: 'illinois/chicago-airport-car-service', title: 'Chicago Airport Car Service' },
   { pagesDir: 'illinois/chicago-limo-service', title: 'Chicago Limo Service' },
-  { pagesDir: 'illinois/ohare-intl-airport-ord-limo-service', title: "O'Hare Intl Airport (ORD) Limo Service" },
-  { pagesDir: 'illinois/ohare-intl-airport-ord-car-service', title: "O'Hare Intl Airport (ORD) Car Service" },
 ]
 
 function jsString(value) {

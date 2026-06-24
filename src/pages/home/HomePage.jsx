@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense } from 'react'
 import HomeHero from './HomeHero.jsx'
 import ViewportLazy from '../../components/common/ViewportLazy.jsx'
 
@@ -6,9 +6,7 @@ const HomeBelowFold = lazy(() => import('./HomeBelowFold.jsx'))
 
 /** Main home page for Urban Elite Limo. */
 export default function HomePage() {
-  useEffect(() => {
-    document.title = 'Premium Car Service | Urban Elite Limo'
-  }, [])
+
 
   return (
     <>

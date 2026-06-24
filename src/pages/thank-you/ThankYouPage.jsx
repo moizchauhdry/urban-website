@@ -13,7 +13,6 @@ export default function ThankYouPage() {
   const returnPath = location.state?.returnPath || resolveBookingHome(location.pathname)
 
   useEffect(() => {
-    document.title = 'Quotation Request Received | Urban Elite Limo'
     window.scrollTo(0, 0)
   }, [])
 

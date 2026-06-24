@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
+
 
 /** Privacy Policy — legal page linked from the site footer. */
 export default function PrivacyPolicyPage() {
-  useEffect(() => {
-    document.title = 'Privacy Policy | Urban Elite Limo'
-  }, [])
+
 
   return (
     <section className="privacy-page section">

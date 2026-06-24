@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+
 import Hero from './hero/Hero.jsx'
 import MatchDayServices from './match-day-services/MatchDayServices.jsx'
 import FifaAirportsSection from './airports/FifaAirportsSection.jsx'
@@ -14,9 +14,6 @@ import DontMissOutSection from './dont-miss-out/DontMissOutSection.jsx'
 
 /** FIFA World Cup 2026 landing page (preview at /fifa — not in main nav). */
 export default function Home() {
-  useEffect(() => {
-    document.title = 'FIFA World Cup 2026 Chauffeur Service | Urban Elite Limo'
-  }, [])
 
   return (
     <>

@@ -23,10 +23,10 @@ export const AIRPORT_NAV_ITEMS = [
   },
   {
     label: "O'Hare International Airport (ORD) Car Service",
-    path: '/illinois-car-service/ohare-intl-airport-ord-car-service',
+    path: '/chicago-airport-car-service',
   },
   {
-    label: 'Milwaukee Mitchell International Airport (MKE) Car Service',
-    path: '/milwaukee-airport-car-service',
+    label: 'Milwaukee Mitchell International Airport (MKE) Limo Service',
+    path: '/milwaukee-airport-limo-service',
   },
 ]

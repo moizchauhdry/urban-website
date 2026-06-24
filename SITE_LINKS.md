@@ -6,11 +6,8 @@ Base URL: `https://staging.urbanelitelimo.com`
 
 - [Home](https://staging.urbanelitelimo.com/)
 - [About Us](https://staging.urbanelitelimo.com/about-us)
-- [About (alias)](https://staging.urbanelitelimo.com/about)
 - [Our Services](https://staging.urbanelitelimo.com/our-services)
-- [Services (alias)](https://staging.urbanelitelimo.com/services)
 - [Contact Us](https://staging.urbanelitelimo.com/contact-us)
-- [Contact (alias)](https://staging.urbanelitelimo.com/contact)
 - [Fleet](https://staging.urbanelitelimo.com/fleet)
 - [Book Now](https://staging.urbanelitelimo.com/book-now)
 - [Privacy Policy](https://staging.urbanelitelimo.com/privacy-policy)
@@ -25,10 +22,7 @@ Base URL: `https://staging.urbanelitelimo.com`
 
 ## Illinois subpages
 
-- [O'Hare Intl Airport (ORD) Limo Service](https://staging.urbanelitelimo.com/illinois-car-service/ohare-intl-airport-ord-limo-service)
-- [O'Hare Intl Airport (ORD) Car Service](https://staging.urbanelitelimo.com/illinois-car-service/ohare-intl-airport-ord-car-service)
 - [Chicago Chauffeur Service](https://staging.urbanelitelimo.com/illinois-car-service/chicago-chauffeur-service)
-- [Chicago Airport Car Service](https://staging.urbanelitelimo.com/illinois-car-service/chicago-airport-car-service)
 - [Chicago Limo Service](https://staging.urbanelitelimo.com/illinois-car-service/chicago-limo-service)
 
 ## FIFA
@@ -37,7 +31,6 @@ Base URL: `https://staging.urbanelitelimo.com`
 
 ## Other landing pages
 
-- [Miami to Key West Car Service](https://staging.urbanelitelimo.com/miami-to-key-west-car-service)
 - [Miami Chauffeur Service](https://staging.urbanelitelimo.com/miami-chauffeur-service)
 - [Norwalk CT Car Service](https://staging.urbanelitelimo.com/norwalk-ct-car-service)
 - [Greenwich CT Car Service](https://staging.urbanelitelimo.com/greenwich-ct-car-service)
@@ -62,7 +55,6 @@ Base URL: `https://staging.urbanelitelimo.com`
 - [Miami Airport Limo Service](https://staging.urbanelitelimo.com/miami-airport-limo-service)
 - [Miami Airport Car Service](https://staging.urbanelitelimo.com/miami-airport-car-service)
 - [Chicago Airport Car Service](https://staging.urbanelitelimo.com/chicago-airport-car-service)
-- [Milwaukee Airport Car Service](https://staging.urbanelitelimo.com/milwaukee-airport-car-service)
 - [Milwaukee Airport Limo Service](https://staging.urbanelitelimo.com/milwaukee-airport-limo-service)
 - [BDL Airport Car Service](https://staging.urbanelitelimo.com/bdl-airport-car-service)
 - [JFK Airport Car Service](https://staging.urbanelitelimo.com/jfk-airport-car-service)

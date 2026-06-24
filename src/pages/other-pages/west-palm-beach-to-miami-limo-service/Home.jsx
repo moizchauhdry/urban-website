@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+
 import Hero from './hero/Hero.jsx'
 import Fleet from './fleet/Fleet.jsx'
 import WhyDifferent from './why-different/WhyDifferent.jsx'
@@ -14,9 +14,6 @@ import FaqSection from './faqs/FaqSection.jsx'
 
 /** West palm beach to Miami Limo Service landing page. */
 export default function Home() {
-  useEffect(() => {
-    document.title = "West palm beach to Miami Limo Service | Urban Elite Limo"
-  }, [])
 
   return (
     <>
