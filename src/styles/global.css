@@ -550,6 +550,19 @@ header{
   z-index:0;
   pointer-events:none;
 }
+/* Florida hero — image full on the right, fades to dark on the left from center */
+.hero--florida{
+  background:var(--deep);
+}
+.hero--florida .hero-bg-img{
+  object-position:right center;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.2) 42%,#000 58%,#000 100%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.2) 42%,#000 58%,#000 100%);
+}
+.hero--florida .container{
+  position:relative;
+  z-index:1;
+}
 .hero .container{
   display:grid;grid-template-columns:1.1fr 1fr;gap:60px;
   align-items:start;
@@ -1940,9 +1953,9 @@ header{
 .content-img.i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
 .content-img.i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
 
-.content-img.fl-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.fl-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.fl-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
+.content-img.fl-i1{background-image:url('../assets/florida/content-blocks/car-service1.webp')}
+.content-img.fl-i2{background-image:url('../assets/florida/content-blocks/car-service2.webp')}
+.content-img.fl-i3{background-image:url('../assets/florida/content-blocks/car-service3.webp')}
 
 .content-img.ny-i1{background-image:url('../assets/newyork/content-blocks/car-service1.webp')}
 .content-img.ny-i2{background-image:url('../assets/newyork/content-blocks/car-service2.webp')}
