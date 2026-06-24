@@ -4,7 +4,7 @@ import { useCssVars } from '../../hooks/useCssVars.js'
 
 const GAP_PX = 20
 
-function useStepVisibleCount(variant = 'destinations', itemCount = 4) {
+function useStepVisibleCount(variant = 'destinations') {
   const [w, setW] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth : 1280,
   )
@@ -16,9 +16,9 @@ function useStepVisibleCount(variant = 'destinations', itemCount = 4) {
   }, [])
 
   if (variant !== 'destinations') {
-    if (w <= 720) return itemCount
-    if (w <= 1024) return Math.min(itemCount, 4)
-    return 4
+    if (w <= 720) return 1
+    if (w <= 1024) return 2
+    return 3
   }
 
   if (w <= 720) return 1
@@ -45,7 +45,7 @@ export default function HomeStepCarousel({
   loop = false,
 }) {
   const n = items.length
-  const visible = useStepVisibleCount(variant, n)
+  const visible = useStepVisibleCount(variant)
   const isLoop = loop && n > 1
   const displayItems = useMemo(
     () => (isLoop ? [...items, ...items] : items),
