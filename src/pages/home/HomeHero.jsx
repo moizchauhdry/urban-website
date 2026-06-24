@@ -86,10 +86,10 @@ export default function HomeHero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
+            <span className="hero-title-line">Premium White Glove</span>{' '}
             <span className="hero-title-line">
-              Premium <span className="hero-title-line--highlight">White Glove</span>
-            </span>{' '}
-            <span className="hero-title-line">Chauffeur Service</span>
+              <span className="hero-title-line--highlight">Chauffeur Service</span>
+            </span>
             <span className="hero-title-line hero-title-line--accent">in USA</span>
           </h1>
           <HeroMobileBenefits />
