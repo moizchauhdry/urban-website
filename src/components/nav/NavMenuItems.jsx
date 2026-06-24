@@ -7,6 +7,10 @@ import {
   OUR_SERVICES,
 } from '../../config/routes.js'
 import {
+  AirportsDesktopSubmenu,
+  AirportsMobileSubmenu,
+} from './AirportsSubmenu.jsx'
+import {
   ServiceAreasDesktopSubmenu,
   ServiceAreasMobileSubmenu,
 } from './ServiceAreasSubmenu.jsx'
@@ -40,6 +44,13 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
             <span className="nav-chevron nav-chevron--down" aria-hidden="true" />
           </a>
           <ServiceAreasDesktopSubmenu />
+        </div>
+        <div className="has-sub">
+          <a href="#" className="has-sub__trigger">
+            Airports
+            <span className="nav-chevron nav-chevron--down" aria-hidden="true" />
+          </a>
+          <AirportsDesktopSubmenu />
         </div>
         <NavLink
           to={OUR_SERVICES}
@@ -82,6 +93,8 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
       </NavLink>
 
       <ServiceAreasMobileSubmenu onNavigate={close} />
+
+      <AirportsMobileSubmenu onNavigate={close} />
 
       <NavLink
         className={({ isActive }) =>

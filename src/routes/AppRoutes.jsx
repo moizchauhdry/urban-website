@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
-import { Navigate, Routes, Route, useParams } from 'react-router-dom'
+import { Navigate, Routes, Route, useLocation, useParams } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
+import { stripThankYouSuffix } from '../config/bookingNav.js'
 
 const AboutPage = lazy(() => import('../pages/AboutPage.jsx'))
 const ServicesPage = lazy(() => import('../pages/ServicesPage.jsx'))
@@ -57,6 +58,33 @@ function OtherPageLegacyRedirect() {
   const { slug } = useParams()
   return <Navigate to={slug ? `/${slug}` : '/'} replace />
 }
+
+/** Legacy regional thank-you URLs → single site-wide /thank-you. */
+function ThankYouLegacyRedirect() {
+  const location = useLocation()
+  const returnPath = stripThankYouSuffix(location.pathname)
+  return (
+    <Navigate
+      to={`/thank-you${location.search}`}
+      replace
+      state={{ returnPath }}
+    />
+  )
+}
+
+const THANK_YOU_LEGACY_PATHS = [
+  '/book-now/thank-you',
+  '/connecticut-car-service/thank-you',
+  '/florida-car-service/thank-you',
+  '/new-york-car-service/thank-you',
+  '/illinois-car-service/thank-you',
+  '/illinois-car-service/ohare-intl-airport-ord-limo-service/thank-you',
+  '/illinois-car-service/ohare-intl-airport-ord-car-service/thank-you',
+  '/illinois-car-service/chicago-chauffeur-service/thank-you',
+  '/illinois-car-service/chicago-airport-car-service/thank-you',
+  '/illinois-car-service/chicago-limo-service/thank-you',
+  '/fifa/thank-you',
+]
 
 export default function AppRoutes() {
   return (
@@ -136,14 +164,6 @@ export default function AppRoutes() {
           }
         />
         <Route
-          path="/book-now/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
-            </Suspense>
-          }
-        />
-        <Route
           path="/thank-you"
           element={
             <Suspense fallback={null}>
@@ -152,6 +172,10 @@ export default function AppRoutes() {
           }
         />
       </Route>
+
+      {THANK_YOU_LEGACY_PATHS.map((path) => (
+        <Route key={path} path={path} element={<ThankYouLegacyRedirect />} />
+      ))}
 
       <Route
         element={
@@ -165,14 +189,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ConnecticutHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/connecticut-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />
@@ -192,14 +208,6 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
-        <Route
-          path="/florida-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
-            </Suspense>
-          }
-        />
       </Route>
       <Route
         element={
@@ -213,14 +221,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <NewYorkHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/new-york-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />
@@ -240,14 +240,6 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
-        <Route
-          path="/illinois-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
-            </Suspense>
-          }
-        />
       </Route>
       <Route
         element={
@@ -261,14 +253,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <OhareOrdLimoHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/illinois-car-service/ohare-intl-airport-ord-limo-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />
@@ -288,14 +272,6 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
-        <Route
-          path="/illinois-car-service/ohare-intl-airport-ord-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
-            </Suspense>
-          }
-        />
       </Route>
       <Route
         element={
@@ -309,14 +285,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ChicagoChauffeurHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/illinois-car-service/chicago-chauffeur-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />
@@ -336,14 +304,6 @@ export default function AppRoutes() {
             </Suspense>
           }
         />
-        <Route
-          path="/illinois-car-service/chicago-airport-car-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
-            </Suspense>
-          }
-        />
       </Route>
       <Route
         element={
@@ -357,14 +317,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <ChicagoLimoHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/illinois-car-service/chicago-limo-service/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />
@@ -383,14 +335,6 @@ export default function AppRoutes() {
           element={
             <Suspense fallback={null}>
               <FifaHome />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/fifa/thank-you"
-          element={
-            <Suspense fallback={null}>
-              <ThankYouPage />
             </Suspense>
           }
         />

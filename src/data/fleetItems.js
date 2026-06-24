@@ -1,5 +1,6 @@
 import firstClassSedan from '../assets/fleet/fleet/first-class-sedan.svg'
 import luxurySedan from '../assets/fleet/fleet/luxury-sedan.svg'
+import economySedan from '../assets/fleet/fleet/economy-sedan.svg'
 import fullSizeSuv from '../assets/fleet/fleet/full-size-suv.svg'
 import miniSuv from '../assets/fleet/fleet/mini_suv.webp'
 import limo from '../assets/fleet/fleet/limo-final.svg'
@@ -12,6 +13,7 @@ import motorCoach from '../assets/fleet/fleet/moto-coach.svg'
 /**
  * @type {Array<{
  *   id: string
+ *   category: 'sedan' | 'suv' | 'sprinter' | 'limousine' | 'buses'
  *   imgClass: string
  *   title: string
  *   description: string
@@ -22,21 +24,23 @@ import motorCoach from '../assets/fleet/fleet/moto-coach.svg'
  */
 export const fleetItems = [
   {
-    id: 'first-class',
-    imgClass: 'first',
-    title: 'First Class Sedan',
+    id: 'economy',
+    category: 'sedan',
+    imgClass: 'economy',
+    title: 'Sedan',
     description:
-      'Perfect for executives, business travelers, and couples seeking a smooth, private ride.',
-    images: [{ src: firstClassSedan, alt: 'First Class Sedan' }],
+      'A budget-friendly, comfortable option for solo travelers and couples.',
+    images: [{ src: economySedan, alt: 'Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '3 Luggage' },
-      { icon: 'chair', text: 'Leather Interior' },
       { icon: 'snowflake', text: 'Climate Control' },
+      { icon: 'couch', text: 'Comfortable Seating' },
     ],
   },
   {
     id: 'luxury',
+    category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
     description:
@@ -50,7 +54,23 @@ export const fleetItems = [
     ],
   },
   {
+    id: 'first-class',
+    category: 'sedan',
+    imgClass: 'first',
+    title: 'First Class Sedan',
+    description:
+      'Perfect for executives, business travelers, and couples seeking a smooth, private ride.',
+    images: [{ src: firstClassSedan, alt: 'First Class Sedan' }],
+    specs: [
+      { icon: 'user', text: '3 Passengers' },
+      { icon: 'suitcase', text: '3 Luggage' },
+      { icon: 'chair', text: 'Leather Interior' },
+      { icon: 'snowflake', text: 'Climate Control' },
+    ],
+  },
+  {
     id: 'mini-suv',
+    category: 'suv',
     imgClass: 'mini-suv',
     title: 'Mini SUV',
     badge: 'Popular',
@@ -66,6 +86,7 @@ export const fleetItems = [
   },
   {
     id: 'full-size-suv',
+    category: 'suv',
     imgClass: 'suv',
     title: 'Full Size SUV',
     badge: 'Popular',
@@ -80,6 +101,7 @@ export const fleetItems = [
   },
   {
     id: 'limousine',
+    category: 'limousine',
     imgClass: 'limo',
     title: 'Limousine',
     description:
@@ -94,6 +116,7 @@ export const fleetItems = [
   },
   {
     id: 'sprinter',
+    category: 'sprinter',
     imgClass: 'sprinter',
     title: 'Sprinter Van',
     description:
@@ -108,6 +131,7 @@ export const fleetItems = [
   },
   {
     id: 'party-bus',
+    category: 'buses',
     imgClass: 'party-bus',
     title: 'Party Bus',
     description:
@@ -122,6 +146,7 @@ export const fleetItems = [
   },
   {
     id: 'motor-coach',
+    category: 'buses',
     imgClass: 'motor-coach',
     title: 'Motor Coach',
     description:
@@ -140,6 +165,7 @@ export const fleetItems = [
 export const fleetPageItems = [
   {
     id: 'full-size-suv',
+    category: 'suv',
     imgClass: 'suv',
     title: 'Full Size SUV',
     badge: 'Popular',
@@ -153,7 +179,23 @@ export const fleetPageItems = [
     ],
   },
   {
+    id: 'economy',
+    category: 'sedan',
+    imgClass: 'economy',
+    title: 'Sedan',
+    description:
+      'A budget-friendly, comfortable option for solo travelers and couples.',
+    images: [{ src: economySedan, alt: 'Sedan' }],
+    specs: [
+      { icon: 'user', text: '3 Passengers' },
+      { icon: 'suitcase', text: '3 Luggage' },
+      { icon: 'snowflake', text: 'Climate Control' },
+      { icon: 'couch', text: 'Comfortable Seating' },
+    ],
+  },
+  {
     id: 'luxury',
+    category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
     description:
@@ -168,6 +210,7 @@ export const fleetPageItems = [
   },
   {
     id: 'first-class',
+    category: 'sedan',
     imgClass: 'first',
     title: 'First Class Sedan',
     description:
@@ -182,6 +225,7 @@ export const fleetPageItems = [
   },
   {
     id: 'sprinter',
+    category: 'sprinter',
     imgClass: 'sprinter',
     title: 'Sprinter Van',
     description:
@@ -196,6 +240,7 @@ export const fleetPageItems = [
   },
   {
     id: 'mini-suv',
+    category: 'suv',
     imgClass: 'mini-suv',
     title: 'Mini SUV',
     badge: 'Popular',
@@ -211,6 +256,7 @@ export const fleetPageItems = [
   },
   {
     id: 'motor-coach',
+    category: 'buses',
     imgClass: 'motor-coach',
     title: 'Motor Coach',
     description:
@@ -225,6 +271,7 @@ export const fleetPageItems = [
   },
   {
     id: 'party-bus',
+    category: 'buses',
     imgClass: 'party-bus',
     title: 'Party Bus',
     description:
@@ -239,6 +286,7 @@ export const fleetPageItems = [
   },
   {
     id: 'limousine',
+    category: 'limousine',
     imgClass: 'limo',
     title: 'Limousine',
     description:

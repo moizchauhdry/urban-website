@@ -2,6 +2,8 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { FleetCard } from './FleetCard.jsx'
 import { FleetCarouselDots } from './FleetCarouselDots.jsx'
+import FleetCategoryTabs from '../fleet/FleetCategoryTabs.jsx'
+import { filterFleetByCategory } from '../../constants/fleetCategories.js'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
 const GAP_PX = 10
@@ -358,8 +360,24 @@ function FleetCarouselWindow({ items, visible }) {
   )
 }
 
-export default function FleetCarousel({ items }) {
+export default function FleetCarousel({ items, showCategoryTabs = true }) {
+  const [category, setCategory] = useState('sedan')
+  const filteredItems = useMemo(
+    () => (showCategoryTabs ? filterFleetByCategory(items, category) : items),
+    [items, category, showCategoryTabs],
+  )
   const perView = useFleetPerView()
-  if (perView === 1) return <FleetCarouselSingle items={items} />
-  return <FleetCarouselWindow items={items} visible={perView} />
+
+  return (
+    <>
+      {showCategoryTabs ? (
+        <FleetCategoryTabs active={category} onChange={setCategory} />
+      ) : null}
+      {perView === 1 ? (
+        <FleetCarouselSingle key={category} items={filteredItems} />
+      ) : (
+        <FleetCarouselWindow key={category} items={filteredItems} visible={perView} />
+      )}
+    </>
+  )
 }

@@ -48,7 +48,7 @@ export function getThankYouPath(_bookingHome = '/', contact = {}) {
   if (phone) parts.push(`phone=${phone}`)
 
   const query = parts.join('&')
-  return query ? `/thank-you/?${query}` : '/thank-you/'
+  return query ? `/thank-you?${query}` : '/thank-you'
 }
 
 export function getBookNowTarget(pathname) {

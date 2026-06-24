@@ -127,7 +127,7 @@ export default function Hero() {
 
         <div className="fifa-hero__booking">
           <div className="fifa-hero__early-bird">
-            <p className="fifa-hero__early-bird-title">20% OFF FIFA Early Bird</p>
+            <p className="fifa-hero__early-bird-title">10% OFF FIFA Early Bird</p>
             <p className="fifa-hero__early-bird-desc">Book In The Next 30 Days &amp; Save On All Match-Day Rides</p>
           </div>
           <HeroDeferredBooking />
