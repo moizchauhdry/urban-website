@@ -1,9 +1,12 @@
+import { useMobileLayout } from '../../hooks/useMobileLayout.js'
 import AirportCard from './AirportCard.jsx'
 import HomeStepCarousel from '../../components/common/HomeStepCarousel.jsx'
 import { HOME_AIRPORT_ITEMS } from './airportItems.js'
 
 /** Top airports — split layout; cards step left every 1s after a 1s pause. */
 export default function TopAirportsSection() {
+  const isMobile = useMobileLayout()
+
   return (
     <section className="home-airports-section">
       <div className="container home-airports-layout">
@@ -20,7 +23,7 @@ export default function TopAirportsSection() {
           className="home-airports-carousel"
           viewportClassName="home-airports-carousel-viewport"
           variant="airports"
-          fixedCardWidth={200}
+          fixedCardWidth={isMobile ? undefined : 200}
           loop
           items={HOME_AIRPORT_ITEMS}
           renderItem={(item) => <AirportCard code={item.code} image={item.image} />}

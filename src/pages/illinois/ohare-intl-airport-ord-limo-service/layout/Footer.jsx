@@ -10,14 +10,14 @@ import { BOOK_NOW, ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_H
 const OHARE_ORD_LIMO_HOME = '/illinois-car-service/ohare-intl-airport-ord-limo-service'
 
 export default function Footer() {
-  const onHomeLogoClick = useHomeLogoClick(OHARE_ORD_LIMO_HOME)
+  const onHomeLogoClick = useHomeLogoClick()
 
   return (
     <footer>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to={OHARE_ORD_LIMO_HOME} className="logo footer-logo" onClick={onHomeLogoClick}>
+            <Link to="/" className="logo footer-logo" onClick={onHomeLogoClick}>
               <FooterBrandLogo />
               </Link>
             <div className="footer-contact">

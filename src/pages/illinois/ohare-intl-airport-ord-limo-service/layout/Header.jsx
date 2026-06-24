@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../../components/layout/HeaderBookNow.jsx'
+import HeaderNavPhone from '../../../../components/layout/HeaderNavPhone.jsx'
 import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../../hooks/useMobileScrollLock.js'
 import MobileMenuPanel, { PANEL_ID } from './MobileMenuPanel.jsx'
@@ -16,7 +17,7 @@ const OHARE_ORD_LIMO_HOME = '/illinois-car-service/ohare-intl-airport-ord-limo-s
  * is open the bar is fixed at the top and scroll is locked behind the overlay.
  */
 export default function Header() {
-  const onHomeLogoClick = useHomeLogoClick(OHARE_ORD_LIMO_HOME)
+  const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -50,10 +51,11 @@ export default function Header() {
       className={mobileMenuOpen ? 'header--menu-open' : ''}
     >
       <div className="container nav">
-        <Link to={OHARE_ORD_LIMO_HOME} className="logo" onClick={onHomeLogoClick}>
+        <Link to="/" className="logo" onClick={onHomeLogoClick}>
           <HeaderBrandLogo />
           </Link>
         <Navbar />
+        <HeaderNavPhone />
         <HeaderBookNow homePath={OHARE_ORD_LIMO_HOME} />
         <button
           type="button"

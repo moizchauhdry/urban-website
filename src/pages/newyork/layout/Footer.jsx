@@ -10,14 +10,14 @@ import { BOOK_NOW, ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_H
 const NEWYORK_HOME = '/new-york-car-service'
 
 export default function Footer() {
-  const onHomeLogoClick = useHomeLogoClick(NEWYORK_HOME)
+  const onHomeLogoClick = useHomeLogoClick()
 
   return (
     <footer>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to={NEWYORK_HOME} className="logo footer-logo" onClick={onHomeLogoClick}>
+            <Link to="/" className="logo footer-logo" onClick={onHomeLogoClick}>
               <FooterBrandLogo />
               </Link>
             <div className="footer-contact">

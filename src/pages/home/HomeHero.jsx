@@ -9,6 +9,7 @@ import {
 import { HERO_FEATURES, HERO_PHONE } from '../connecticut/hero/heroHighlights.js'
 import HeroDeferredBooking from '../../components/hero/HeroDeferredBooking.jsx'
 import HeroLiveBadge from '../../components/hero/HeroLiveBadge.jsx'
+import HeroMobileBenefits from '../../components/hero/HeroMobileBenefits.jsx'
 
 const DESKTOP_MQ = '(min-width: 721px)'
 
@@ -86,11 +87,12 @@ export default function HomeHero() {
           <HeroLiveBadge />
           <h1 className="hero-title">
             <span className="hero-title-line">
-              Premium White Glove{' '}
-              <span className="hero-title-line--highlight">Chauffeur Service</span>
+              Premium <span className="hero-title-line--highlight">White Glove</span>
             </span>{' '}
+            <span className="hero-title-line">Chauffeur Service</span>
             <span className="hero-title-line hero-title-line--accent">in USA</span>
           </h1>
+          <HeroMobileBenefits />
           <p className="hero-desc">
           Urban Elite Limo delivers premium white-glove chauffeur services across the USA.
 Experience luxury, comfort, and professionalism in every ride.

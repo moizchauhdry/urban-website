@@ -4,7 +4,7 @@ import { useCssVars } from '../../hooks/useCssVars.js'
 
 const GAP_PX = 20
 
-function useStepVisibleCount(destinations = true) {
+function useStepVisibleCount(variant = 'destinations', itemCount = 4) {
   const [w, setW] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth : 1280,
   )
@@ -15,10 +15,10 @@ function useStepVisibleCount(destinations = true) {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  if (!destinations) {
-    if (w <= 720) return 1
-    if (w <= 1024) return 2
-    return 3
+  if (variant !== 'destinations') {
+    if (w <= 720) return itemCount
+    if (w <= 1024) return Math.min(itemCount, 4)
+    return 4
   }
 
   if (w <= 720) return 1
@@ -44,8 +44,8 @@ export default function HomeStepCarousel({
   fixedCardWidth,
   loop = false,
 }) {
-  const visible = useStepVisibleCount(variant === 'destinations')
   const n = items.length
+  const visible = useStepVisibleCount(variant, n)
   const isLoop = loop && n > 1
   const displayItems = useMemo(
     () => (isLoop ? [...items, ...items] : items),
@@ -160,7 +160,8 @@ export default function HomeStepCarousel({
   }, [isLoop, maxStart, n, snapAfter, start])
 
   useEffect(() => {
-    const canAutoplay = isLoop ? n >= 2 : maxStart >= 1
+    const allVisible = visible >= n
+    const canAutoplay = !allVisible && (isLoop ? n >= 2 : maxStart >= 1)
     if (!canAutoplay) return undefined
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -179,7 +180,7 @@ export default function HomeStepCarousel({
       window.clearTimeout(timeoutId)
       if (intervalId) window.clearInterval(intervalId)
     }
-  }, [goNext, isLoop, maxStart, n, startDelayMs, stepIntervalMs])
+  }, [goNext, isLoop, maxStart, n, startDelayMs, stepIntervalMs, visible])
 
   const trackClass = noTransition
     ? 'home-step-carousel-track home-step-carousel-track--offset is-snapping'

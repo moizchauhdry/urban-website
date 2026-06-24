@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../../components/layout/HeaderBookNow.jsx'
+import HeaderNavPhone from '../../../../components/layout/HeaderNavPhone.jsx'
 import { useHomeLogoClick } from '../../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../../hooks/useMobileScrollLock.js'
 import Navbar from './Navbar.jsx'
@@ -17,7 +18,7 @@ const MOBILE_MQ = '(max-width:720px)'
  * is open the bar is fixed at the top and scroll is locked behind the overlay.
  */
 export default function Header({ logoPath = '/' }) {
-  const onHomeLogoClick = useHomeLogoClick(logoPath)
+  const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -51,10 +52,11 @@ export default function Header({ logoPath = '/' }) {
       className={mobileMenuOpen ? 'header--menu-open' : ''}
     >
       <div className="container nav">
-        <Link to={logoPath} className="logo" onClick={onHomeLogoClick}>
+        <Link to="/" className="logo" onClick={onHomeLogoClick}>
           <HeaderBrandLogo />
         </Link>
         <Navbar />
+        <HeaderNavPhone />
         <HeaderBookNow homePath={logoPath} />
         <button
           type="button"

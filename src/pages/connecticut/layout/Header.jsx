@@ -2,11 +2,11 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../components/layout/HeaderBookNow.jsx'
+import HeaderNavPhone from '../../../components/layout/HeaderNavPhone.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
 import FifaPromoBanner from '../../../components/layout/FifaPromoBanner.jsx'
 import Navbar from './Navbar.jsx'
-import { HERO_PHONE } from '../hero/heroHighlights.js'
 
 const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
 const PANEL_ID = 'site-mobile-menu'
@@ -18,7 +18,7 @@ const MOBILE_MQ = '(max-width:720px)'
  * is open the bar is fixed at the top and scroll is locked behind the overlay.
  */
 export default function Header({ logoPath = '/' }) {
-  const onHomeLogoClick = useHomeLogoClick(logoPath)
+  const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -49,25 +49,14 @@ export default function Header({ logoPath = '/' }) {
     <div className={`site-top-chrome${mobileMenuOpen ? ' site-top-chrome--menu-open' : ''}`}>
     <header
       ref={headerAnchorRef}
-      className={`header--connecticut${mobileMenuOpen ? ' header--menu-open' : ''}`}
+      className={mobileMenuOpen ? 'header--menu-open' : ''}
     >
       <div className="container nav">
-        <Link to={logoPath} className="logo" onClick={onHomeLogoClick}>
+        <Link to="/" className="logo" onClick={onHomeLogoClick}>
           <HeaderBrandLogo />
         </Link>
         <Navbar />
-        <a href={HERO_PHONE.href} className="nav-phone nav-phone--connecticut">
-          <img
-            src={HERO_PHONE.icon}
-            alt=""
-            className="nav-phone-icon"
-            width={16}
-            height={16}
-            decoding="async"
-            draggable={false}
-          />
-          <span className="nav-phone-label">{HERO_PHONE.label}</span>
-        </a>
+        <HeaderNavPhone />
         <HeaderBookNow homePath={logoPath} />
         <button
           type="button"

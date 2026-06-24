@@ -8,6 +8,7 @@ import {
 } from './heroBg.js'
 import { HERO_FEATURES, HERO_PHONE } from './heroHighlights.js'
 import HeroDeferredBooking from '../../../../components/hero/HeroDeferredBooking.jsx'
+import HeroMobileBenefits from '../../../../components/hero/HeroMobileBenefits.jsx'
 import HeroLiveBadge from '../../../../components/hero/HeroLiveBadge.jsx'
 
 function removeStaticHeroLcp() {
@@ -68,6 +69,7 @@ export default function Hero() {
             <span className="hero-title-line hero-title-line--highlight">{"West palm beach to Miami"}</span>{' '}
             <span className="hero-title-line">{"Limo Service"}</span>
           </h1>
+          <HeroMobileBenefits />
           <p className="hero-desc">
             Travel in comfort with {"West palm beach to Miami Limo Service"} designed for people who want a smooth and stress free
             experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,

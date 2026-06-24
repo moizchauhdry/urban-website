@@ -8,14 +8,14 @@ import { BOOK_NOW, ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_H
 } from '../../../config/routes.js';
 
 export default function Footer() {
-  const onHomeLogoClick = useHomeLogoClick(FLORIDA_HOME)
+  const onHomeLogoClick = useHomeLogoClick()
 
   return (
     <footer>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to={FLORIDA_HOME} className="logo footer-logo" onClick={onHomeLogoClick}>
+            <Link to="/" className="logo footer-logo" onClick={onHomeLogoClick}>
               <FooterBrandLogo />
               </Link>
             <div className="footer-contact">

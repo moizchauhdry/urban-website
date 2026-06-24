@@ -95,7 +95,7 @@ html{
 body{
   font-family:inherit;color:var(--text);line-height:1.6;background:var(--white);
   -webkit-font-smoothing:antialiased;
-  /* overflow-x:hidden; */
+  overflow-x:hidden;
 }
 button,input,select,textarea{
   font-family:inherit;
@@ -394,28 +394,33 @@ header{
   .mobile-menu-panel{ display:block }
   .nav{ position:relative; z-index:102 }
   header .btn-book{display:none}
-  .header--connecticut .nav-phone--connecticut{
+  .nav-phone{
     display:inline-flex;
     margin-left:auto;
     margin-right:8px;
+    max-width:calc(100% - 180px);
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
-  .hero--connecticut .hero-phone{display:none}
-  .hero--connecticut .hero-content{text-align:center;margin-bottom:24px}
-  .hero--connecticut .hero-title{margin-left:auto;margin-right:auto}
-  .hero--connecticut .hero-mobile-benefits{
+  .hero:not(.fifa-hero) .hero-phone{display:none}
+  .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
+  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto}
+  .hero:not(.fifa-hero) .hero-mobile-benefits{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px 16px;
     margin:16px 0 0;
     width:100%;
     max-width:100%;
+    min-width:0;
   }
-  .hero--connecticut .hero-mobile-benefits li{
+  .hero:not(.fifa-hero) .hero-mobile-benefits li{
     font-size:12px;
     font-weight:500;
     color:rgba(255,255,255,.95);
     line-height:1.4;
     text-align:left;
+    min-width:0;
   }
   .mobile-menu-backdrop{
     position:fixed;inset:0;top:var(--mobile-menu-top,var(--mobile-header-h,72px));
@@ -582,11 +587,11 @@ header{
   color:var(--deep);
   transform:translateY(-2px);
 }
-.nav-phone--connecticut{
+.nav-phone{
   display:none;
   align-items:center;
   gap:6px;
-  background:#c0d725;
+  background:#F2EC5F;
   color:var(--deep);
   font-size:12px;
   font-weight:700;
@@ -596,8 +601,8 @@ header{
   flex-shrink:0;
   transition:background .2s,transform .2s;
 }
-.nav-phone--connecticut:hover{background:#b0c621;color:var(--deep)}
-.nav-phone--connecticut .nav-phone-icon{
+.nav-phone:hover{background:#e6dc4f;color:var(--deep)}
+.nav-phone .nav-phone-icon{
   width:16px;height:16px;flex-shrink:0;display:block;
   filter:brightness(0);
 }
@@ -642,7 +647,8 @@ header{
   filter:brightness(0) invert(1);
 }
 .hero-mobile-benefits{display:none;list-style:none;margin:0;padding:0}
-.hero-mobile-benefits li{display:flex;align-items:flex-start;gap:10px}
+.hero-mobile-benefits li{display:flex;align-items:flex-start;gap:10px;min-width:0}
+.hero-mobile-benefits li span{min-width:0;overflow-wrap:break-word}
 .hero-mobile-benefits__tick{
   flex-shrink:0;margin-top:2px;color:#f2ec5f;
 }
@@ -1045,8 +1051,12 @@ header{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
+  align-items:stretch;
 }
 .service-page-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
   background:#fff;
   border-radius:14px;
   overflow:hidden;
@@ -1061,19 +1071,25 @@ header{
 .service-page-img{
   display:block;
   width:100%;
-  height:220px;
+  height:200px;
+  flex-shrink:0;
   object-fit:cover;
   background:#222;
 }
-.service-page-body{padding:24px}
+.service-page-body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  padding:22px;
+}
 .service-page-body h3{
-  font-size:var(--section-subheading-size);font-weight:600;margin-bottom:12px;
+  font-size:var(--section-subheading-size);font-weight:600;margin-bottom:10px;color:#000;
 }
 .service-page-body p{
-  font-size:var(--section-body-size);color:var(--muted);line-height:1.65;margin-bottom:20px;min-height:66px;
+  font-size:var(--section-body-size);color:var(--muted);line-height:1.6;margin-bottom:18px;flex:1;
 }
 .service-page-cta{
-  display:block;width:100%;text-align:center;
+  display:block;width:100%;text-align:center;margin-top:auto;
 }
 .services-page-reviews{padding-top:70px;padding-bottom:90px}
 
@@ -1850,12 +1866,22 @@ header{
 }
 .services-carousel-page{
   gap:20px;
+  align-items:stretch;
+}
+.services-carousel-shell .reviews-carousel-track--window{
+  align-items:stretch;
+}
+.services-carousel-window-cell{
+  align-items:stretch;
 }
 .services-carousel-page .service-card,
 .services-carousel-window-cell .service-card{
   flex:1 1 0;min-width:0;width:100%;
 }
 .service-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
   background:#fff;border-radius:12px;overflow:hidden;
   border:1px solid #eee;transition:transform .25s,box-shadow .25s;
 }
@@ -1890,9 +1916,14 @@ header{
 .service-img.ny-s4{background-image:url('../assets/newyork/services/service4.webp')}
 .service-img.ny-s5{background-image:url('../assets/newyork/services/service5.webp')}
 .service-img.ny-s6{background-image:url('../assets/newyork/services/service6.webp')}
-.service-body{padding:22px}
-.service-body h3{font-size:var(--section-subheading-size);font-weight:600;margin-bottom:10px}
-.service-body p{font-size:var(--section-body-size);color:var(--muted);line-height:1.6}
+.service-body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  padding:22px;
+}
+.service-body h3{font-size:var(--section-subheading-size);font-weight:600;margin-bottom:10px;color:#000}
+.service-body p{font-size:var(--section-body-size);color:var(--muted);line-height:1.6;flex:1}
 
 /* CONTENT BLOCKS */
 .content-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px}
@@ -2610,7 +2641,51 @@ header.scrolled{
 /* Responsive breakpoints */
 @media (max-width:1024px){
   :root{ --container-padding-x:32px }
-  .hero .container{grid-template-columns:1fr}
+  .hero .container{
+    grid-template-columns:1fr;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+  .hero-content,
+  .booking-card-slot,
+  .booking-card{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .nav-phone{
+    display:inline-flex;
+    margin-left:auto;
+    margin-right:8px;
+    max-width:calc(100% - 180px);
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .hero:not(.fifa-hero) .hero-phone{display:none}
+  .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
+  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto}
+  .hero:not(.fifa-hero) .hero-mobile-benefits{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px 16px;
+    margin:16px 0 0;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+  .hero:not(.fifa-hero) .hero-mobile-benefits li{
+    font-size:12px;
+    font-weight:500;
+    color:rgba(255,255,255,.95);
+    line-height:1.4;
+    text-align:left;
+    min-width:0;
+  }
+  .hero:not(.fifa-hero) .hero-badge,
+  .hero:not(.fifa-hero) .hero-desc,
+  .hero:not(.fifa-hero) .hero-features{display:none}
   .fleet-grid,.airports-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid,.steps-grid,.trusted-grid{grid-template-columns:repeat(2,1fr)}
   .reviews-grid{grid-template-columns:1fr 1fr}
@@ -2626,8 +2701,22 @@ header.scrolled{
   :root{ --container-padding-x:20px }
   .menu{display:none}
   .menu-toggle{display:flex;align-items:center;justify-content:center}
-  .hero{padding:24px 0 100px}
-  .hero .container{gap:0}
+  .hero{padding:24px 0 100px;overflow-x:clip}
+  .hero .container{
+    gap:0;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+  .hero-content,
+  .booking-card-slot,
+  .booking-card{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .booking-card{padding:16px}
   .hero h1,
   .hero-title{
     font-size:clamp(26px,7.8vw,36px);
@@ -2636,6 +2725,12 @@ header.scrolled{
   .hero-title-line{
     display:block;
     white-space:nowrap;
+  }
+  .hero--home .hero-title-line{
+    white-space:normal;
+  }
+  .hero-mobile-benefits li span{
+    white-space:normal;
   }
   .section{padding:60px 0}
   #fleet{padding-bottom:28px}
@@ -2723,13 +2818,81 @@ header.scrolled{
   .about-story-media{order:-1}
   .planning h2,.trusted h2,.journey h2{font-size:clamp(26px,5vw,var(--section-heading-size))}
   .section-title{font-size:clamp(26px,5vw,var(--section-heading-size))}
-  .fleet-grid,.airports-grid,
-  .why-grid,.steps-grid,.trusted-grid,.footer-grid,
+  .fleet-grid,
+  .why-grid,.steps-grid,.footer-grid,
   .reviews-grid,.about-features-grid,.about-story-grid,.services-page-grid,.contact-page-form__grid{grid-template-columns:1fr}
+  .trusted-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:8px;
+    margin-bottom:28px;
+  }
+  .trusted-stat{
+    padding:14px 6px;
+    min-width:0;
+  }
+  .trusted-stat .ic{
+    width:34px;
+    height:34px;
+    margin-bottom:8px;
+  }
+  .trusted-stat .ic svg{
+    width:16px;
+    height:16px;
+  }
+  .trusted-stat h3{
+    font-size:clamp(12px,3.4vw,15px);
+    margin-bottom:4px;
+    min-width:0;
+  }
+  .trusted-stat h3[data-stat="customers"],
+  .trusted-stat h3[data-stat="cars"],
+  .trusted-stat h3[data-stat="locations"],
+  .trusted-stat h3[data-stat="rating"]{
+    min-width:0;
+  }
+  .trusted-stat p{
+    font-size:10px;
+    line-height:1.3;
+  }
+  .airports-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:8px;
+  }
+  .airport-card{
+    height:clamp(110px,32vw,140px);
+    min-width:0;
+  }
+  .airport-card-body{
+    padding:10px 8px;
+  }
+  .airport-card-body h3{
+    font-size:clamp(12px,3.4vw,15px);
+    margin-bottom:2px;
+  }
+  .airport-card-body p{
+    font-size:10px;
+    line-height:1.3;
+  }
+  .home-airport-card{
+    max-width:none;
+    height:clamp(110px,32vw,140px);
+  }
+  .home-airport-card__body{
+    padding:10px 8px;
+  }
+  .home-airport-card__body h3{
+    font-size:clamp(11px,3vw,14px);
+  }
+  .home-airport-card__body p{
+    font-size:10px;
+    line-height:1.3;
+  }
   .contact-page-title{font-size:clamp(28px,6vw,var(--section-heading-size))}
   .home-airports-layout{grid-template-columns:1fr;gap:28px}
-  .home-airports-carousel{margin-right:0}
-  .home-airport-card{max-width:none;height:280px}
+  .home-airports-carousel{
+    margin-right:0;
+    --carousel-gap:8px;
+  }
   .form-grid{grid-template-columns:1fr}
   .form-group-pair-inline-mobile{
     display:grid;
@@ -2787,4 +2950,28 @@ header.scrolled{
   .trusted{padding:50px 0}
   .content-img{height:300px}
 
+}
+
+/* Mobile/tablet: hide top chrome on scroll down, reveal on scroll up */
+@media (max-width:1024px){
+  body{
+    padding-top:var(--site-chrome-height,0px);
+  }
+  .site-top-chrome{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    max-width:100%;
+    transform:translateY(0);
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    will-change:transform;
+  }
+  .site-top-chrome.site-top-chrome--scroll-hidden:not(.site-top-chrome--menu-open){
+    transform:translateY(-100%);
+    pointer-events:none;
+  }
+}
+@media (max-width:1024px) and (prefers-reduced-motion:reduce){
+  .site-top-chrome{transition:none}
 }

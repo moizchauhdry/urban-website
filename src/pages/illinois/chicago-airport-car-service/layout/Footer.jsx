@@ -10,14 +10,14 @@ import { BOOK_NOW, ABOUT_US, CONTACT_US, FLORIDA_HOME, ILLINOIS_HOME, NEW_YORK_H
 const CHICAGO_AIRPORT_CAR_HOME = '/illinois-car-service/chicago-airport-car-service'
 
 export default function Footer() {
-  const onHomeLogoClick = useHomeLogoClick(CHICAGO_AIRPORT_CAR_HOME)
+  const onHomeLogoClick = useHomeLogoClick()
 
   return (
     <footer>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to={CHICAGO_AIRPORT_CAR_HOME} className="logo footer-logo" onClick={onHomeLogoClick}>
+            <Link to="/" className="logo footer-logo" onClick={onHomeLogoClick}>
               <FooterBrandLogo />
               </Link>
             <div className="footer-contact">

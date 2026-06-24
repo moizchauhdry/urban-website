@@ -15,14 +15,14 @@ import { BOOK_NOW, CONNECTICUT_HOME,
 } from '../../../../config/routes.js';
 
 export default function Footer({ logoPath = '/' }) {
-  const onHomeLogoClick = useHomeLogoClick(logoPath)
+  const onHomeLogoClick = useHomeLogoClick()
 
   return (
     <footer>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to={logoPath} className="logo footer-logo" onClick={onHomeLogoClick}>
+            <Link to="/" className="logo footer-logo" onClick={onHomeLogoClick}>
               <FooterBrandLogo />
             </Link>
             <div className="footer-contact">
