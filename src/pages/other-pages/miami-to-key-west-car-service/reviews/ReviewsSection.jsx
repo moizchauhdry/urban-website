@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { REVIEWS } from './reviews.js'
 import ReviewsCarousel from '../../../../components/carousels/ReviewsCarousel.jsx'
-import trustPilot from '../../../../assets/florida/reviews/trust-pilot.svg'
-import googleIcon from '../../../../assets/florida/reviews/google.svg'
+import trustPilot from '../../../../assets/other-pages/miami-to-key-west-car-service/reviews/trust-pilot.svg'
+import googleIcon from '../../../../assets/other-pages/miami-to-key-west-car-service/reviews/google.svg'
 
 function usePerView() {
   const [w, setW] = useState(() =>

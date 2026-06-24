@@ -1,8 +1,8 @@
-import phoneIcon from '../../../../assets/florida/hero/phone-icon.png'
-import fullyLicensedIcon from '../../../../assets/florida/hero/fully-licensed.png'
-import latestModelIcon from '../../../../assets/florida/hero/latest-modal.png'
-import chauffeursIcon from '../../../../assets/florida/hero/chauffeurs.png'
-import flightIcon from '../../../../assets/florida/hero/flight.png'
+import phoneIcon from '../../../../assets/other-pages/miami-to-orlando-car-service/hero/phone-icon.png'
+import fullyLicensedIcon from '../../../../assets/other-pages/miami-to-orlando-car-service/hero/fully-licensed.png'
+import latestModelIcon from '../../../../assets/other-pages/miami-to-orlando-car-service/hero/latest-modal.png'
+import chauffeursIcon from '../../../../assets/other-pages/miami-to-orlando-car-service/hero/chauffeurs.png'
+import flightIcon from '../../../../assets/other-pages/miami-to-orlando-car-service/hero/flight.png'
 
 export const HERO_PHONE = {
   href: 'tel:8888816610',

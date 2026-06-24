@@ -277,8 +277,6 @@ function patchFileContent(content, ctx) {
   out = out.replace(/import '(\.\.\/){3}/g, "import '../../../../")
   out = out.replace(/import\('(\.\.\/){3}/g, "import('../../../../")
   out = out.replace(/assets\/connecticut\//g, `assets/other-pages/${slug}/`)
-  const assetRoot = getAssetRoot(title)
-  out = out.replace(new RegExp(`assets/other-pages/${slug}/`, 'g'), `assets/${assetRoot}/`)
   out = out.replace(/ConnecticutLayout/g, 'PageLayout')
   out = out.replace(
     /export \{ CONNECTICUT_HOME \} from '\.\.\/\.\.\/\.\.\/config\/routes\.js'/g,
@@ -294,14 +292,68 @@ function patchFileContent(content, ctx) {
   return out
 }
 
-function buildHeroBgJs() {
-  return `export {
-  HERO_BG_DEFAULT,
-  HERO_BG_HEIGHT,
-  HERO_BG_SIZES,
-  HERO_BG_SRCSET,
-  HERO_BG_WIDTH,
-} from '../../../../config/siteHeroBg.js'
+function buildHeroBgJs(slug) {
+  return `import heroBgSm from '../../../../assets/other-pages/${slug}/hero/hero-bg-800.webp'
+import heroBgLg from '../../../../assets/other-pages/${slug}/hero/hero-bg-1440.webp'
+
+export const HERO_BG_DEFAULT = heroBgSm
+export const HERO_BG_SRCSET = \`\${heroBgSm} 800w, \${heroBgLg} 1440w\`
+export const HERO_BG_SIZES = '(max-width: 1024px) 800px, 1440px'
+export const HERO_BG_WIDTH = 1440
+export const HERO_BG_HEIGHT = 810
+`
+}
+
+function buildHeroHighlightsJs(slug) {
+  const base = `../../../../assets/other-pages/${slug}/hero`
+  return `import phoneIcon from '${base}/phone-icon.png'
+import fullyLicensedIcon from '${base}/fully-licensed.png'
+import latestModelIcon from '${base}/latest-modal.png'
+import chauffeursIcon from '${base}/chauffeurs.png'
+import flightIcon from '${base}/flight.png'
+
+export const HERO_PHONE = {
+  href: 'tel:8888816610',
+  label: '(888) 881-6610',
+  icon: phoneIcon,
+  iconAlt: '',
+}
+
+/** @type {Array<{ label: string, icon: string, iconAlt: string }>} */
+export const HERO_FEATURES = [
+  { label: 'Licensed & Insured', icon: fullyLicensedIcon, iconAlt: '' },
+  { label: 'Latest Model Fleet', icon: latestModelIcon, iconAlt: '' },
+  { label: 'Licensed Chauffeurs', icon: chauffeursIcon, iconAlt: '' },
+  { label: 'flight monitoring', icon: flightIcon, iconAlt: '' },
+]
+`
+}
+
+function buildJourneySectionJsx(slug) {
+  const base = `../../../../assets/other-pages/${slug}/journey`
+  return `import leftCar from '${base}/left-img.webp'
+import rightCar from '${base}/right-img.webp'
+import BookNowLink from '../../../../components/layout/BookNowLink.jsx'
+
+export default function JourneySection() {
+  return (
+    <section className="journey">
+      <div className="journey-car-slot journey-car-slot--left" aria-hidden="true">
+        <img src={leftCar} alt="" className="journey-car-img" width={425} height={244} loading="lazy" draggable={false} decoding="async" />
+      </div>
+      <div className="journey-car-slot journey-car-slot--right" aria-hidden="true">
+        <img src={rightCar} alt="" className="journey-car-img" width={407} height={274} loading="lazy" draggable={false} decoding="async" />
+      </div>
+      <div className="container">
+        <h2>Start Your Journey Today</h2>
+        <p>
+          Join Thousands of satisfied customers and experience premium car and chauffeur service like never before.
+        </p>
+        <BookNowLink />
+      </div>
+    </section>
+  )
+}
 `
 }
 
@@ -523,11 +575,8 @@ ${cards}
 }
 
 function buildPageCss(ctx) {
-  const { prefix, airports, title } = ctx
-  const assetRoot = getAssetRoot(title)
-  const airportRoot = getAirportAssetRoot(title)
-  const assetBase = `../../assets/${assetRoot}`
-  const airportBase = `../../assets/${airportRoot}`
+  const { prefix, airports, title, slug } = ctx
+  const assetBase = `../../assets/other-pages/${slug}`
   const lines = [
     `/* ${ctx.title} */`,
     `.service-img.${prefix}-s1{background-image:url('${assetBase}/services/service1.webp')}`,
@@ -542,7 +591,7 @@ function buildPageCss(ctx) {
   ]
   airports.forEach((a, i) => {
     lines.push(
-      `.airport-card.${prefix}-a${i + 1}{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('${airportBase}/airports/${a.file}')}`,
+      `.airport-card.${prefix}-a${i + 1}{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('${assetBase}/airports/${a.file}')}`,
     )
   })
   return `${lines.join('\n')}\n`
@@ -731,7 +780,9 @@ async function generatePage(title) {
   }
 
   await fs.writeFile(path.join(pageDir, 'hero', 'Hero.jsx'), buildHeroJsx(ctx))
-  await fs.writeFile(path.join(pageDir, 'hero', 'heroBg.js'), buildHeroBgJs())
+  await fs.writeFile(path.join(pageDir, 'hero', 'heroBg.js'), buildHeroBgJs(slug))
+  await fs.writeFile(path.join(pageDir, 'hero', 'heroHighlights.js'), buildHeroHighlightsJs(slug))
+  await fs.writeFile(path.join(pageDir, 'journey', 'JourneySection.jsx'), buildJourneySectionJsx(slug))
   await fs.writeFile(path.join(pageDir, 'Home.jsx'), buildHome(ctx))
   await fs.writeFile(path.join(pageDir, 'content-blocks', 'ContentBlocks.jsx'), buildContentBlocks(ctx))
   await fs.writeFile(path.join(pageDir, 'airports', 'AirportsSection.jsx'), buildAirportsSection(ctx))

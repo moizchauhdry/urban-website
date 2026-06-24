@@ -1,8 +1,8 @@
-import phoneIcon from '../../../../assets/illinois/illinois/hero/phone-icon.png'
-import fullyLicensedIcon from '../../../../assets/illinois/illinois/hero/fully-licensed.png'
-import latestModelIcon from '../../../../assets/illinois/illinois/hero/latest-modal.png'
-import chauffeursIcon from '../../../../assets/illinois/illinois/hero/chauffeurs.png'
-import flightIcon from '../../../../assets/illinois/illinois/hero/flight.png'
+import phoneIcon from '../../../../assets/other-pages/wisconsin-car-service/hero/phone-icon.png'
+import fullyLicensedIcon from '../../../../assets/other-pages/wisconsin-car-service/hero/fully-licensed.png'
+import latestModelIcon from '../../../../assets/other-pages/wisconsin-car-service/hero/latest-modal.png'
+import chauffeursIcon from '../../../../assets/other-pages/wisconsin-car-service/hero/chauffeurs.png'
+import flightIcon from '../../../../assets/other-pages/wisconsin-car-service/hero/flight.png'
 
 export const HERO_PHONE = {
   href: 'tel:8888816610',

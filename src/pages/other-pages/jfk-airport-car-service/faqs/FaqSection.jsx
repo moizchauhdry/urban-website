@@ -1,4 +1,4 @@
-import faqImage from '../../../../assets/faqImage.js'
+import faqImage from '../../../../assets/other-pages/jfk-airport-car-service/faqs/faqs.webp'
 
 export default function FaqSection() {
   return (

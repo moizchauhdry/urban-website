@@ -1,8 +1,8 @@
-import phoneIcon from '../../../../assets/newyork/hero/phone-icon.png'
-import fullyLicensedIcon from '../../../../assets/newyork/hero/fully-licensed.png'
-import latestModelIcon from '../../../../assets/newyork/hero/latest-modal.png'
-import chauffeursIcon from '../../../../assets/newyork/hero/chauffeurs.png'
-import flightIcon from '../../../../assets/newyork/hero/flight.png'
+import phoneIcon from '../../../../assets/other-pages/manhattan-car-service/hero/phone-icon.png'
+import fullyLicensedIcon from '../../../../assets/other-pages/manhattan-car-service/hero/fully-licensed.png'
+import latestModelIcon from '../../../../assets/other-pages/manhattan-car-service/hero/latest-modal.png'
+import chauffeursIcon from '../../../../assets/other-pages/manhattan-car-service/hero/chauffeurs.png'
+import flightIcon from '../../../../assets/other-pages/manhattan-car-service/hero/flight.png'
 
 export const HERO_PHONE = {
   href: 'tel:8888816610',

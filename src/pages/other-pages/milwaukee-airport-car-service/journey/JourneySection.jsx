@@ -1,5 +1,5 @@
-import leftCar from '../../../../assets/left_bmw.webp'
-import rightCar from '../../../../assets/right_audi.webp'
+import leftCar from '../../../../assets/other-pages/milwaukee-airport-car-service/journey/left-img.webp'
+import rightCar from '../../../../assets/other-pages/milwaukee-airport-car-service/journey/right-img.webp'
 import BookNowLink from '../../../../components/layout/BookNowLink.jsx'
 
 export default function JourneySection() {
