@@ -5,7 +5,7 @@ import {
   HERO_BG_SIZES,
   HERO_BG_SRCSET,
   HERO_BG_WIDTH,
-} from '../connecticut/hero/heroBg.js'
+} from '../../config/siteHeroBg.js'
 import { HERO_FEATURES, HERO_PHONE } from '../connecticut/hero/heroHighlights.js'
 import HeroDeferredBooking from '../../components/hero/HeroDeferredBooking.jsx'
 import HeroLiveBadge from '../../components/hero/HeroLiveBadge.jsx'
