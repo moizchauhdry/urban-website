@@ -2,10 +2,23 @@ import { memo } from 'react'
 import { FleetImageSlider } from './FleetImageSlider.jsx'
 
 function FleetCardInner({ item, priorityLoad = true }) {
+  const primaryImage = item.images[0]
+  const useSlider = item.images.length > 1
+
   return (
     <article className="fleet-card">
-      <div className={`fleet-img ${item.imgClass} fleet-img--with-slider`}>
-        <FleetImageSlider images={item.images} priorityLoad={priorityLoad} />
+      <div className={`fleet-img ${item.imgClass}${useSlider ? ' fleet-img--with-slider' : ''}`}>
+        {useSlider ? (
+          <FleetImageSlider images={item.images} priorityLoad={priorityLoad} />
+        ) : (
+          <img
+            src={primaryImage?.src}
+            alt={primaryImage?.alt ?? item.title}
+            loading={priorityLoad ? 'eager' : 'lazy'}
+            decoding="async"
+            draggable={false}
+          />
+        )}
       </div>
 
       <div className="fleet-body">

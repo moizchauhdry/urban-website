@@ -46,7 +46,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="hero">
+    <section className="hero hero--florida">
       <img
         ref={onHeroBgReady}
         src={HERO_BG_DEFAULT}
@@ -65,7 +65,9 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line">Premium Florida</span>{' '}
+            <span className="hero-title-line">
+              Premium <span className="hero-title-line--highlight">Florida</span>
+            </span>{' '}
             <span className="hero-title-line">Car Service</span>
           </h1>
           <p className="hero-desc">

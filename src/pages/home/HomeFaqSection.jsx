@@ -1,4 +1,4 @@
-import faqImage from '../../assets/home/faqs/faqs.webp'
+import faqImage from '../../assets/faqImage.js'
 
 const FAQ_ITEMS = [
   {
@@ -58,3 +58,4 @@ export default function HomeFaqSection() {
     </section>
   )
 }
+

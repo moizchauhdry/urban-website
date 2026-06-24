@@ -6,6 +6,7 @@ import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
 import FifaPromoBanner from '../../../components/layout/FifaPromoBanner.jsx'
 import Navbar from './Navbar.jsx'
+import { HERO_PHONE } from '../hero/heroHighlights.js'
 
 const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
 const PANEL_ID = 'site-mobile-menu'
@@ -48,13 +49,25 @@ export default function Header({ logoPath = '/' }) {
     <div className={`site-top-chrome${mobileMenuOpen ? ' site-top-chrome--menu-open' : ''}`}>
     <header
       ref={headerAnchorRef}
-      className={mobileMenuOpen ? 'header--menu-open' : ''}
+      className={`header--connecticut${mobileMenuOpen ? ' header--menu-open' : ''}`}
     >
       <div className="container nav">
         <Link to={logoPath} className="logo" onClick={onHomeLogoClick}>
           <HeaderBrandLogo />
         </Link>
         <Navbar />
+        <a href={HERO_PHONE.href} className="nav-phone nav-phone--connecticut">
+          <img
+            src={HERO_PHONE.icon}
+            alt=""
+            className="nav-phone-icon"
+            width={16}
+            height={16}
+            decoding="async"
+            draggable={false}
+          />
+          <span className="nav-phone-label">{HERO_PHONE.label}</span>
+        </a>
         <HeaderBookNow homePath={logoPath} />
         <button
           type="button"

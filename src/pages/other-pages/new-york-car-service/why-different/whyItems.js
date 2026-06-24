@@ -27,7 +27,7 @@ export const whyItems = [
   {
     id: 'pickups',
     icon: 'location-dot',
-    title: 'on time pickups',
+    title: 'On Time Pickups',
     description:
       'Convenient pickup service on time across major cities and airports.',
   },

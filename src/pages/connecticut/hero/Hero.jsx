@@ -6,9 +6,10 @@ import {
   HERO_BG_SRCSET,
   HERO_BG_WIDTH,
 } from './heroBg.js'
-import { HERO_FEATURES, HERO_PHONE } from './heroHighlights.js'
+import { HERO_FEATURES, HERO_MOBILE_BENEFITS, HERO_PHONE } from './heroHighlights.js'
 import HeroDeferredBooking from '../../../components/hero/HeroDeferredBooking.jsx'
 import HeroLiveBadge from '../../../components/hero/HeroLiveBadge.jsx'
+import Icon from '../../../components/common/Icon.jsx'
 
 function removeStaticHeroLcp() {
   document.getElementById('static-hero-lcp')?.remove()
@@ -46,7 +47,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="hero">
+    <section className="hero hero--connecticut">
       <img
         ref={onHeroBgReady}
         src={HERO_BG_DEFAULT}
@@ -65,9 +66,19 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line">Premium Connecticut</span>{' '}
+            <span className="hero-title-line">
+              Premium <span className="hero-title-line--highlight">Connecticut</span>
+            </span>{' '}
             <span className="hero-title-line">Car Service</span>
           </h1>
+          <ul className="hero-mobile-benefits" aria-label="Service benefits">
+            {HERO_MOBILE_BENEFITS.map((item) => (
+              <li key={item}>
+                <Icon name="check" size={16} strokeWidth={2.75} className="hero-mobile-benefits__tick" aria-hidden />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
           <p className="hero-desc">
             Travel in comfort with a Connecticut car service designed for people who want a smooth and stress free
             experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,

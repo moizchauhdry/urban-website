@@ -1,4 +1,4 @@
-import faqImage from '../../../../assets/illinois/ohare-intl-airport-ord-limo-service/faqs/faqs.webp'
+import faqImage from '../../../../assets/faqImage.js'
 
 export default function FaqSection() {
   return (
@@ -64,3 +64,4 @@ export default function FaqSection() {
     </section>
   )
 }
+

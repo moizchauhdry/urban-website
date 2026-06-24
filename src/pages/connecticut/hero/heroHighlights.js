@@ -18,3 +18,10 @@ export const HERO_FEATURES = [
   { label: 'Licensed Chauffeurs', icon: chauffeursIcon, iconAlt: '' },
   { label: 'flight monitoring', icon: flightIcon, iconAlt: '' },
 ]
+
+export const HERO_MOBILE_BENEFITS = [
+  'Professional & Licensed Chauffeurs',
+  "Luxury Fleets: Sedan, SUV's, Sprinter",
+  'Early Morning Pickups On Best Prices',
+  'Flight Tracking & Pickup Accordingly',
+]

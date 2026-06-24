@@ -65,7 +65,7 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line">Premium New York</span>{' '}
+            <span className="hero-title-line">Premium <span className="hero-title-line--highlight">New York</span></span>{' '}
             <span className="hero-title-line">Car Service</span>
           </h1>
           <p className="hero-desc">

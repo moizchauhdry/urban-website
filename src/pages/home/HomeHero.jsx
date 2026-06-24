@@ -64,7 +64,7 @@ export default function HomeHero() {
   }, [])
 
   return (
-    <section className="hero">
+    <section className="hero hero--home">
       {useReactHeroBg ? (
         <img
           ref={onHeroBgReady}
@@ -85,12 +85,16 @@ export default function HomeHero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line">Black Car Service</span>{' '}
-            <span className="hero-title-line hero-title-line--accent">Instant Quote</span>
+            <span className="hero-title-line">
+              Premium White Glove{' '}
+              <span className="hero-title-line--highlight">Chauffeur Service</span>
+            </span>{' '}
+            <span className="hero-title-line hero-title-line--accent">in USA</span>
           </h1>
           <p className="hero-desc">
-            We provide luxury and comfort to travel like you never experienced before. Our professional chauffeurs and
-            modern black fleet offer a smooth, stress-free journey every time.
+          Urban Elite Limo delivers premium white-glove chauffeur services across the USA.
+Experience luxury, comfort, and professionalism in every ride.
+Serving Westchester, Connecticut, New York, Massachusetts, Miami, Chicago & More.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img
