@@ -1,14 +1,18 @@
+import { lazy, Suspense } from 'react'
 import AppRoutes from './routes/AppRoutes.jsx'
-import ScrollHideChrome from './components/layout/ScrollHideChrome.jsx'
 import ScrollToTop from './components/layout/ScrollToTop.jsx'
-import PageMetadata from './components/layout/PageMetadata.jsx'
+
+const ScrollHideChrome = lazy(() => import('./components/layout/ScrollHideChrome.jsx'))
+const PageMetadata = lazy(() => import('./components/layout/PageMetadata.jsx'))
 
 export default function App() {
   return (
     <>
       <ScrollToTop />
-      <ScrollHideChrome />
-      <PageMetadata />
+      <Suspense fallback={null}>
+        <ScrollHideChrome />
+        <PageMetadata />
+      </Suspense>
       <AppRoutes />
     </>
   )

@@ -1,12 +1,12 @@
-import firstClassSedan from '../assets/fleet/fleet/first-class-sedan.svg'
-import luxurySedan from '../assets/fleet/fleet/luxury-sedan.svg'
-import economySedan from '../assets/fleet/fleet/economy-sedan.svg'
-import fullSizeSuv from '../assets/fleet/fleet/full-size-suv.svg'
+import firstClassSedan from '../assets/fleet/fleet/first-class-sedan.webp'
+import luxurySedan from '../assets/fleet/fleet/luxury-sedan.webp'
+import economySedan from '../assets/fleet/fleet/economy-sedan.webp'
+import fullSizeSuv from '../assets/fleet/fleet/full-size-suv.webp'
 import miniSuv from '../assets/fleet/fleet/mini_suv.webp'
-import limo from '../assets/fleet/fleet/limo-final.svg'
-import sprinter from '../assets/fleet/fleet/sprinter.svg'
-import partyBus from '../assets/fleet/fleet/party-bus.svg'
-import motorCoach from '../assets/fleet/fleet/moto-coach.svg'
+import limo from '../assets/fleet/fleet/limo-final.webp'
+import sprinter from '../assets/fleet/fleet/sprinter.webp'
+import partyBus from '../assets/fleet/fleet/party-bus.webp'
+import motorCoach from '../assets/fleet/fleet/moto-coach.webp'
 
 /** @typedef {{ src?: string, loadSrc?: () => Promise<{ default: string }>, alt: string }} FleetImage */
 

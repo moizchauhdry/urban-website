@@ -5,25 +5,37 @@ import HeaderBookNow from '../../../components/layout/HeaderBookNow.jsx'
 import HeaderNavPhone from '../../../components/layout/HeaderNavPhone.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
-import FifaPromoBanner from '../../../components/layout/FifaPromoBanner.jsx'
 import Navbar from './Navbar.jsx'
 
+const FifaPromoBanner = lazy(() => import('../../../components/layout/FifaPromoBanner.jsx'))
 const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
 const PANEL_ID = 'site-mobile-menu'
 
-const MOBILE_MQ = '(max-width:720px)'
+import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
+
+const MOBILE_MQ = COMPACT_NAV_MQ
 
 /**
- * Desktop: sticky header. Mobile (≤720px): scrolls with the page; when the menu
- * is open the bar is fixed at the top and scroll is locked behind the overlay.
+ * Desktop / tablet: sticky header (≥721px). Compact nav with hamburger (≤984px).
+ * Phone (≤720px): fixed header hides on scroll down, reappears on scroll up.
  */
 export default function Header({ logoPath = '/' }) {
   const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showPromoBanner, setShowPromoBanner] = useState(false)
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), [])
   const toggleMobileMenu = useCallback(() => setMobileMenuOpen((o) => !o), [])
+
+  useEffect(() => {
+    if (typeof requestIdleCallback !== 'undefined') {
+      const id = requestIdleCallback(() => setShowPromoBanner(true), { timeout: 3200 })
+      return () => cancelIdleCallback(id)
+    }
+    const timer = window.setTimeout(() => setShowPromoBanner(true), 1500)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_MQ)
@@ -84,7 +96,11 @@ export default function Header({ logoPath = '/' }) {
         </Suspense>
       ) : null}
     </header>
-    <FifaPromoBanner />
+    {showPromoBanner ? (
+      <Suspense fallback={null}>
+        <FifaPromoBanner />
+      </Suspense>
+    ) : null}
     </div>
   )
 }

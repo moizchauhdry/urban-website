@@ -6,8 +6,12 @@ export default function HeroBookingFormShell() {
   return (
     <div className="booking-card booking-card--shell" aria-hidden="true">
       <div className="form-tabs">
-        <span className="form-tab active">Distance</span>
-        <span className="form-tab">Hourly</span>
+        <button type="button" className="form-tab active" tabIndex={-1}>
+          Distance
+        </button>
+        <button type="button" className="form-tab" tabIndex={-1}>
+          Hourly
+        </button>
       </div>
       <div className="form-grid">
         <div className="form-group">

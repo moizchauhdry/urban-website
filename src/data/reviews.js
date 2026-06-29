@@ -4,87 +4,87 @@
 export const REVIEWS = [
   {
     id: '1',
-    author: 'Andrew Scott',
+    author: 'Heather K',
     text:
-      'This was my first time using Urban Elite Limo and I will be a customer for life. Not only was David professional and on time, but he also got me back to Stamford from JFK in under 50 minutes, which is unheard of. I highly recommend using this car service.',
+      'The driver, Staylin was ontime-early even! Very courteous, the black suv was immaculate and offered cold water and a charging station. I was extremely comfortable, so comfortable I had a nap! Thank you so much!',
   },
   {
     id: '2',
-    author: 'Nicole Robinson',
+    author: 'Gina Ciaccio',
     text:
-      'A last minute change in travel plans in CT meant scheduling a pick-up at JFK less than 24 hours in advance on a weekend. These folks responded quickly, were reasonably priced, nice vehicles, professional, and most importantly… ON TIME! We will definitely use them again.',
+      'Our experience with Urban Elite went really well. Our trip to & from the airport was great. They were on time picking us up as well as dropping off. Our driver, Guy was super nice and accommodating. We had a smooth ride to & from the airport. If any services are needed in the future again, I definitely know which car service to call and reach out to.',
   },
   {
     id: '3',
-    author: 'Matthew Walker',
+    author: 'Molly Holt',
     text:
-      'My father and mother in law recently took an international trip and we booked Urban Elite Limo to pick them up in New Haven for travel to JFK airport in NY. They were ON time and the driver was courteous and the car was clean.',
+      'Excellent service! I had to get my son to JFK very early in the morning. David was responsive to all of my concerns and questions. Very professional!',
   },
   {
     id: '4',
-    author: 'Robert Wilson',
+    author: 'Alicia Navas Kitch',
     text:
-      'This is the best way to travel across Chicago. Regular taxis can get expensive, but this service offers fixed, fair pricing with superior comfort. Always on time for both pickup and drop-off.',
+      'It was great! The driver arrived early and waited for us. He was very nice with all the passengers. We will pay this service again.',
   },
   {
     id: '5',
-    author: 'Laura Martinez',
+    author: 'Elroy Seegars',
     text:
-      'Urban Elite is my new and forever car service in Chicago. Their reminders, emails, and texts made everything seamless. Airport pickup was incredibly easy, and the ride home was smooth and comfortable. Great service.',
+      'This is an excellent services. They coordinated and communicated extremely well. Tracking my flight, sending me info on who and what vehicle along with direct phone number for pickup. Clean and comfortable smooth ride. We were tired after 5 hour flight! This part was relaxing! I highly recommend this service!',
   },
   {
     id: '6',
-    author: 'James Anderson',
+    author: 'Joan Cohen',
     text:
-      'Extremely professional, on time, and a true luxury experience in Chicago. Highly recommended for all transportation needs.',
+      'My family has happily relied on Urban Elite several times in past year for pickups and drop offs in the New Haven, CT area to and from Bradley International and LaGuardia Airport. Each time, booking was easy with efficient and courteous service. Car seats and booster seats are available - making Urban Elite definitely the best service if traveling with young children. Each time a professional driver arrived on-time for home or airport pickup. Vehicles were always comfortable and drivers loaded and unloaded luggage. We will definitely continue to rely on Urban Elite for airport travel.',
   },
   {
     id: '7',
-    author: 'Emily Carter',
+    author: 'Isaiah Espinoza',
     text:
-      'Absolutely the best service in Chicago! I booked Urban Elite for my parents, and they received first-class treatment. The driver was professional, caring, and punctual. Highly recommended.',
+      'Urban Elite handled our airport transfer from LAX perfectly. The booking process was smooth, the driver was polite, and they even helped with our bags. I appreciated how responsive they were on the call to confirm details before pickup. Five-star Los Angeles limo service!',
   },
   {
     id: '8',
-    author: 'David Miller',
+    author: 'Abraham Mingo-Bellony',
     text:
-      'The driver picked us up right on time in a black mercedes car. Friendly, professional, and reliable service across Illinois. We will definitely be using them again.',
+      "I booked Urban Elite for my sister's birthday, and it was perfect! We had a Sprinter that fit all our friends comfortably. The booking was easy - just one email and a quick call, and everything was set. On the day, the pick up was on time, the driver even helped with our baggage, and the ride felt like a glimpse into the future of travel. Customer service was super responsive, and after my long flight earlier that day, this smooth ride was exactly what I needed.",
   },
   {
     id: '9',
-    author: 'Sarah Johnson',
+    author: 'Kaldenz Sherpa',
     text:
-      'Booked a ride from downtown Chicago to O’Hare Airport through David. The chauffeur arrived early in a spotless black Lincoln and delivered exceptional service. Highly recommended for reliable transportation in Chicago, IL.',
+      "Our experience with Urban Elite was absolutely fantastic from start to finish. The booking process was smooth, communication was clear, and the driver arrived right on time professional, courteous, and well-dressed. The vehicle was spotless, comfortable, and truly luxurious. They made our trip stress-free and enjoyable. I highly recommend them to anyone looking for reliable, first-class transportation. We'll definitely be using their service again!",
   },
   {
     id: '10',
-    author: 'Abraham Mingo-Bellony',
+    author: 'Rafael Marmol',
     text:
-      "I booked Urban Elite for my sister's birthday, and it was perfect! We had a Sprinter that fit all our friends comfortably. The booking was easy — just one email and a quick call, and everything was set. On the day, the pick up was on time, the driver even helped with our baggage, and the ride felt like a glimpse into the future of travel. Customer service was super responsive, and after my long flight earlier that day, this smooth ride was exactly what I needed.",
+      'I used Urban Elite after a business flight into LAX, and it was outstanding. I had some baggage, but the driver took care of it right at pick up. Booking was simple - I sent an email, followed up with a call, and they were quick and very responsive. I actually used their Sprinter once before for my wife\'s birthday, and both times the ride felt like the future of luxury transport. Reliable, professional, and stress-free every time.',
   },
   {
     id: '11',
-    author: 'Rafael Marmol',
+    author: 'Yves Saint Laurent',
     text:
-      "I used Urban Elite after a business flight into LAX, and it was outstanding. I had some baggage, but the driver took care of it right at pick up. Booking was simple — I sent an email, followed up with a call, and they were quick and very responsive. I actually used their Sprinter once before for my wife's birthday, and both times the ride felt like the future of luxury transport. Reliable, professional, and stress-free every time.",
+      'Urban Elite exceeded all my expectations! From booking to drop-off, everything was handled with professionalism and care. The driver was punctual, friendly, and made the entire experience stress-free. The vehicle was spotless, luxurious, and extremely comfortable. It\'s rare to find a service that combines reliability, class, and genuine hospitality — but Urban Elite delivers it perfectly. I\'ll definitely be booking with them again for all my future trips!',
   },
   {
     id: '12',
-    author: 'Support U',
+    author: 'GIORGIO M',
     text:
-      "For my friend's birthday, we booked a Sprinter with Urban Elite. From the very first email inquiry to the final pick up, they were extremely responsive. We had a ton of baggage, but the driver helped with everything. The ride felt like the future of group travel — modern and comfortable. After my earlier flight, I was exhausted, but the call I made to confirm gave me peace of mind. I'll definitely book again.",
+      'My wife and I booked Urban Elite for the Holiday Lights Tour and my wife\'s 50th birthday celebration. Miguel helped us with the booking and was extremely helpful throughout. The limo was gorgeous, featuring elegant leather ostrich seats that added a touch of luxury. The bar setup was neat, and the festive decorations with the birthday theme made the experience unforgettable.',
   },
   {
     id: '13',
-    author: 'Shahalom Miah',
+    author: 'Eurys Guerrero',
     text:
-      "Urban Elite was absolutely fantastic! My colleague, who often travels for business out of LAX, recommended using them instead of an Uber during my recent business trip to LA and I'm so glad he did. Communication with our driver, Andres, was smooth, professional, and effortless. The car was spotless, luxurious, and extremely comfortable. What truly stood out, however, was Andres's outstanding professionalism and kindness. Just as we were nearing our hotel, my wife realized she had left her backpack in the terminal restroom. Without a moment's hesitation, Andres immediately went into problem-solving mode, driving us swiftly back to LAX, guiding us on how to locate it, and patiently waiting until we retrieved it. His calm demeanor, quick thinking, and genuine care turned what could have been a stressful ordeal into a moment of gratitude. This was service far beyond expectations — an act of kindness and grace that my wife and I will never forget.",
+      'We booked a party bus rental from Urban Elite for my son\'s birthday celebration, and it was incredible! The driver was professional, on time, and made sure everyone felt safe. We had family flying in through the airport, and the smooth transportation from there to the venue was perfect. We\'re already planning to use them again for his prom next year, and maybe even my cousin\'s bar mitzvah.',
   },
   {
     id: '14',
-    author: 'GIORGIO M',
+    author: 'Alex Breen',
     text:
-      "My wife and I booked Urban Elite for the Holiday Lights Tour and my wife's 50th birthday celebration. Miguel helped us with the booking and was extremely helpful throughout. The limo was gorgeous, featuring elegant leather ostrich seats that added a touch of luxury. The bar setup was neat, and the festive decorations with the birthday theme made the experience unforgettable.",
+      'Needed a three hour ride from CT to NJ. Driver arrived with a lovely SUV as requested, as we had a fair bit of luggage to haul. Vehicle was very clean, and the chauffeur kept it at comfortable temperature throughout the entire ride. A very positive experience.',
   },
   {
     id: '15',
@@ -94,38 +94,20 @@ export const REVIEWS = [
   },
   {
     id: '16',
-    author: 'Lewis Hatton',
+    author: 'Rodney Williams',
     text:
-      "Another good trip! Driver (Andres) was on time (early, in fact) and was courteous and professional. We arrived at JFK in plenty of time to deal with security and all the issues of modern air travel. This is the second time we've used Urban Elite, and we'll definitely use them again. David has always been responsive and quick to confirm arrangements, as well as being able to pivot when the airlines change things at the last minute. We're very pleased with Urban Elite!",
+      'Urban Elite was exceptional. We used them for a round trip service to JFK airport. The service was incredible. Our driver Charles service was exceptional and very professional his Cadillac Escalade was Beautifully clean. Definitely will be recommending this company to all my family and friends.',
   },
   {
     id: '17',
-    author: 'Susan de A',
+    author: 'Lewis Hatton',
     text:
-      "Rafael was professional and friendly. He arrived a half hour early and was very helpful in getting my husband's scooter and rollator in the back of his van. When we arrived at the airport we realized my husband's Mickey Mouse hat with pins was missing. Before I could call to check on it my neighbor sent me a text it was in the mailbox at home. We are so grateful! We appreciate Rafael & Urban Elite.",
+      'Another good trip! Driver (Andres) was on time (early, in fact) and was courteous and professional. We arrived at JFK in plenty of time to deal with security and all the issues of modern air travel. This is the second time we\'ve used Urban Elite, and we\'ll definitely use them again. David has always been responsive and quick to confirm arrangements, as well being able to pivot when the airlines change things at the last minute. We\'re very pleased with Urban Elite!',
   },
   {
     id: '18',
-    author: 'Sharon Asselin',
-    text:
-      'Urban Elite was fantastic. Price was competitive. They provided confirmation of our two bookings, as well as appropriate communication about pickup and driver information. Drivers provided great service — they were timely, helpful with lots of luggage, and provided a good ride in spite of traffic and road construction. I would totally use them again!',
-  },
-  {
-    id: '19',
-    author: 'Rich k',
-    text:
-      'Both drivers were great. On time, efficient and courteous. Extremely polite and very helpful with the luggage. Their cost was more than fair. Would use them again in a heartbeat.',
-  },
-  {
-    id: '20',
     author: 'Marion Dodd',
     text:
       'We have nothing to say but good things. Our flight was delayed by 3 hours and there was no issue with changing the pickup time. Our driver arrived quickly and the car was comfortable and spotless. Thank you for bringing us home efficiently and safely after a long trip!',
-  },
-  {
-    id: '21',
-    author: 'Ralph',
-    text:
-      'We used Urban Elite both to and from Tweed Airport in CT, both cars were quite roomy, clean AND the drivers were courteous, professional and quite helpful loading our luggage and assisting my wife in and out of the car, big Kudos.',
   },
 ]

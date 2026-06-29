@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FIFA_HOME } from '../../config/routes.js'
-import footballIcon from '../../assets/football.png'
+import footballIcon from '../../assets/football.webp'
 
 const BANNER_TEXT =
   'FIFA World Cup 2026 — Book your exclusive stadium transfers in Canada, USA & Mexico'

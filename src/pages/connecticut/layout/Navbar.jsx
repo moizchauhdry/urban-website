@@ -1,12 +1,34 @@
-import NavMenuItems from '../../../components/nav/NavMenuItems.jsx'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
+
+const MOBILE_MQ = COMPACT_NAV_MQ
+
+const DesktopNavMenuItems = lazy(() =>
+  import('../../../components/nav/NavMenuItems.jsx').then((mod) => ({ default: mod.default })),
+)
 
 /**
- * Desktop / tablet horizontal navigation (unchanged layout for &gt;720px).
+ * Compact nav through tablet (≤984px). Full desktop menu above that.
  */
 export default function Navbar() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(MOBILE_MQ).matches : false,
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ)
+    const onChange = () => setIsMobile(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
   return (
     <nav className="menu" aria-label="Primary">
-      <NavMenuItems variant="desktop" />
+      {isMobile ? null : (
+        <Suspense fallback={null}>
+          <DesktopNavMenuItems variant="desktop" />
+        </Suspense>
+      )}
     </nav>
   )
 }

@@ -1,15 +1,14 @@
 import { useEffect } from 'react'
 
-const COMPACT_MQ = '(max-width: 1024px)'
-const SCROLL_DELTA = 2
+const HIDE_DELTA = 6
+const MIN_SCROLL_TO_HIDE = 64
 
 /**
- * On mobile/tablet (≤1024px), hides `.site-top-chrome` while scrolling down and
- * reveals it on any upward scroll. Skips when the mobile menu is open.
+ * Hides `.site-top-chrome` while scrolling down and reveals it on upward scroll.
+ * Skips when the mobile menu is open.
  */
 export function useScrollHideChrome(pathname) {
   useEffect(() => {
-    const mq = window.matchMedia(COMPACT_MQ)
     let lastY = window.scrollY
     let ticking = false
     let resizeObserver = null
@@ -18,7 +17,7 @@ export function useScrollHideChrome(pathname) {
     const getChrome = () => document.querySelector('.site-top-chrome')
 
     const syncChromeHeight = (chrome) => {
-      if (!chrome || !mq.matches) {
+      if (!chrome) {
         document.documentElement.style.removeProperty('--site-chrome-height')
         return
       }
@@ -51,7 +50,7 @@ export function useScrollHideChrome(pathname) {
         return
       }
 
-      chrome.classList.toggle('site-top-chrome--scroll-hidden', hidden && mq.matches)
+      chrome.classList.toggle('site-top-chrome--scroll-hidden', hidden)
     }
 
     const onScroll = () => {
@@ -61,12 +60,6 @@ export function useScrollHideChrome(pathname) {
 
       requestAnimationFrame(() => {
         ticking = false
-
-        if (!mq.matches) {
-          setHidden(false)
-          lastY = window.scrollY
-          return
-        }
 
         const chrome = getChrome()
         if (chrome?.classList.contains('site-top-chrome--menu-open')) {
@@ -78,25 +71,16 @@ export function useScrollHideChrome(pathname) {
         const y = window.scrollY
         const delta = y - lastY
 
-        if (y <= SCROLL_DELTA) {
+        if (y <= 0) {
           setHidden(false)
-        } else if (delta > SCROLL_DELTA) {
+        } else if (delta < 0) {
+          setHidden(false)
+        } else if (delta > HIDE_DELTA && y > MIN_SCROLL_TO_HIDE) {
           setHidden(true)
-        } else if (delta < -SCROLL_DELTA) {
-          setHidden(false)
         }
 
         lastY = y
       })
-    }
-
-    const onMqChange = () => {
-      if (!mq.matches) {
-        setHidden(false)
-        document.documentElement.style.removeProperty('--site-chrome-height')
-      } else {
-        syncChromeHeight(getChrome())
-      }
     }
 
     observeChrome()
@@ -105,11 +89,9 @@ export function useScrollHideChrome(pathname) {
     lastY = window.scrollY
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    mq.addEventListener('change', onMqChange)
 
     return () => {
       window.removeEventListener('scroll', onScroll)
-      mq.removeEventListener('change', onMqChange)
       resizeObserver?.disconnect()
       document.documentElement.style.removeProperty('--site-chrome-height')
       getChrome()?.classList.remove('site-top-chrome--scroll-hidden')

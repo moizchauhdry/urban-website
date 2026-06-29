@@ -14,6 +14,7 @@ const OP_PAGES = path.join(ROOT, 'src/pages/other-pages')
 const OP_ASSETS = path.join(ROOT, 'src/assets/other-pages')
 const OP_STYLES = path.join(ROOT, 'src/styles/other-pages')
 const FL_AIRPORTS = path.join(ROOT, 'src/assets/florida/airports')
+const CENTRAL_AIRPORTS = path.join(ROOT, 'src/assets/airports')
 
 const PAGE_TITLES = [
   'Miami Chauffeur Service',
@@ -98,112 +99,51 @@ function regionLabel(title) {
     .trim()
 }
 
+function airportEntry(code) {
+  return { code, file: `${code.toLowerCase()}.webp` }
+}
+
 function getAirports(title) {
   const t = title.toLowerCase()
 
   if (t.startsWith('florida') || t === 'florida car service') {
-    return [
-      { code: 'MIA', file: 'mia.webp' },
-      { code: 'FLL', file: 'fll.webp' },
-      { code: 'MCO', file: 'mco.webp' },
-      { code: 'TPA', file: 'tpa.webp' },
-    ]
+    return ['MIA', 'FLL', 'MCO', 'TPA'].map(airportEntry)
   }
   if (t.startsWith('atlanta')) {
-    return [
-      { code: 'ATL', file: 'mia.webp' },
-      { code: 'MIA', file: 'fll.webp' },
-      { code: 'FLL', file: 'mco.webp' },
-      { code: 'MCO', file: 'tpa.webp' },
-    ]
+    return ['ATL', 'MIA', 'FLL', 'MCO'].map(airportEntry)
   }
   if (t.startsWith('illinois') || t.startsWith('wisconsin')) {
-    return [
-      { code: 'ORD', file: 'jfk.webp' },
-      { code: 'MDW', file: 'lga.webp' },
-      { code: 'MKE', file: 'bradley.webp' },
-      { code: 'JFK', file: 'newark.webp' },
-    ]
+    return ['ORD', 'MDW', 'MKE', 'JFK'].map(airportEntry)
   }
   if (t.startsWith('texas')) {
-    return [
-      { code: 'DFW', file: 'jfk.webp' },
-      { code: 'IAH', file: 'lga.webp' },
-      { code: 'AUS', file: 'bradley.webp' },
-      { code: 'DAL', file: 'newark.webp' },
-    ]
+    return ['DFW', 'IAH', 'AUS', 'DAL'].map(airportEntry)
   }
   if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston') || t.startsWith('nyc') || t.includes('westchester')) {
-    return [
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'EWR', file: 'newark.webp' },
-      { code: 'BDL', file: 'bradley.webp' },
-    ]
+    return ['JFK', 'LGA', 'EWR', 'BDL'].map(airportEntry)
   }
   if (t.includes('newark')) {
-    return [
-      { code: 'EWR', file: 'newark.webp' },
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'BDL', file: 'bradley.webp' },
-    ]
+    return ['EWR', 'JFK', 'LGA', 'BDL'].map(airportEntry)
   }
   if (t.startsWith('connecticut')) {
-    return [
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'BDL', file: 'bradley.webp' },
-      { code: 'EWR', file: 'newark.webp' },
-    ]
+    return ['JFK', 'LGA', 'BDL', 'EWR'].map(airportEntry)
   }
 
   if (t.includes('miami') || t.includes('key west') || t.includes('naples') || t.includes('fort lauderdale') || t.includes('palm beach')) {
-    return [
-      { code: 'MIA', file: 'mia.webp' },
-      { code: 'FLL', file: 'fll.webp' },
-      { code: 'MCO', file: 'mco.webp' },
-      { code: 'TPA', file: 'tpa.webp' },
-    ]
+    return ['MIA', 'FLL', 'MCO', 'TPA'].map(airportEntry)
   }
   if (t.includes('milwaukee') || t.includes('chicago') || t.includes('o’hare') || t.includes("o'hare")) {
-    return [
-      { code: 'ORD', file: 'jfk.webp' },
-      { code: 'MDW', file: 'lga.webp' },
-      { code: 'MKE', file: 'bradley.webp' },
-      { code: 'JFK', file: 'newark.webp' },
-    ]
+    return ['ORD', 'MDW', 'MKE', 'JFK'].map(airportEntry)
   }
   if (t.includes('jfk')) {
-    return [
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'EWR', file: 'newark.webp' },
-      { code: 'BDL', file: 'bradley.webp' },
-    ]
+    return ['JFK', 'LGA', 'EWR', 'BDL'].map(airportEntry)
   }
   if (t.includes('lga')) {
-    return [
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'EWR', file: 'newark.webp' },
-      { code: 'BDL', file: 'bradley.webp' },
-    ]
+    return ['LGA', 'JFK', 'EWR', 'BDL'].map(airportEntry)
   }
   if (t.includes('bdl')) {
-    return [
-      { code: 'BDL', file: 'bradley.webp' },
-      { code: 'JFK', file: 'jfk.webp' },
-      { code: 'LGA', file: 'lga.webp' },
-      { code: 'EWR', file: 'newark.webp' },
-    ]
+    return ['BDL', 'JFK', 'LGA', 'EWR'].map(airportEntry)
   }
-  return [
-    { code: 'JFK', file: 'jfk.webp' },
-    { code: 'LGA', file: 'lga.webp' },
-    { code: 'BDL', file: 'bradley.webp' },
-    { code: 'EWR', file: 'newark.webp' },
-  ]
+  return ['JFK', 'LGA', 'BDL', 'EWR'].map(airportEntry)
 }
 
 async function copyDir(src, dest) {
@@ -541,39 +481,18 @@ function buildContentBlocks(ctx) {
 }
 
 function buildAirportsSection(ctx) {
-  const { airports, prefix } = ctx
-  const cards = airports
-    .map(
-      (a, i) => `          <div className="airport-card ${prefix}-a${i + 1}">
-            <div className="airport-card-body">
-              <h3>${a.code}</h3>
-              <p>Airport</p>
-            </div>
-          </div>`,
-    )
-    .join('\n')
+  const { slug } = ctx
+  const pageKey = `other-pages/${slug}`
+  return `import RegionalAirportsSection from '../../../../components/sections/RegionalAirportsSection.jsx'
 
-  return `export default function AirportsSection() {
-  return (
-    <section className="airports">
-      <div className="container">
-        <h2 className="section-title">Top Airports</h2>
-        <p className="section-sub">
-          Whether you&apos;re catching an early flight or arriving after a long journey, our airport transportation ensures
-          a smooth and reliable ride with professional chauffeurs and luxury vehicles.
-        </p>
-        <div className="airports-grid">
-${cards}
-        </div>
-      </div>
-    </section>
-  )
+export default function AirportsSection() {
+  return <RegionalAirportsSection pageKey="${pageKey}" />
 }
 `
 }
 
 function buildPageCss(ctx) {
-  const { prefix, airports, title, slug } = ctx
+  const { prefix, slug } = ctx
   const assetBase = `../../assets/other-pages/${slug}`
   const lines = [
     `/* ${ctx.title} */`,
@@ -587,16 +506,21 @@ function buildPageCss(ctx) {
     `.content-img.${prefix}-i2{background-image:url('${assetBase}/content-blocks/car-service2.webp')}`,
     `.content-img.${prefix}-i3{background-image:url('${assetBase}/content-blocks/car-service3.webp')}`,
   ]
-  airports.forEach((a, i) => {
-    lines.push(
-      `.airport-card.${prefix}-a${i + 1}{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('${assetBase}/airports/${a.file}')}`,
-    )
-  })
   return `${lines.join('\n')}\n`
+}
+
+function isAirportLandingPage(title) {
+  return title.toLowerCase().includes('airport')
 }
 
 function buildHome(ctx) {
   const docTitle = JSON.stringify(`${ctx.title} | Urban Elite Limo`)
+  const includeAirports = !isAirportLandingPage(ctx.title)
+  const airportsImport = includeAirports
+    ? "import AirportsSection from './airports/AirportsSection.jsx'\n"
+    : ''
+  const airportsBlock = includeAirports ? '      <AirportsSection />\n' : ''
+
   return `import { useEffect } from 'react'
 import Hero from './hero/Hero.jsx'
 import Fleet from './fleet/Fleet.jsx'
@@ -608,8 +532,7 @@ import ContentBlocks from './content-blocks/ContentBlocks.jsx'
 import TrustedStats from './trusted-stats/TrustedStats.jsx'
 import HowItWorks from './how-it-works/HowItWorks.jsx'
 import JourneySection from './journey/JourneySection.jsx'
-import AirportsSection from './airports/AirportsSection.jsx'
-import FaqSection from './faqs/FaqSection.jsx'
+${airportsImport}import FaqSection from './faqs/FaqSection.jsx'
 
 /** ${ctx.title} landing page. */
 export default function Home() {
@@ -629,8 +552,7 @@ export default function Home() {
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
-      <AirportsSection />
-      <FaqSection />
+${airportsBlock}      <FaqSection />
     </>
   )
 }
@@ -734,11 +656,20 @@ async function ensureAirportAssets(slug, airports) {
     } catch {
       /* copy below */
     }
-    const floridaSrc = path.join(FL_AIRPORTS, a.file)
-    const ctSrc = path.join(CT_ASSETS, 'airports', a.file)
-    const illinoisOrd = path.join(ROOT, 'src/assets/illinois/illinois/airports/ord.webp')
-    const illinoisMdw = path.join(ROOT, 'src/assets/illinois/illinois/airports/mdw.webp')
-    const candidates = [floridaSrc, ctSrc, illinoisOrd, illinoisMdw]
+    const code = a.code.toLowerCase()
+    const legacyNames =
+      code === 'bdl'
+        ? ['bdl.webp', 'bradley.webp']
+        : code === 'ewr'
+          ? ['ewr.webp', 'newark.webp']
+          : [a.file]
+    const candidates = [
+      ...legacyNames.flatMap((name) => [
+        path.join(CENTRAL_AIRPORTS, name),
+        path.join(FL_AIRPORTS, name),
+        path.join(CT_ASSETS, 'airports', name),
+      ]),
+    ]
     for (const src of candidates) {
       try {
         await fs.access(src)

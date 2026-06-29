@@ -13,6 +13,7 @@
     "preview:perf": "npm run build && vite preview"
   },
   "dependencies": {
+    "@fontsource/space-grotesk": "^5.2.10",
     "@googlemaps/js-api-loader": "^2.0.2",
     "lucide-react": "^1.21.0",
     "react": "^19.2.6",

@@ -54,7 +54,18 @@ export default function HomeHero() {
         removeStaticHeroLcp()
         setUseReactHeroBg(true)
       }
+      return undefined
     }
+
+    // Fallback: mount in-section hero if static LCP never hands off (e.g. dev without HTML inject).
+    const fallback = window.setTimeout(() => {
+      if (staticRemoved.current) return
+      staticRemoved.current = true
+      removeStaticHeroLcp()
+      setUseReactHeroBg(true)
+    }, 800)
+
+    return () => window.clearTimeout(fallback)
   }, [])
 
   useEffect(() => {

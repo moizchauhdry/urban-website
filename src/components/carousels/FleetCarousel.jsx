@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import CarouselNavButtons from '../common/CarouselNavButtons.jsx'
 import { FleetCard } from './FleetCard.jsx'
 import { FleetCarouselDots } from './FleetCarouselDots.jsx'
 import FleetCategoryTabs from '../fleet/FleetCategoryTabs.jsx'
@@ -8,20 +7,6 @@ import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
 const GAP_PX = 10
 const AUTOPLAY_MS = 5000
-
-function FleetCarouselControls({ onPrev, onNext }) {
-  return (
-    <div className="fleet-carousel-controls">
-      <CarouselNavButtons
-        className="services-nav"
-        onPrev={onPrev}
-        onNext={onNext}
-        prevLabel="Previous vehicle"
-        nextLabel="Next vehicle"
-      />
-    </div>
-  )
-}
 
 function useFleetPerView() {
   const [w, setW] = useState(() =>
@@ -33,6 +18,7 @@ function useFleetPerView() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
   if (w <= 720) return 1
+  if (w <= 984) return 2
   return 3
 }
 
@@ -167,8 +153,6 @@ function FleetCarouselSingle({ items }) {
         pausedRef.current = false
       }}
     >
-      <FleetCarouselControls onPrev={goPrev} onNext={goNext} />
-
       <div
         ref={viewportRef}
         className="fleet-mobile-carousel-viewport fleet-carousel-viewport--draggable"
@@ -354,7 +338,6 @@ function FleetCarouselWindow({ items, visible }) {
         </div>
       </div>
 
-      <FleetCarouselControls onPrev={goPrev} onNext={goNext} />
       <FleetCarouselDots count={n} active={focusIndex} onSelect={goTo} />
     </div>
   )

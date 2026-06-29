@@ -9,7 +9,6 @@ import RouteCards from './route-cards/RouteCards.jsx'
 import TrustedStats from './trusted-stats/TrustedStats.jsx'
 import HowItWorks from './how-it-works/HowItWorks.jsx'
 import JourneySection from './journey/JourneySection.jsx'
-import AirportsSection from './airports/AirportsSection.jsx'
 import FaqSection from './faqs/FaqSection.jsx'
 
 /** Newark Airport Service landing page. */
@@ -27,7 +26,6 @@ export default function Home() {
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
-      <AirportsSection />
       <FaqSection />
     </>
   )

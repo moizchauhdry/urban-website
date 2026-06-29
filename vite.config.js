@@ -17,10 +17,17 @@ const SKIP_MODULE_PRELOAD = [
   'HomeBelowFold',
   'DeferredFooter',
   'HeroBookingForm',
+  'HeroDeferredBooking',
   'FleetCarousel',
   'ReviewsCarousel',
   'ServicesCarousel',
-  'ThankYouPage',
+  'NavMenuItems',
+  'routes-dLtvg4Ff',
+  'FifaPromoBanner',
+  'football',
+  'useHomeLogoClick',
+  'fully-licensed',
+  'phone-icon',
 ]
 
 /**
@@ -28,15 +35,10 @@ const SKIP_MODULE_PRELOAD = [
  */
 function injectHeroLcp() {
   let base = '/'
-  const devHeroSm = '/src/assets/hero_image-800.webp'
-  const devHeroLg = '/src/assets/hero_image-1440.webp'
+  const devHeroSm = '/src/assets/home/hero/home-hero-800.webp'
+  const devHeroLg = '/src/assets/home/hero/home-hero-1440.webp'
 
-  const injectTags = (html, smHref, lgHref) => {
-    const srcset = `${smHref} 800w, ${lgHref} 1440w`
-    const sizes = '(max-width: 1024px) 800px, 1440px'
-    const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
-    const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
-
+  const applyOptimizations = (html, hero) => {
     let out = html
       .replace(/<link rel="modulepreload"[^>]*>\s*/g, (tag) => {
         if (SKIP_MODULE_PRELOAD.some((s) => tag.includes(s))) return ''
@@ -47,13 +49,24 @@ function injectHeroLcp() {
         /<!-- Critical shell:[\s\S]*?<\/style>/,
         `<style>${criticalCss}</style>`,
       )
-      .replace('<meta name="viewport"', `${preload}\n    <meta name="viewport"`)
-      .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
 
-    out = out.replace(
-      /<link rel="stylesheet" crossorigin href="([^"]+\.css)">/,
-      '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="$1"></noscript>',
-    )
+    out = out.replace(/<link rel="stylesheet"[^>]*>/g, (tag) => {
+      if (SKIP_MODULE_PRELOAD.some((s) => tag.includes(s))) return ''
+      const href = tag.match(/href="([^"]+)"/)?.[1]
+      if (!href) return tag
+      return `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${href}"></noscript>`
+    })
+
+    if (hero) {
+      const { smHref, lgHref } = hero
+      const srcset = `${smHref} 800w, ${lgHref} 1440w`
+      const sizes = '(max-width: 1024px) 800px, 1440px'
+      const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
+      const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+      out = out
+        .replace('<meta name="viewport"', `${preload}\n    <meta name="viewport"`)
+        .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
+    }
 
     return out
   }
@@ -66,22 +79,29 @@ function injectHeroLcp() {
     transformIndexHtml: {
       order: 'post',
       handler(html, ctx) {
+        const toHref = (fileName) =>
+          `${base}${fileName}`.replace(/([^:]\/)\/+/g, '$1')
+
         if (ctx.bundle) {
           const findHeroAsset = (pattern) =>
             Object.values(ctx.bundle).find(
               (item) => item.type === 'asset' && pattern.test(item.fileName),
             )
 
-          const heroSm = findHeroAsset(/hero_image-800/i)
-          const heroLg = findHeroAsset(/hero_image-1440/i)
-          if (!heroSm || !heroLg) return html
+          const heroSm = findHeroAsset(/home-hero-800/i)
+          const heroLg = findHeroAsset(/home-hero-1440/i)
+          const hero =
+            heroSm && heroLg
+              ? { smHref: toHref(heroSm.fileName), lgHref: toHref(heroLg.fileName) }
+              : null
 
-          const toHref = (fileName) =>
-            `${base}${fileName}`.replace(/([^:]\/)\/+/g, '$1')
-          return injectTags(html, toHref(heroSm.fileName), toHref(heroLg.fileName))
+          return applyOptimizations(html, hero)
         }
 
-        return injectTags(html, devHeroSm, devHeroLg)
+        return applyOptimizations(html, {
+          smHref: devHeroSm,
+          lgHref: devHeroLg,
+        })
       },
     },
   }

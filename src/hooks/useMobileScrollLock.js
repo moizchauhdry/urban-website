@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
+import { COMPACT_NAV_MQ } from '../config/breakpoints.js'
 
-const MOBILE_MQ = '(max-width:720px)'
+const MOBILE_MQ = COMPACT_NAV_MQ
 
 /**
  * Locks document scroll (including iOS overscroll) while `locked` is true.

@@ -39,17 +39,17 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
           Fleet
         </NavLink>
         <div className="has-sub">
-          <a href="#" className="has-sub__trigger">
+          <button type="button" className="has-sub__trigger">
             Service Areas
             <span className="nav-chevron nav-chevron--down" aria-hidden="true" />
-          </a>
+          </button>
           <ServiceAreasDesktopSubmenu />
         </div>
         <div className="has-sub">
-          <a href="#" className="has-sub__trigger">
+          <button type="button" className="has-sub__trigger">
             Airports
             <span className="nav-chevron nav-chevron--down" aria-hidden="true" />
-          </a>
+          </button>
           <AirportsDesktopSubmenu />
         </div>
         <NavLink

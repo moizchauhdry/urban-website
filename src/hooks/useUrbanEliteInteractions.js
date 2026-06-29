@@ -8,23 +8,7 @@ export function useUrbanEliteInteractions(isHome) {
   useDeferredEffect(() => {
     const cleanups = []
 
-    // 1. Tab switching for booking form
-    const tabs = document.querySelectorAll('.form-tab')
-    const onTabClick = (tab) => () => {
-      document.querySelectorAll('.form-tab').forEach((t) => t.classList.remove('active'))
-      tab.classList.add('active')
-    }
-    const tabHandlers = []
-    tabs.forEach((tab) => {
-      const h = onTabClick(tab)
-      tabHandlers.push([tab, h])
-      tab.addEventListener('click', h)
-    })
-    cleanups.push(() => {
-      tabHandlers.forEach(([tab, h]) => tab.removeEventListener('click', h))
-    })
-
-    // Scroll reveal → useScrollReveal() in MainLayout (handles lazy-loaded sections)
+    // Tab switching is handled in HeroBookingForm (React state).
 
     // Trusted stats counter moved to TrustedStats.jsx (React state) — imperative DOM updates fought React and stuck on "0".
 
