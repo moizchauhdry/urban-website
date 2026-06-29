@@ -8,6 +8,7 @@ import {
 } from './heroBg.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from './heroHighlights.js'
 import HeroDeferredBooking from '../../../components/hero/HeroDeferredBooking.jsx'
+import HeroLiveBadge from '../../../components/hero/HeroLiveBadge.jsx'
 import Icon from '../../../components/common/Icon.jsx'
 import trustPilotLogo from '../../../assets/connecticut/reviews/trust-pilot.svg'
 import licensedIcon from '../../../assets/connecticut/hero/fully-licensed.png'
@@ -66,12 +67,7 @@ export default function Hero() {
       <div className="fifa-hero__overlay" aria-hidden="true" />
       <div className="container">
         <div className="hero-content fifa-hero__content">
-          <div className="hero-badge fifa-hero__badge">
-            <span className="hero-badge-star" aria-hidden="true">
-              ★
-            </span>{' '}
-            1,240+ Rides Completed For Events
-          </div>
+          <HeroLiveBadge />
 
           <ul className="fifa-hero__features" aria-label="Service highlights">
             {FIFA_HERO_FEATURES.map((feat) => (
