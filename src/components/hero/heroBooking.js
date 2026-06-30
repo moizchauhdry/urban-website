@@ -68,6 +68,14 @@ function getBookingApiBaseUrl() {
   return base
 }
 
+/** @param {'distance'|'hourly'} bookingType */
+function getBookingSubmitUrl(bookingType) {
+  if (bookingType !== 'distance' && bookingType !== 'hourly') {
+    throw new Error('Invalid booking type')
+  }
+  return `${getBookingApiBaseUrl()}/${bookingType}`
+}
+
 /** @returns {string} */
 function getBookingStoreDataUrl() {
   const override = import.meta.env.VITE_BOOKING_STORE_DATA_URL?.trim()
@@ -211,7 +219,7 @@ export async function submitHeroBooking(payload) {
     throw new Error('Please select a fleet.')
   }
 
-  const url = `${getBookingApiBaseUrl()}/${serviceType}`
+  const url = getBookingSubmitUrl(serviceType)
   const body = buildApiRequestBody(payload)
 
   if (import.meta.env.DEV) {

@@ -18,7 +18,7 @@ Restart `npm run dev` after any `.env` change. `.env` is gitignored — never co
 | Variable | Required for |
 |----------|----------------|
 | `VITE_GOOGLE_MAPS_API_KEY` | Pick-up / Destination address suggestions |
-| `VITE_BOOKING_API_URL` | Book Now submit (no trailing slash) |
+| `VITE_BOOKING_API_URL` | Book Now base URL (no trailing slash); `/distance` or `/hourly` is appended in code |
 | `VITE_BOOKING_LIVE_URL` | Optional. Canonical site URL sent as `live_url` (portal must have this domain registered) |
 
 Example:
@@ -44,7 +44,7 @@ VITE_BOOKING_API_URL=https://portal.arealimoservice.com/api/website/booking/crea
 ## Booking form
 
 - **Distance** tab → POST `{VITE_BOOKING_API_URL}/distance`
-- **Hourly** tab → POST `.../hourly` (shows required **Hours** field)
+- **Hourly** tab → POST `{VITE_BOOKING_API_URL}/hourly` (shows required **Hours** field)
 - Body includes form fields + `live_url` (current page URL)
 - Success → on-site thank-you page (`/thank-you` or `{region}/thank-you` via React Router)
 
