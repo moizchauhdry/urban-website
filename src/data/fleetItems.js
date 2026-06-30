@@ -2,9 +2,12 @@ import firstClassSedan from '../assets/fleet/fleet/first-class-sedan.webp'
 import luxurySedan from '../assets/fleet/fleet/luxury-sedan.webp'
 import economySedan from '../assets/fleet/fleet/economy-sedan.webp'
 import fullSizeSuv from '../assets/fleet/fleet/full-size-suv.webp'
+import premiumSuv from '../assets/fleet/fleet/full-size-suv2.webp'
 import miniSuv from '../assets/fleet/fleet/mini_suv.webp'
 import limo from '../assets/fleet/fleet/limo-final.webp'
+import escaladeLimo from '../assets/fleet/fleet/esclade_limo.jpg'
 import sprinter from '../assets/fleet/fleet/sprinter.webp'
+import jetSprinter from '../assets/fleet/fleet/jet_sprinter.png'
 import partyBus from '../assets/fleet/fleet/party-bus.webp'
 import motorCoach from '../assets/fleet/fleet/moto-coach.webp'
 
@@ -85,6 +88,21 @@ export const fleetItems = [
     ],
   },
   {
+    id: 'premium-suv',
+    category: 'suv',
+    imgClass: 'premium-suv',
+    title: 'Premium SUV',
+    description:
+      'Elevated SUV comfort for executives and families who want extra space and premium amenities.',
+    images: [{ src: premiumSuv, alt: 'Premium SUV' }],
+    specs: [
+      { icon: 'user', text: '5 Passengers' },
+      { icon: 'suitcase', text: '5 Luggage' },
+      { icon: 'chair', text: 'Leather Interior' },
+      { icon: 'snowflake', text: 'Climate Control' },
+    ],
+  },
+  {
     id: 'full-size-suv',
     category: 'suv',
     imgClass: 'suv',
@@ -115,6 +133,21 @@ export const fleetItems = [
     ],
   },
   {
+    id: 'escalade-limo',
+    category: 'limousine',
+    imgClass: 'escalade-limo',
+    title: 'Escalade Limo',
+    description:
+      'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
+    images: [{ src: escaladeLimo, alt: 'Escalade Limo' }],
+    specs: [
+      { icon: 'user', text: '17 Passengers' },
+      { icon: 'wine-glass', text: 'Bar Console' },
+      { icon: 'lightbulb', text: 'Lighting Cabin' },
+      { icon: 'tv', text: 'Media Controls' },
+    ],
+  },
+  {
     id: 'sprinter',
     category: 'sprinter',
     imgClass: 'sprinter',
@@ -122,6 +155,21 @@ export const fleetItems = [
     description:
       'Perfect for group travel, corporate events, parties, and long-distance trips.',
     images: [{ src: sprinter, alt: 'Sprinter Van' }],
+    specs: [
+      { icon: 'user', text: '14 Passengers' },
+      { icon: 'suitcase', text: '14 Luggage' },
+      { icon: 'expand', text: 'Ample Space' },
+      { icon: 'chair', text: 'Leather Seating' },
+    ],
+  },
+  {
+    id: 'jet-sprinter',
+    category: 'sprinter',
+    imgClass: 'jet-sprinter',
+    title: 'Jet Sprinter',
+    description:
+      'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
+    images: [{ src: jetSprinter, alt: 'Jet Sprinter' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -239,6 +287,36 @@ export const fleetPageItems = [
     ],
   },
   {
+    id: 'jet-sprinter',
+    category: 'sprinter',
+    imgClass: 'jet-sprinter',
+    title: 'Jet Sprinter',
+    description:
+      'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
+    images: [{ src: jetSprinter, alt: 'Jet Sprinter' }],
+    specs: [
+      { icon: 'user', text: '14 Passengers' },
+      { icon: 'suitcase', text: '14 Luggage' },
+      { icon: 'expand', text: 'Ample Space' },
+      { icon: 'chair', text: 'Leather Seating' },
+    ],
+  },
+  {
+    id: 'premium-suv',
+    category: 'suv',
+    imgClass: 'premium-suv',
+    title: 'Premium SUV',
+    description:
+      'Elevated SUV comfort for executives and families who want extra space and premium amenities.',
+    images: [{ src: premiumSuv, alt: 'Premium SUV' }],
+    specs: [
+      { icon: 'user', text: '5 Passengers' },
+      { icon: 'suitcase', text: '5 Luggage' },
+      { icon: 'chair', text: 'Leather Interior' },
+      { icon: 'snowflake', text: 'Climate Control' },
+    ],
+  },
+  {
     id: 'mini-suv',
     category: 'suv',
     imgClass: 'mini-suv',
@@ -297,6 +375,21 @@ export const fleetPageItems = [
       { icon: 'lightbulb', text: 'Lighting Cabin' },
       { icon: 'tv', text: 'Media Controls' },
       { icon: 'grip-lines-vertical', text: 'Privacy Divider' },
+    ],
+  },
+  {
+    id: 'escalade-limo',
+    category: 'limousine',
+    imgClass: 'escalade-limo',
+    title: 'Escalade Limo',
+    description:
+      'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
+    images: [{ src: escaladeLimo, alt: 'Escalade Limo' }],
+    specs: [
+      { icon: 'user', text: '17 Passengers' },
+      { icon: 'wine-glass', text: 'Bar Console' },
+      { icon: 'lightbulb', text: 'Lighting Cabin' },
+      { icon: 'tv', text: 'Media Controls' },
     ],
   },
 ]

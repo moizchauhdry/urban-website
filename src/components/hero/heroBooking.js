@@ -39,9 +39,13 @@ export const HERO_DURATION_OPTIONS = [
   { value: '4', label: '4 Hours' },
   { value: '5', label: '5 Hours' },
   { value: '6', label: '6 Hours' },
+  { value: '7', label: '7 Hours' },
   { value: '8', label: '8 Hours' },
+  { value: '9', label: '9 Hours' },
   { value: '10', label: '10 Hours' },
+  { value: '11', label: '11 Hours' },
   { value: '12', label: '12 Hours' },
+  { value: '13', label: '13 Hours' },
 ]
 
 /**

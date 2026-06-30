@@ -7,10 +7,9 @@ import HeaderNavPhone from '../../../components/layout/HeaderNavPhone.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
 import Navbar from './Navbar.jsx'
+import MobileMenuPanel, { PANEL_ID } from './MobileMenuPanel.jsx'
 
 const FifaPromoBanner = lazy(() => import('../../../components/layout/FifaPromoBanner.jsx'))
-const MobileMenuPanel = lazy(() => import('./MobileMenuPanel.jsx'))
-const PANEL_ID = 'site-mobile-menu'
 
 import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
 
@@ -87,15 +86,11 @@ export default function Header({ logoPath = '/' }) {
         </button>
       </div>
 
-      {mobileMenuOpen ? (
-        <Suspense fallback={<SuspenseLoader />}>
-          <MobileMenuPanel
-            open={mobileMenuOpen}
-            onClose={closeMobileMenu}
-            anchorRef={headerAnchorRef}
-          />
-        </Suspense>
-      ) : null}
+      <MobileMenuPanel
+        open={mobileMenuOpen}
+        onClose={closeMobileMenu}
+        anchorRef={headerAnchorRef}
+      />
     </header>
     {showPromoBanner ? (
       <Suspense fallback={<SuspenseLoader />}>

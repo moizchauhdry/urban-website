@@ -10,8 +10,9 @@ const VELOCITY_MAX = 0.018
 const SMOOTH_K = 9.5
 const EXIT_DISTANCE = 112
 const PIN_ZONE_BELOW = 32
-const PIN_ZONE_ABOVE = 4
 const PIN_RESET_ABOVE = 120
+/** Section top below this viewport ratio counts as "reached" for early card motion */
+const SECTION_ENGAGE_VIEW_RATIO = 0.92
 const PROGRESS_EPS = 0.002
 const MIN_VIEWPORT_HEIGHT = 480
 const MIN_VIEWPORT_HEIGHT_PHONE = 320
@@ -206,9 +207,23 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       return lockYRef.current
     }
 
-    const isInPinZone = (lockY) => {
-      const y = window.scrollY
-      return y >= lockY - PIN_ZONE_ABOVE && y <= lockY + PIN_ZONE_BELOW
+    const isSectionEngaged = () => {
+      const section = sectionRef.current
+      if (!section) return false
+
+      const stickyTop = getStickyTop()
+      const rect = section.getBoundingClientRect()
+      return (
+        rect.top < window.innerHeight * SECTION_ENGAGE_VIEW_RATIO &&
+        rect.bottom > stickyTop + 24
+      )
+    }
+
+    const isAtPinPoint = (lockY) => window.scrollY >= lockY - 2
+
+    const isInInteractionZone = (lockY) => {
+      if (!isSectionEngaged()) return false
+      return window.scrollY <= lockY + PIN_ZONE_BELOW
     }
 
     const isProgressActive = () => {
@@ -226,7 +241,7 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
     const resetProgressIfFarAbove = (lockY) => {
       if (window.scrollY < lockY - PIN_RESET_ABOVE && targetProgressRef.current > PROGRESS_EPS) {
         syncProgressImmediate(0)
-        setIsLocked(false)
+        unlockSection()
       }
     }
 
@@ -236,7 +251,7 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       if (!isLockedRef.current) return
       if (Math.abs(v) > 0.00004) return
       if (p <= PROGRESS_EPS || p >= 1 - PROGRESS_EPS) {
-        setIsLocked(false)
+        unlockSection()
       }
     }
 
@@ -244,17 +259,29 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       if (isLockedRef.current) return
       const pin = pinRef.current
       const height = pin?.offsetHeight ?? 0
+      lockYRef.current = window.scrollY
       if (height > 0) setSpacerHeight(height)
+      isLockedRef.current = true
+      document.documentElement.dataset.scrollPinLocked = 'true'
       setIsLocked(true)
     }
 
     const unlockSection = () => {
+      if (!isLockedRef.current) return
+      isLockedRef.current = false
+      delete document.documentElement.dataset.scrollPinLocked
       setIsLocked(false)
     }
 
     const holdScroll = (lockY) => {
       if (Math.abs(window.scrollY - lockY) > 1) {
+        document.documentElement.dataset.suppressChromeReveal = 'true'
         window.scrollTo(0, lockY)
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            delete document.documentElement.dataset.suppressChromeReveal
+          })
+        })
       }
     }
 
@@ -312,10 +339,17 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
         return false
       }
 
-      if (!isInPinZone(lockY)) return false
+      if (!isInInteractionZone(lockY)) return false
 
       if (deltaY > 0 && p < 1 - PROGRESS_EPS) {
-        if (window.scrollY < lockY - 2) return false
+        if (!isAtPinPoint(lockY)) {
+          velocityRef.current = Math.min(
+            VELOCITY_MAX,
+            velocityRef.current + deltaY * sensitivity,
+          )
+          return false
+        }
+
         lockSection()
         velocityRef.current = Math.min(
           VELOCITY_MAX,
@@ -326,6 +360,14 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       }
 
       if (deltaY < 0 && p > PROGRESS_EPS) {
+        if (!isAtPinPoint(lockY)) {
+          velocityRef.current = Math.max(
+            -VELOCITY_MAX,
+            velocityRef.current + deltaY * sensitivity,
+          )
+          return false
+        }
+
         lockSection()
         velocityRef.current = Math.max(
           -VELOCITY_MAX,
@@ -345,12 +387,12 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       const lockY = refreshLockY()
       resetProgressIfFarAbove(lockY)
 
-      if (window.scrollY < lockY - 2) {
+      if (window.scrollY < lockY - PIN_RESET_ABOVE) {
         unlockSection()
         return
       }
 
-      if (!isInPinZone(lockY)) return
+      if (!isAtPinPoint(lockY)) return
 
       if (isProgressActive()) {
         lockSection()
@@ -390,6 +432,7 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
       window.removeEventListener('touchstart', onTouchStart)
       window.removeEventListener('touchmove', onTouchMove)
       window.removeEventListener('resize', refreshLockY)
+      delete document.documentElement.dataset.scrollPinLocked
     }
   }, [useScrollPin, count, setTargetProgress, syncProgressImmediate])
 

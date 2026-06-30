@@ -7,6 +7,7 @@ const NON_NAV_HIDE_MS = 700
 function shouldSkipLoader(target) {
   if (!target) return true
   if (target.closest('[data-no-loader]')) return true
+  if (target.closest('.menu-toggle')) return true
   if (target.disabled || target.getAttribute('aria-disabled') === 'true') return true
 
   if (target.tagName === 'INPUT') {

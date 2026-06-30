@@ -91,6 +91,35 @@ export default function Footer({ logoPath = '/' }) {
         </div>
         <div className="footer-bottom">© 2025 Urban Elite Limo. All Rights Reserved.</div>
       </div>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+    window.dataLayer = window.dataLayer || [];
+    (function () {
+        function qp(names) {
+            const u = new URL(location.href);
+            for (const n of names) {
+                const v = u.searchParams.get(n);
+                if (v) return v.trim();
+            }
+            return "";
+        }
+        var email = (qp(["email", "e", "em"]) || "").toLowerCase();
+        var rawPhone = qp(["phone", "ph", "tel", "phone_number"]) || "";
+        var digits = rawPhone.replace(/\\D/g, "");
+        var phone = digits ? ("+" + digits) : "";
+        if (!email && !phone) return;
+        window.dataLayer.push({
+            event: "cf7_lead",
+            user_data: {
+                email: email || undefined,
+                phone_number: phone || undefined
+            }
+        });
+    })();
+          `,
+        }}
+      />
     </footer>
   )
 }
