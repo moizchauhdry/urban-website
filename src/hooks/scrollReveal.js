@@ -7,7 +7,7 @@ export function triggerScrollRevealScan() {
 
 /** Main page blocks that slide up on scroll (hero is visible on load — excluded). */
 export const SECTION_SELECTOR =
-  'section.section, section.planning, section.trusted, section.journey, section.airports, section.faq-section'
+  'section.section:not(.scroll-pinned-cards), section.planning, section.trusted, section.journey, section.airports, section.faq-section'
 
 /**
  * @param {IntersectionObserver} io

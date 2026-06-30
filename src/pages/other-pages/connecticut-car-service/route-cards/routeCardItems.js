@@ -1,13 +1,9 @@
-export const ROUTE_CARDS = [
-  {
-    id: 'primary',
-    layout: 'image-right',
-    railLabel: 'CONNECTICUT CAR SERVICE',
-    title: 'Connecticut Car Service',
-    description:
-      'Reliable and professional connecticut car service designed for a smooth, comfortable, and stress-free travel experience.',
-    description2:
-      'Book in minutes and enjoy a seamless ride experience backed by professional drivers, punctual service, and premium vehicles.',
-    buttonVariant: 'accent',
-  },
-]
+import img1 from '../../../../assets/other-pages/connecticut-car-service/content-blocks/car-service1.webp'
+import img2 from '../../../../assets/other-pages/connecticut-car-service/content-blocks/car-service2.webp'
+import img3 from '../../../../assets/other-pages/connecticut-car-service/content-blocks/car-service3.webp'
+import { buildLuxuryRouteCards } from '../../../../utils/buildLuxuryRouteCards.js'
+
+export const ROUTE_CARDS = buildLuxuryRouteCards({
+  railLabel: 'CONNECTICUT CAR SERVICE',
+  images: [img1, img2, img3],
+})

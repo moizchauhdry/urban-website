@@ -1,3 +1,4 @@
+import SuspenseLoader from '../../../../components/layout/SuspenseLoader.jsx'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../../components/layout/BrandLogo.jsx'
@@ -75,7 +76,7 @@ export default function Header({ logoPath = '/' }) {
       </div>
 
       {mobileMenuOpen ? (
-        <Suspense fallback={null}>
+        <Suspense fallback={<SuspenseLoader />}>
           <MobileMenuPanel
             open={mobileMenuOpen}
             onClose={closeMobileMenu}

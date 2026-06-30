@@ -17,6 +17,7 @@ import {
   submitHeroBooking,
 } from './heroBooking.js'
 import PlacesAutocompleteInput from '../common/PlacesAutocompleteInput.jsx'
+import { useLoading } from '../../context/LoadingContext.jsx'
 import 'react-phone-number-input/style.css'
 
 function nationalExamplePlaceholder(country) {
@@ -57,6 +58,7 @@ const SERVICE_TYPE_OPTIONS = [
 export default function HeroBookingForm() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const { withLoader } = useLoading()
   const [phone, setPhone] = useState(undefined)
   const [phoneCountry, setPhoneCountry] = useState('US')
   const phoneLabels = useMemo(() => buildLabelsWithCallingCodes(), [])
@@ -129,7 +131,7 @@ export default function HeroBookingForm() {
 
     setIsSubmitting(true)
     try {
-      await submitHeroBooking(payload)
+      await withLoader(() => submitHeroBooking(payload))
       const bookingHome = resolveBookingHome(pathname)
       navigate(getThankYouPath(bookingHome, { email: payload.email, phone: payload.phone }), {
         state: { returnPath: bookingHome },

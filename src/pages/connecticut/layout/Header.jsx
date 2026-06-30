@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import SuspenseLoader from '../../../components/layout/SuspenseLoader.jsx'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../../../components/layout/BrandLogo.jsx'
 import HeaderBookNow from '../../../components/layout/HeaderBookNow.jsx'
@@ -87,7 +88,7 @@ export default function Header({ logoPath = '/' }) {
       </div>
 
       {mobileMenuOpen ? (
-        <Suspense fallback={null}>
+        <Suspense fallback={<SuspenseLoader />}>
           <MobileMenuPanel
             open={mobileMenuOpen}
             onClose={closeMobileMenu}
@@ -97,7 +98,7 @@ export default function Header({ logoPath = '/' }) {
       ) : null}
     </header>
     {showPromoBanner ? (
-      <Suspense fallback={null}>
+      <Suspense fallback={<SuspenseLoader />}>
         <FifaPromoBanner />
       </Suspense>
     ) : null}

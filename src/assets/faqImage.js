@@ -1,3 +1,3 @@
-import faqImage from './home/faqs/faqs.webp'
+import faqImage from './connecticut/faqs/pexels-mart-production-7222956.webp'
 
 export default faqImage
