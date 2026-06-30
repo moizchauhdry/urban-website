@@ -1,4 +1,4 @@
-import faqImage from '../../../../assets/other-pages/florida-car-service/faqs/faqs.webp'
+import faqImage from '../../../../assets/faqImage.js'
 
 export default function FaqSection() {
   return (

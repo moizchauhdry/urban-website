@@ -1,4 +1,5 @@
 import { lazy, Suspense, useMemo } from 'react'
+import SuspenseLoader from '../../components/layout/SuspenseLoader.jsx'
 import { Navigate, useParams } from 'react-router-dom'
 import { OTHER_PAGE_SLUGS } from './registry.js'
 
@@ -39,7 +40,7 @@ export default function OtherPageShell() {
   }
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<SuspenseLoader />}>
       <PageLayout key={slug} />
     </Suspense>
   )

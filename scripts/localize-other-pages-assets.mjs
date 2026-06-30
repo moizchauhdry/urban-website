@@ -364,7 +364,7 @@ async function patchFaqSection(pageDir, slug) {
   let content = await fs.readFile(faqPath, 'utf8')
   content = content.replace(
     /import faqImage from ['"][^'"]+['"]/,
-    `import faqImage from '../../../../assets/other-pages/${slug}/faqs/faqs.webp'`,
+    `import faqImage from '../../../../assets/faqImage.js'`,
   )
   await fs.writeFile(faqPath, content)
 }

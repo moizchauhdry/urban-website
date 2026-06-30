@@ -8,6 +8,7 @@ import routeCardImage from '../../assets/connecticut/content-blocks/car-service3
  *   title: string,
  *   description: string,
  *   description2: string,
+ *   imageSrc?: string,
  *   buttonVariant?: 'dark' | 'accent',
  * }} props
  */
@@ -17,17 +18,19 @@ export default function RouteCard({
   title,
   description,
   description2,
+  imageSrc,
   buttonVariant = 'accent',
 }) {
   const layoutClass =
     layout === 'image-right' ? 'route-card--image-right' : 'route-card--image-left'
+  const image = imageSrc || routeCardImage
 
   return (
     <article className={`route-card ${layoutClass}`}>
       <div className="route-card__media">
         <div
           className="route-card__img"
-          style={{ backgroundImage: `url(${routeCardImage})` }}
+          style={{ backgroundImage: `url(${image})` }}
           role="img"
           aria-hidden="true"
         />

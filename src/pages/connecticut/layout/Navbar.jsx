@@ -1,3 +1,4 @@
+import SuspenseLoader from '../../../components/layout/SuspenseLoader.jsx'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
 
@@ -25,7 +26,7 @@ export default function Navbar() {
   return (
     <nav className="menu" aria-label="Primary">
       {isMobile ? null : (
-        <Suspense fallback={null}>
+        <Suspense fallback={<SuspenseLoader />}>
           <DesktopNavMenuItems variant="desktop" />
         </Suspense>
       )}

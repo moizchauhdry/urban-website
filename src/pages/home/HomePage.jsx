@@ -1,3 +1,4 @@
+import SuspenseLoader from '../../components/layout/SuspenseLoader.jsx'
 import { lazy, Suspense } from 'react'
 import HomeHero from './HomeHero.jsx'
 import ViewportLazy from '../../components/common/ViewportLazy.jsx'
@@ -12,7 +13,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <ViewportLazy minHeight={800}>
-        <Suspense fallback={null}>
+        <Suspense fallback={<SuspenseLoader />}>
           <HomeBelowFold />
         </Suspense>
       </ViewportLazy>

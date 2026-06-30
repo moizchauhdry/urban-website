@@ -11,7 +11,7 @@ export default function CarouselNavButtons({
   className = '',
 }) {
   return (
-    <div className={`review-nav${className ? ` ${className}` : ''}`}>
+    <div className={`review-nav${className ? ` ${className}` : ''}`} data-no-loader>
       <button type="button" onClick={onPrev} aria-label={prevLabel}>
         <Icon name="arrow-left" size={18} />
       </button>

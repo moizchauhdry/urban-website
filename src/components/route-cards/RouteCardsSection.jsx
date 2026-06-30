@@ -1,18 +1,15 @@
-import RouteCard from './RouteCard.jsx'
+import ScrollPinnedLuxuryCards from '../luxury-carousel/ScrollPinnedLuxuryCards.jsx'
 
 /**
- * @param {{ cards: import('./RouteCard.jsx').default extends (p: infer P) => unknown ? P[] : never }} props
+ * @param {{ cards: Array<{
+ *   id: string,
+ *   railLabel: string,
+ *   title: string,
+ *   description: string,
+ *   description2: string,
+ *   imageSrc: string,
+ * }> }} props
  */
 export default function RouteCardsSection({ cards }) {
-  if (!cards?.length) return null
-
-  return (
-    <section className="section route-cards-section">
-      <div className="container route-cards-stack">
-        {cards.map((card) => (
-          <RouteCard key={card.id} {...card} />
-        ))}
-      </div>
-    </section>
-  )
+  return <ScrollPinnedLuxuryCards cards={cards} />
 }

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Navigate, Routes, Route, useParams } from 'react-router-dom'
+import SuspenseLoader from '../components/layout/SuspenseLoader.jsx'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
 
@@ -48,7 +49,7 @@ export default function AppRoutes() {
         <Route
           path="/about-us"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <AboutPage />
             </Suspense>
           }
@@ -56,7 +57,7 @@ export default function AppRoutes() {
         <Route
           path="/our-services"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ServicesPage />
             </Suspense>
           }
@@ -64,7 +65,7 @@ export default function AppRoutes() {
         <Route
           path="/contact-us"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ContactPage />
             </Suspense>
           }
@@ -72,7 +73,7 @@ export default function AppRoutes() {
         <Route
           path="/fleet"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <FleetPage />
             </Suspense>
           }
@@ -80,7 +81,7 @@ export default function AppRoutes() {
         <Route
           path="/book-now"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <BookNowPage />
             </Suspense>
           }
@@ -88,7 +89,7 @@ export default function AppRoutes() {
         <Route
           path="/privacy-policy"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <PrivacyPolicyPage />
             </Suspense>
           }
@@ -96,7 +97,7 @@ export default function AppRoutes() {
         <Route
           path="/thank-you"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ThankYouPage />
             </Suspense>
           }
@@ -105,7 +106,7 @@ export default function AppRoutes() {
 
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <ConnecticutLayout />
           </Suspense>
         }
@@ -113,7 +114,7 @@ export default function AppRoutes() {
         <Route
           path="/connecticut-car-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ConnecticutHome />
             </Suspense>
           }
@@ -121,7 +122,7 @@ export default function AppRoutes() {
       </Route>
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <FloridaLayout />
           </Suspense>
         }
@@ -129,7 +130,7 @@ export default function AppRoutes() {
         <Route
           path="/florida-car-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <FloridaHome />
             </Suspense>
           }
@@ -137,7 +138,7 @@ export default function AppRoutes() {
       </Route>
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <NewYorkLayout />
           </Suspense>
         }
@@ -145,7 +146,7 @@ export default function AppRoutes() {
         <Route
           path="/new-york-car-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <NewYorkHome />
             </Suspense>
           }
@@ -153,7 +154,7 @@ export default function AppRoutes() {
       </Route>
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <IllinoisLayout />
           </Suspense>
         }
@@ -161,7 +162,7 @@ export default function AppRoutes() {
         <Route
           path="/illinois-car-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <IllinoisHome />
             </Suspense>
           }
@@ -169,7 +170,7 @@ export default function AppRoutes() {
       </Route>
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <ChicagoChauffeurLayout />
           </Suspense>
         }
@@ -177,7 +178,7 @@ export default function AppRoutes() {
         <Route
           path="/illinois-car-service/chicago-chauffeur-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ChicagoChauffeurHome />
             </Suspense>
           }
@@ -185,7 +186,7 @@ export default function AppRoutes() {
       </Route>
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <ChicagoLimoLayout />
           </Suspense>
         }
@@ -193,7 +194,7 @@ export default function AppRoutes() {
         <Route
           path="/illinois-car-service/chicago-limo-service"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <ChicagoLimoHome />
             </Suspense>
           }
@@ -203,7 +204,7 @@ export default function AppRoutes() {
       {/* FIFA World Cup 2026 — preview only; not in main nav */}
       <Route
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <FifaLayout />
           </Suspense>
         }
@@ -211,7 +212,7 @@ export default function AppRoutes() {
         <Route
           path="/fifa"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<SuspenseLoader />}>
               <FifaHome />
             </Suspense>
           }
@@ -223,7 +224,7 @@ export default function AppRoutes() {
       <Route
         path="/:slug"
         element={
-          <Suspense fallback={null}>
+          <Suspense fallback={<SuspenseLoader />}>
             <OtherPageShell />
           </Suspense>
         }
