@@ -5,7 +5,7 @@ import { FLEET_CATEGORIES } from '../../constants/fleetCategories.js'
  */
 export default function FleetCategoryTabs({ active, onChange }) {
   return (
-    <div className="fleet-category-tabs" role="tablist" aria-label="Fleet categories">
+    <div className="fleet-category-tabs" role="tablist" aria-label="Fleet categories" data-no-loader>
       <div className="fleet-category-tabs__track">
         {FLEET_CATEGORIES.map((cat) => {
           const isActive = cat.id === active

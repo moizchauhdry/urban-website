@@ -968,17 +968,20 @@ header{
 
 /* ABOUT US PAGE */
 .about-page-hero{
+  position:relative;
+  z-index:1;
+  isolation:isolate;
   width:100%;
   height:clamp(220px,50vh,480px);
   overflow:hidden;
-  background:var(--dark-section-gradient);
+  background:var(--white);
 }
 .about-page-hero__img{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
+  object-position:center 62%;
 }
 .about-page-intro{
   padding-top:56px;
@@ -2747,6 +2750,31 @@ header{
 }
 @media (max-width:720px){
   .luxury-carousel-section{padding:60px 0}
+  .luxury-carousel-section.scroll-pinned-cards{
+    padding:0;
+    margin-top:60px;
+  }
+  .scroll-pinned-cards__pin,
+  .scroll-pinned-cards--locked .scroll-pinned-cards__pin{
+    padding-bottom:24px;
+  }
+  .scroll-pinned-cards__viewport{
+    min-height:0;
+    border-radius:14px;
+  }
+  .scroll-pinned-cards__measure .route-card__media,
+  .scroll-pinned-cards__viewport .luxury-carousel__card--stack .route-card__media,
+  .scroll-pinned-cards__measure .route-card__img,
+  .scroll-pinned-cards__viewport .luxury-carousel__card--stack .route-card__img{
+    min-height:240px;
+  }
+  .scroll-pinned-cards__measure .route-card__body,
+  .scroll-pinned-cards__viewport .luxury-carousel__card--stack .route-card__body{
+    padding:24px 20px 28px;
+  }
+  .scroll-pinned-cards + .trusted{
+    margin-top:48px;
+  }
   .luxury-carousel__arrow{
     width:38px;
     height:38px;
@@ -3606,16 +3634,22 @@ header.scrolled{
     font-size:clamp(26px,7.8vw,36px);
     line-height:1.15;
   }
-  .hero:not(.fifa-hero) .hero-content{text-align:left;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:0;margin-right:0;text-align:left}
+  .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
+  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
+  .hero .hero-title,
+  .hero h1{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+  }
   .hero:not(.fifa-hero) .hero-title-line{
     display:block;
-    text-align:left;
+    text-align:center;
     white-space:normal;
   }
   .hero--home .hero-title .hero-title-line:first-of-type,
   .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:left}
+  .hero--home .hero-title-line--accent{display:block;text-align:center}
   .hero-mobile-benefits li span{
     white-space:normal;
     text-align:center;
@@ -3831,6 +3865,9 @@ header.scrolled{
     object-fit:contain;
     object-position:center 66%;
   }
+  .about-page-hero__img{
+    object-position:center 66%;
+  }
   .fleet-page-hero__img{
     width:100%;
     height:100%;
@@ -3861,6 +3898,9 @@ header.scrolled{
     max-height:none;
     object-fit:contain;
     object-position:center 66%;
+  }
+  .about-page-hero__img{
+    object-position:center bottom;
   }
   .fleet-page-hero__img{
     width:100%;

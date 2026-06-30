@@ -14,8 +14,8 @@ export default function AboutHero() {
         sizes={ABOUT_HERO_SIZES}
         alt=""
         className="about-page-hero__img"
-        width={1440}
-        height={960}
+        width={1920}
+        height={1080}
         fetchPriority="high"
         loading="eager"
         decoding="async"

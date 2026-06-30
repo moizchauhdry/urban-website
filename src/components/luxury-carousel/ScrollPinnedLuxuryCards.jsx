@@ -2,9 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import LuxuryServiceCard from './LuxuryServiceCard.jsx'
 import { PHONE_MAX_PX } from '../../config/breakpoints.js'
 
-const SCROLL_PIN_MQ = `(min-width: ${PHONE_MAX_PX + 1}px)`
+const PHONE_MQ = `(max-width: ${PHONE_MAX_PX}px)`
 const WHEEL_SENSITIVITY = 0.00048
-const TOUCH_SENSITIVITY = 0.0009
+const TOUCH_SENSITIVITY = 0.0011
 const VELOCITY_DAMPING = 0.9
 const VELOCITY_MAX = 0.018
 const SMOOTH_K = 9.5
@@ -14,7 +14,21 @@ const PIN_ZONE_ABOVE = 4
 const PIN_RESET_ABOVE = 120
 const PROGRESS_EPS = 0.002
 const MIN_VIEWPORT_HEIGHT = 480
+const MIN_VIEWPORT_HEIGHT_PHONE = 320
 const VIEWPORT_HEIGHT_BUFFER = 44
+const VIEWPORT_HEIGHT_BUFFER_PHONE = 28
+
+function isPhoneViewport() {
+  return typeof window !== 'undefined' && window.matchMedia(PHONE_MQ).matches
+}
+
+function getMinViewportHeight() {
+  return isPhoneViewport() ? MIN_VIEWPORT_HEIGHT_PHONE : MIN_VIEWPORT_HEIGHT
+}
+
+function getViewportHeightBuffer() {
+  return isPhoneViewport() ? VIEWPORT_HEIGHT_BUFFER_PHONE : VIEWPORT_HEIGHT_BUFFER
+}
 
 function getStickyTop() {
   const raw = getComputedStyle(document.documentElement).getPropertyValue('--site-chrome-height')
@@ -87,11 +101,8 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
   const [isLocked, setIsLocked] = useState(false)
   const [spacerHeight, setSpacerHeight] = useState(0)
   const [useScrollPin, setUseScrollPin] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return (
-      window.matchMedia(SCROLL_PIN_MQ).matches &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    )
+    if (typeof window === 'undefined') return true
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches
   })
 
   const count = cards?.length ?? 0
@@ -113,16 +124,11 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
   }, [isLocked])
 
   useEffect(() => {
-    const mq = window.matchMedia(SCROLL_PIN_MQ)
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const sync = () => setUseScrollPin(mq.matches && !motionMq.matches)
+    const sync = () => setUseScrollPin(!motionMq.matches)
     sync()
-    mq.addEventListener('change', sync)
     motionMq.addEventListener('change', sync)
-    return () => {
-      mq.removeEventListener('change', sync)
-      motionMq.removeEventListener('change', sync)
-    }
+    return () => motionMq.removeEventListener('change', sync)
   }, [])
 
   useEffect(() => {
@@ -153,7 +159,9 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
         node.offsetHeight,
       )
 
-      setViewportHeight(Math.max(MIN_VIEWPORT_HEIGHT, Math.ceil(maxHeight + VIEWPORT_HEIGHT_BUFFER)))
+      setViewportHeight(
+        Math.max(getMinViewportHeight(), Math.ceil(maxHeight + getViewportHeightBuffer())),
+      )
     }
 
     let rafId = 0
