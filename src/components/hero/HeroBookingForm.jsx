@@ -14,6 +14,7 @@ import {
   HERO_DURATION_OPTIONS,
   buildHeroBookingPayload,
   fetchBookingFleetOptions,
+  getMinBookingDate,
   submitHeroBooking,
 } from './heroBooking.js'
 import PlacesAutocompleteInput from '../common/PlacesAutocompleteInput.jsx'
@@ -67,6 +68,7 @@ export default function HeroBookingForm() {
   const [fleetOptions, setFleetOptions] = useState([])
   const [fleetOptionsError, setFleetOptionsError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const minBookingDate = useMemo(() => getMinBookingDate(), [])
 
   const isHourly = formData.bookingType === 'hourly'
 
@@ -110,6 +112,7 @@ export default function HeroBookingForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target
+    if (name === 'date' && value && value < minBookingDate) return
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
@@ -218,6 +221,7 @@ export default function HeroBookingForm() {
             type="date"
             name="date"
             value={formData.date}
+            min={minBookingDate}
             onChange={handleChange}
             required
           />

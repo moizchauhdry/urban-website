@@ -33,6 +33,21 @@ export const HERO_BOOKING_INITIAL = {
   hours: '',
 }
 
+/** Today in the user's local timezone (YYYY-MM-DD) — earliest selectable pickup date. */
+export function getMinBookingDate() {
+  const d = new Date()
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+/** @param {string} dateStr YYYY-MM-DD */
+export function isPastBookingDate(dateStr) {
+  if (!dateStr?.trim()) return false
+  return dateStr < getMinBookingDate()
+}
+
 export const HERO_DURATION_OPTIONS = [
   { value: '2', label: '2 Hours' },
   { value: '3', label: '3 Hours' },
@@ -221,6 +236,10 @@ export async function submitHeroBooking(payload) {
 
   if (!payload.fleet?.trim()) {
     throw new Error('Please select a fleet.')
+  }
+
+  if (isPastBookingDate(payload.date)) {
+    throw new Error('Please select today or a future date.')
   }
 
   const url = getBookingSubmitUrl(serviceType)
