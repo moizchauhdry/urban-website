@@ -67,14 +67,13 @@ export default function Hero() {
           <HeroLiveBadge />
           <h1 className="hero-title">
             <span className="hero-title-line hero-title-line--highlight">{"JFK Airport"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line">{"Car Service You Can Trust"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"JFK Airport Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"JFK Airport"}.
+            Travel to and from John F. Kennedy Airport with complete comfort, punctuality, and luxury. Our JFK airport limo service is designed for travelers who value reliability, clean vehicles, and professional chauffeurs available 24/7.
+            Whether you are flying for business or leisure, we ensure a smooth, stress-free airport transfer experience every time.{' '}
+            <strong>Book your JFK limousine service today and travel without delays or uncertainty.</strong>
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

@@ -87,6 +87,29 @@ for (const page of OTHER_PAGES) {
   setServicePageMetadata(page.pageHome, page.title)
 }
 
+Object.assign(PAGE_METADATA_BY_PATH, {
+  '/jfk-airport-car-service': {
+    title: 'Reliable JFK Airport Car Service | 24/7 Luxury Airport Rides',
+    description:
+      'Premium JFK airport car service providing luxury transportation to and from JFK Airport, serving Connecticut, New Jersey, Long Island, NYC, and all major cities across the USA.',
+  },
+  '/lga-airport-car-service': {
+    title: 'LaGuardia Chauffeur Service | LGA Airport Car Service',
+    description:
+      'Fast and easy LaGuardia airport car service booking with instant scheduling and luxury transfers to and from LGA across NYC, NJ, CT and Long Island.',
+  },
+  '/newark-airport-service': {
+    title: 'Newark Limo Service | Airport Car Service to & from Newark',
+    description:
+      'Book your Newark Airport car service in minutes with easy scheduling, flight tracking, and door-to-door transfers across NYC, CT and NJ.',
+  },
+  '/bdl-airport-car-service': {
+    title: 'BDL Airport Limo Service | Connecticut Chauffeur Airport Rides',
+    description:
+      'Book Bradley airport car service for smooth, on-time airport transfers across Connecticut and nearby cities.',
+  },
+})
+
 for (const hub of REGIONAL_HUB_PAGES) {
   setServicePageMetadata(hub.path, hub.pageName, { longTitle: hub.longTitle })
 }
