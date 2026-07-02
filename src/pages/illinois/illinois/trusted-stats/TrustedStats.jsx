@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon from '../../../../components/common/Icon.jsx'
 import { useMobileLayout } from '../../../../hooks/useMobileLayout.js'
+import QuoteLink from '../../../../components/layout/QuoteLink.jsx'
 
 const STATS = [
   { target: '10,000+', label: 'Happy Customers', icon: 'users', statKey: 'customers' },
@@ -91,9 +92,7 @@ export default function TrustedStats() {
             </div>
           ))}
         </div>
-        <a href="#" className="btn-yellow">
-          Get a Free Quote
-        </a>
+        <QuoteLink className="btn-yellow" />
       </div>
     </section>
   )

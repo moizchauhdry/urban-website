@@ -66,15 +66,15 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"LGA Airport"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"LaGuardia Airport Car Service"}</span>{' '}
+            <span className="hero-title-line">{"for NYC, CT, NJ, Long Island and Beyond"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"LGA Airport Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"LGA Airport"}.
+            Our LGA Airport Car Service offers reliable transportation to and from LaGuardia Airport for passengers
+            across New York City, Connecticut, Manhattan, Brooklyn, Long Island, and nearby New Jersey areas. With
+            professional LaGuardia car service and luxury LaGuardia limo service, we make airport travel comfortable,
+            timely, and stress-free.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

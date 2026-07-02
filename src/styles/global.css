@@ -2504,6 +2504,21 @@ header{
   margin:0 0 12px;
   max-width:520px;
 }
+.route-card__list{
+  margin:0 0 12px;
+  padding-left:1.25rem;
+  max-width:520px;
+  color:var(--muted);
+  font-size:var(--section-body-size);
+  line-height:1.75;
+  list-style:disc;
+  list-style-position:outside;
+  text-align:left;
+  align-self:flex-start;
+}
+.route-card__list li{margin-bottom:4px}
+.route-card__list li:last-child{margin-bottom:0}
+.route-card__body .route-card__list:last-child{margin-bottom:26px}
 .route-card__body .route-card__desc:last-of-type{
   margin-bottom:26px;
 }

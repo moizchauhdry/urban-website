@@ -66,15 +66,14 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"Fairfield CT"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"Fairfield CT Car Service"}</span>{' '}
+            <span className="hero-title-line">{"for Private Travel"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"Fairfield CT Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"Fairfield CT"}.
+            Our Fairfield CT Car Service is a great choice for travelers who want a smooth ride for business, special
+            occasions, or airport transportation. Whether you need a Fairfield CT car service, a Fairfield CT limo, or
+            limo service in Fairfield CT, we provide polished transportation with a professional touch.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

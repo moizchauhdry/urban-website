@@ -66,15 +66,14 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"CT to JFK Airport"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"Premium Connecticut to JFK"}</span>{' '}
+            <span className="hero-title-line">{"Airport Transfers"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"CT to JFK Airport Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"CT to JFK Airport"}.
+            We provide premium CT to JFK Airport Car Service for passengers looking for comfort, reliability, and
+            punctuality. Our CT limousine service to JFK and car service from Hartford to JFK are perfect for solo
+            travel, business travel, family trips, group travel and airport transfers.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

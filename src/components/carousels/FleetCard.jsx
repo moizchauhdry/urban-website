@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { FleetImageSlider } from './FleetImageSlider.jsx'
+import QuoteLink from '../layout/QuoteLink.jsx'
 
 function FleetCardInner({ item, priorityLoad = true }) {
   const primaryImage = item.images[0]
@@ -37,9 +38,7 @@ function FleetCardInner({ item, priorityLoad = true }) {
             </div>
           ))}
         </div>
-        <a href="#" className="btn-quote">
-          Get A Quote
-        </a>
+        <QuoteLink className="btn-quote">Get A Quote</QuoteLink>
       </div>
     </article>
   )

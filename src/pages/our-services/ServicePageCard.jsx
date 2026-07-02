@@ -1,3 +1,5 @@
+import QuoteLink from '../../components/layout/QuoteLink.jsx'
+
 /**
  * @param {{ title: string, description: string, image: string }} props
  */
@@ -8,9 +10,7 @@ export default function ServicePageCard({ title, description, image }) {
       <div className="service-page-body">
         <h3>{title}</h3>
         <p>{description}</p>
-        <a href="#" className="btn-yellow service-page-cta">
-          Get a Free Quote
-        </a>
+        <QuoteLink className="btn-yellow service-page-cta" />
       </div>
     </article>
   )

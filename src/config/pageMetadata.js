@@ -87,28 +87,57 @@ for (const page of OTHER_PAGES) {
   setServicePageMetadata(page.pageHome, page.title)
 }
 
-Object.assign(PAGE_METADATA_BY_PATH, {
-  '/jfk-airport-car-service': {
-    title: 'Reliable JFK Airport Car Service | 24/7 Luxury Airport Rides',
+const CUSTOM_SERVICE_PAGE_METADATA = [
+  {
+    path: '/greenwich-ct-car-service',
+    title: 'Greenwich CT Car Service | Luxury Airport & Chauffeur Transportation',
     description:
-      'Premium JFK airport car service providing luxury transportation to and from JFK Airport, serving Connecticut, New Jersey, Long Island, NYC, and all major cities across the USA.',
+      'Reliable Greenwich CT car service for airport transfers, corporate travel, and long-distance rides. Enjoy luxury vehicles, professional chauffeurs, and 24/7 dependable transportation.',
   },
-  '/lga-airport-car-service': {
-    title: 'LaGuardia Chauffeur Service | LGA Airport Car Service',
+  {
+    path: '/ct-to-jfk-airport-car-service',
+    title: 'CT to JFK Airport Car Service | Reliable Car Service to JFK from CT',
     description:
-      'Fast and easy LaGuardia airport car service booking with instant scheduling and luxury transfers to and from LGA across NYC, NJ, CT and Long Island.',
+      'Book trusted CT to JFK Airport Car Service for comfortable, on-time airport transportation. Serving Hartford and all of Connecticut with private rides to JFK.',
   },
-  '/newark-airport-service': {
-    title: 'Newark Limo Service | Airport Car Service to & from Newark',
+  {
+    path: '/new-haven-ct-car-service',
+    title: 'New Haven CT Car Service | New Haven Limo Service to JFK',
     description:
-      'Book your Newark Airport car service in minutes with easy scheduling, flight tracking, and door-to-door transfers across NYC, CT and NJ.',
+      'Book New Haven CT Car Service for airport transfers, private rides, and professional transportation in New Haven. Enjoy dependable service to JFK and beyond.',
   },
-  '/bdl-airport-car-service': {
-    title: 'BDL Airport Limo Service | Connecticut Chauffeur Airport Rides',
+  {
+    path: '/hartford-ct-car-service',
+    title: 'Hartford CT Car Service | Luxury Airport Transfers to JFK',
     description:
-      'Book Bradley airport car service for smooth, on-time airport transfers across Connecticut and nearby cities.',
+      'Book Hartford CT Car Service for executive airport transfers, private rides, and luxury transportation across Connecticut and to JFK.',
   },
-})
+  {
+    path: '/stamford-ct-car-service',
+    title: 'Stamford CT Car Service | Luxury Airport Transfers to JFK',
+    description:
+      'Book Stamford CT Car Service for airport rides, corporate travel, and private transportation. Serving Stamford, JFK trips, and luxury limo service in Connecticut.',
+  },
+  {
+    path: '/fairfield-ct-car-service',
+    title: 'Fairfield CT Car Service | Private Transfers Across Connecticut and Beyond',
+    description:
+      'Book Fairfield CT Car Service for private rides, airport transfers, and professional transportation. Serving Fairfield and major travel routes with ease.',
+  },
+  {
+    path: '/danbury-ct-car-service',
+    title: 'Danbury CT Car Service | Airport Car Service from Danbury to JFK',
+    description:
+      'Book Danbury CT Car Service for airport transfers, private rides, and professional transportation. Serving Danbury, JFK trips, Manhattan, and luxury limo service in Connecticut.',
+  },
+]
+
+for (const page of CUSTOM_SERVICE_PAGE_METADATA) {
+  PAGE_METADATA_BY_PATH[page.path] = {
+    title: page.title,
+    description: page.description,
+  }
+}
 
 for (const hub of REGIONAL_HUB_PAGES) {
   setServicePageMetadata(hub.path, hub.pageName, { longTitle: hub.longTitle })

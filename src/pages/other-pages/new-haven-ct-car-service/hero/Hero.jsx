@@ -66,15 +66,15 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"New Haven CT"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"New Haven CT Car Service"}</span>{' '}
+            <span className="hero-title-line">{"for Easy Airport Travel"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"New Haven CT Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"New Haven CT"}.
+            Our New Haven CT Car Service provides private transportation for airport transfers, business trips, and
+            personal travel throughout New Haven. Whether you need a New Haven car service for an early flight, a limo
+            New Haven CT for a special trip, or a New Haven limo service to JFK, we deliver smooth and professional
+            rides.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

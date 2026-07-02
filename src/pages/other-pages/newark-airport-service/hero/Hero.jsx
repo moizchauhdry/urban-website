@@ -66,15 +66,14 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"Newark"}</span>{' '}
-            <span className="hero-title-line">{"Airport Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"Premium Newark Airport Service"}</span>{' '}
+            <span className="hero-title-line">{"for Local and Long-Distance Travel"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"Newark Airport Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"Newark"}.
+            We offer premium Newark Airport Service for travelers who want comfort, style, and reliability. Our Newark
+            limo service, black car service Newark Airport, and car service from Newark Airport to Manhattan is ideal
+            for business travel, airport transfers, and city rides.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

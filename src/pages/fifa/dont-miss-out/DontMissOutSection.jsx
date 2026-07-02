@@ -1,5 +1,5 @@
 import Icon from '../../../components/common/Icon.jsx'
-import BookNowLink from '../../../components/layout/BookNowLink.jsx'
+import QuoteLink from '../../../components/layout/QuoteLink.jsx'
 import { FIFA_HERO_FEATURES } from '../hero/heroHighlights.js'
 
 const PHONE_HREF = 'tel:8888816610'
@@ -19,7 +19,7 @@ export default function DontMissOutSection() {
         </p>
 
         <div className="fifa-dont-miss-out__actions">
-          <BookNowLink className="fifa-dont-miss-out__btn">Get a Quote</BookNowLink>
+          <QuoteLink className="fifa-dont-miss-out__btn">Get a Quote</QuoteLink>
           <a
             href={WHATSAPP_HREF}
             className="fifa-dont-miss-out__btn"
