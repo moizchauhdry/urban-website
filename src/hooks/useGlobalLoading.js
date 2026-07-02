@@ -43,9 +43,11 @@ function isSamePageInternalNavLink(el) {
   }
 }
 
-function isSubmitControl(el) {
-  if (el.tagName === 'BUTTON' && (el.type === 'submit' || el.closest('form'))) return true
-  return el.tagName === 'INPUT' && el.type === 'submit'
+function isFormSubmitControl(el) {
+  return (
+    (el.tagName === 'BUTTON' && el.type === 'submit') ||
+    (el.tagName === 'INPUT' && el.type === 'submit')
+  )
 }
 
 /**
@@ -72,11 +74,17 @@ export function useGlobalLoading() {
       )
       if (shouldSkipLoader(target)) return
 
+      if (isFormSubmitControl(target)) {
+        const form = target.closest('form')
+        if (form && !form.checkValidity()) return
+      }
+
       show()
 
       if (
         isSamePageInternalNavLink(target) ||
-        (!isInternalNavLink(target) && !isSubmitControl(target))
+        isFormSubmitControl(target) ||
+        (!isInternalNavLink(target) && !isFormSubmitControl(target))
       ) {
         scheduleHide()
       }

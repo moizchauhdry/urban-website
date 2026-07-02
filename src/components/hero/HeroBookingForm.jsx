@@ -169,7 +169,7 @@ export default function HeroBookingForm() {
           Hourly
         </button>
       </div>
-      <form className="form-grid" onSubmit={handleSubmit}>
+      <form className="form-grid" onSubmit={handleSubmit} data-no-loader>
         <div className="form-group">
           <label htmlFor="hero-name">Name*</label>
           <input
