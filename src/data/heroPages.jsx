@@ -51,7 +51,7 @@ import heroBg_wisconsin_car_service from '../assets/other-pages/wisconsin-car-se
 
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
 
-/** Auto-generated — run node scripts/consolidate-heroes.mjs to refresh */
+/** Shared hero content — edit entries here when adding or updating landing pages. */
 export const HERO_PAGES = {
   'connecticut': {
     variant: 'landing',

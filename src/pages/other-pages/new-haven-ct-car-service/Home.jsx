@@ -4,6 +4,7 @@ import WhyDifferentSection from '../../../components/sections/WhyDifferentSectio
 import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
 import ReviewsSection from '../../../components/sections/ReviewsSection.jsx'
 import ServicesSection from '../../../components/sections/ServicesSection.jsx'
+import RouteCardsSection from '../../../components/route-cards/RouteCardsSection.jsx'
 import TrustedStats from '../../../components/sections/TrustedStats.jsx'
 import HowItWorks from '../../../components/sections/HowItWorks.jsx'
 import JourneySection from '../../../components/sections/JourneySection.jsx'
@@ -21,6 +22,7 @@ export default function Home() {
       <PlanningBanner />
       <ReviewsSection />
       <ServicesSection imagePrefix="op-new-haven-ct-car-service" />
+      <RouteCardsSection pageKey="new-haven-ct-car-service" />
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
