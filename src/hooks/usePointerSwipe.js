@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react'
 
 const DEFAULT_THRESHOLD = 50
+const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, label'
 
 /**
  * Horizontal pointer swipe on a viewport (mouse drag or touch via pointer events).
@@ -12,6 +13,7 @@ export function usePointerSwipe(onSwipeLeft, onSwipeRight, enabled = true, thres
   const onPointerDown = useCallback(
     (e) => {
       if (!enabled || e.button !== 0) return
+      if (e.target.closest(INTERACTIVE_SELECTOR)) return
       startX.current = e.clientX
       dragging.current = true
       e.currentTarget.setPointerCapture?.(e.pointerId)

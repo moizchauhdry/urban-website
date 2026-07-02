@@ -1,4 +1,5 @@
 import Icon from '../../../components/common/Icon.jsx'
+import QuoteLink from '../../../components/layout/QuoteLink.jsx'
 
 const STEPS = [
   {
@@ -36,9 +37,7 @@ export default function HowItWorks() {
           ))}
         </div>
         <div className="how-works-cta">
-          <a href="#" className="btn-yellow">
-            Get a Free Quote
-          </a>
+          <QuoteLink className="btn-yellow" />
         </div>
       </div>
     </section>

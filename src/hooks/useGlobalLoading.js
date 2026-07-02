@@ -32,6 +32,17 @@ function isInternalNavLink(el) {
   }
 }
 
+function isSamePageInternalNavLink(el) {
+  if (!isInternalNavLink(el)) return false
+
+  try {
+    const url = new URL(el.getAttribute('href'), window.location.origin)
+    return url.pathname === window.location.pathname
+  } catch {
+    return false
+  }
+}
+
 function isSubmitControl(el) {
   if (el.tagName === 'BUTTON' && (el.type === 'submit' || el.closest('form'))) return true
   return el.tagName === 'INPUT' && el.type === 'submit'
@@ -63,7 +74,10 @@ export function useGlobalLoading() {
 
       show()
 
-      if (!isInternalNavLink(target) && !isSubmitControl(target)) {
+      if (
+        isSamePageInternalNavLink(target) ||
+        (!isInternalNavLink(target) && !isSubmitControl(target))
+      ) {
         scheduleHide()
       }
     }
