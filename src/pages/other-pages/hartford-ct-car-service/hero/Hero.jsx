@@ -66,15 +66,15 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"Hartford CT"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"Executive Hartford CT Car Service"}</span>{' '}
+            <span className="hero-title-line">{"for Airport and Private Travel"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"Hartford CT Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"Hartford CT"}.
+            Our Hartford CT Car Service is designed for travelers who want a refined ride with professional attention
+            from pickup to drop-off. Whether you need a Hartford car service for a business meeting, a Hartford airport
+            car service for your flight, or a limo service Hartford CT for a special occasion, we provide a polished
+            travel experience.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

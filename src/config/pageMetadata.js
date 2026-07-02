@@ -87,6 +87,58 @@ for (const page of OTHER_PAGES) {
   setServicePageMetadata(page.pageHome, page.title)
 }
 
+const CUSTOM_SERVICE_PAGE_METADATA = [
+  {
+    path: '/greenwich-ct-car-service',
+    title: 'Greenwich CT Car Service | Luxury Airport & Chauffeur Transportation',
+    description:
+      'Reliable Greenwich CT car service for airport transfers, corporate travel, and long-distance rides. Enjoy luxury vehicles, professional chauffeurs, and 24/7 dependable transportation.',
+  },
+  {
+    path: '/ct-to-jfk-airport-car-service',
+    title: 'CT to JFK Airport Car Service | Reliable Car Service to JFK from CT',
+    description:
+      'Book trusted CT to JFK Airport Car Service for comfortable, on-time airport transportation. Serving Hartford and all of Connecticut with private rides to JFK.',
+  },
+  {
+    path: '/new-haven-ct-car-service',
+    title: 'New Haven CT Car Service | New Haven Limo Service to JFK',
+    description:
+      'Book New Haven CT Car Service for airport transfers, private rides, and professional transportation in New Haven. Enjoy dependable service to JFK and beyond.',
+  },
+  {
+    path: '/hartford-ct-car-service',
+    title: 'Hartford CT Car Service | Luxury Airport Transfers to JFK',
+    description:
+      'Book Hartford CT Car Service for executive airport transfers, private rides, and luxury transportation across Connecticut and to JFK.',
+  },
+  {
+    path: '/stamford-ct-car-service',
+    title: 'Stamford CT Car Service | Luxury Airport Transfers to JFK',
+    description:
+      'Book Stamford CT Car Service for airport rides, corporate travel, and private transportation. Serving Stamford, JFK trips, and luxury limo service in Connecticut.',
+  },
+  {
+    path: '/fairfield-ct-car-service',
+    title: 'Fairfield CT Car Service | Private Transfers Across Connecticut and Beyond',
+    description:
+      'Book Fairfield CT Car Service for private rides, airport transfers, and professional transportation. Serving Fairfield and major travel routes with ease.',
+  },
+  {
+    path: '/danbury-ct-car-service',
+    title: 'Danbury CT Car Service | Airport Car Service from Danbury to JFK',
+    description:
+      'Book Danbury CT Car Service for airport transfers, private rides, and professional transportation. Serving Danbury, JFK trips, Manhattan, and luxury limo service in Connecticut.',
+  },
+]
+
+for (const page of CUSTOM_SERVICE_PAGE_METADATA) {
+  PAGE_METADATA_BY_PATH[page.path] = {
+    title: page.title,
+    description: page.description,
+  }
+}
+
 for (const hub of REGIONAL_HUB_PAGES) {
   setServicePageMetadata(hub.path, hub.pageName, { longTitle: hub.longTitle })
 }

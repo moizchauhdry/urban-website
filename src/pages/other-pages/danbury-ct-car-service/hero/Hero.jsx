@@ -66,15 +66,15 @@ export default function Hero() {
         <div className="hero-content">
           <HeroLiveBadge />
           <h1 className="hero-title">
-            <span className="hero-title-line hero-title-line--highlight">{"Danbury CT"}</span>{' '}
-            <span className="hero-title-line">{"Car Service"}</span>
+            <span className="hero-title-line hero-title-line--highlight">{"Luxury Danbury Car Service"}</span>{' '}
+            <span className="hero-title-line">{"You Can Rely On"}</span>
           </h1>
           <HeroMobileBenefits />
           <p className="hero-desc">
-            Travel in comfort with {"Danbury CT Car Service"} designed for people who want a smooth and stress free
-            experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
-            friendly service and dependable transport without rushing or worrying about traffic.
-            Your ride stays simple, safe and well planned throughout {"Danbury CT"}.
+            Our Danbury CT Car Service offers private transportation for airport trips, business travel, and special
+            occasions. Whether you need a Danbury car service for a local ride, a Danbury CT limo service for a group
+            travel, or a Danbury limo for a special event, we provide a smooth and professional experience. It's a
+            refined option for travelers who want punctual service and a comfortable ride throughout Danbury and beyond.
           </p>
           <a href={HERO_PHONE.href} className="hero-phone">
             <img

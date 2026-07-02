@@ -4,8 +4,9 @@ import Icon from '../common/Icon.jsx'
  * @param {{
  *   railLabel: string,
  *   title: string,
- *   description: string,
- *   description2: string,
+ *   description: import('react').ReactNode,
+ *   description2?: import('react').ReactNode,
+ *   listItems?: string[],
  *   imageSrc: string,
  *   phase?: 'idle' | 'enter' | 'exit' | 'stack',
  *   style?: import('react').CSSProperties,
@@ -17,6 +18,7 @@ export default function LuxuryServiceCard({
   title,
   description,
   description2,
+  listItems,
   imageSrc,
   phase = 'idle',
   style,
@@ -40,7 +42,14 @@ export default function LuxuryServiceCard({
         <h2 className="route-card__title luxury-carousel__title">{title}</h2>
         <div className="luxury-carousel__accent" aria-hidden="true" />
         <p className="route-card__desc luxury-carousel__desc">{description}</p>
-        <p className="route-card__desc luxury-carousel__desc">{description2}</p>
+        {listItems?.length ? (
+          <ul className="route-card__list luxury-carousel__list">
+            {listItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
+        {description2 ? <p className="route-card__desc luxury-carousel__desc">{description2}</p> : null}
         {showQuoteButton ? (
           <a href="#hero-booking" className="luxury-carousel__btn">
             Get a free quote
