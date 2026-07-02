@@ -61,9 +61,13 @@ export function useGlobalLoading() {
       )
       if (shouldSkipLoader(target)) return
 
+      // Form submits use withLoader (or may be blocked by native validation).
+      // Showing the global loader here leaves it stuck when validation fails or the API errors.
+      if (isSubmitControl(target)) return
+
       show()
 
-      if (!isInternalNavLink(target) && !isSubmitControl(target)) {
+      if (!isInternalNavLink(target)) {
         scheduleHide()
       }
     }
