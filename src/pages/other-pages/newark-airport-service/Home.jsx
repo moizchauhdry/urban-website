@@ -1,4 +1,4 @@
-import Hero from './hero/Hero.jsx'
+import LandingHero from '../../../components/hero/LandingHero.jsx'
 import FleetSection from '../../../components/sections/FleetSection.jsx'
 import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
 import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+      <LandingHero pageKey="newark-airport-service" />
       <FleetSection />
       <WhyDifferentSection />
       <PlanningBanner />

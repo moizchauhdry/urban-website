@@ -525,7 +525,7 @@ function buildHome(ctx) {
     : ''
 
   return `import { useEffect } from 'react'
-import Hero from './hero/Hero.jsx'
+import LandingHero from '../../../components/hero/LandingHero.jsx'
 import FleetSection from '../../../components/sections/FleetSection.jsx'
 import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
 import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
@@ -546,7 +546,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+      <LandingHero pageKey="${ctx.slug}" />
       <FleetSection />
       <WhyDifferentSection />
       <PlanningBanner />
@@ -647,6 +647,7 @@ async function generatePage(title) {
     'faqs',
     'content-blocks',
     'layout',
+    'hero',
   ]) {
     await fs.rm(path.join(pageDir, dir), { recursive: true, force: true })
   }
@@ -660,9 +661,6 @@ async function generatePage(title) {
     await fs.writeFile(file, content)
   }
 
-  await fs.writeFile(path.join(pageDir, 'hero', 'Hero.jsx'), buildHeroJsx(ctx))
-  await fs.writeFile(path.join(pageDir, 'hero', 'heroBg.js'), buildHeroBgJs(slug))
-  await fs.writeFile(path.join(pageDir, 'hero', 'heroHighlights.js'), buildHeroHighlightsJs(slug))
   await fs.writeFile(path.join(pageDir, 'Home.jsx'), buildHome(ctx))
   await fs.writeFile(path.join(pageDir, 'PageLayout.jsx'), buildPageLayout(ctx))
 

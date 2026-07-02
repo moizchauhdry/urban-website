@@ -1,5 +1,6 @@
+import LandingHero from '../../components/hero/LandingHero.jsx'
 
-import Hero from './hero/Hero.jsx'
+
 import MatchDayServices from './match-day-services/MatchDayServices.jsx'
 import FifaAirportsSection from './airports/FifaAirportsSection.jsx'
 import PopularRoutesSection from './popular-routes/PopularRoutesSection.jsx'
@@ -17,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+      <LandingHero pageKey="fifa" />
       <MatchDayServices />
       <MatchDayExperienceSection />
       <FleetSection
