@@ -1,28 +1,28 @@
-import Fleet from '../connecticut/fleet/Fleet.jsx'
-import ReviewsSection from '../connecticut/reviews/ReviewsSection.jsx'
-import Services from '../connecticut/services/Services.jsx'
-import WhyDifferent from '../connecticut/why-different/WhyDifferent.jsx'
-import TrustedStats from '../connecticut/trusted-stats/TrustedStats.jsx'
-import HowItWorks from '../connecticut/how-it-works/HowItWorks.jsx'
-import JourneySection from '../connecticut/journey/JourneySection.jsx'
+import FleetSection from '../../components/sections/FleetSection.jsx'
+import ReviewsSection from '../../components/sections/ReviewsSection.jsx'
+import ServicesSection from '../../components/sections/ServicesSection.jsx'
+import WhyDifferentSection from '../../components/sections/WhyDifferentSection.jsx'
+import TrustedStats from '../../components/sections/TrustedStats.jsx'
+import HowItWorks from '../../components/sections/HowItWorks.jsx'
+import JourneySection from '../../components/sections/JourneySection.jsx'
+import FaqSection from '../../components/sections/FaqSection.jsx'
 import TopDestinationsSection from './TopDestinationsSection.jsx'
 import TopAirportsSection from './TopAirportsSection.jsx'
-import HomeFaqSection from './HomeFaqSection.jsx'
 
 /** Below-the-fold home sections — lazy-loaded after hero paints. */
 export default function HomeBelowFold() {
   return (
     <>
-      <Fleet />
+      <FleetSection />
       <ReviewsSection />
-      <Services />
-      <WhyDifferent />
+      <ServicesSection />
+      <WhyDifferentSection />
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
       <TopDestinationsSection />
       <TopAirportsSection />
-      <HomeFaqSection />
+      <FaqSection variant="home" />
     </>
   )
 }

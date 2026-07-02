@@ -516,23 +516,27 @@ function isAirportLandingPage(title) {
 function buildHome(ctx) {
   const docTitle = JSON.stringify(`${ctx.title} | Urban Elite Limo`)
   const includeAirports = !isAirportLandingPage(ctx.title)
+  const airportKey = `other-pages/${ctx.slug}`
   const airportsImport = includeAirports
-    ? "import AirportsSection from './airports/AirportsSection.jsx'\n"
+    ? "import RegionalAirportsSection from '../../../components/sections/RegionalAirportsSection.jsx'\n"
     : ''
-  const airportsBlock = includeAirports ? '      <AirportsSection />\n' : ''
+  const airportsBlock = includeAirports
+    ? `      <RegionalAirportsSection pageKey="${airportKey}" />\n`
+    : ''
 
   return `import { useEffect } from 'react'
 import Hero from './hero/Hero.jsx'
-import Fleet from './fleet/Fleet.jsx'
-import WhyDifferent from './why-different/WhyDifferent.jsx'
-import PlanningBanner from './planning-banner/PlanningBanner.jsx'
-import ReviewsSection from './reviews/ReviewsSection.jsx'
-import Services from './services/Services.jsx'
-import ContentBlocks from './content-blocks/ContentBlocks.jsx'
-import TrustedStats from './trusted-stats/TrustedStats.jsx'
-import HowItWorks from './how-it-works/HowItWorks.jsx'
-import JourneySection from './journey/JourneySection.jsx'
-${airportsImport}import FaqSection from './faqs/FaqSection.jsx'
+import FleetSection from '../../../components/sections/FleetSection.jsx'
+import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
+import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
+import ReviewsSection from '../../../components/sections/ReviewsSection.jsx'
+import ServicesSection from '../../../components/sections/ServicesSection.jsx'
+import RouteCardsSection from '../../../components/route-cards/RouteCardsSection.jsx'
+import { ROUTE_CARDS } from './route-cards/routeCardItems.js'
+import TrustedStats from '../../../components/sections/TrustedStats.jsx'
+import HowItWorks from '../../../components/sections/HowItWorks.jsx'
+import JourneySection from '../../../components/sections/JourneySection.jsx'
+${airportsImport}import FaqSection from '../../../components/sections/FaqSection.jsx'
 
 /** ${ctx.title} landing page. */
 export default function Home() {
@@ -543,12 +547,12 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Fleet />
-      <WhyDifferent />
+      <FleetSection />
+      <WhyDifferentSection />
       <PlanningBanner />
       <ReviewsSection />
-      <Services />
-      <ContentBlocks />
+      <ServicesSection imagePrefix="${prefix}" />
+      <RouteCardsSection cards={ROUTE_CARDS} />
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
@@ -561,87 +565,19 @@ ${airportsBlock}      <FaqSection />
 
 function buildPageLayout(ctx) {
   return `import Home from './Home.jsx'
-import Header from './layout/Header.jsx'
-import DeferredFooter from '../../../components/layout/DeferredFooter.jsx'
-import { PAGE_HOME } from './layout/navConfig.js'
-import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
-import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
-import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
+import LandingPageShell from '../../../components/layout/LandingPageShell.jsx'
 import '../../../styles/other-pages/${ctx.slug}.css'
+
+const PAGE_HOME = '${ctx.pageHome}'
 
 /** Layout for ${ctx.title}. */
 export default function PageLayout() {
-  useUrbanEliteInteractions(true)
-  useScrollReveal()
-  useScrollToBookingHash()
-
   return (
-    <>
-      <Header logoPath={PAGE_HOME} />
+    <LandingPageShell homePath={PAGE_HOME} headerVariant="standard" isHome>
       <Home />
-      <DeferredFooter logoPath={PAGE_HOME} />
-    </>
+    </LandingPageShell>
   )
 }
-`
-}
-
-function buildNavConfig(ctx) {
-  return `export const PAGE_HOME = '${ctx.pageHome}'
-export const SITE = 'https://urbanelitelimo.com'
-export const ext = (path) => \`\${SITE}\${path}\`
-`
-}
-
-function buildServiceItems(ctx) {
-  const { prefix } = ctx
-  return `/** @typedef {{ id: string, title: string, description: string, imageClass: string }} ServiceItem */
-
-/** @type {ServiceItem[]} */
-export const SERVICE_ITEMS = [
-  {
-    id: 'christmas',
-    title: 'Christmas Car Service',
-    description:
-      'Enjoy premium holiday transportation with professional chauffeurs ensuring comfort, safety, and reliable group travel for festive events, family gatherings, and seasonal celebrations.',
-    imageClass: '${prefix}-s1',
-  },
-  {
-    id: 'prom',
-    title: 'Prom & Parties Transfers',
-    description:
-      'Make prom and parties unforgettable with luxury vehicles, professional chauffeurs, and safe, premium rides ensuring a night full of memories.',
-    imageClass: '${prefix}-s2',
-  },
-  {
-    id: 'cruise',
-    title: 'Pier & Cruise Transfers',
-    description:
-      'Begin your cruise travel stress-free with timely, comfortable port transfers provided by professional, courteous chauffeurs ensuring smooth travel.',
-    imageClass: '${prefix}-s3',
-  },
-  {
-    id: 'events',
-    title: 'Events & Entertainment Service',
-    description:
-      'Premium car service for concerts, events, or shows with chauffeurs delivering luxury, safety, and reliable group travel every time.',
-    imageClass: '${prefix}-s4',
-  },
-  {
-    id: 'night-out',
-    title: 'Night Out Service',
-    description:
-      'Enjoy complete flexibility with night out chauffeur service ensuring safety, comfort, and premium luxury throughout your entire night.',
-    imageClass: '${prefix}-s5',
-  },
-  {
-    id: 'new-year',
-    title: 'New Year Car Service',
-    description:
-      'Begin your New Year celebrations stress-free with our luxury chauffeured rides offering comfort, punctuality, and smooth travel to every destination.',
-    imageClass: '${prefix}-s6',
-  },
-]
 `
 }
 
@@ -698,6 +634,22 @@ async function generatePage(title) {
   await fs.rm(assetDir, { recursive: true, force: true })
   await copyDir(CT_PAGES, pageDir)
   await copyDir(CT_ASSETS, assetDir)
+  await fs.rm(path.join(pageDir, 'faqs'), { recursive: true, force: true })
+  for (const dir of [
+    'planning-banner',
+    'trusted-stats',
+    'how-it-works',
+    'fleet',
+    'why-different',
+    'reviews',
+    'journey',
+    'airports',
+    'faqs',
+    'content-blocks',
+    'layout',
+  ]) {
+    await fs.rm(path.join(pageDir, dir), { recursive: true, force: true })
+  }
   await ensureAirportAssets(slug, airports)
 
   const files = await walkFiles(pageDir)
@@ -711,17 +663,8 @@ async function generatePage(title) {
   await fs.writeFile(path.join(pageDir, 'hero', 'Hero.jsx'), buildHeroJsx(ctx))
   await fs.writeFile(path.join(pageDir, 'hero', 'heroBg.js'), buildHeroBgJs(slug))
   await fs.writeFile(path.join(pageDir, 'hero', 'heroHighlights.js'), buildHeroHighlightsJs(slug))
-  await fs.writeFile(path.join(pageDir, 'journey', 'JourneySection.jsx'), buildJourneySectionJsx(slug))
   await fs.writeFile(path.join(pageDir, 'Home.jsx'), buildHome(ctx))
-  await fs.writeFile(path.join(pageDir, 'content-blocks', 'ContentBlocks.jsx'), buildContentBlocks(ctx))
-  await fs.writeFile(path.join(pageDir, 'airports', 'AirportsSection.jsx'), buildAirportsSection(ctx))
-  await fs.writeFile(path.join(pageDir, 'services', 'serviceItems.js'), buildServiceItems(ctx))
-  await fs.writeFile(path.join(pageDir, 'layout', 'navConfig.js'), buildNavConfig(ctx))
   await fs.writeFile(path.join(pageDir, 'PageLayout.jsx'), buildPageLayout(ctx))
-  await fs.copyFile(
-    path.join(ROOT, 'scripts/other-pages-footer-template.jsx'),
-    path.join(pageDir, 'layout', 'Footer.jsx'),
-  )
 
   await fs.rm(path.join(pageDir, 'ConnecticutLayout.jsx'), { force: true })
 

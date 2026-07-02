@@ -1,16 +1,16 @@
-
 import Hero from './hero/Hero.jsx'
-import Fleet from './fleet/Fleet.jsx'
-import WhyDifferent from './why-different/WhyDifferent.jsx'
-import PlanningBanner from './planning-banner/PlanningBanner.jsx'
-import ReviewsSection from './reviews/ReviewsSection.jsx'
-import Services from './services/Services.jsx'
-import RouteCards from './route-cards/RouteCards.jsx'
-import TrustedStats from './trusted-stats/TrustedStats.jsx'
-import HowItWorks from './how-it-works/HowItWorks.jsx'
-import JourneySection from './journey/JourneySection.jsx'
-import AirportsSection from './airports/AirportsSection.jsx'
-import FaqSection from './faqs/FaqSection.jsx'
+import FleetSection from '../../../components/sections/FleetSection.jsx'
+import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
+import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
+import ReviewsSection from '../../../components/sections/ReviewsSection.jsx'
+import ServicesSection from '../../../components/sections/ServicesSection.jsx'
+import RouteCardsSection from '../../../components/route-cards/RouteCardsSection.jsx'
+import { ROUTE_CARDS } from './route-cards/routeCardItems.js'
+import TrustedStats from '../../../components/sections/TrustedStats.jsx'
+import HowItWorks from '../../../components/sections/HowItWorks.jsx'
+import JourneySection from '../../../components/sections/JourneySection.jsx'
+import RegionalAirportsSection from '../../../components/sections/RegionalAirportsSection.jsx'
+import FaqSection from '../../../components/sections/FaqSection.jsx'
 
 /** Miami to Fort Lauderdale car service landing page. */
 export default function Home() {
@@ -18,16 +18,16 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Fleet />
-      <WhyDifferent />
+      <FleetSection />
+      <WhyDifferentSection />
       <PlanningBanner />
       <ReviewsSection />
-      <Services />
-      <RouteCards />
+      <ServicesSection imagePrefix="op-miami-to-fort-lauderdale-car-service" />
+      <RouteCardsSection cards={ROUTE_CARDS} />
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
-      <AirportsSection />
+      <RegionalAirportsSection pageKey="other-pages/miami-to-fort-lauderdale-car-service" />
       <FaqSection />
     </>
   )

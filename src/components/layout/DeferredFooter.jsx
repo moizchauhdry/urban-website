@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 
-const Footer = lazy(() => import('../../pages/connecticut/layout/Footer.jsx'))
+const Footer = lazy(() => import('./landing/LandingFooter.jsx'))
 
 /** Footer is below the fold — load after idle to shrink the initial JS parse cost. */
 export default function DeferredFooter(props) {

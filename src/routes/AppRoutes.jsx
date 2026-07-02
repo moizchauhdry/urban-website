@@ -36,6 +36,10 @@ const OtherPageShell = lazy(() => import('../pages/other-pages/OtherPageShell.js
 const FifaLayout = lazy(() => import('../pages/fifa/FifaLayout.jsx'))
 const FifaHome = lazy(() => import('../pages/fifa/Home.jsx'))
 
+function SuspenseRoute({ children }) {
+  return <Suspense fallback={<SuspenseLoader />}>{children}</Suspense>
+}
+
 function OtherPageLegacyRedirect() {
   const { slug } = useParams()
   return <Navigate to={slug ? `/${slug}` : '/'} replace />
@@ -45,190 +49,194 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
+        {/* Main site */}
         <Route path="/" element={<HomePage />} />
         <Route
           path="/about-us"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <AboutPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/our-services"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <ServicesPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/contact-us"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <ContactPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/fleet"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <FleetPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/book-now"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <BookNowPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/privacy-policy"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <PrivacyPolicyPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
         <Route
           path="/thank-you"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
+            <SuspenseRoute>
               <ThankYouPage />
-            </Suspense>
+            </SuspenseRoute>
           }
         />
-      </Route>
 
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <ConnecticutLayout />
-          </Suspense>
-        }
-      >
+        {/* Regional hub landing pages */}
         <Route
-          path="/connecticut-car-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <ConnecticutHome />
-            </Suspense>
+            <SuspenseRoute>
+              <ConnecticutLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <FloridaLayout />
-          </Suspense>
-        }
-      >
+        >
+          <Route
+            path="/connecticut-car-service"
+            element={
+              <SuspenseRoute>
+                <ConnecticutHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
         <Route
-          path="/florida-car-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <FloridaHome />
-            </Suspense>
+            <SuspenseRoute>
+              <FloridaLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <NewYorkLayout />
-          </Suspense>
-        }
-      >
+        >
+          <Route
+            path="/florida-car-service"
+            element={
+              <SuspenseRoute>
+                <FloridaHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
         <Route
-          path="/new-york-car-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <NewYorkHome />
-            </Suspense>
+            <SuspenseRoute>
+              <NewYorkLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <IllinoisLayout />
-          </Suspense>
-        }
-      >
+        >
+          <Route
+            path="/new-york-car-service"
+            element={
+              <SuspenseRoute>
+                <NewYorkHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
         <Route
-          path="/illinois-car-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <IllinoisHome />
-            </Suspense>
+            <SuspenseRoute>
+              <IllinoisLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <ChicagoChauffeurLayout />
-          </Suspense>
-        }
-      >
+        >
+          <Route
+            path="/illinois-car-service"
+            element={
+              <SuspenseRoute>
+                <IllinoisHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
         <Route
-          path="/illinois-car-service/chicago-chauffeur-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <ChicagoChauffeurHome />
-            </Suspense>
+            <SuspenseRoute>
+              <ChicagoChauffeurLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <ChicagoLimoLayout />
-          </Suspense>
-        }
-      >
+        >
+          <Route
+            path="/illinois-car-service/chicago-chauffeur-service"
+            element={
+              <SuspenseRoute>
+                <ChicagoChauffeurHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
         <Route
-          path="/illinois-car-service/chicago-limo-service"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <ChicagoLimoHome />
-            </Suspense>
+            <SuspenseRoute>
+              <ChicagoLimoLayout />
+            </SuspenseRoute>
           }
-        />
-      </Route>
+        >
+          <Route
+            path="/illinois-car-service/chicago-limo-service"
+            element={
+              <SuspenseRoute>
+                <ChicagoLimoHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
 
-      {/* FIFA World Cup 2026 — preview only; not in main nav */}
-      <Route
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <FifaLayout />
-          </Suspense>
-        }
-      >
+        {/* FIFA World Cup 2026 — preview only; not in main nav */}
         <Route
-          path="/fifa"
           element={
-            <Suspense fallback={<SuspenseLoader />}>
-              <FifaHome />
-            </Suspense>
+            <SuspenseRoute>
+              <FifaLayout />
+            </SuspenseRoute>
+          }
+        >
+          <Route
+            path="/fifa"
+            element={
+              <SuspenseRoute>
+                <FifaHome />
+              </SuspenseRoute>
+            }
+          />
+        </Route>
+
+        {/* Legacy other-pages URL */}
+        <Route path="/other-pages/:slug" element={<OtherPageLegacyRedirect />} />
+
+        {/* City / airport landing pages — must stay last (catch-all slug) */}
+        <Route
+          path="/:slug"
+          element={
+            <SuspenseRoute>
+              <OtherPageShell />
+            </SuspenseRoute>
           }
         />
       </Route>
-
-      {/* Extra landing pages — not in main nav; preview at /:slug */}
-      <Route path="/other-pages/:slug" element={<OtherPageLegacyRedirect />} />
-      <Route
-        path="/:slug"
-        element={
-          <Suspense fallback={<SuspenseLoader />}>
-            <OtherPageShell />
-          </Suspense>
-        }
-      />
     </Routes>
   )
 }

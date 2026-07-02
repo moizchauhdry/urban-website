@@ -5,6 +5,8 @@ export const CONNECTICUT_HOME = '/connecticut-car-service'
 export const FLORIDA_HOME = '/florida-car-service'
 export const NEW_YORK_HOME = '/new-york-car-service'
 export const ILLINOIS_HOME = '/illinois-car-service'
+export const CHICAGO_LIMO_HOME = '/illinois-car-service/chicago-limo-service'
+export const CHICAGO_CHAUFFEUR_HOME = '/illinois-car-service/chicago-chauffeur-service'
 export const FIFA_HOME = '/fifa'
 
 export const ABOUT_US = '/about-us'

@@ -1,26 +1,20 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from './layout/Header.jsx'
-import DeferredFooter from '../../../components/layout/DeferredFooter.jsx'
-import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
-import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
-import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
-
-const CHICAGO_CHAUFFEUR_HOME = '/illinois-car-service/chicago-chauffeur-service'
+import LandingPageShell from '../../../components/layout/LandingPageShell.jsx'
+import { CHICAGO_CHAUFFEUR_HOME } from '../../../config/routes.js'
 
 /** Layout chrome for Chicago Chauffeur Service. */
 export default function ChicagoChauffeurLayout() {
   const location = useLocation()
   const isHome = location.pathname === CHICAGO_CHAUFFEUR_HOME
 
-  useUrbanEliteInteractions(isHome)
-  useScrollReveal()
-  useScrollToBookingHash()
-
   return (
-    <>
-      <Header key={location.pathname} />
+    <LandingPageShell
+      homePath={CHICAGO_CHAUFFEUR_HOME}
+      headerVariant="standard"
+      headerKey={location.pathname}
+      isHome={isHome}
+    >
       <Outlet />
-      <DeferredFooter />
-    </>
+    </LandingPageShell>
   )
 }

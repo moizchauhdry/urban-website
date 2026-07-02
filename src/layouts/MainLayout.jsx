@@ -1,26 +1,51 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from '../pages/connecticut/layout/Header.jsx'
+import LandingHeader from '../components/layout/landing/LandingHeader.jsx'
 import DeferredFooter from '../components/layout/DeferredFooter.jsx'
 import { useUrbanEliteInteractions } from '../hooks/useUrbanEliteInteractions.js'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
 import { useScrollToBookingHash } from '../hooks/useScrollToBookingHash.js'
+import {
+  ABOUT_US,
+  BOOK_NOW,
+  CONTACT_US,
+  FLEET,
+  MAIN_HOME,
+  OUR_SERVICES,
+  PRIVACY_POLICY,
+  THANK_YOU,
+} from '../config/routes.js'
+
+/** Routes that use MainLayout header/footer (main site pages). */
+const MAIN_SITE_PATHS = new Set([
+  MAIN_HOME,
+  ABOUT_US,
+  OUR_SERVICES,
+  CONTACT_US,
+  FLEET,
+  BOOK_NOW,
+  PRIVACY_POLICY,
+  THANK_YOU,
+])
 
 /**
- * Shared chrome for every page (header + footer). Header is sticky on desktop;
- * on small viewports it scrolls with the page and pins while the mobile menu is open.
- * Interaction logic from the legacy `main.js` runs here so all routes behave the same.
+ * Root layout for all routes. Main site pages get global header/footer;
+ * landing pages render their own chrome via LandingPageShell in child layouts.
  */
 export default function MainLayout() {
   const location = useLocation()
-  const isHome = location.pathname === '/'
+  const isMainSite = MAIN_SITE_PATHS.has(location.pathname)
 
-  useUrbanEliteInteractions(isHome)
+  useUrbanEliteInteractions(location.pathname === MAIN_HOME)
   useScrollReveal()
   useScrollToBookingHash()
 
+  if (!isMainSite) {
+    return <Outlet />
+  }
+
   return (
     <>
-      <Header key={location.pathname} />
+      <LandingHeader key={location.pathname} homePath={MAIN_HOME} variant="connecticut" />
       <Outlet />
       <DeferredFooter />
     </>

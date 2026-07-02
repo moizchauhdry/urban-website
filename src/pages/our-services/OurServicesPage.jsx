@@ -1,7 +1,7 @@
 
 import ServicesHero from './ServicesHero.jsx'
 import ServicesGrid from './ServicesGrid.jsx'
-import ServicesReviewsSection from './ServicesReviewsSection.jsx'
+import ReviewsSection from '../../components/sections/ReviewsSection.jsx'
 
 /** Dedicated Our Services page. */
 export default function OurServicesPage() {
@@ -11,7 +11,7 @@ export default function OurServicesPage() {
     <>
       <ServicesHero />
       <ServicesGrid />
-      <ServicesReviewsSection />
+      <ReviewsSection variant="services" />
     </>
   )
 }

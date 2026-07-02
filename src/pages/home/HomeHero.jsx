@@ -6,7 +6,7 @@ import {
   HERO_BG_SRCSET,
   HERO_BG_WIDTH,
 } from './hero/heroBg.js'
-import { HERO_FEATURES, HERO_PHONE } from '../connecticut/hero/heroHighlights.js'
+import { HERO_FEATURES, HERO_PHONE } from './hero/heroHighlights.js'
 import HeroDeferredBooking from '../../components/hero/HeroDeferredBooking.jsx'
 import HeroLiveBadge from '../../components/hero/HeroLiveBadge.jsx'
 import HeroMobileBenefits from '../../components/hero/HeroMobileBenefits.jsx'

@@ -1,23 +1,14 @@
 import Home from './Home.jsx'
-import Header from './layout/Header.jsx'
-import DeferredFooter from '../../../components/layout/DeferredFooter.jsx'
-import { PAGE_HOME } from './layout/navConfig.js'
-import { useUrbanEliteInteractions } from '../../../hooks/useUrbanEliteInteractions.js'
-import { useScrollReveal } from '../../../hooks/useScrollReveal.js'
-import { useScrollToBookingHash } from '../../../hooks/useScrollToBookingHash.js'
+import LandingPageShell from '../../../components/layout/LandingPageShell.jsx'
 import '../../../styles/other-pages/luxury-new-jersey-car-service.css'
+
+const PAGE_HOME = '/luxury-new-jersey-car-service'
 
 /** Layout for Luxury New Jersey Car Service. */
 export default function PageLayout() {
-  useUrbanEliteInteractions(true)
-  useScrollReveal()
-  useScrollToBookingHash()
-
   return (
-    <>
-      <Header logoPath={PAGE_HOME} />
+    <LandingPageShell homePath={PAGE_HOME} headerVariant="standard" isHome>
       <Home />
-      <DeferredFooter logoPath={PAGE_HOME} />
-    </>
+    </LandingPageShell>
   )
 }

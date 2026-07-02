@@ -1,26 +1,20 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from './layout/Header.jsx'
-import DeferredFooter from '../../components/layout/DeferredFooter.jsx'
-import { useUrbanEliteInteractions } from '../../hooks/useUrbanEliteInteractions.js'
-import { useScrollReveal } from '../../hooks/useScrollReveal.js'
-import { useScrollToBookingHash } from '../../hooks/useScrollToBookingHash.js'
+import LandingPageShell from '../../components/layout/LandingPageShell.jsx'
+import { NEW_YORK_HOME } from '../../config/routes.js'
 
-const NEWYORK_HOME = '/new-york-car-service'
-
-/** Layout chrome for the New York car service landing page. */
+/** Layout chrome for the newyork car service landing page. */
 export default function NewYorkLayout() {
   const location = useLocation()
-  const isHome = location.pathname === NEWYORK_HOME
-
-  useUrbanEliteInteractions(isHome)
-  useScrollReveal()
-  useScrollToBookingHash()
+  const isHome = location.pathname === NEW_YORK_HOME
 
   return (
-    <>
-      <Header key={location.pathname} />
+    <LandingPageShell
+      homePath={NEW_YORK_HOME}
+      headerVariant="standard"
+      headerKey={location.pathname}
+      isHome={isHome}
+    >
       <Outlet />
-      <DeferredFooter />
-    </>
+    </LandingPageShell>
   )
 }
