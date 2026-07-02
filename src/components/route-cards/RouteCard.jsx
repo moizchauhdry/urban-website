@@ -1,5 +1,6 @@
 import Icon from '../common/Icon.jsx'
 import routeCardImage from '../../assets/connecticut/content-blocks/car-service3.webp'
+import QuoteLink from '../layout/QuoteLink.jsx'
 
 /**
  * @param {{
@@ -41,13 +42,10 @@ export default function RouteCard({
         <div className="route-card__accent" aria-hidden="true" />
         <p className="route-card__desc">{description}</p>
         <p className="route-card__desc">{description2}</p>
-        <a
-          href="#hero-booking"
-          className={`route-card__btn route-card__btn--${buttonVariant}`}
-        >
+        <QuoteLink className={`route-card__btn route-card__btn--${buttonVariant}`}>
           Get a free quote
           <Icon name="arrow-right" size={16} />
-        </a>
+        </QuoteLink>
       </div>
 
       <div className="route-card__rail" aria-hidden="true">

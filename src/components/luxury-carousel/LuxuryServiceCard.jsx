@@ -1,4 +1,5 @@
 import Icon from '../common/Icon.jsx'
+import QuoteLink from '../layout/QuoteLink.jsx'
 
 /**
  * @param {{
@@ -51,10 +52,10 @@ export default function LuxuryServiceCard({
         ) : null}
         {description2 ? <p className="route-card__desc luxury-carousel__desc">{description2}</p> : null}
         {showQuoteButton ? (
-          <a href="#hero-booking" className="luxury-carousel__btn">
+          <QuoteLink className="luxury-carousel__btn">
             Get a free quote
             <Icon name="arrow-right" size={16} />
-          </a>
+          </QuoteLink>
         ) : null}
       </div>
 

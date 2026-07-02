@@ -1,4 +1,5 @@
 import aboutStoryImg from '../../assets/about-us/content/about-story.webp'
+import QuoteLink from '../../components/layout/QuoteLink.jsx'
 
 /** Two-column About Us story with image and CTA. */
 export default function AboutStory() {
@@ -22,9 +23,7 @@ export default function AboutStory() {
               Whether it&apos;s an early-morning airport run, a multi-city roadshow, or transportation for your
               business guests, we provide travel solutions that keep you on schedule and in comfort.
             </p>
-            <a href="#" className="btn-yellow">
-              Get a Free Quote
-            </a>
+            <QuoteLink className="btn-yellow" />
           </div>
           <div className="about-story-media">
             <img
