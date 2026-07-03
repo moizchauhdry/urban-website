@@ -1,5 +1,5 @@
-import contactHeroSm from '../../assets/contact-us/hero/contact-hero-800.webp'
-import contactHeroLg from '../../assets/contact-us/hero/contact-hero-1440.webp'
+import contactHeroSm from '../../assets/hero/pages/contact-800.webp'
+import contactHeroLg from '../../assets/hero/pages/contact-1440.webp'
 
 const CONTACT_HERO_SRCSET = `${contactHeroSm} 800w, ${contactHeroLg} 1440w`
 const CONTACT_HERO_SIZES = '100vw'

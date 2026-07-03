@@ -1,4 +1,4 @@
-import phoneIcon from '../../assets/connecticut/hero/phone-icon.png'
+import phoneIcon from '../../assets/hero/features/phone-icon.png'
 
 const DEFAULT_PHONE = {
   href: 'tel:8888816610',

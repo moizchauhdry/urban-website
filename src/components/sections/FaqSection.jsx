@@ -1,4 +1,4 @@
-import faqImage from '../../assets/faqImage.js'
+import faqImage from '../../assets/faq/faqImage.js'
 import { HOME_FAQ_ITEMS, LANDING_FAQ_ITEMS } from '../../data/faqItems.js'
 
 /** @param {{ variant?: 'landing' | 'home' }} props */

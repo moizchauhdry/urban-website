@@ -1,5 +1,5 @@
-import beautifulGameSm from '../../../assets/fifa/beautiful_game-800.webp'
-import beautifulGameLg from '../../../assets/fifa/beautiful_game-1440.webp'
+import beautifulGameSm from '../../../assets/hero/pages/beautiful-game-800.webp'
+import beautifulGameLg from '../../../assets/hero/pages/beautiful-game-1440.webp'
 
 export const BEAUTIFUL_GAME_BG_DEFAULT = beautifulGameSm
 export const BEAUTIFUL_GAME_BG_SRCSET = `${beautifulGameSm} 800w, ${beautifulGameLg} 1440w`

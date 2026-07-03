@@ -2131,28 +2131,28 @@ header{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.4));
 }
-.service-img.s1{background-image:url('../assets/connecticut/services/service1.webp')}
-.service-img.s2{background-image:url('../assets/connecticut/services/service2.webp')}
-.service-img.s3{background-image:url('../assets/connecticut/services/service3.webp')}
-.service-img.s4{background-image:url('../assets/connecticut/services/service4.webp')}
-.service-img.s5{background-image:url('../assets/connecticut/services/service5.webp')}
-.service-img.s6{background-image:url('../assets/connecticut/services/service6.webp')}
+.service-img.s1{background-image:url('../assets/services/service1.webp')}
+.service-img.s2{background-image:url('../assets/services/service2.webp')}
+.service-img.s3{background-image:url('../assets/services/service3.webp')}
+.service-img.s4{background-image:url('../assets/services/service4.webp')}
+.service-img.s5{background-image:url('../assets/services/service5.webp')}
+.service-img.s6{background-image:url('../assets/services/service6.webp')}
 
 /* Florida state page assets */
-.service-img.fl-s1{background-image:url('../assets/florida/services/service1.webp')}
-.service-img.fl-s2{background-image:url('../assets/florida/services/service2.webp')}
-.service-img.fl-s3{background-image:url('../assets/florida/services/service3.webp')}
-.service-img.fl-s4{background-image:url('../assets/florida/services/service4.webp')}
-.service-img.fl-s5{background-image:url('../assets/florida/services/service5.webp')}
-.service-img.fl-s6{background-image:url('../assets/florida/services/service6.webp')}
+.service-img.fl-s1{background-image:url('../assets/services/service1.webp')}
+.service-img.fl-s2{background-image:url('../assets/services/service2.webp')}
+.service-img.fl-s3{background-image:url('../assets/services/service3.webp')}
+.service-img.fl-s4{background-image:url('../assets/services/service4.webp')}
+.service-img.fl-s5{background-image:url('../assets/services/service5.webp')}
+.service-img.fl-s6{background-image:url('../assets/services/service6.webp')}
 
 /* New York state page assets */
-.service-img.ny-s1{background-image:url('../assets/newyork/services/service1.webp')}
-.service-img.ny-s2{background-image:url('../assets/newyork/services/service2.webp')}
-.service-img.ny-s3{background-image:url('../assets/newyork/services/service3.webp')}
-.service-img.ny-s4{background-image:url('../assets/newyork/services/service4.webp')}
-.service-img.ny-s5{background-image:url('../assets/newyork/services/service5.webp')}
-.service-img.ny-s6{background-image:url('../assets/newyork/services/service6.webp')}
+.service-img.ny-s1{background-image:url('../assets/services/service1.webp')}
+.service-img.ny-s2{background-image:url('../assets/services/service2.webp')}
+.service-img.ny-s3{background-image:url('../assets/services/service3.webp')}
+.service-img.ny-s4{background-image:url('../assets/services/service4.webp')}
+.service-img.ny-s5{background-image:url('../assets/services/service5.webp')}
+.service-img.ny-s6{background-image:url('../assets/services/service6.webp')}
 .service-body{
   display:flex;
   flex-direction:column;
@@ -2315,17 +2315,17 @@ header{
   transition:background .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1),opacity .45s cubic-bezier(.22,1,.36,1);
 }
 
-.content-img.i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
+.content-img.i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.i3{background-image:url('../assets/content-blocks/car-service3.webp')}
 
-.content-img.fl-i1{background-image:url('../assets/florida/content-blocks/car-service1.webp')}
-.content-img.fl-i2{background-image:url('../assets/florida/content-blocks/car-service2.webp')}
-.content-img.fl-i3{background-image:url('../assets/florida/content-blocks/car-service3.webp')}
+.content-img.fl-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.fl-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.fl-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
 
-.content-img.ny-i1{background-image:url('../assets/newyork/content-blocks/car-service1.webp')}
-.content-img.ny-i2{background-image:url('../assets/newyork/content-blocks/car-service2.webp')}
-.content-img.ny-i3{background-image:url('../assets/newyork/content-blocks/car-service3.webp')}
+.content-img.ny-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.ny-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.ny-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
 
 /* ROUTE CARDS — image/column sizing matches .content-block + .content-img */
 .route-cards-stack{
@@ -2987,20 +2987,20 @@ header{
   transition:transform .25s;
 }
 .airport-card:hover{transform:translateY(-4px)}
-.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/jfk.webp')}
-.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/lga.webp')}
-.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/bradley.webp')}
-.airport-card.a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/newark.webp')}
+.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/jfk.webp')}
+.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/lga.webp')}
+.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/bdl.webp')}
+.airport-card.a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/ewr.webp')}
 
-.airport-card.fl-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/mia.webp')}
-.airport-card.fl-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/fll.webp')}
-.airport-card.fl-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/mco.webp')}
-.airport-card.fl-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/tpa.webp')}
+.airport-card.fl-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
+.airport-card.fl-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
+.airport-card.fl-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
+.airport-card.fl-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
 
-.airport-card.ny-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/jfk.webp')}
-.airport-card.ny-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/lga.webp')}
-.airport-card.ny-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/newark.webp')}
-.airport-card.ny-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/bradley.webp')}
+.airport-card.ny-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/jfk.webp')}
+.airport-card.ny-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/lga.webp')}
+.airport-card.ny-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/ewr.webp')}
+.airport-card.ny-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/bdl.webp')}
 .airport-card-body{
   position:absolute;bottom:0;left:0;right:0;padding:24px;
 }
@@ -3010,49 +3010,49 @@ header{
 /* Illinois region page assets (generated) */
 
 /* Illinois Car Service */
-.service-img.il-s1{background-image:url('../assets/illinois/illinois/services/service1.webp')}
-.service-img.il-s2{background-image:url('../assets/illinois/illinois/services/service2.webp')}
-.service-img.il-s3{background-image:url('../assets/illinois/illinois/services/service3.webp')}
-.service-img.il-s4{background-image:url('../assets/illinois/illinois/services/service4.webp')}
-.service-img.il-s5{background-image:url('../assets/illinois/illinois/services/service5.webp')}
-.service-img.il-s6{background-image:url('../assets/illinois/illinois/services/service6.webp')}
-.content-img.il-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/mia.webp')}
-.airport-card.il-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/fll.webp')}
-.airport-card.il-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/mco.webp')}
-.airport-card.il-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/tpa.webp')}
+.service-img.il-s1{background-image:url('../assets/services/service1.webp')}
+.service-img.il-s2{background-image:url('../assets/services/service2.webp')}
+.service-img.il-s3{background-image:url('../assets/services/service3.webp')}
+.service-img.il-s4{background-image:url('../assets/services/service4.webp')}
+.service-img.il-s5{background-image:url('../assets/services/service5.webp')}
+.service-img.il-s6{background-image:url('../assets/services/service6.webp')}
+.content-img.il-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.il-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.il-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
+.airport-card.il-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
+.airport-card.il-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
+.airport-card.il-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
+.airport-card.il-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
 
 /* Chicago Chauffeur Service */
-.service-img.il-chi-chauff-s1{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service1.webp')}
-.service-img.il-chi-chauff-s2{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service2.webp')}
-.service-img.il-chi-chauff-s3{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service3.webp')}
-.service-img.il-chi-chauff-s4{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service4.webp')}
-.service-img.il-chi-chauff-s5{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service5.webp')}
-.service-img.il-chi-chauff-s6{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service6.webp')}
-.content-img.il-chi-chauff-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-chi-chauff-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-chi-chauff-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-chi-chauff-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/mia.webp')}
-.airport-card.il-chi-chauff-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/fll.webp')}
-.airport-card.il-chi-chauff-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/mco.webp')}
-.airport-card.il-chi-chauff-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/tpa.webp')}
+.service-img.il-chi-chauff-s1{background-image:url('../assets/services/service1.webp')}
+.service-img.il-chi-chauff-s2{background-image:url('../assets/services/service2.webp')}
+.service-img.il-chi-chauff-s3{background-image:url('../assets/services/service3.webp')}
+.service-img.il-chi-chauff-s4{background-image:url('../assets/services/service4.webp')}
+.service-img.il-chi-chauff-s5{background-image:url('../assets/services/service5.webp')}
+.service-img.il-chi-chauff-s6{background-image:url('../assets/services/service6.webp')}
+.content-img.il-chi-chauff-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.il-chi-chauff-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.il-chi-chauff-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
+.airport-card.il-chi-chauff-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
+.airport-card.il-chi-chauff-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
+.airport-card.il-chi-chauff-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
+.airport-card.il-chi-chauff-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
 
 /* Chicago Limo Service */
-.service-img.il-chi-limo-s1{background-image:url('../assets/illinois/chicago-limo-service/services/service1.webp')}
-.service-img.il-chi-limo-s2{background-image:url('../assets/illinois/chicago-limo-service/services/service2.webp')}
-.service-img.il-chi-limo-s3{background-image:url('../assets/illinois/chicago-limo-service/services/service3.webp')}
-.service-img.il-chi-limo-s4{background-image:url('../assets/illinois/chicago-limo-service/services/service4.webp')}
-.service-img.il-chi-limo-s5{background-image:url('../assets/illinois/chicago-limo-service/services/service5.webp')}
-.service-img.il-chi-limo-s6{background-image:url('../assets/illinois/chicago-limo-service/services/service6.webp')}
-.content-img.il-chi-limo-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-chi-limo-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-chi-limo-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-chi-limo-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/mia.webp')}
-.airport-card.il-chi-limo-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/fll.webp')}
-.airport-card.il-chi-limo-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/mco.webp')}
-.airport-card.il-chi-limo-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/tpa.webp')}
+.service-img.il-chi-limo-s1{background-image:url('../assets/services/service1.webp')}
+.service-img.il-chi-limo-s2{background-image:url('../assets/services/service2.webp')}
+.service-img.il-chi-limo-s3{background-image:url('../assets/services/service3.webp')}
+.service-img.il-chi-limo-s4{background-image:url('../assets/services/service4.webp')}
+.service-img.il-chi-limo-s5{background-image:url('../assets/services/service5.webp')}
+.service-img.il-chi-limo-s6{background-image:url('../assets/services/service6.webp')}
+.content-img.il-chi-limo-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.il-chi-limo-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.il-chi-limo-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
+.airport-card.il-chi-limo-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
+.airport-card.il-chi-limo-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
+.airport-card.il-chi-limo-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
+.airport-card.il-chi-limo-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
 /* FAQs */
 .faq-section{padding:90px 0}
 .faq-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:start}

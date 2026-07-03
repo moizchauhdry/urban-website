@@ -9,12 +9,9 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const CT_PAGES = path.join(ROOT, 'src/pages/connecticut')
-const CT_ASSETS = path.join(ROOT, 'src/assets/connecticut')
 const OP_PAGES = path.join(ROOT, 'src/pages/other-pages')
-const OP_ASSETS = path.join(ROOT, 'src/assets/other-pages')
 const OP_STYLES = path.join(ROOT, 'src/styles/other-pages')
-const FL_AIRPORTS = path.join(ROOT, 'src/assets/florida/airports')
-const CENTRAL_AIRPORTS = path.join(ROOT, 'src/assets/airports')
+const SHARED_ASSETS = '../../assets'
 
 const PAGE_TITLES = [
   'Miami Chauffeur Service',
@@ -161,60 +158,13 @@ async function walkFiles(dir) {
   return out
 }
 
-function getAssetRoot(title) {
-  const t = title.toLowerCase()
-
-  if (t.startsWith('florida') || t.startsWith('atlanta')) {
-    return 'florida'
-  }
-  if (
-    t.startsWith('illinois') ||
-    t.startsWith('wisconsin') ||
-    t.includes('milwaukee') ||
-    t.includes('chicago') ||
-    t.includes('ohare')
-  ) {
-    return 'illinois/illinois'
-  }
-  if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston') || t.startsWith('nyc') || t.includes('newark') || t.includes('westchester')) {
-    return 'newyork'
-  }
-  if (
-    t.includes('miami') ||
-    t.includes('key west') ||
-    t.includes('naples') ||
-    t.includes('fort lauderdale') ||
-    t.includes('palm beach')
-  ) {
-    return 'florida'
-  }
-  return 'connecticut'
-}
-
-/** Airport photos live under connecticut or florida — not every regional asset folder. */
-function getAirportAssetRoot(title) {
-  const t = title.toLowerCase()
-  if (
-    t.startsWith('florida') ||
-    t.startsWith('atlanta') ||
-    t.includes('miami') ||
-    t.includes('key west') ||
-    t.includes('naples') ||
-    t.includes('fort lauderdale') ||
-    t.includes('palm beach')
-  ) {
-    return 'florida'
-  }
-  return 'connecticut'
-}
-
 function patchFileContent(content, ctx) {
   const { slug, title, pageHome } = ctx
   let out = content
   out = out.replace(/from '(\.\.\/){3}/g, "from '../../../../")
   out = out.replace(/import '(\.\.\/){3}/g, "import '../../../../")
   out = out.replace(/import\('(\.\.\/){3}/g, "import('../../../../")
-  out = out.replace(/assets\/connecticut\//g, `assets/other-pages/${slug}/`)
+  out = out.replace(/assets\/connecticut\//g, 'assets/')
   out = out.replace(/ConnecticutLayout/g, 'PageLayout')
   out = out.replace(
     /export \{ CONNECTICUT_HOME \} from '\.\.\/\.\.\/\.\.\/config\/routes\.js'/g,
@@ -230,9 +180,9 @@ function patchFileContent(content, ctx) {
   return out
 }
 
-function buildHeroBgJs(slug) {
-  return `import heroBgSm from '../../../../assets/other-pages/${slug}/hero/hero-bg-800.webp'
-import heroBgLg from '../../../../assets/other-pages/${slug}/hero/hero-bg-1440.webp'
+function buildHeroBgJs() {
+  return `import heroBgSm from '../../../../assets/hero/pages/landing.webp'
+import heroBgLg from '../../../../assets/hero/pages/landing.webp'
 
 export const HERO_BG_DEFAULT = heroBgSm
 export const HERO_BG_SRCSET = \`\${heroBgSm} 800w, \${heroBgLg} 1440w\`
@@ -242,8 +192,8 @@ export const HERO_BG_HEIGHT = 810
 `
 }
 
-function buildHeroHighlightsJs(slug) {
-  const base = `../../../../assets/other-pages/${slug}/hero`
+function buildHeroHighlightsJs() {
+  const base = '../../../../assets/hero/features'
   return `import phoneIcon from '${base}/phone-icon.png'
 import fullyLicensedIcon from '${base}/fully-licensed.png'
 import latestModelIcon from '${base}/latest-modal.png'
@@ -267,10 +217,10 @@ export const HERO_FEATURES = [
 `
 }
 
-function buildJourneySectionJsx(slug) {
-  const base = `../../../../assets/other-pages/${slug}/journey`
-  return `import leftCar from '${base}/left-img.webp'
-import rightCar from '${base}/right-img.webp'
+function buildJourneySectionJsx() {
+  const base = '../../../../assets/journey'
+  return `import leftCar from '${base}/left.webp'
+import rightCar from '${base}/right.webp'
 import BookNowLink from '../../../../components/layout/BookNowLink.jsx'
 
 export default function JourneySection() {
@@ -492,20 +442,24 @@ export default function AirportsSection() {
 }
 
 function buildPageCss(ctx) {
-  const { prefix, slug } = ctx
-  const assetBase = `../../assets/other-pages/${slug}`
+  const { prefix, airports } = ctx
   const lines = [
     `/* ${ctx.title} */`,
-    `.service-img.${prefix}-s1{background-image:url('${assetBase}/services/service1.webp')}`,
-    `.service-img.${prefix}-s2{background-image:url('${assetBase}/services/service2.webp')}`,
-    `.service-img.${prefix}-s3{background-image:url('${assetBase}/services/service3.webp')}`,
-    `.service-img.${prefix}-s4{background-image:url('${assetBase}/services/service4.webp')}`,
-    `.service-img.${prefix}-s5{background-image:url('${assetBase}/services/service5.webp')}`,
-    `.service-img.${prefix}-s6{background-image:url('${assetBase}/services/service6.webp')}`,
-    `.content-img.${prefix}-i1{background-image:url('${assetBase}/content-blocks/car-service1.webp')}`,
-    `.content-img.${prefix}-i2{background-image:url('${assetBase}/content-blocks/car-service2.webp')}`,
-    `.content-img.${prefix}-i3{background-image:url('${assetBase}/content-blocks/car-service3.webp')}`,
+    `.service-img.${prefix}-s1{background-image:url('${SHARED_ASSETS}/services/service1.webp')}`,
+    `.service-img.${prefix}-s2{background-image:url('${SHARED_ASSETS}/services/service2.webp')}`,
+    `.service-img.${prefix}-s3{background-image:url('${SHARED_ASSETS}/services/service3.webp')}`,
+    `.service-img.${prefix}-s4{background-image:url('${SHARED_ASSETS}/services/service4.webp')}`,
+    `.service-img.${prefix}-s5{background-image:url('${SHARED_ASSETS}/services/service5.webp')}`,
+    `.service-img.${prefix}-s6{background-image:url('${SHARED_ASSETS}/services/service6.webp')}`,
+    `.content-img.${prefix}-i1{background-image:url('${SHARED_ASSETS}/content-blocks/car-service1.webp')}`,
+    `.content-img.${prefix}-i2{background-image:url('${SHARED_ASSETS}/content-blocks/car-service2.webp')}`,
+    `.content-img.${prefix}-i3{background-image:url('${SHARED_ASSETS}/content-blocks/car-service3.webp')}`,
   ]
+  airports.forEach((a, i) => {
+    lines.push(
+      `.airport-card.${prefix}-a${i + 1}{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('${SHARED_ASSETS}/airports/${a.file}')}`,
+    )
+  })
   return `${lines.join('\n')}\n`
 }
 
@@ -562,61 +516,6 @@ ${airportsBlock}      <FaqSection />
 `
 }
 
-function buildPageLayout(ctx) {
-  return `import Home from './Home.jsx'
-import LandingPageShell from '../../../components/layout/LandingPageShell.jsx'
-import '../../../styles/other-pages/${ctx.slug}.css'
-
-const PAGE_HOME = '${ctx.pageHome}'
-
-/** Layout for ${ctx.title}. */
-export default function PageLayout() {
-  return (
-    <LandingPageShell homePath={PAGE_HOME} headerVariant="standard" isHome>
-      <Home />
-    </LandingPageShell>
-  )
-}
-`
-}
-
-async function ensureAirportAssets(slug, airports) {
-  const airportDir = path.join(OP_ASSETS, slug, 'airports')
-  await fs.mkdir(airportDir, { recursive: true })
-  for (const a of airports) {
-    const dest = path.join(airportDir, a.file)
-    try {
-      await fs.access(dest)
-      continue
-    } catch {
-      /* copy below */
-    }
-    const code = a.code.toLowerCase()
-    const legacyNames =
-      code === 'bdl'
-        ? ['bdl.webp', 'bradley.webp']
-        : code === 'ewr'
-          ? ['ewr.webp', 'newark.webp']
-          : [a.file]
-    const candidates = [
-      ...legacyNames.flatMap((name) => [
-        path.join(CENTRAL_AIRPORTS, name),
-        path.join(FL_AIRPORTS, name),
-        path.join(CT_ASSETS, 'airports', name),
-      ]),
-    ]
-    for (const src of candidates) {
-      try {
-        await fs.access(src)
-        await fs.copyFile(src, dest)
-        break
-      } catch {
-        /* try next */
-      }
-    }
-  }
-}
-
 async function generatePage(title) {
   const slug = slugify(title)
   const pageHome = `/${slug}`
@@ -627,12 +526,9 @@ async function generatePage(title) {
   const ctx = { slug, title, prefix, pageHome, region, lines, airports }
 
   const pageDir = path.join(OP_PAGES, slug)
-  const assetDir = path.join(OP_ASSETS, slug)
 
   await fs.rm(pageDir, { recursive: true, force: true })
-  await fs.rm(assetDir, { recursive: true, force: true })
   await copyDir(CT_PAGES, pageDir)
-  await copyDir(CT_ASSETS, assetDir)
   await fs.rm(path.join(pageDir, 'faqs'), { recursive: true, force: true })
   for (const dir of [
     'planning-banner',
@@ -651,7 +547,6 @@ async function generatePage(title) {
   ]) {
     await fs.rm(path.join(pageDir, dir), { recursive: true, force: true })
   }
-  await ensureAirportAssets(slug, airports)
 
   const files = await walkFiles(pageDir)
   for (const file of files) {
@@ -662,7 +557,6 @@ async function generatePage(title) {
   }
 
   await fs.writeFile(path.join(pageDir, 'Home.jsx'), buildHome(ctx))
-  await fs.writeFile(path.join(pageDir, 'PageLayout.jsx'), buildPageLayout(ctx))
 
   await fs.rm(path.join(pageDir, 'ConnecticutLayout.jsx'), { force: true })
 
@@ -675,46 +569,6 @@ async function generatePage(title) {
 async function writeRegistry(pages) {
   const body = `/** Auto-generated — run node scripts/generate-other-pages.mjs to refresh */\nexport const OTHER_PAGES = ${JSON.stringify(pages, null, 2)}\n\nexport const OTHER_PAGE_SLUGS = new Set(OTHER_PAGES.map((p) => p.slug))\n\nexport const OTHER_PAGE_LINKS = OTHER_PAGES.map((p) => ({\n  title: p.title,\n  slug: p.slug,\n  path: p.pageHome,\n  localUrl: \`http://localhost:5173\${p.pageHome}\`,\n}))\n`
   await fs.writeFile(path.join(OP_PAGES, 'registry.js'), body)
-}
-
-async function writeShell() {
-  const content = `import { lazy, Suspense, useMemo } from 'react'
-import SuspenseLoader from '../../components/layout/SuspenseLoader.jsx'
-import { Navigate, useParams } from 'react-router-dom'
-import { OTHER_PAGE_SLUGS } from './registry.js'
-
-const layouts = import.meta.glob('./*/PageLayout.jsx')
-
-function resolveLayoutLoader(slug) {
-  const direct = \`./\${slug}/PageLayout.jsx\`
-  if (layouts[direct]) return layouts[direct]
-
-  const match = Object.entries(layouts).find(([key]) =>
-    key.replace(/\\\\/g, '/').endsWith(\`/\${slug}/PageLayout.jsx\`),
-  )
-  return match?.[1] ?? null
-}
-
-/** Single entry for all /other-pages/:slug routes (not linked in main nav). */
-export default function OtherPageShell() {
-  const { slug } = useParams()
-
-  const loader = useMemo(() => (slug ? resolveLayoutLoader(slug) : null), [slug])
-
-  if (!slug || !OTHER_PAGE_SLUGS.has(slug) || !loader) {
-    return <Navigate to="/" replace />
-  }
-
-  const PageLayout = lazy(loader)
-
-  return (
-    <Suspense fallback={<SuspenseLoader />}>
-      <PageLayout />
-    </Suspense>
-  )
-}
-`
-  await fs.writeFile(path.join(OP_PAGES, 'OtherPageShell.jsx'), content)
 }
 
 async function writeLinksMarkdown(pages) {
@@ -733,6 +587,5 @@ for (const title of PAGE_TITLES) {
   console.log(`✓ ${page.slug}`)
 }
 await writeRegistry(pages)
-await writeShell()
 await writeLinksMarkdown(pages)
 console.log(`\nGenerated ${pages.length} other pages.`)

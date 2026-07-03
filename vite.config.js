@@ -35,8 +35,8 @@ const SKIP_MODULE_PRELOAD = [
  */
 function injectHeroLcp() {
   let base = '/'
-  const devHeroSm = '/src/assets/home/hero/home-hero-800.webp'
-  const devHeroLg = '/src/assets/home/hero/home-hero-1440.webp'
+  const devHeroSm = '/src/assets/hero/pages/home-800.webp'
+  const devHeroLg = '/src/assets/hero/pages/home-1440.webp'
 
   const applyOptimizations = (html, hero) => {
     let out = html

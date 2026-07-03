@@ -1,8 +1,8 @@
-import phoneIcon from '../assets/connecticut/hero/phone-icon.png'
-import fullyLicensedIcon from '../assets/connecticut/hero/fully-licensed.png'
-import latestModelIcon from '../assets/connecticut/hero/latest-modal.png'
-import chauffeursIcon from '../assets/connecticut/hero/chauffeurs.png'
-import flightIcon from '../assets/connecticut/hero/flight.png'
+import phoneIcon from '../assets/hero/features/phone-icon.png'
+import fullyLicensedIcon from '../assets/hero/features/fully-licensed.png'
+import latestModelIcon from '../assets/hero/features/latest-modal.png'
+import chauffeursIcon from '../assets/hero/features/chauffeurs.png'
+import flightIcon from '../assets/hero/features/flight.png'
 
 export const HERO_PHONE = {
   href: 'tel:8888816610',

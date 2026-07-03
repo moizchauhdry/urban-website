@@ -1,54 +1,9 @@
-import heroBg_connecticut from '../assets/connecticut/hero/hero_image.webp'
-import heroBg_florida from '../assets/florida/hero/HERO_IMAGE.webp'
-import heroBg_newyork from '../assets/newyork/hero/hero_image.webp'
-import heroBg_illinois from '../assets/illinois/illinois/hero/hero_image.webp'
-import heroBg_chicago_limo from '../assets/illinois/chicago-limo-service/hero/hero_image.webp'
-import heroBg_chicago_chauffeur from '../assets/illinois/chicago-chauffeur-service/hero/hero_image.webp'
-import heroBg_fifa from '../assets/fifa/fifa_hero-800.webp'
-import heroBgLg_fifa from '../assets/fifa/fifa_hero-1440.webp'
-import heroBg_home from '../assets/home/hero/hero_image.webp'
-import heroSm_home from '../assets/home/hero/home-hero-800.webp'
-import heroLg_home from '../assets/home/hero/home-hero-1440.webp'
-import heroBg_atlanta_car_service from '../assets/other-pages/atlanta-car-service/hero/hero_image.webp'
-import heroBg_bdl_airport_car_service from '../assets/other-pages/bdl-airport-car-service/hero/hero_image.webp'
-import heroBg_boston_car_service from '../assets/other-pages/boston-car-service/hero/hero_image.webp'
-import heroBg_chicago_airport_car_service from '../assets/other-pages/chicago-airport-car-service/hero/hero_image.webp'
-import heroBg_connecticut_car_service from '../assets/other-pages/connecticut-car-service/hero/hero_image.webp'
-import heroBg_ct_to_jfk_airport_car_service from '../assets/other-pages/ct-to-jfk-airport-car-service/hero/hero_image.webp'
-import heroBg_danbury_ct_car_service from '../assets/other-pages/danbury-ct-car-service/hero/hero_image.webp'
-import heroBg_fairfield_ct_car_service from '../assets/other-pages/fairfield-ct-car-service/hero/hero_image.webp'
-import heroBg_florida_car_service from '../assets/other-pages/florida-car-service/hero/hero_image.webp'
-import heroBg_greenwich_ct_car_service from '../assets/other-pages/greenwich-ct-car-service/hero/hero_image.webp'
-import heroBg_hartford_ct_car_service from '../assets/other-pages/hartford-ct-car-service/hero/hero_image.webp'
-import heroBg_illinois_car_service from '../assets/other-pages/illinois-car-service/hero/hero_image.webp'
-import heroBg_jfk_airport_car_service from '../assets/other-pages/jfk-airport-car-service/hero/hero_image.webp'
-import heroBg_lga_airport_car_service from '../assets/other-pages/lga-airport-car-service/hero/hero_image.webp'
-import heroBg_luxury_new_jersey_car_service from '../assets/other-pages/luxury-new-jersey-car-service/hero/hero_image.webp'
-import heroBg_manhattan_car_service from '../assets/other-pages/manhattan-car-service/hero/hero_image.webp'
-import heroBg_miami_airport_car_service from '../assets/other-pages/miami-airport-car-service/hero/hero_image.webp'
-import heroBg_miami_airport_limo_service from '../assets/other-pages/miami-airport-limo-service/hero/hero_image.webp'
-import heroBg_miami_car_service from '../assets/other-pages/miami-car-service/hero/hero_image.webp'
-import heroBg_miami_chauffeur_service from '../assets/other-pages/miami-chauffeur-service/hero/hero_image.webp'
-import heroBg_miami_to_fort_lauderdale_car_service from '../assets/other-pages/miami-to-fort-lauderdale-car-service/hero/hero_image.webp'
-import heroBg_miami_to_naples_car_service from '../assets/other-pages/miami-to-naples-car-service/hero/hero_image.webp'
-import heroBg_miami_to_orlando_car_service from '../assets/other-pages/miami-to-orlando-car-service/hero/hero_image.webp'
-import heroBg_milwaukee_airport_limo_service from '../assets/other-pages/milwaukee-airport-limo-service/hero/hero_image.webp'
-import heroBg_milwaukee_car_service from '../assets/other-pages/milwaukee-car-service/hero/hero_image.webp'
-import heroBg_milwaukee_chauffeur_service from '../assets/other-pages/milwaukee-chauffeur-service/hero/hero_image.webp'
-import heroBg_milwaukee_limo_service from '../assets/other-pages/milwaukee-limo-service/hero/hero_image.webp'
-import heroBg_milwaukee_to_chicago_car_service from '../assets/other-pages/milwaukee-to-chicago-car-service/hero/hero_image.webp'
-import heroBg_milwaukee_to_ohare_car_service from '../assets/other-pages/milwaukee-to-ohare-car-service/hero/hero_image.webp'
-import heroBg_new_haven_ct_car_service from '../assets/other-pages/new-haven-ct-car-service/hero/hero_image.webp'
-import heroBg_new_york_car_service from '../assets/other-pages/new-york-car-service/hero/hero_image.webp'
-import heroBg_newark_airport_service from '../assets/other-pages/newark-airport-service/hero/hero_image.webp'
-import heroBg_norwalk_ct_car_service from '../assets/other-pages/norwalk-ct-car-service/hero/hero_image.webp'
-import heroBg_nyc_limo_service from '../assets/other-pages/nyc-limo-service/hero/hero_image.webp'
-import heroBg_stamford_ct_car_service from '../assets/other-pages/stamford-ct-car-service/hero/hero_image.webp'
-import heroBg_texas_car_service from '../assets/other-pages/texas-car-service/hero/hero_image.webp'
-import heroBg_west_palm_beach_to_miami_limo_service from '../assets/other-pages/west-palm-beach-to-miami-limo-service/hero/hero_image.webp'
-import heroBg_westchester_county_car_service from '../assets/other-pages/westchester-county-car-service/hero/hero_image.webp'
-import heroBg_wisconsin_car_service from '../assets/other-pages/wisconsin-car-service/hero/hero_image.webp'
-
+import heroLanding from '../assets/hero/pages/landing.webp'
+import heroHome from '../assets/hero/pages/home-800.webp'
+import heroHomeSm from '../assets/hero/pages/home-800.webp'
+import heroHomeLg from '../assets/hero/pages/home-1440.webp'
+import heroFifa from '../assets/hero/pages/fifa-800.webp'
+import heroFifaLg from '../assets/hero/pages/fifa-1440.webp'
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
 
 /** Shared hero content — edit entries here when adding or updating landing pages. */
@@ -56,7 +11,7 @@ export const HERO_PAGES = {
   'connecticut': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_connecticut, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line">
@@ -77,7 +32,7 @@ export const HERO_PAGES = {
   'florida': {
     variant: 'landing',
     sectionClass: 'hero hero--florida',
-    background: { default: heroBg_florida, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line">
@@ -98,7 +53,7 @@ export const HERO_PAGES = {
   'newyork': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_newyork, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line">Premium <span className="hero-title-line--highlight">New York</span></span>{' '}
@@ -117,7 +72,7 @@ export const HERO_PAGES = {
   'illinois': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_illinois, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line">Premium <span className="hero-title-line--highlight">Illinois</span></span>{' '}
@@ -136,7 +91,7 @@ export const HERO_PAGES = {
   'chicago-limo': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_chicago_limo, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line"><span className="hero-title-line--highlight">Chicago</span> Limo</span>{' '}
@@ -155,7 +110,7 @@ export const HERO_PAGES = {
   'chicago-chauffeur': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_chicago_chauffeur, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line"><span className="hero-title-line--highlight">Chicago</span> Chauffeur</span>{' '}
@@ -174,7 +129,7 @@ export const HERO_PAGES = {
   'fifa': {
     variant: 'fifa',
     sectionClass: 'hero fifa-hero',
-    background: { default: heroBg_fifa, sm: heroBg_fifa, lg: heroBgLg_fifa, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroFifa, sm: heroFifa, lg: heroFifaLg, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         Your Ride To <span className="fifa-hero__accent">FIFA 2026</span> Starts Here
@@ -190,7 +145,7 @@ export const HERO_PAGES = {
   'home': {
     variant: 'home',
     sectionClass: 'hero hero--home',
-    background: { default: heroBg_home, sm: heroSm_home, lg: heroLg_home, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroHome, sm: heroHomeSm, lg: heroHomeLg, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line">Premium White Glove</span>{' '}
@@ -211,7 +166,7 @@ export const HERO_PAGES = {
   'atlanta-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_atlanta_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Atlanta"}</span>{' '}
@@ -230,7 +185,7 @@ export const HERO_PAGES = {
   'bdl-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_bdl_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury Connecticut Airport Limo Service"}</span>{' '}
@@ -248,7 +203,7 @@ export const HERO_PAGES = {
   'boston-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_boston_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Boston"}</span>{' '}
@@ -267,7 +222,7 @@ export const HERO_PAGES = {
   'chicago-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_chicago_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Chicago Airport"}</span>{' '}
@@ -286,7 +241,7 @@ export const HERO_PAGES = {
   'connecticut-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_connecticut_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Connecticut"}</span>{' '}
@@ -305,7 +260,7 @@ export const HERO_PAGES = {
   'ct-to-jfk-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_ct_to_jfk_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Premium Connecticut to JFK"}</span>{' '}
@@ -323,7 +278,7 @@ export const HERO_PAGES = {
   'danbury-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_danbury_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury Danbury Car Service"}</span>{' '}
@@ -342,7 +297,7 @@ export const HERO_PAGES = {
   'fairfield-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_fairfield_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Fairfield CT Car Service"}</span>{' '}
@@ -360,7 +315,7 @@ export const HERO_PAGES = {
   'florida-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_florida_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Florida"}</span>{' '}
@@ -379,7 +334,7 @@ export const HERO_PAGES = {
   'greenwich-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_greenwich_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Greenwich CT Car Service"}</span>{' '}
@@ -398,7 +353,7 @@ export const HERO_PAGES = {
   'hartford-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_hartford_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Executive Hartford CT Car Service"}</span>{' '}
@@ -417,7 +372,7 @@ export const HERO_PAGES = {
   'illinois-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_illinois_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Illinois"}</span>{' '}
@@ -436,7 +391,7 @@ export const HERO_PAGES = {
   'jfk-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_jfk_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"JFK Airport"}</span>{' '}
@@ -454,7 +409,7 @@ export const HERO_PAGES = {
   'lga-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_lga_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"LaGuardia Airport Car Service"}</span>{' '}
@@ -473,7 +428,7 @@ export const HERO_PAGES = {
   'luxury-new-jersey-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_luxury_new_jersey_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury New Jersey"}</span>{' '}
@@ -492,7 +447,7 @@ export const HERO_PAGES = {
   'manhattan-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_manhattan_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Manhattan"}</span>{' '}
@@ -511,7 +466,7 @@ export const HERO_PAGES = {
   'miami-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_airport_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -530,7 +485,7 @@ export const HERO_PAGES = {
   'miami-airport-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_airport_limo_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -549,7 +504,7 @@ export const HERO_PAGES = {
   'miami-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -568,7 +523,7 @@ export const HERO_PAGES = {
   'miami-chauffeur-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_chauffeur_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -587,7 +542,7 @@ export const HERO_PAGES = {
   'miami-to-fort-lauderdale-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_to_fort_lauderdale_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Fort Lauderdale"}</span>{' '}
@@ -606,7 +561,7 @@ export const HERO_PAGES = {
   'miami-to-naples-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_to_naples_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Naples"}</span>{' '}
@@ -625,7 +580,7 @@ export const HERO_PAGES = {
   'miami-to-orlando-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_miami_to_orlando_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Orlando"}</span>{' '}
@@ -644,7 +599,7 @@ export const HERO_PAGES = {
   'milwaukee-airport-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_airport_limo_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee Airport"}</span>{' '}
@@ -663,7 +618,7 @@ export const HERO_PAGES = {
   'milwaukee-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -682,7 +637,7 @@ export const HERO_PAGES = {
   'milwaukee-chauffeur-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_chauffeur_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -701,7 +656,7 @@ export const HERO_PAGES = {
   'milwaukee-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_limo_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -720,7 +675,7 @@ export const HERO_PAGES = {
   'milwaukee-to-chicago-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_to_chicago_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee to Chicago"}</span>{' '}
@@ -739,7 +694,7 @@ export const HERO_PAGES = {
   'milwaukee-to-ohare-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_milwaukee_to_ohare_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee to O'Hare"}</span>{' '}
@@ -758,7 +713,7 @@ export const HERO_PAGES = {
   'new-haven-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_new_haven_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"New Haven CT Car Service"}</span>{' '}
@@ -777,7 +732,7 @@ export const HERO_PAGES = {
   'new-york-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_new_york_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"New York"}</span>{' '}
@@ -796,7 +751,7 @@ export const HERO_PAGES = {
   'newark-airport-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_newark_airport_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Premium Newark Airport Service"}</span>{' '}
@@ -814,7 +769,7 @@ export const HERO_PAGES = {
   'norwalk-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_norwalk_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Norwalk CT"}</span>{' '}
@@ -833,7 +788,7 @@ export const HERO_PAGES = {
   'nyc-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_nyc_limo_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"NYC"}</span>{' '}
@@ -852,7 +807,7 @@ export const HERO_PAGES = {
   'stamford-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_stamford_ct_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Stamford CT Car Service"}</span>{' '}
@@ -871,7 +826,7 @@ export const HERO_PAGES = {
   'texas-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_texas_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Texas"}</span>{' '}
@@ -890,7 +845,7 @@ export const HERO_PAGES = {
   'west-palm-beach-to-miami-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_west_palm_beach_to_miami_limo_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"West palm beach to Miami"}</span>{' '}
@@ -909,7 +864,7 @@ export const HERO_PAGES = {
   'westchester-county-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_westchester_county_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Westchester County"}</span>{' '}
@@ -928,7 +883,7 @@ export const HERO_PAGES = {
   'wisconsin-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroBg_wisconsin_car_service, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Wisconsin"}</span>{' '}

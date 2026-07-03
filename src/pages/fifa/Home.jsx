@@ -1,3 +1,4 @@
+import '../../styles/fifa.css'
 import LandingHero from '../../components/hero/LandingHero.jsx'
 
 

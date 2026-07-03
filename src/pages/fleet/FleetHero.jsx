@@ -1,4 +1,4 @@
-import fleetHero from '../../assets/fleet/hero/fleet-hero.webp'
+import fleetHero from '../../assets/hero/pages/fleet.webp'
 
 /** Full-width hero image for the dedicated fleet page. */
 export default function FleetHero() {

@@ -1,9 +1,9 @@
-import hartford from '../../assets/home/destinations/hartford.webp'
-import newYorkCity from '../../assets/home/destinations/new-york-city.webp'
-import atlanta from '../../assets/home/destinations/atlanta.webp'
-import milwaukee from '../../assets/home/destinations/milwaukee.webp'
-import chicago from '../../assets/home/destinations/chicago.webp'
-import boston from '../../assets/home/destinations/boston.webp'
+import hartford from '../../assets/destinations/hartford.webp'
+import newYorkCity from '../../assets/destinations/new-york-city.webp'
+import atlanta from '../../assets/destinations/atlanta.webp'
+import milwaukee from '../../assets/destinations/milwaukee.webp'
+import chicago from '../../assets/destinations/chicago.webp'
+import boston from '../../assets/destinations/boston.webp'
 
 /** @typedef {{ id: string, city: string, state: string, image: string }} DestinationItem */
 

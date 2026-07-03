@@ -1,4 +1,4 @@
-import brandLogo from '../../assets/logo.svg'
+import brandLogo from '../../assets/brand/logo.svg'
 
 const LOGO_ALT = 'Urban Elite Limo'
 

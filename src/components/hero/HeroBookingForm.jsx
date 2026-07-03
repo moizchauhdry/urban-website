@@ -179,6 +179,7 @@ export default function HeroBookingForm() {
             value={formData.name}
             onChange={handleChange}
             autoComplete="name"
+            placeholder="Enter your full name"
             required
           />
         </div>
@@ -191,6 +192,7 @@ export default function HeroBookingForm() {
             value={formData.email}
             onChange={handleChange}
             autoComplete="email"
+            placeholder="Enter your email address"
           />
         </div>
         <div className="form-group form-group-phone">

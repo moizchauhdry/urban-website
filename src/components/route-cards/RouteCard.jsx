@@ -1,5 +1,5 @@
 import Icon from '../common/Icon.jsx'
-import routeCardImage from '../../assets/connecticut/content-blocks/car-service3.webp'
+import routeCardImage from '../../assets/content-blocks/car-service3.webp'
 import QuoteLink from '../layout/QuoteLink.jsx'
 
 /**

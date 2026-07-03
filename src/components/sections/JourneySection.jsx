@@ -1,5 +1,5 @@
-import defaultLeft from '../../assets/left_bmw.webp'
-import defaultRight from '../../assets/right_audi.webp'
+import defaultLeft from '../../assets/journey/left.webp'
+import defaultRight from '../../assets/journey/right.webp'
 import BookNowLink from '../layout/BookNowLink.jsx'
 
 /**

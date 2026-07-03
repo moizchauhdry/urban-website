@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { REVIEWS } from '../../data/reviews.js'
 import ReviewsCarousel from '../carousels/ReviewsCarousel.jsx'
-import landingGoogleIcon from '../../assets/connecticut/reviews/google.svg'
-import landingTrustPilot from '../../assets/connecticut/reviews/trust-pilot.svg'
-import fleetGoogleIcon from '../../assets/fleet/reviews/google.svg'
-import fleetTrustPilot from '../../assets/fleet/reviews/trust-pilot.svg'
-import servicesGoogleIcon from '../../assets/our-services/reviews/google.svg'
-import servicesTrustPilot from '../../assets/our-services/reviews/trust-pilot.svg'
+import landingGoogleIcon from '../../assets/reviews/google.svg'
+import landingTrustPilot from '../../assets/reviews/trust-pilot.svg'
+import fleetGoogleIcon from '../../assets/reviews/google.svg'
+import fleetTrustPilot from '../../assets/reviews/trust-pilot.svg'
+import servicesGoogleIcon from '../../assets/reviews/google.svg'
+import servicesTrustPilot from '../../assets/reviews/trust-pilot.svg'
 
 const VARIANTS = {
   landing: {
