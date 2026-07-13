@@ -4,7 +4,7 @@ import HeroBookingFormShell from './HeroBookingFormShell.jsx'
 const HeroBookingForm = lazy(() => import('./HeroBookingForm.jsx'))
 
 const HERO_BOOKING_ID = 'hero-booking'
-const IDLE_TIMEOUT = 2800
+const IDLE_TIMEOUT = 4500
 
 /** Hero booking slot — shell paints instantly; full form loads after idle or user tap. */
 export default function HeroDeferredBooking() {

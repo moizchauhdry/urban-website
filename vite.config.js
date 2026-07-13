@@ -31,14 +31,15 @@ const SKIP_MODULE_PRELOAD = [
 ]
 
 /**
- * Hero LCP preload, static hero img, inlined critical CSS, async main stylesheet.
+ * Hero LCP preload, static hero img, inlined critical CSS, async main stylesheet,
+ * and latin font preloads.
  */
 function injectHeroLcp() {
   let base = '/'
   const devHeroSm = '/src/assets/hero/pages/home-800.webp'
   const devHeroLg = '/src/assets/hero/pages/home-1440.webp'
 
-  const applyOptimizations = (html, hero) => {
+  const applyOptimizations = (html, hero, fontHrefs = []) => {
     let out = html
       .replace(/<link rel="modulepreload"[^>]*>\s*/g, (tag) => {
         if (SKIP_MODULE_PRELOAD.some((s) => tag.includes(s))) return ''
@@ -56,6 +57,16 @@ function injectHeroLcp() {
       if (!href) return tag
       return `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${href}"></noscript>`
     })
+
+    if (fontHrefs.length) {
+      const fontPreloads = fontHrefs
+        .map(
+          (href) =>
+            `<link rel="preload" as="font" type="font/woff2" href="${href}" crossorigin />`,
+        )
+        .join('\n    ')
+      out = out.replace('<meta name="viewport"', `${fontPreloads}\n    <meta name="viewport"`)
+    }
 
     if (hero) {
       const { smHref, lgHref } = hero
@@ -88,14 +99,23 @@ function injectHeroLcp() {
               (item) => item.type === 'asset' && pattern.test(item.fileName),
             )
 
-          const heroSm = findHeroAsset(/home-hero-800/i)
-          const heroLg = findHeroAsset(/home-hero-1440/i)
+          // Match Vite-hashed names like home-800-xxxxx.webp (not legacy home-hero-800)
+          const heroSm = findHeroAsset(/home-800[^/]*\.webp$/i)
+          const heroLg = findHeroAsset(/home-1440[^/]*\.webp$/i) || heroSm
           const hero =
-            heroSm && heroLg
+            heroSm
               ? { smHref: toHref(heroSm.fileName), lgHref: toHref(heroLg.fileName) }
               : null
 
-          return applyOptimizations(html, hero)
+          const fontHrefs = Object.values(ctx.bundle)
+            .filter(
+              (item) =>
+                item.type === 'asset' &&
+                /space-grotesk-latin-(400|700)-normal[^/]*\.woff2$/i.test(item.fileName),
+            )
+            .map((item) => toHref(item.fileName))
+
+          return applyOptimizations(html, hero, fontHrefs)
         }
 
         return applyOptimizations(html, {
@@ -133,6 +153,12 @@ export default defineConfig(() => ({
           }
           if (id.includes('@googlemaps/js-api-loader')) {
             return 'google-maps'
+          }
+          if (id.includes('node_modules/lucide-react')) {
+            return 'lucide'
+          }
+          if (id.includes('node_modules/gsap')) {
+            return 'gsap'
           }
           if (id.includes('node_modules/react-router')) {
             return 'router'

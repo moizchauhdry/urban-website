@@ -1,9 +1,8 @@
+/**
+ * Airport card images — WebP only (JPGs converted at build-time optimize pass).
+ * Eager URL map keeps getAirportImage sync; files only download when a card uses them.
+ */
 const WEBP_AIRPORTS = import.meta.glob('../assets/airports/*.webp', {
-  eager: true,
-  import: 'default',
-})
-
-const JPG_AIRPORTS = import.meta.glob('../assets/airports/*.{jpg,jpeg}', {
   eager: true,
   import: 'default',
 })
@@ -16,14 +15,7 @@ const AIRPORT_IMAGE_BY_CODE = {}
 
 /** @param {string} path */
 function codeFromPath(path) {
-  return path.split('/').pop().replace(/\.(webp|jpe?g)$/i, '').toLowerCase()
-}
-
-/** Prefer .webp over .jpg when both exist for the same code. */
-for (const [path, url] of Object.entries(JPG_AIRPORTS)) {
-  const code = codeFromPath(path)
-  AIRPORT_IMAGE_BY_CODE[code] = url
-  CENTRAL_AIRPORT_CODES.add(code)
+  return path.split('/').pop().replace(/\.webp$/i, '').toLowerCase()
 }
 
 for (const [path, url] of Object.entries(WEBP_AIRPORTS)) {

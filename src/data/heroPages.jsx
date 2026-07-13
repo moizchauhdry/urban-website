@@ -152,7 +152,7 @@ export const HERO_PAGES = {
                     <span className="hero-title-line">
                       <span className="hero-title-line--highlight">Chauffeur Service</span>
                     </span>
-                    <span className="hero-title-line hero-title-line--accent">in USA</span>
+                    <span className="hero-title-line hero-title-line--accent"> in USA</span>
       </>
     ),
     descriptionInner: (

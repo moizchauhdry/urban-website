@@ -68,6 +68,7 @@ export default function HeroBookingForm() {
   const [fleetOptions, setFleetOptions] = useState([])
   const [fleetOptionsError, setFleetOptionsError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showFieldErrors, setShowFieldErrors] = useState(false)
   const minBookingDate = useMemo(() => getMinBookingDate(), [])
 
   const isHourly = formData.bookingType === 'hourly'
@@ -127,6 +128,15 @@ export default function HeroBookingForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const form = e.currentTarget
+
+    if (!form.checkValidity()) {
+      setShowFieldErrors(true)
+      form.querySelector(':invalid')?.focus()
+      return
+    }
+
+    setShowFieldErrors(false)
     const payload = buildHeroBookingPayload({
       ...formData,
       phone: phone || formData.phone,
@@ -169,7 +179,12 @@ export default function HeroBookingForm() {
           Hourly
         </button>
       </div>
-      <form className="form-grid" onSubmit={handleSubmit} data-no-loader>
+      <form
+        className={`form-grid${showFieldErrors ? ' form-grid--attempted' : ''}`}
+        onSubmit={handleSubmit}
+        noValidate
+        data-no-loader
+      >
         <div className="form-group">
           <label htmlFor="hero-name">Name*</label>
           <input
@@ -266,8 +281,14 @@ export default function HeroBookingForm() {
         {isHourly ? (
           <>
             <div className="form-group">
-              <label htmlFor="hero-duration">Duration</label>
-              <select id="hero-duration" name="hours" value={formData.hours} onChange={handleChange}>
+              <label htmlFor="hero-duration">Duration*</label>
+              <select
+                id="hero-duration"
+                name="hours"
+                value={formData.hours}
+                onChange={handleChange}
+                required
+              >
                 <option value="">—Please choose an option—</option>
                 {HERO_DURATION_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -358,8 +379,14 @@ export default function HeroBookingForm() {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="hero-travel">Travel</label>
-              <select id="hero-travel" name="travel" value={formData.travel} onChange={handleChange}>
+              <label htmlFor="hero-travel">Travel*</label>
+              <select
+                id="hero-travel"
+                name="travel"
+                value={formData.travel}
+                onChange={handleChange}
+                required
+              >
                 <option value="">—Please choose an option—</option>
                 <option value="One way">One way</option>
                 <option value="Round Trip">Round Trip</option>

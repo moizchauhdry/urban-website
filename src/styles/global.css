@@ -414,11 +414,15 @@ header{
   .menu-toggle{flex-shrink:0}
   .hero:not(.fifa-hero) .hero-phone{display:none}
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
-  .hero:not(.fifa-hero) .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center;margin-top:0}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -810,6 +814,25 @@ header{
 .form-group input:focus,
 .form-group select:focus{border-color:var(--accent)}
 .form-group input::placeholder{color:#aaa}
+/* Show red borders on missing/invalid fields after Book Now is pressed */
+.booking-card .form-grid--attempted .form-group input:invalid,
+.booking-card .form-grid--attempted .form-group select:invalid{
+  border-color:#e53935;
+  box-shadow:0 0 0 1px rgba(229,57,53,.22);
+}
+.booking-card .form-grid--attempted .form-group input:invalid:focus,
+.booking-card .form-grid--attempted .form-group select:invalid:focus{
+  border-color:#e53935;
+  box-shadow:0 0 0 3px rgba(229,57,53,.18);
+}
+.booking-card .form-grid--attempted .form-group-phone:has(input:invalid) .hero-phone-input.PhoneInput{
+  border-color:#e53935;
+  box-shadow:0 0 0 1px rgba(229,57,53,.22);
+}
+.booking-card .form-grid--attempted .form-group-phone:has(input:invalid) .PhoneInput--focus{
+  border-color:#e53935;
+  box-shadow:0 0 0 3px rgba(229,57,53,.18);
+}
 /* Hero booking: single-border phone field (react-phone-number-input) */
 .booking-card .form-group-phone .hero-phone-input.PhoneInput{
   border:1px solid #e0e0e0;border-radius:6px;background:#fff;
@@ -3557,11 +3580,15 @@ header.scrolled{
   }
   .hero:not(.fifa-hero) .hero-phone{display:none}
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
-  .hero:not(.fifa-hero) .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center;margin-top:0}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -3618,15 +3645,20 @@ header.scrolled{
   .booking-card-slot{min-height:0}
   .hero h1,
   .hero-title{
-    font-size:clamp(28px,4.2vw,36px);
-    line-height:1.15;
+    font-size:clamp(24px,3.8vw + 10px,34px);
+    line-height:1.2;
   }
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center}
-  .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;
+    text-wrap:balance;
+  }
+  .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    text-align:center;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     justify-items:center;
     text-align:center;
@@ -3662,25 +3694,26 @@ header.scrolled{
   .booking-card{padding:16px}
   .hero h1,
   .hero-title{
-    font-size:clamp(26px,7.8vw,36px);
-    line-height:1.15;
+    font-size:clamp(20px,4.6vw + 8px,32px);
+    line-height:1.2;
   }
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
   .hero .hero-title,
   .hero h1{
     text-align:center;
     margin-left:auto;
     margin-right:auto;
   }
-  .hero:not(.fifa-hero) .hero-title-line{
-    display:block;
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
     text-align:center;
     white-space:normal;
   }
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center}
   .hero-mobile-benefits li span{
     white-space:normal;
     text-align:center;
