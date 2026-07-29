@@ -1,33 +1,16 @@
-import LandingHero from '../../../components/hero/LandingHero.jsx'
-import FleetSection from '../../../components/sections/FleetSection.jsx'
-import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
-import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
-import ReviewsSection from '../../../components/sections/ReviewsSection.jsx'
-import ServicesSection from '../../../components/sections/ServicesSection.jsx'
-import RouteCardsSection from '../../../components/route-cards/RouteCardsSection.jsx'
-import TrustedStats from '../../../components/sections/TrustedStats.jsx'
-import HowItWorks from '../../../components/sections/HowItWorks.jsx'
-import JourneySection from '../../../components/sections/JourneySection.jsx'
-import RegionalAirportsSection from '../../../components/sections/RegionalAirportsSection.jsx'
-import FaqSection from '../../../components/sections/FaqSection.jsx'
+import MarketingLandingPage from '../../templates/MarketingLandingPage.jsx'
+import { HUB_LANDING_CONFIG } from '../../templates/landingConfigs.js'
 
-/** Landing page. */
+const config = HUB_LANDING_CONFIG['chicago-limo']
+
+/** Chicago limo service landing page. */
 export default function Home() {
-
   return (
-    <>
-      <LandingHero pageKey="chicago-limo" />
-      <FleetSection />
-      <WhyDifferentSection />
-      <PlanningBanner />
-      <ReviewsSection />
-      <ServicesSection imagePrefix="il-chi-limo" />
-      <RouteCardsSection pageKey="chicago-limo-service" />
-      <TrustedStats />
-      <HowItWorks />
-      <JourneySection />
-      <RegionalAirportsSection pageKey="illinois/chicago-limo-service" />
-      <FaqSection />
-    </>
+    <MarketingLandingPage
+      heroKey={config.heroKey}
+      routeCardsKey={config.routeCardsKey}
+      airportsKey={config.airportsKey}
+      imagePrefix={config.imagePrefix}
+    />
   )
 }

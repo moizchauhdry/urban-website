@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../BrandLogo.jsx'
 import HeaderBookNow from '../HeaderBookNow.jsx'
 import HeaderNavPhone from '../HeaderNavPhone.jsx'
-import SuspenseLoader from '../SuspenseLoader.jsx'
-import FifaPromoBanner from '../FifaPromoBanner.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
 import { COMPACT_NAV_MQ, PHONE_MQ } from '../../../config/breakpoints.js'
@@ -23,7 +21,7 @@ export default function LandingHeader({ homePath = '/', variant = 'standard' }) 
   const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showPromoBanner, setShowPromoBanner] = useState(variant === 'standard')
+  const [showPromoBanner, setShowPromoBanner] = useState(false)
 
   const mobileMq = variant === 'connecticut' ? COMPACT_NAV_MQ : PHONE_MQ
 
@@ -31,12 +29,16 @@ export default function LandingHeader({ homePath = '/', variant = 'standard' }) 
   const toggleMobileMenu = useCallback(() => setMobileMenuOpen((open) => !open), [])
 
   useEffect(() => {
-    if (variant !== 'connecticut') return undefined
     if (typeof requestIdleCallback !== 'undefined') {
-      const id = requestIdleCallback(() => setShowPromoBanner(true), { timeout: 3200 })
+      const id = requestIdleCallback(() => setShowPromoBanner(true), {
+        timeout: variant === 'connecticut' ? 3200 : 1800,
+      })
       return () => cancelIdleCallback(id)
     }
-    const timer = window.setTimeout(() => setShowPromoBanner(true), 1500)
+    const timer = window.setTimeout(
+      () => setShowPromoBanner(true),
+      variant === 'connecticut' ? 1500 : 800,
+    )
     return () => window.clearTimeout(timer)
   }, [variant])
 
@@ -96,13 +98,9 @@ export default function LandingHeader({ homePath = '/', variant = 'standard' }) 
         />
       </header>
       {showPromoBanner ? (
-        variant === 'connecticut' ? (
-          <Suspense fallback={<SuspenseLoader />}>
-            <LazyFifaPromoBanner />
-          </Suspense>
-        ) : (
-          <FifaPromoBanner />
-        )
+        <Suspense fallback={null}>
+          <LazyFifaPromoBanner />
+        </Suspense>
       ) : null}
     </div>
   )

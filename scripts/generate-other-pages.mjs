@@ -527,39 +527,8 @@ async function generatePage(title) {
 
   const pageDir = path.join(OP_PAGES, slug)
 
-  await fs.rm(pageDir, { recursive: true, force: true })
-  await copyDir(CT_PAGES, pageDir)
-  await fs.rm(path.join(pageDir, 'faqs'), { recursive: true, force: true })
-  for (const dir of [
-    'planning-banner',
-    'trusted-stats',
-    'how-it-works',
-    'fleet',
-    'why-different',
-    'reviews',
-    'journey',
-    'airports',
-    'faqs',
-    'content-blocks',
-    'layout',
-    'hero',
-    'route-cards',
-  ]) {
-    await fs.rm(path.join(pageDir, dir), { recursive: true, force: true })
-  }
-
-  const files = await walkFiles(pageDir)
-  for (const file of files) {
-    if (!/\.(jsx?|js)$/.test(file)) continue
-    let content = await fs.readFile(file, 'utf8')
-    content = patchFileContent(content, ctx)
-    await fs.writeFile(file, content)
-  }
-
-  await fs.writeFile(path.join(pageDir, 'Home.jsx'), buildHome(ctx))
-
-  await fs.rm(path.join(pageDir, 'ConnecticutLayout.jsx'), { force: true })
-
+  // Pages render via MarketingLandingPage + PageLayout — do not recreate Home.jsx clones.
+  await fs.mkdir(pageDir, { recursive: true })
   await fs.mkdir(OP_STYLES, { recursive: true })
   await fs.writeFile(path.join(OP_STYLES, `${slug}.css`), buildPageCss(ctx))
 

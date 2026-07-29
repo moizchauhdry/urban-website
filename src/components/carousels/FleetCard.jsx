@@ -1,6 +1,40 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { FleetImageSlider } from './FleetImageSlider.jsx'
 import QuoteLink from '../layout/QuoteLink.jsx'
+
+function FleetCardImage({ image, title, priorityLoad }) {
+  const [src, setSrc] = useState(image?.src ?? null)
+
+  useEffect(() => {
+    if (image?.src || !image?.loadSrc) return undefined
+    let cancelled = false
+    image.loadSrc().then((mod) => {
+      if (!cancelled) setSrc(mod.default)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [image])
+
+  if (!src) {
+    return (
+      <span
+        className="fleet-slider-skeleton absolute inset-0 z-0 animate-pulse bg-neutral-200"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  return (
+    <img
+      src={src}
+      alt={image?.alt ?? title}
+      loading={priorityLoad ? 'eager' : 'lazy'}
+      decoding="async"
+      draggable={false}
+    />
+  )
+}
 
 function FleetCardInner({ item, priorityLoad = true }) {
   const primaryImage = item.images[0]
@@ -12,13 +46,7 @@ function FleetCardInner({ item, priorityLoad = true }) {
         {useSlider ? (
           <FleetImageSlider images={item.images} priorityLoad={priorityLoad} />
         ) : (
-          <img
-            src={primaryImage?.src}
-            alt={primaryImage?.alt ?? item.title}
-            loading={priorityLoad ? 'eager' : 'lazy'}
-            decoding="async"
-            draggable={false}
-          />
+          <FleetCardImage image={primaryImage} title={item.title} priorityLoad={priorityLoad} />
         )}
       </div>
 

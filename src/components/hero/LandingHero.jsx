@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getHeroPage } from '../../data/heroPages.jsx'
+import { getHomeHero, loadLandingHero } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
 import trustPilotLogo from '../../assets/reviews/trust-pilot.svg'
@@ -7,7 +7,6 @@ import licensedIcon from '../../assets/hero/features/fully-licensed.png'
 import HeroDeferredBooking from './HeroDeferredBooking.jsx'
 import HeroLiveBadge from './HeroLiveBadge.jsx'
 import HeroMobileBenefits from './HeroMobileBenefits.jsx'
-import Icon from '../common/Icon.jsx'
 
 const DESKTOP_MQ = '(min-width: 721px)'
 
@@ -91,6 +90,52 @@ function LandingHeroContent({ config, showDesktopExtras }) {
   )
 }
 
+function FifaFeatureIcon({ name }) {
+  if (name === 'dollar') {
+    return <span className="fifa-hero__feature-dollar">$</span>
+  }
+
+  const paths = {
+    headset: (
+      <>
+        <path d="M3 14v-3a9 9 0 0 1 18 0v3" />
+        <path d="M21 16a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h3zM3 16a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H3z" />
+      </>
+    ),
+    car: (
+      <>
+        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+        <circle cx="7" cy="17" r="2" />
+        <path d="M9 17h6" />
+        <circle cx="17" cy="17" r="2" />
+      </>
+    ),
+    clock: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </>
+    ),
+  }
+
+  return (
+    <svg
+      className="icon"
+      width={14}
+      height={14}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {paths[name] ?? null}
+    </svg>
+  )
+}
+
 function FifaHeroContent({ config }) {
   const { titleInner, descriptionInner } = config
 
@@ -102,11 +147,7 @@ function FifaHeroContent({ config }) {
         {FIFA_HERO_FEATURES.map((feat) => (
           <li className="fifa-hero__feature" key={feat.label}>
             <span className="fifa-hero__feature-icon" aria-hidden="true">
-              {feat.icon === 'dollar' ? (
-                <span className="fifa-hero__feature-dollar">$</span>
-              ) : (
-                <Icon name={feat.icon} size={14} />
-              )}
+              <FifaFeatureIcon name={feat.icon} />
             </span>
             {feat.label}
           </li>
@@ -147,11 +188,42 @@ function FifaHeroContent({ config }) {
   )
 }
 
+function useHeroConfig(pageKey) {
+  const isHome = pageKey === 'home'
+  const [config, setConfig] = useState(() => (isHome ? getHomeHero() : null))
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    if (pageKey === 'home') {
+      setConfig(getHomeHero())
+      setError(null)
+      return undefined
+    }
+
+    let cancelled = false
+    setConfig(null)
+    setError(null)
+    loadLandingHero(pageKey)
+      .then((next) => {
+        if (!cancelled) setConfig(next)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [pageKey])
+
+  return { config, error }
+}
+
 /** Shared hero for landing pages, home, and FIFA — content keyed by pageKey. */
 export default function LandingHero({ pageKey }) {
-  const config = getHeroPage(pageKey)
-  const isHome = config.variant === 'home'
-  const isFifa = config.variant === 'fifa'
+  const { config, error } = useHeroConfig(pageKey)
+
+  const isHome = pageKey === 'home'
+  const isFifa = config?.variant === 'fifa'
 
   const staticRemoved = useRef(false)
   const [showDesktopExtras, setShowDesktopExtras] = useState(() =>
@@ -218,6 +290,14 @@ export default function LandingHero({ pageKey }) {
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
   }, [isHome])
+
+  if (error) {
+    throw error
+  }
+
+  if (!config) {
+    return <section className="hero" aria-busy="true" />
+  }
 
   const showBg = !isHome || useReactHeroBg
   const desktopFeatures = isHome ? (showDesktopExtras ? 'lazy' : false) : true
