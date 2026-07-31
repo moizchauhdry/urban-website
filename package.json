@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "optimize-images": "node scripts/optimize-images.mjs",
     "generate-other-pages": "node scripts/generate-other-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview",

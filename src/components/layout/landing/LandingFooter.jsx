@@ -13,6 +13,7 @@ import {
   CONTACT_US,
   OUR_SERVICES,
   PRIVACY_POLICY,
+  TERMS_OF_SERVICE,
 } from '../../../config/routes.js'
 
 export default function LandingFooter({ logoPath = '/' }) {
@@ -53,6 +54,9 @@ export default function LandingFooter({ logoPath = '/' }) {
               </li>
               <li>
                 <Link to={PRIVACY_POLICY}>Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to={TERMS_OF_SERVICE}>Terms of Service</Link>
               </li>
             </ul>
           </div>

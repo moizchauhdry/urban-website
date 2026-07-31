@@ -1,5 +1,4 @@
 import LandingHero from '../../components/hero/LandingHero.jsx'
-import SuspenseLoader from '../../components/layout/SuspenseLoader.jsx'
 import { lazy, Suspense } from 'react'
 
 import ViewportLazy from '../../components/common/ViewportLazy.jsx'
@@ -14,7 +13,7 @@ export default function HomePage() {
     <>
       <LandingHero pageKey="home" />
       <ViewportLazy minHeight={800}>
-        <Suspense fallback={<SuspenseLoader />}>
+        <Suspense fallback={null}>
           <HomeBelowFold />
         </Suspense>
       </ViewportLazy>

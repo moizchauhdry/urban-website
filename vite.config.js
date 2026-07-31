@@ -24,8 +24,6 @@ const SKIP_MODULE_PRELOAD = [
   'NavMenuItems',
   'routes-dLtvg4Ff',
   'useHomeLogoClick',
-  'fully-licensed',
-  'phone-icon',
 ]
 
 /**

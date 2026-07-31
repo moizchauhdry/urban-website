@@ -3,7 +3,7 @@
  * Dedicated hub routes use short hero keys; SEO catch-all slugs use slug-as-key.
  */
 
-/** @typedef {{ heroKey: string, routeCardsKey: string, airportsKey: string, imagePrefix: string }} LandingConfig */
+/** @typedef {{ heroKey: string, routeCardsKey: string, airportsKey: string }} LandingConfig */
 
 /** @type {Record<string, LandingConfig>} */
 export const HUB_LANDING_CONFIG = {
@@ -11,37 +11,31 @@ export const HUB_LANDING_CONFIG = {
     heroKey: 'connecticut',
     routeCardsKey: 'connecticut',
     airportsKey: 'connecticut',
-    imagePrefix: '',
   },
   florida: {
     heroKey: 'florida',
     routeCardsKey: 'florida',
     airportsKey: 'florida',
-    imagePrefix: 'fl',
   },
   newyork: {
     heroKey: 'newyork',
     routeCardsKey: 'newyork',
     airportsKey: 'newyork',
-    imagePrefix: 'ny',
   },
   illinois: {
     heroKey: 'illinois',
     routeCardsKey: 'illinois',
     airportsKey: 'illinois/illinois',
-    imagePrefix: 'il',
   },
   'chicago-chauffeur': {
     heroKey: 'chicago-chauffeur',
     routeCardsKey: 'chicago-chauffeur-service',
     airportsKey: 'illinois/chicago-chauffeur-service',
-    imagePrefix: 'il-chi-chauff',
   },
   'chicago-limo': {
     heroKey: 'chicago-limo',
     routeCardsKey: 'chicago-limo-service',
     airportsKey: 'illinois/chicago-limo-service',
-    imagePrefix: 'il-chi-limo',
   },
 }
 
@@ -63,6 +57,5 @@ export function getOtherPageLandingConfig(slug) {
     heroKey: slug,
     routeCardsKey: slug,
     airportsKey: `other-pages/${slug}`,
-    imagePrefix: `op-${slug}`,
   }
 }

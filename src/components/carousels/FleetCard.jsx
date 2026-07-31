@@ -3,10 +3,18 @@ import { FleetImageSlider } from './FleetImageSlider.jsx'
 import QuoteLink from '../layout/QuoteLink.jsx'
 
 function FleetCardImage({ image, title, priorityLoad }) {
-  const [src, setSrc] = useState(image?.src ?? null)
+  const [src, setSrc] = useState(priorityLoad ? (image?.src ?? null) : null)
 
   useEffect(() => {
-    if (image?.src || !image?.loadSrc) return undefined
+    if (!priorityLoad) {
+      setSrc(null)
+      return undefined
+    }
+    if (image?.src) {
+      setSrc(image.src)
+      return undefined
+    }
+    if (!image?.loadSrc) return undefined
     let cancelled = false
     image.loadSrc().then((mod) => {
       if (!cancelled) setSrc(mod.default)
@@ -14,7 +22,7 @@ function FleetCardImage({ image, title, priorityLoad }) {
     return () => {
       cancelled = true
     }
-  }, [image])
+  }, [image, priorityLoad])
 
   if (!src) {
     return (
@@ -29,6 +37,8 @@ function FleetCardImage({ image, title, priorityLoad }) {
     <img
       src={src}
       alt={image?.alt ?? title}
+      width={800}
+      height={640}
       loading={priorityLoad ? 'eager' : 'lazy'}
       decoding="async"
       draggable={false}

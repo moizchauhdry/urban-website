@@ -8,6 +8,7 @@ import {
   MAIN_HOME,
   OUR_SERVICES,
   PRIVACY_POLICY,
+  TERMS_OF_SERVICE,
   THANK_YOU,
 } from './routes.js'
 
@@ -22,6 +23,7 @@ const STATIC_PAGE_PATHS = new Set([
   FLEET,
   BOOK_NOW,
   PRIVACY_POLICY,
+  TERMS_OF_SERVICE,
   THANK_YOU,
 ])
 

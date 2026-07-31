@@ -1,23 +1,15 @@
-import phoneIcon from '../../assets/hero/features/phone-icon.png'
+import Icon from '../icons/Icon.jsx'
 
 const DEFAULT_PHONE = {
   href: 'tel:8888816610',
   label: '(888) 881-6610',
-  icon: phoneIcon,
+  icon: 'phone',
 }
 
 export default function HeaderNavPhone({ phone = DEFAULT_PHONE }) {
   return (
     <a href={phone.href} className="nav-phone">
-      <img
-        src={phone.icon}
-        alt=""
-        className="nav-phone-icon"
-        width={16}
-        height={16}
-        decoding="async"
-        draggable={false}
-      />
+      <Icon name={phone.icon} size={16} className="nav-phone-icon" />
       <span className="nav-phone-label">{phone.label}</span>
     </a>
   )

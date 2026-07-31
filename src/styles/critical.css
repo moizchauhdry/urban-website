@@ -25,7 +25,7 @@ header{background:var(--white);box-shadow:0 1px 3px rgba(11,14,20,.06);position:
 .hero-title-line--accent{display:block;color:var(--white);text-transform:uppercase}
 .hero-desc{font-size:15px;color:rgba(255,255,255,.88);max-width:560px;margin-bottom:30px;line-height:1.7}
 .hero-phone{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--deep);padding:14px 30px;border-radius:30px;font-weight:700;font-size:16px;margin-bottom:30px}
-.hero-phone-icon{width:20px;height:20px;filter:brightness(0)}
+.hero-phone-icon{width:20px;height:20px;color:inherit}
 .booking-card{background:#fff;color:#222;border-radius:14px;box-shadow:0 25px 60px rgba(0,0,0,.25);padding:24px}
 .booking-card-slot{min-height:660px}
 .form-tabs{display:flex;border:1px solid var(--deep);border-radius:30px;padding:4px;margin-bottom:22px;background:#fff;overflow:hidden}

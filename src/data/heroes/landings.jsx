@@ -1,14 +1,24 @@
-import heroLanding from '../../assets/hero/pages/landing.webp'
+import heroLandingSm from '../../assets/hero/pages/landing-800.webp'
+import heroLandingLg from '../../assets/hero/pages/landing-1440.webp'
 import heroFifa from '../../assets/hero/pages/fifa-800.webp'
 import heroFifaLg from '../../assets/hero/pages/fifa-1440.webp'
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
+
+const LANDING_BG = {
+  default: heroLandingSm,
+  sm: heroLandingSm,
+  lg: heroLandingLg,
+  sizes: '(max-width: 1024px) 800px, 1440px',
+  width: 1440,
+  height: 810,
+}
 
 /** Landing + FIFA heroes — dynamically imported off the home critical path. */
 export const HERO_PAGES = {
   'connecticut': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line">
@@ -29,7 +39,7 @@ export const HERO_PAGES = {
   'florida': {
     variant: 'landing',
     sectionClass: 'hero hero--florida',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line">
@@ -50,7 +60,7 @@ export const HERO_PAGES = {
   'newyork': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line">Premium <span className="hero-title-line--highlight">New&nbsp;York</span></span>{' '}
@@ -69,7 +79,7 @@ export const HERO_PAGES = {
   'illinois': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line">Premium <span className="hero-title-line--highlight">Illinois</span></span>{' '}
@@ -88,7 +98,7 @@ export const HERO_PAGES = {
   'chicago-limo': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line"><span className="hero-title-line--highlight">Chicago</span> Limo</span>{' '}
@@ -107,7 +117,7 @@ export const HERO_PAGES = {
   'chicago-chauffeur': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line"><span className="hero-title-line--highlight">Chicago</span> Chauffeur</span>{' '}
@@ -142,7 +152,7 @@ export const HERO_PAGES = {
   'atlanta-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Atlanta"}</span>{' '}
@@ -161,7 +171,7 @@ export const HERO_PAGES = {
   'bdl-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury Connecticut Airport Limo Service"}</span>{' '}
@@ -179,7 +189,7 @@ export const HERO_PAGES = {
   'boston-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Boston"}</span>{' '}
@@ -198,7 +208,7 @@ export const HERO_PAGES = {
   'chicago-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Chicago Airport"}</span>{' '}
@@ -217,7 +227,7 @@ export const HERO_PAGES = {
   'connecticut-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Connecticut"}</span>{' '}
@@ -236,7 +246,7 @@ export const HERO_PAGES = {
   'ct-to-jfk-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Premium Connecticut to JFK"}</span>{' '}
@@ -254,7 +264,7 @@ export const HERO_PAGES = {
   'danbury-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury Danbury Car Service"}</span>{' '}
@@ -273,7 +283,7 @@ export const HERO_PAGES = {
   'fairfield-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Fairfield CT Car Service"}</span>{' '}
@@ -291,7 +301,7 @@ export const HERO_PAGES = {
   'florida-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Florida"}</span>{' '}
@@ -310,7 +320,7 @@ export const HERO_PAGES = {
   'greenwich-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Greenwich CT Car Service"}</span>{' '}
@@ -329,7 +339,7 @@ export const HERO_PAGES = {
   'hartford-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Executive Hartford CT Car Service"}</span>{' '}
@@ -348,7 +358,7 @@ export const HERO_PAGES = {
   'illinois-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Illinois"}</span>{' '}
@@ -367,7 +377,7 @@ export const HERO_PAGES = {
   'jfk-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"JFK Airport"}</span>{' '}
@@ -385,7 +395,7 @@ export const HERO_PAGES = {
   'lga-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"LaGuardia Airport Car Service"}</span>{' '}
@@ -404,7 +414,7 @@ export const HERO_PAGES = {
   'luxury-new-jersey-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Luxury New Jersey"}</span>{' '}
@@ -423,7 +433,7 @@ export const HERO_PAGES = {
   'manhattan-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Manhattan"}</span>{' '}
@@ -442,7 +452,7 @@ export const HERO_PAGES = {
   'miami-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -461,7 +471,7 @@ export const HERO_PAGES = {
   'miami-airport-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -480,7 +490,7 @@ export const HERO_PAGES = {
   'miami-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -499,7 +509,7 @@ export const HERO_PAGES = {
   'miami-chauffeur-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -518,7 +528,7 @@ export const HERO_PAGES = {
   'miami-to-fort-lauderdale-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Fort Lauderdale"}</span>{' '}
@@ -537,7 +547,7 @@ export const HERO_PAGES = {
   'miami-to-naples-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Naples"}</span>{' '}
@@ -556,7 +566,7 @@ export const HERO_PAGES = {
   'miami-to-orlando-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Orlando"}</span>{' '}
@@ -575,7 +585,7 @@ export const HERO_PAGES = {
   'milwaukee-airport-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee Airport"}</span>{' '}
@@ -594,7 +604,7 @@ export const HERO_PAGES = {
   'milwaukee-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -613,7 +623,7 @@ export const HERO_PAGES = {
   'milwaukee-chauffeur-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -632,7 +642,7 @@ export const HERO_PAGES = {
   'milwaukee-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee"}</span>{' '}
@@ -651,7 +661,7 @@ export const HERO_PAGES = {
   'milwaukee-to-chicago-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee to Chicago"}</span>{' '}
@@ -670,7 +680,7 @@ export const HERO_PAGES = {
   'milwaukee-to-ohare-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Milwaukee to O'Hare"}</span>{' '}
@@ -689,7 +699,7 @@ export const HERO_PAGES = {
   'new-haven-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"New Haven CT Car Service"}</span>{' '}
@@ -708,7 +718,7 @@ export const HERO_PAGES = {
   'new-york-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"New\u00A0York"}</span>{' '}
@@ -727,7 +737,7 @@ export const HERO_PAGES = {
   'newark-airport-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Premium Newark Airport Service"}</span>{' '}
@@ -745,7 +755,7 @@ export const HERO_PAGES = {
   'norwalk-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Norwalk CT"}</span>{' '}
@@ -764,7 +774,7 @@ export const HERO_PAGES = {
   'nyc-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"NYC"}</span>{' '}
@@ -783,7 +793,7 @@ export const HERO_PAGES = {
   'stamford-ct-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Stamford CT Car Service"}</span>{' '}
@@ -802,7 +812,7 @@ export const HERO_PAGES = {
   'texas-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Texas"}</span>{' '}
@@ -821,7 +831,7 @@ export const HERO_PAGES = {
   'west-palm-beach-to-miami-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"West palm beach to Miami"}</span>{' '}
@@ -840,7 +850,7 @@ export const HERO_PAGES = {
   'westchester-county-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Westchester County"}</span>{' '}
@@ -859,7 +869,7 @@ export const HERO_PAGES = {
   'wisconsin-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: { default: heroLanding, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: LANDING_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Wisconsin"}</span>{' '}

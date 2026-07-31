@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import NavMenuItems from '../../nav/NavMenuItems.jsx'
-import SuspenseLoader from '../SuspenseLoader.jsx'
 import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
 
 const DesktopNavMenuItems = lazy(() =>
@@ -35,7 +34,7 @@ export default function LandingNavbar({ variant = 'standard' }) {
   return (
     <nav className="menu" aria-label="Primary">
       {isCompact ? null : (
-        <Suspense fallback={<SuspenseLoader />}>
+        <Suspense fallback={null}>
           <DesktopNavMenuItems variant="desktop" />
         </Suspense>
       )}

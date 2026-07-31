@@ -1,6 +1,7 @@
 .env
 node_modules/
-.vercel
 .env*
 
+
 dist/
+.vercel

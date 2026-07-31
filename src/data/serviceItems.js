@@ -41,22 +41,13 @@ const SERVICE_ITEM_DEFS = [
   },
 ]
 
-/** @param {number} index */
-function serviceImageClass(imagePrefix, index) {
-  const n = index + 1
-  return imagePrefix ? `${imagePrefix}-s${n}` : `s${n}`
-}
-
 /**
- * Landing-page service carousel items. Pass a CSS prefix matching `.service-img.{prefix}-sN` rules.
- * Connecticut uses an empty prefix (`s1`, `s2`, …); other pages use values like `fl`, `ny`, `op-boston-car-service`.
- *
- * @param {string} [imagePrefix]
+ * Landing-page service carousel items. Uses shared `.service-img.sN` classes.
  * @returns {ServiceItem[]}
  */
-export function buildServiceItems(imagePrefix = '') {
+export function buildServiceItems() {
   return SERVICE_ITEM_DEFS.map((item, index) => ({
     ...item,
-    imageClass: serviceImageClass(imagePrefix, index),
+    imageClass: `s${index + 1}`,
   }))
 }

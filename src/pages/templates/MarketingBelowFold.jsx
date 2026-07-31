@@ -16,13 +16,11 @@ import FaqSection from '../../components/sections/FaqSection.jsx'
  * @param {{
  *   routeCardsKey: string
  *   airportsKey: string
- *   imagePrefix?: string
  * }} props
  */
 export default function MarketingBelowFold({
   routeCardsKey,
   airportsKey,
-  imagePrefix = '',
 }) {
   return (
     <>
@@ -30,7 +28,7 @@ export default function MarketingBelowFold({
       <WhyDifferentSection />
       <PlanningBanner />
       <ReviewsSection />
-      <ServicesSection imagePrefix={imagePrefix} />
+      <ServicesSection />
       <RouteCardsSection pageKey={routeCardsKey} />
       <TrustedStats />
       <HowItWorks />

@@ -3,8 +3,8 @@ import { getHomeHero, loadLandingHero } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
 import trustPilotLogo from '../../assets/reviews/trust-pilot.svg'
-import licensedIcon from '../../assets/hero/features/fully-licensed.png'
-import HeroDeferredBooking from './HeroDeferredBooking.jsx'
+import Icon from '../icons/Icon.jsx'
+import HeroDeferredBooking from '../../features/booking/HeroDeferredBooking.jsx'
 import HeroLiveBadge from './HeroLiveBadge.jsx'
 import HeroMobileBenefits from './HeroMobileBenefits.jsx'
 
@@ -56,31 +56,14 @@ function LandingHeroContent({ config, showDesktopExtras }) {
       <HeroMobileBenefits />
       <p className={config.descClassName ?? 'hero-desc'}>{descriptionInner}</p>
       <a href={HERO_PHONE.href} className="hero-phone">
-        <img
-          src={HERO_PHONE.icon}
-          alt={HERO_PHONE.iconAlt}
-          className="hero-phone-icon"
-          width={20}
-          height={20}
-          decoding="async"
-          draggable={false}
-        />
+        <Icon name={HERO_PHONE.icon} size={20} className="hero-phone-icon" />
         {HERO_PHONE.label}
       </a>
       {showDesktopExtras !== false ? (
         <div className="hero-features">
           {HERO_FEATURES.map((feat) => (
             <div className="feat" key={feat.label}>
-              <img
-                src={feat.icon}
-                alt={feat.iconAlt}
-                className="feat-icon"
-                width={20}
-                height={20}
-                decoding="async"
-                loading={showDesktopExtras === 'lazy' ? 'lazy' : undefined}
-                draggable={false}
-              />
+              <Icon name={feat.icon} size={20} className="feat-icon" />
               {feat.label}
             </div>
           ))}
@@ -179,7 +162,7 @@ function FifaHeroContent({ config }) {
           <img src={trustPilotLogo} alt="Trustpilot" className="fifa-hero__trust-logo" width={88} height={22} />
           <span className="fifa-hero__trust-divider" aria-hidden="true" />
           <span className="fifa-hero__trust-licensed">
-            <img src={licensedIcon} alt="" className="fifa-hero__trust-icon" width={18} height={18} />
+            <Icon name="shield-halved" size={18} className="fifa-hero__trust-icon" />
             Licensed
           </span>
         </div>

@@ -10,8 +10,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const CT_PAGES = path.join(ROOT, 'src/pages/connecticut')
 const OP_PAGES = path.join(ROOT, 'src/pages/other-pages')
-const OP_STYLES = path.join(ROOT, 'src/styles/other-pages')
-const SHARED_ASSETS = '../../assets'
 
 const PAGE_TITLES = [
   'Miami Chauffeur Service',
@@ -65,9 +63,6 @@ function slugify(title) {
     .replace(/^-|-$/g, '')
 }
 
-function cssPrefix(slug) {
-  return `op-${slug}`
-}
 
 function heroLines(title) {
   const t = title.replace(/^select\s+/i, '').trim()
@@ -441,96 +436,20 @@ export default function AirportsSection() {
 `
 }
 
-function buildPageCss(ctx) {
-  const { prefix, airports } = ctx
-  const lines = [
-    `/* ${ctx.title} */`,
-    `.service-img.${prefix}-s1{background-image:url('${SHARED_ASSETS}/services/service1.webp')}`,
-    `.service-img.${prefix}-s2{background-image:url('${SHARED_ASSETS}/services/service2.webp')}`,
-    `.service-img.${prefix}-s3{background-image:url('${SHARED_ASSETS}/services/service3.webp')}`,
-    `.service-img.${prefix}-s4{background-image:url('${SHARED_ASSETS}/services/service4.webp')}`,
-    `.service-img.${prefix}-s5{background-image:url('${SHARED_ASSETS}/services/service5.webp')}`,
-    `.service-img.${prefix}-s6{background-image:url('${SHARED_ASSETS}/services/service6.webp')}`,
-    `.content-img.${prefix}-i1{background-image:url('${SHARED_ASSETS}/content-blocks/car-service1.webp')}`,
-    `.content-img.${prefix}-i2{background-image:url('${SHARED_ASSETS}/content-blocks/car-service2.webp')}`,
-    `.content-img.${prefix}-i3{background-image:url('${SHARED_ASSETS}/content-blocks/car-service3.webp')}`,
-  ]
-  airports.forEach((a, i) => {
-    lines.push(
-      `.airport-card.${prefix}-a${i + 1}{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('${SHARED_ASSETS}/airports/${a.file}')}`,
-    )
-  })
-  return `${lines.join('\n')}\n`
-}
 
-function isAirportLandingPage(title) {
-  return title.toLowerCase().includes('airport')
-}
-
-function buildHome(ctx) {
-  const docTitle = JSON.stringify(`${ctx.title} | Urban Elite Limo`)
-  const includeAirports = !isAirportLandingPage(ctx.title)
-  const airportKey = `other-pages/${ctx.slug}`
-  const airportsImport = includeAirports
-    ? "import RegionalAirportsSection from '../../../components/sections/RegionalAirportsSection.jsx'\n"
-    : ''
-  const airportsBlock = includeAirports
-    ? `      <RegionalAirportsSection pageKey="${airportKey}" />\n`
-    : ''
-
-  return `import { useEffect } from 'react'
-import LandingHero from '../../../components/hero/LandingHero.jsx'
-import FleetSection from '../../../components/sections/FleetSection.jsx'
-import WhyDifferentSection from '../../../components/sections/WhyDifferentSection.jsx'
-import PlanningBanner from '../../../components/sections/PlanningBanner.jsx'
-import ReviewsSection from '../../../components/sections/ReviewsSection.jsx'
-import ServicesSection from '../../../components/sections/ServicesSection.jsx'
-import RouteCardsSection from '../../../components/route-cards/RouteCardsSection.jsx'
-import TrustedStats from '../../../components/sections/TrustedStats.jsx'
-import HowItWorks from '../../../components/sections/HowItWorks.jsx'
-import JourneySection from '../../../components/sections/JourneySection.jsx'
-${airportsImport}import FaqSection from '../../../components/sections/FaqSection.jsx'
-
-/** ${ctx.title} landing page. */
-export default function Home() {
-  useEffect(() => {
-    document.title = ${docTitle}
-  }, [])
-
-  return (
-    <>
-      <LandingHero pageKey="${ctx.slug}" />
-      <FleetSection />
-      <WhyDifferentSection />
-      <PlanningBanner />
-      <ReviewsSection />
-      <ServicesSection imagePrefix="${prefix}" />
-      <RouteCardsSection pageKey="${ctx.slug}" />
-      <TrustedStats />
-      <HowItWorks />
-      <JourneySection />
-${airportsBlock}      <FaqSection />
-    </>
-  )
-}
 `
 }
 
 async function generatePage(title) {
   const slug = slugify(title)
   const pageHome = `/${slug}`
-  const prefix = cssPrefix(slug)
   const region = regionLabel(title)
   const lines = heroLines(title)
   const airports = getAirports(title)
-  const ctx = { slug, title, prefix, pageHome, region, lines, airports }
+  const ctx = { slug, title, pageHome, region, lines, airports }
 
-  const pageDir = path.join(OP_PAGES, slug)
-
-  // Pages render via MarketingLandingPage + PageLayout — do not recreate Home.jsx clones.
-  await fs.mkdir(pageDir, { recursive: true })
-  await fs.mkdir(OP_STYLES, { recursive: true })
-  await fs.writeFile(path.join(OP_STYLES, `${slug}.css`), buildPageCss(ctx))
+  // Pages render via MarketingLandingPage + PageLayout — shared global styles, no per-slug CSS.
+  await fs.mkdir(path.join(OP_PAGES, slug), { recursive: true })
 
   return { slug, title, pageHome }
 }

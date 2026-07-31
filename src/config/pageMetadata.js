@@ -43,6 +43,11 @@ const PAGE_METADATA_BY_PATH = {
     description:
       'Read the Urban Elite Limo privacy policy for information on how we collect, use, and protect your personal information.',
   },
+  '/terms-of-service': {
+    title: 'Terms of Service | Urban Elite Limo',
+    description:
+      'Read the Urban Elite Limo Terms of Service governing bookings, payments, cancellations, refunds, and use of our transportation platform.',
+  },
   '/thank-you': {
     title: 'Quotation Request Received | Urban Elite Limo',
     description:

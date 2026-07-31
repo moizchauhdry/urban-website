@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import Icon from '../../components/common/Icon.jsx'
 
-const HeroBookingForm = lazy(() => import('../../components/hero/HeroBookingForm.jsx'))
+const HeroBookingForm = lazy(() => import('../../features/booking/HeroBookingForm.jsx'))
 
 /** Dedicated booking page — same form as the home hero, standalone layout. */
 export default function BookNowPage() {

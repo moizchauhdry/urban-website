@@ -20,7 +20,7 @@
 .brand-logo--header{aspect-ratio:104/38}
 .brand-logo--footer{aspect-ratio:104/38}
 .quote-icon svg{width:36px;height:36px;flex-shrink:0;color:var(--accent)}
-.review-star-icon{width:14px;height:14px;flex-shrink:0;object-fit:contain;display:block}
+.review-star-icon{width:14px;height:14px;flex-shrink:0;display:block}
 .why-star-icon{width:28px;height:28px;flex-shrink:0;display:block}
 .footer-skeleton{min-height:280px;background:var(--dark-section-gradient)}
 .fleet-image-slider{--fleet-fade-ms:500ms}
@@ -566,7 +566,7 @@ header{
 .nav-phone:hover{background:var(--lime-hover);color:var(--deep)}
 .nav-phone .nav-phone-icon{
   width:16px;height:16px;flex-shrink:0;display:block;
-  filter:brightness(0);
+  color:inherit;
 }
 .hero-title-line{display:inline}
 .hero-title-line--accent{
@@ -588,14 +588,14 @@ header{
   isolation:isolate;
   transition:background .2s,transform .2s,box-shadow .2s;
 }
-.hero:not(.fifa-hero) .hero-phone:hover .hero-phone-icon{filter:brightness(0)}
+.hero:not(.fifa-hero) .hero-phone:hover .hero-phone-icon{color:inherit}
 .hero.fifa-hero .hero-phone:hover{background:var(--cyan);color:var(--deep);transform:translateY(-2px)}
-.hero.fifa-hero .hero-phone:hover .hero-phone-icon{filter:brightness(0)}
+.hero.fifa-hero .hero-phone:hover .hero-phone-icon{color:inherit}
 .hero-phone .hero-phone-icon{
   width:20px;height:20px;flex-shrink:0;display:block;
   position:relative;
   z-index:1;
-  filter:brightness(0);
+  color:inherit;
 }
 .hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:540px}
 .hero-features .feat{
@@ -605,8 +605,8 @@ header{
   padding:12px 18px;border-radius:8px;font-size:14px;
 }
 .hero-features .feat .feat-icon{
-  width:20px;height:20px;flex-shrink:0;display:block;object-fit:contain;
-  filter:brightness(0) invert(1);
+  width:20px;height:20px;flex-shrink:0;display:block;
+  color:#fff;
 }
 .hero-mobile-benefits{display:none;list-style:none;margin:0;padding:0}
 .hero-mobile-benefits li{display:flex;align-items:flex-start;gap:10px;min-width:0}
@@ -923,9 +923,165 @@ header{
   text-transform:capitalize;
 }
 
-/* Privacy Policy page */
+/* Privacy / Terms legal pages */
 .privacy-page{
   padding:56px 0 90px;
+  background:var(--white);
+}
+.legal-doc{
+  padding:40px 0 90px;
+  background:var(--cloud);
+}
+.legal-page-hero{
+  width:100%;
+  height:clamp(220px,32vw,420px);
+  overflow:hidden;
+  background:var(--dark-section-gradient);
+}
+.legal-page-hero__img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 45%;
+}
+.legal-doc__container{
+  display:grid;
+  grid-template-columns:minmax(220px,280px) minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+.legal-doc__sidebar{
+  position:sticky;
+  top:96px;
+  max-height:calc(100vh - 112px);
+  overflow:auto;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 12px 18px;
+  scrollbar-width:thin;
+}
+.legal-doc__tabs-label{
+  margin:0 8px 10px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+.legal-doc__doc-tab{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 4px 14px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:var(--pearl);
+  color:var(--deep);
+  font-size:14px;
+  font-weight:600;
+}
+.legal-doc__doc-tab-icon{
+  width:16px;
+  height:16px;
+  flex-shrink:0;
+  border:1.5px solid var(--deep);
+  border-radius:3px;
+  position:relative;
+}
+.legal-doc__doc-tab-icon::after{
+  content:'';
+  position:absolute;
+  left:3px;right:3px;top:5px;
+  border-top:1.5px solid var(--deep);
+  box-shadow:0 3px 0 var(--deep),0 6px 0 var(--deep);
+}
+.legal-doc__nav-list,
+.legal-doc__nav-sublist{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.legal-doc__nav-item{margin:0}
+.legal-doc__nav-sublist{
+  margin:2px 0 6px 10px;
+  padding-left:8px;
+  border-left:1px solid var(--border);
+}
+.legal-doc__nav-link{
+  display:block;
+  padding:7px 10px;
+  border-radius:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  text-decoration:none;
+  border-left:2px solid transparent;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.legal-doc__nav-link:hover{
+  color:var(--deep);
+  background:var(--pearl);
+  text-decoration:none;
+}
+.legal-doc__nav-link.is-active{
+  color:var(--deep);
+  font-weight:600;
+  background:rgba(186,232,29,.18);
+  border-left-color:var(--lime);
+}
+.legal-doc__nav-link--sub{
+  font-size:12px;
+  padding:5px 10px;
+}
+.legal-doc__nav-link.is-section-active{
+  color:var(--deep);
+}
+.legal-doc__main{
+  min-width:0;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px clamp(18px,3vw,36px) 40px;
+  box-shadow:0 8px 28px rgba(11,14,20,.04);
+}
+.legal-doc__mobile-nav{display:none;margin-bottom:18px}
+.legal-doc__mobile-toggle{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--pearl);
+  color:var(--deep);
+  cursor:pointer;
+  text-align:left;
+}
+.legal-doc__mobile-toggle-label{
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.legal-doc__mobile-toggle-current{
+  font-size:14px;
+  font-weight:600;
+  line-height:1.35;
+}
+.legal-doc__mobile-panel{
+  margin-top:8px;
+  max-height:min(50vh,360px);
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px;
   background:var(--white);
 }
 .privacy-page__title{
@@ -936,11 +1092,24 @@ header{
   line-height:1.15;
 }
 .privacy-page__body{
-  max-width:920px;
+  max-width:none;
   color:var(--muted);
   font-size:var(--section-body-size);
   font-weight:400;
   line-height:1.85;
+}
+@media (max-width:900px){
+  .legal-doc__container{grid-template-columns:1fr;gap:0}
+  .legal-doc__sidebar{display:none}
+  .legal-doc__mobile-nav{display:block}
+  .legal-doc__main{
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+    background:transparent;
+  }
+  .legal-doc{background:var(--white);padding:40px 0 80px}
 }
 .privacy-page__body p{
   margin-bottom:18px;
@@ -951,9 +1120,60 @@ header{
 .privacy-page__heading{
   margin:28px 0 12px;
   font-size:var(--section-subheading-size);
-  font-weight:400;
+  font-weight:600;
   color:var(--deep);
   line-height:1.6;
+  scroll-margin-top:110px;
+}
+.privacy-page__subheading{
+  margin:22px 0 10px;
+  font-size:1.05em;
+  font-weight:600;
+  color:var(--deep);
+  line-height:1.5;
+  scroll-margin-top:110px;
+}
+.privacy-page__list{
+  margin:0 0 18px;
+  padding-left:1.25rem;
+  list-style:disc;
+}
+.privacy-page__body ol.privacy-page__list{
+  list-style:decimal;
+}
+.privacy-page__list li{
+  margin-bottom:10px;
+}
+.privacy-page__list--contact{
+  list-style:none;
+  padding-left:0;
+}
+.privacy-page__table-wrap{
+  overflow-x:auto;
+  margin:0 0 18px;
+  border:1px solid var(--border,#e5e5e5);
+  border-radius:10px;
+}
+.privacy-page__table{
+  width:100%;
+  min-width:640px;
+  border-collapse:collapse;
+  font-size:0.95em;
+}
+.privacy-page__table th,
+.privacy-page__table td{
+  padding:12px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid var(--border,#e5e5e5);
+}
+.privacy-page__table th{
+  background:#f7f7f7;
+  color:var(--deep);
+  font-weight:600;
+}
+.privacy-page__table tr:last-child td{
+  border-bottom:none;
 }
 .privacy-page__body a{
   color:var(--deep);
@@ -1842,8 +2062,9 @@ header{
   display:flex;align-items:center;gap:2px;margin-bottom:12px;
   flex-shrink:0;
 }
+.review-stars .review-star-icon,
 .review-stars img{
-  flex-shrink:0;width:14px;height:14px;object-fit:contain;display:block;
+  flex-shrink:0;width:14px;height:14px;display:block;
 }
 .review-text-wrap{
   position:relative;
@@ -2056,22 +2277,6 @@ header{
 .service-img.s4{background-image:url('../assets/services/service4.webp')}
 .service-img.s5{background-image:url('../assets/services/service5.webp')}
 .service-img.s6{background-image:url('../assets/services/service6.webp')}
-
-/* Florida state page assets */
-.service-img.fl-s1{background-image:url('../assets/services/service1.webp')}
-.service-img.fl-s2{background-image:url('../assets/services/service2.webp')}
-.service-img.fl-s3{background-image:url('../assets/services/service3.webp')}
-.service-img.fl-s4{background-image:url('../assets/services/service4.webp')}
-.service-img.fl-s5{background-image:url('../assets/services/service5.webp')}
-.service-img.fl-s6{background-image:url('../assets/services/service6.webp')}
-
-/* New York state page assets */
-.service-img.ny-s1{background-image:url('../assets/services/service1.webp')}
-.service-img.ny-s2{background-image:url('../assets/services/service2.webp')}
-.service-img.ny-s3{background-image:url('../assets/services/service3.webp')}
-.service-img.ny-s4{background-image:url('../assets/services/service4.webp')}
-.service-img.ny-s5{background-image:url('../assets/services/service5.webp')}
-.service-img.ny-s6{background-image:url('../assets/services/service6.webp')}
 .service-body{
   display:flex;
   flex-direction:column;
@@ -2237,14 +2442,6 @@ header{
 .content-img.i1{background-image:url('../assets/content-blocks/car-service1.webp')}
 .content-img.i2{background-image:url('../assets/content-blocks/car-service2.webp')}
 .content-img.i3{background-image:url('../assets/content-blocks/car-service3.webp')}
-
-.content-img.fl-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
-.content-img.fl-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
-.content-img.fl-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
-
-.content-img.ny-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
-.content-img.ny-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
-.content-img.ny-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
 
 /* ROUTE CARDS — image/column sizing matches .content-block + .content-img */
 .route-cards-stack{
@@ -2906,72 +3103,13 @@ header{
   transition:transform .25s;
 }
 .airport-card:hover{transform:translateY(-4px)}
-.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/jfk.webp')}
-.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/lga.webp')}
-.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/bdl.webp')}
-.airport-card.a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/ewr.webp')}
-
-.airport-card.fl-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
-.airport-card.fl-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
-.airport-card.fl-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
-.airport-card.fl-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
-
-.airport-card.ny-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/jfk.webp')}
-.airport-card.ny-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/lga.webp')}
-.airport-card.ny-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/ewr.webp')}
-.airport-card.ny-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/bdl.webp')}
+/* Airport card images: applied via constants/airportImages.js (central WebP map). */
 .airport-card-body{
   position:absolute;bottom:0;left:0;right:0;padding:24px;
 }
 .airport-card-body h3{font-size:var(--section-subheading-size);font-weight:700;color:#fff;margin-bottom:2px}
 .airport-card-body p{color:rgba(255,255,255,.85);font-size:var(--section-body-size)}
 
-/* Illinois region page assets (generated) */
-
-/* Illinois Car Service */
-.service-img.il-s1{background-image:url('../assets/services/service1.webp')}
-.service-img.il-s2{background-image:url('../assets/services/service2.webp')}
-.service-img.il-s3{background-image:url('../assets/services/service3.webp')}
-.service-img.il-s4{background-image:url('../assets/services/service4.webp')}
-.service-img.il-s5{background-image:url('../assets/services/service5.webp')}
-.service-img.il-s6{background-image:url('../assets/services/service6.webp')}
-.content-img.il-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
-.content-img.il-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
-.content-img.il-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
-.airport-card.il-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
-.airport-card.il-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
-.airport-card.il-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
-.airport-card.il-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
-
-/* Chicago Chauffeur Service */
-.service-img.il-chi-chauff-s1{background-image:url('../assets/services/service1.webp')}
-.service-img.il-chi-chauff-s2{background-image:url('../assets/services/service2.webp')}
-.service-img.il-chi-chauff-s3{background-image:url('../assets/services/service3.webp')}
-.service-img.il-chi-chauff-s4{background-image:url('../assets/services/service4.webp')}
-.service-img.il-chi-chauff-s5{background-image:url('../assets/services/service5.webp')}
-.service-img.il-chi-chauff-s6{background-image:url('../assets/services/service6.webp')}
-.content-img.il-chi-chauff-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
-.content-img.il-chi-chauff-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
-.content-img.il-chi-chauff-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
-.airport-card.il-chi-chauff-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
-.airport-card.il-chi-chauff-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
-.airport-card.il-chi-chauff-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
-.airport-card.il-chi-chauff-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
-
-/* Chicago Limo Service */
-.service-img.il-chi-limo-s1{background-image:url('../assets/services/service1.webp')}
-.service-img.il-chi-limo-s2{background-image:url('../assets/services/service2.webp')}
-.service-img.il-chi-limo-s3{background-image:url('../assets/services/service3.webp')}
-.service-img.il-chi-limo-s4{background-image:url('../assets/services/service4.webp')}
-.service-img.il-chi-limo-s5{background-image:url('../assets/services/service5.webp')}
-.service-img.il-chi-limo-s6{background-image:url('../assets/services/service6.webp')}
-.content-img.il-chi-limo-i1{background-image:url('../assets/content-blocks/car-service1.webp')}
-.content-img.il-chi-limo-i2{background-image:url('../assets/content-blocks/car-service2.webp')}
-.content-img.il-chi-limo-i3{background-image:url('../assets/content-blocks/car-service3.webp')}
-.airport-card.il-chi-limo-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mia.webp')}
-.airport-card.il-chi-limo-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/fll.webp')}
-.airport-card.il-chi-limo-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/mco.webp')}
-.airport-card.il-chi-limo-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/airports/tpa.webp')}
 /* FAQs */
 .faq-section{padding:90px 0}
 .faq-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:start}
@@ -2993,6 +3131,7 @@ details.faq-item[open] summary::after{transform:rotate(45deg)}
 details.faq-item[open] summary{background:#fafafa;border-bottom:1px solid #eee}
 details.faq-item .faq-answer{
   padding:18px 22px;font-size:var(--section-body-size);color:var(--muted);line-height:1.7;
+  overflow:hidden;
 }
 .faq-image{
   border-radius:14px;overflow:hidden;width:100%;height:580px;
@@ -3399,7 +3538,7 @@ details.faq-item[open]{
   border-color:var(--border);
 }
 details.faq-item summary{ transition:background .25s }
-details.faq-item .faq-answer{ animation:fadeInUp .45s ease both }
+details.faq-item .faq-answer{ will-change:height,opacity }
 .faq-image{
   transition:transform .7s cubic-bezier(.2,.7,.2,1), box-shadow .7s;
   transform-style:preserve-3d;
@@ -3811,8 +3950,9 @@ header.scrolled{
     min-height:0;
     overflow:visible;
   }
-  .fleet-page-hero{
-    height:clamp(260px,33.333vw,480px);
+  .fleet-page-hero,
+  .legal-page-hero{
+    height:clamp(220px,36vw,360px);
     min-height:0;
     overflow:hidden;
   }
@@ -3828,12 +3968,13 @@ header.scrolled{
   .about-page-hero__img{
     object-position:center 66%;
   }
-  .fleet-page-hero__img{
+  .fleet-page-hero__img,
+  .legal-page-hero__img{
     width:100%;
     height:100%;
     min-height:0;
     object-fit:cover;
-    object-position:center 66%;
+    object-position:center 45%;
   }
 }
 
@@ -3845,8 +3986,9 @@ header.scrolled{
     min-height:0;
     overflow:visible;
   }
-  .fleet-page-hero{
-    height:clamp(260px,33.333vw,480px);
+  .fleet-page-hero,
+  .legal-page-hero{
+    height:clamp(240px,33.333vw,400px);
     min-height:0;
     overflow:hidden;
   }
@@ -3862,50 +4004,13 @@ header.scrolled{
   .about-page-hero__img{
     object-position:center bottom;
   }
-  .fleet-page-hero__img{
+  .fleet-page-hero__img,
+  .legal-page-hero__img{
     width:100%;
     height:100%;
     min-height:0;
     object-fit:cover;
-    object-position:center 66%;
+    object-position:center 45%;
   }
 }
 
-/* ============================================
-   Site-wide loading overlay
-   ============================================ */
-.site-loader-overlay{
-  position:fixed;
-  inset:0;
-  z-index:100000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  pointer-events:all;
-}
-.loader{
-  width:60px;
-  aspect-ratio:1;
-  border:15px solid #ddd;
-  border-radius:50%;
-  position:relative;
-  transform:rotate(45deg);
-}
-.loader::before{
-  content:"";
-  position:absolute;
-  inset:-15px;
-  border-radius:50%;
-  border:15px solid #000;
-  animation:l18 2s infinite linear;
-}
-@keyframes l18{
-  0%{clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-  25%{clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-  50%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-  75%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
-  100%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-}

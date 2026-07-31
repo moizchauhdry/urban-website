@@ -9,6 +9,8 @@ export default function DestinationCard({ city, state, image }) {
           className="home-destination-card__img"
           src={image}
           alt=""
+          width={400}
+          height={300}
           loading="lazy"
           decoding="async"
           draggable={false}

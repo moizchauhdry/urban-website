@@ -49,6 +49,7 @@ export const fleetItems = [
     category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
+    badge: 'Popular',
     description:
       'Perfect for solo travelers and airport transfers, meetings, and city travel.',
     images: [{ loadSrc: loadFleetImage('luxury-sedan.webp'), alt: 'Luxury Sedan' }],
@@ -142,7 +143,7 @@ export const fleetItems = [
     title: 'Escalade Limo',
     description:
       'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
-    images: [{ loadSrc: loadFleetImage('esclade_limo.jpg'), alt: 'Escalade Limo' }],
+    images: [{ loadSrc: loadFleetImage('esclade_limo.webp'), alt: 'Escalade Limo' }],
     specs: [
       { icon: 'user', text: '17 Passengers' },
       { icon: 'wine-glass', text: 'Bar Console' },
@@ -172,7 +173,7 @@ export const fleetItems = [
     title: 'Jet Sprinter',
     description:
       'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
-    images: [{ loadSrc: loadFleetImage('jet_sprinter.png'), alt: 'Jet Sprinter' }],
+    images: [{ loadSrc: loadFleetImage('jet_sprinter.webp'), alt: 'Jet Sprinter' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -249,6 +250,7 @@ export const fleetPageItems = [
     category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
+    badge: 'Popular',
     description:
       'Perfect for solo travelers and airport transfers, meetings, and city travel.',
     images: [{ loadSrc: loadFleetImage('luxury-sedan.webp'), alt: 'Luxury Sedan' }],
@@ -296,7 +298,7 @@ export const fleetPageItems = [
     title: 'Jet Sprinter',
     description:
       'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
-    images: [{ loadSrc: loadFleetImage('jet_sprinter.png'), alt: 'Jet Sprinter' }],
+    images: [{ loadSrc: loadFleetImage('jet_sprinter.webp'), alt: 'Jet Sprinter' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -387,7 +389,7 @@ export const fleetPageItems = [
     title: 'Escalade Limo',
     description:
       'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
-    images: [{ loadSrc: loadFleetImage('esclade_limo.jpg'), alt: 'Escalade Limo' }],
+    images: [{ loadSrc: loadFleetImage('esclade_limo.webp'), alt: 'Escalade Limo' }],
     specs: [
       { icon: 'user', text: '17 Passengers' },
       { icon: 'wine-glass', text: 'Bar Console' },
