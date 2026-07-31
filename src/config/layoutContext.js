@@ -11,7 +11,7 @@ import {
   THANK_YOU,
 } from './routes.js'
 
-/** Header uses compact Connecticut-style nav + deferred FIFA banner. */
+/** Header uses compact Connecticut-style nav. */
 const CONNECTICUT_HEADER_PATHS = new Set([MAIN_HOME, CONNECTICUT_HOME, FIFA_HOME])
 
 /** Main site pages without a hero booking card at the top. */

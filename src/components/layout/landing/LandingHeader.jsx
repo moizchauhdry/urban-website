@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HeaderBrandLogo } from '../BrandLogo.jsx'
 import HeaderBookNow from '../HeaderBookNow.jsx'
@@ -8,8 +8,6 @@ import { useMobileScrollLock } from '../../../hooks/useMobileScrollLock.js'
 import { COMPACT_NAV_MQ, PHONE_MQ } from '../../../config/breakpoints.js'
 import LandingNavbar from './LandingNavbar.jsx'
 import LandingMobileMenuPanel, { PANEL_ID } from './LandingMobileMenuPanel.jsx'
-
-const LazyFifaPromoBanner = lazy(() => import('../FifaPromoBanner.jsx'))
 
 /**
  * @param {{
@@ -21,26 +19,11 @@ export default function LandingHeader({ homePath = '/', variant = 'standard' }) 
   const onHomeLogoClick = useHomeLogoClick()
   const headerAnchorRef = useRef(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showPromoBanner, setShowPromoBanner] = useState(false)
 
   const mobileMq = variant === 'connecticut' ? COMPACT_NAV_MQ : PHONE_MQ
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), [])
   const toggleMobileMenu = useCallback(() => setMobileMenuOpen((open) => !open), [])
-
-  useEffect(() => {
-    if (typeof requestIdleCallback !== 'undefined') {
-      const id = requestIdleCallback(() => setShowPromoBanner(true), {
-        timeout: variant === 'connecticut' ? 3200 : 1800,
-      })
-      return () => cancelIdleCallback(id)
-    }
-    const timer = window.setTimeout(
-      () => setShowPromoBanner(true),
-      variant === 'connecticut' ? 1500 : 800,
-    )
-    return () => window.clearTimeout(timer)
-  }, [variant])
 
   useEffect(() => {
     const mq = window.matchMedia(mobileMq)
@@ -97,11 +80,6 @@ export default function LandingHeader({ homePath = '/', variant = 'standard' }) 
           anchorRef={headerAnchorRef}
         />
       </header>
-      {showPromoBanner ? (
-        <Suspense fallback={null}>
-          <LazyFifaPromoBanner />
-        </Suspense>
-      ) : null}
     </div>
   )
 }

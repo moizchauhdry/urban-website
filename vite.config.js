@@ -23,8 +23,6 @@ const SKIP_MODULE_PRELOAD = [
   'ServicesCarousel',
   'NavMenuItems',
   'routes-dLtvg4Ff',
-  'FifaPromoBanner',
-  'football',
   'useHomeLogoClick',
   'fully-licensed',
   'phone-icon',
