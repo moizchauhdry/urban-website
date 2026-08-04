@@ -632,14 +632,7 @@ header{
   border-radius:14px;
   box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
-.booking-card--shell{
-  pointer-events:none;
-  user-select:none;
-}
 /* Shine effect inside fields while options load: a bright band sweeps left to right. */
-.booking-card--shell .form-group input,
-.booking-card--shell .form-group select,
-.booking-card--shell .booking-phone-shell,
 .form-group .field-loading{
   background-color:#ececec;
   background-image:linear-gradient(
@@ -653,36 +646,22 @@ header{
   background-position:left -120px top 0;
   animation:booking-shine 1.3s ease-in-out infinite;
   color:transparent;
-}
-.booking-card--shell .form-group input::placeholder{
-  color:transparent;
+  transition:background-color .4s ease, opacity .35s ease;
 }
 @keyframes booking-shine{
   to{background-position:left calc(100% + 120px) top 0}
 }
-/* Soften shell → live form and loading → ready field handoffs (no hard cuts). */
 .booking-card-slot .booking-card{
   transition:opacity .45s ease, transform .45s ease;
 }
-.booking-card-slot--activated .booking-card:not(.booking-card--shell){
-  animation:booking-settle .5s ease both;
-}
-@keyframes booking-settle{
-  from{opacity:.55;transform:translate3d(0,6px,0)}
-  to{opacity:1;transform:none}
-}
 .form-group input,
 .form-group select,
-.booking-phone-shell,
 .hero-phone-input.PhoneInput{
   transition:
     background-color .4s ease,
     border-color .25s ease,
     box-shadow .25s ease,
     opacity .35s ease;
-}
-.form-group .field-loading{
-  transition:background-color .4s ease, opacity .35s ease;
 }
 .hero-content,
 .hero-badge,
@@ -693,19 +672,12 @@ header{
   transition:opacity .4s ease, transform .4s ease;
 }
 @media (prefers-reduced-motion: reduce){
-  .booking-card--shell .form-group input,
-  .booking-card--shell .form-group select,
-  .booking-card--shell .booking-phone-shell,
   .form-group .field-loading{
-    animation:none;
-  }
-  .booking-card-slot--activated .booking-card:not(.booking-card--shell){
     animation:none;
   }
   .booking-card-slot .booking-card,
   .form-group input,
   .form-group select,
-  .booking-phone-shell,
   .hero-phone-input.PhoneInput,
   .hero-content,
   .hero-badge,
@@ -716,46 +688,9 @@ header{
     transition:none;
   }
 }
-.booking-card--shell .form-tabs{
-  pointer-events:auto;
-}
-.booking-card--shell .form-tab{
-  cursor:pointer;
-}
-.booking-card--shell .form-group input,
-.booking-card--shell .form-group select{
-  pointer-events:none;
-}
-.booking-phone-shell{
-  border:1px solid #e0e0e0;
-  border-radius:6px;
-  background:#fff;
-  min-height:42px;
-  padding:0 6px 0 8px;
-  display:flex;
-  align-items:center;
-}
-.booking-phone-shell input{
-  border:none!important;
-  outline:none!important;
-  box-shadow:none!important;
-  padding:10px 8px;
-  width:100%;
-  background:transparent;
-}
-.booking-shell-hint{
-  grid-column:1/-1;
-  margin:4px 0 0;
-  font-size:13px;
-  color:var(--body);
-  text-align:center;
-}
 .booking-card-slot{
   min-height:660px;
   contain:layout style;
-}
-.booking-card-slot--interactive{
-  cursor:pointer;
 }
 .booking-card-slot--loading{
   cursor:wait;
@@ -1577,16 +1512,16 @@ header{
   gap:10px;
   padding:12px 20px;
   border-radius:999px;
-  border:1px solid var(--deep);
-  background:var(--deep);
-  color:#fff;
+  border:none;
+  background:var(--lime);
+  color:var(--deep);
   font-size:15px;
   font-weight:700;
   transition:background .2s ease, color .2s ease, transform .2s ease;
 }
 .book-now-page__phone:hover{
-  background:#000;
-  color:#fff;
+  background:var(--lime-hover);
+  color:var(--deep);
   transform:translate3d(0,-1px,0);
 }
 .book-now-page__form{
@@ -1614,7 +1549,6 @@ header{
 }
 .book-now-page .form-group input,
 .book-now-page .form-group select,
-.book-now-page .booking-phone-shell,
 .book-now-page .hero-phone-input.PhoneInput{
   padding-top:8px;
   padding-bottom:8px;
@@ -3591,8 +3525,7 @@ footer{
   will-change:transform;
 }
 .booking-card.tilt-active{ animation:none }
-/* Entrance already played on the shell — settle in place instead of replaying tiltIn. */
-.booking-card-slot--activated .booking-card{ animation:booking-settle .5s ease both }
+.booking-card-slot--activated .booking-card{ animation:none }
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
 .form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
 .form-group input, .form-group select{
@@ -4212,8 +4145,7 @@ header.scrolled{
   .booking-card--loading{
     min-height:0;
   }
-  .booking-card-slot .booking-card--shell,
-  .booking-card-slot .booking-card:not(.booking-card--shell){
+  .booking-card-slot .booking-card{
     min-height:0;
   }
   .journey-cars,
