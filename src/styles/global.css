@@ -1479,22 +1479,200 @@ header{
   border:0;
 }
 
-/* BOOK NOW PAGE */
+/* BOOK NOW PAGE — copy left, same-size form right on white */
 .book-now-page{
-  background:var(--cloud);
-  padding:64px 0 90px;
+  background:#fff;
+  padding:40px 0 56px;
+  min-height:0;
+  color:var(--deep);
+  overflow:visible;
 }
-.book-now-page__sub{
-  max-width:640px;
-  text-transform:capitalize;
+.book-now-page__layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,720px);
+  gap:clamp(28px,4vw,56px);
+  align-items:center;
+  max-width:1240px;
+}
+.book-now-page__copy{
+  max-width:420px;
+  padding-right:clamp(0px,2vw,12px);
+  animation:book-now-rise .65s .05s cubic-bezier(.2,.7,.2,1) both;
+}
+.book-now-page__title{
+  margin:0 0 16px;
+  font-size:clamp(36px,4.5vw,56px);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-.03em;
+  color:var(--deep);
+  text-align:left;
+}
+.book-now-page__title-accent{
+  display:block;
+  margin-top:.06em;
+  font-weight:500;
+  font-style:italic;
+  color:var(--body);
+}
+.book-now-page__lead{
+  margin:0 0 28px;
+  max-width:34ch;
+  font-size:15px;
+  line-height:1.65;
+  color:var(--body);
+  text-align:left;
+  text-transform:none;
+}
+.book-now-page__steps{
+  list-style:none;
+  margin:0 0 26px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border-left:1px solid var(--border,#e5e7eb);
+  padding-left:16px;
+}
+.book-now-page__steps li{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+.book-now-page__step-n{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.14em;
+  color:var(--body);
+  min-width:1.8em;
+}
+.book-now-page__step-label{
+  font-size:14px;
+  font-weight:500;
+  color:var(--deep);
+}
+.book-now-page__perks{
+  list-style:none;
+  margin:0 0 28px;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 18px;
+}
+.book-now-page__perks li{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--deep);
+}
+.book-now-page__perk-icon{
+  color:var(--deep);
+  opacity:.85;
+}
+.book-now-page__phone{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:999px;
+  border:1px solid var(--deep);
+  background:var(--deep);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+.book-now-page__phone:hover{
+  background:#000;
+  color:#fff;
+  transform:translate3d(0,-1px,0);
 }
 .book-now-page__form{
+  width:100%;
   max-width:720px;
-  margin:0 auto;
+  justify-self:end;
+  animation:book-now-rise .7s .12s cubic-bezier(.2,.7,.2,1) both;
 }
 .book-now-page .booking-card{
   box-shadow:0 8px 32px rgba(11,14,20,.08);
   border:1px solid rgba(0,0,0,.06);
+  padding:18px 20px;
+}
+.book-now-page .booking-card-slot{
+  min-height:0;
+}
+.book-now-page .form-tabs{
+  margin-bottom:14px;
+}
+.book-now-page .form-grid{
+  gap:10px;
+}
+.book-now-page .form-group label{
+  margin-bottom:3px;
+}
+.book-now-page .form-group input,
+.book-now-page .form-group select,
+.book-now-page .booking-phone-shell,
+.book-now-page .hero-phone-input.PhoneInput{
+  padding-top:8px;
+  padding-bottom:8px;
+}
+.book-now-page .btn-submit{
+  padding:12px;
+  margin-top:2px;
+}
+@keyframes book-now-rise{
+  from{opacity:0;transform:translate3d(0,18px,0)}
+  to{opacity:1;transform:none}
+}
+@media (max-width:1024px){
+  .book-now-page__layout{
+    grid-template-columns:1fr;
+    gap:28px;
+    align-items:start;
+  }
+  .book-now-page__copy{
+    max-width:560px;
+    padding-right:0;
+  }
+  .book-now-page__form{
+    max-width:720px;
+    justify-self:stretch;
+  }
+}
+@media (max-width:720px){
+  .book-now-page{
+    padding:24px 0 40px;
+  }
+  .book-now-page__copy{
+    text-align:center;
+    max-width:100%;
+  }
+  .book-now-page__title,
+  .book-now-page__lead{
+    text-align:center;
+  }
+  .book-now-page__lead{
+    max-width:40ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .book-now-page__steps{
+    display:none;
+  }
+  .book-now-page__perks{
+    justify-content:center;
+  }
+  .book-now-page .booking-card{
+    padding:16px;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .book-now-page__copy,
+  .book-now-page__form{animation:none}
+  .book-now-page__phone{transition:none}
 }
 
 /* THANK YOU */
