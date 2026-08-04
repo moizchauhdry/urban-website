@@ -13,6 +13,8 @@ export function getHeroPage(pageKey) {
   )
 }
 
+export { LANDING_BACKGROUND } from './landingBackground.js'
+
 /** @param {string} pageKey */
 export async function loadLandingHero(pageKey) {
   if (pageKey === 'home') return HOME_HERO

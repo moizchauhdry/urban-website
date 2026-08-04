@@ -157,29 +157,46 @@ let storeDataPromise = null
 export function fetchBookingStoreData() {
   if (!storeDataPromise) {
     storeDataPromise = (async () => {
-      const res = await fetch(getBookingStoreDataUrl(), {
-        headers: { Accept: 'application/json' },
-      })
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null
+      const timeoutId =
+        controller &&
+        window.setTimeout(() => {
+          controller.abort()
+        }, 12000)
 
-      if (!res.ok) {
-        throw new Error(`Could not load booking options (${res.status})`)
+      try {
+        const res = await fetch(getBookingStoreDataUrl(), {
+          headers: { Accept: 'application/json' },
+          signal: controller?.signal,
+        })
+
+        if (!res.ok) {
+          throw new Error(`Could not load booking options (${res.status})`)
+        }
+
+        const json = await res.json()
+        const data = json?.data ?? json
+
+        const vehicles = parseStoreOptionList(data?.vehicles).filter(
+          ({ label }) => !EXCLUDED_BOOKING_FLEET_LABELS.has(label.toLowerCase()),
+        )
+        const services = parseStoreOptionList(data?.services)
+        const travelTypes = parseStoreOptionList(data?.travel_types)
+        const serviceTypes = parseStoreOptionList(data?.service_types)
+
+        if (!vehicles.length || !services.length || !travelTypes.length) {
+          throw new Error('Booking options are missing from the portal response.')
+        }
+
+        return { vehicles, services, travelTypes, serviceTypes }
+      } catch (err) {
+        if (err?.name === 'AbortError') {
+          throw new Error('Booking options timed out. Please refresh or call (888) 881-6610.')
+        }
+        throw err
+      } finally {
+        if (timeoutId) window.clearTimeout(timeoutId)
       }
-
-      const json = await res.json()
-      const data = json?.data ?? json
-
-      const vehicles = parseStoreOptionList(data?.vehicles).filter(
-        ({ label }) => !EXCLUDED_BOOKING_FLEET_LABELS.has(label.toLowerCase()),
-      )
-      const services = parseStoreOptionList(data?.services)
-      const travelTypes = parseStoreOptionList(data?.travel_types)
-      const serviceTypes = parseStoreOptionList(data?.service_types)
-
-      if (!vehicles.length || !services.length || !travelTypes.length) {
-        throw new Error('Booking options are missing from the portal response.')
-      }
-
-      return { vehicles, services, travelTypes, serviceTypes }
     })().catch((err) => {
       // Reset so a later mount/retry can attempt the request again.
       storeDataPromise = null

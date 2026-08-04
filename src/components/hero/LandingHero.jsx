@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getHomeHero, loadLandingHero } from '../../data/heroes/index.js'
+import { getHomeHero, loadLandingHero, LANDING_BACKGROUND } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
 import trustPilotLogo from '../../assets/reviews/trust-pilot.svg'
@@ -291,12 +291,15 @@ export default function LandingHero({ pageKey }) {
     throw error
   }
 
-  if (!config) {
+  // Home still paints an empty busy shell (static LCP covers it). Landings keep one
+  // stable tree so HeroDeferredBooking is not remounted when copy arrives.
+  if (!config && isHome) {
     return <section className="hero" aria-busy="true" />
   }
 
   const showBg = !isHome || useReactHeroBg
   const desktopFeatures = isHome ? (showDesktopExtras ? 'lazy' : false) : true
+  const isPendingLanding = !config && !isHome
 
   if (isFifa) {
     return (
@@ -321,15 +324,35 @@ export default function LandingHero({ pageKey }) {
   }
 
   return (
-    <section className={config.sectionClass}>
+    <section
+      className={config?.sectionClass ?? 'hero hero--pending'}
+      aria-busy={isPendingLanding ? true : undefined}
+    >
       <HeroBackground
-        background={config.background}
-        onReady={onHeroBgReady}
+        background={config?.background ?? LANDING_BACKGROUND}
+        onReady={config ? onHeroBgReady : undefined}
         deferMount={isHome && !showBg}
       />
       <div className="container">
         <div className="hero-content">
-          <LandingHeroContent config={config} showDesktopExtras={desktopFeatures} />
+          {isPendingLanding ? (
+            <>
+              <HeroLiveBadge />
+              <h1 className="hero-title hero-title--pending">
+                <span className="hero-title-line">&nbsp;</span>
+                <span className="hero-title-line">&nbsp;</span>
+              </h1>
+              <HeroMobileBenefits />
+              <p className="hero-desc hero-desc--pending" aria-hidden="true">
+                &nbsp;
+              </p>
+              <span className="hero-phone hero-phone--pending" aria-hidden="true">
+                &nbsp;
+              </span>
+            </>
+          ) : (
+            <LandingHeroContent config={config} showDesktopExtras={desktopFeatures} />
+          )}
         </div>
 
         <HeroDeferredBooking />

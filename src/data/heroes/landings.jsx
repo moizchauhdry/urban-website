@@ -1,17 +1,9 @@
-import heroLandingSm from '../../assets/hero/pages/landing-800.webp'
-import heroLandingLg from '../../assets/hero/pages/landing-1440.webp'
 import heroFifa from '../../assets/hero/pages/fifa-800.webp'
 import heroFifaLg from '../../assets/hero/pages/fifa-1440.webp'
+import { LANDING_BACKGROUND } from './landingBackground.js'
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
 
-const LANDING_BG = {
-  default: heroLandingSm,
-  sm: heroLandingSm,
-  lg: heroLandingLg,
-  sizes: '(max-width: 1024px) 800px, 1440px',
-  width: 1440,
-  height: 810,
-}
+const LANDING_BG = LANDING_BACKGROUND
 
 /** Landing + FIFA heroes — dynamically imported off the home critical path. */
 export const HERO_PAGES = {

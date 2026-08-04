@@ -21,11 +21,19 @@
 
     <title>Urban Elite Limo</title>
 
+    <script>
+      (function () {
+        var path = location.pathname.replace(/\/$/, '') || '/';
+        if (path !== '/') document.documentElement.classList.add('route-not-home');
+      })();
+    </script>
+
     <!-- Critical shell: avoids blank flash before app CSS loads -->
 
     <style>
       body{margin:0;background:#fff;font-family:'Space Grotesk',system-ui,sans-serif;position:relative}
       #root{min-height:100vh;position:relative;z-index:1}
+      html.route-not-home #static-hero-lcp{display:none!important}
     </style>
 
   </head>

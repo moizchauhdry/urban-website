@@ -8,8 +8,11 @@ export default function ScrollToTop() {
   useEffect(() => {
     window.scrollTo(0, 0)
 
+    const isHome = pathname === '/'
+    document.documentElement.classList.toggle('route-not-home', !isHome)
+
     // Home LCP image is injected in index.html for `/` only — remove on all other routes.
-    if (pathname !== '/') {
+    if (!isHome) {
       document.getElementById('static-hero-lcp')?.remove()
     }
   }, [pathname])

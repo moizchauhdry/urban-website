@@ -677,13 +677,12 @@ header{
 .hero-phone-input.PhoneInput{
   transition:
     background-color .4s ease,
-    color .35s ease,
     border-color .25s ease,
     box-shadow .25s ease,
     opacity .35s ease;
 }
 .form-group .field-loading{
-  transition:background-color .4s ease, color .35s ease, opacity .35s ease;
+  transition:background-color .4s ease, opacity .35s ease;
 }
 .hero-content,
 .hero-badge,
@@ -3348,6 +3347,20 @@ footer{
   contain:layout style paint;
   will-change:transform;
 }
+/* Pending landing hero: lock title/desc heights so copy swap doesn't shift the form. */
+.hero-title--pending{
+  min-height:2.4em;
+  visibility:hidden;
+}
+.hero-desc--pending{
+  min-height:4.8em;
+  visibility:hidden;
+}
+.hero-phone--pending{
+  min-height:48px;
+  visibility:hidden;
+  pointer-events:none;
+}
 .hero .container{ position:relative; z-index:1 }
 
 /* Hero entrance staggers */
@@ -3405,7 +3418,7 @@ footer{
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
 .form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
 .form-group input, .form-group select{
-  transition:background-color .4s ease, color .35s ease, border-color .25s, box-shadow .25s, transform .25s, opacity .35s ease;
+  transition:background-color .4s ease, border-color .25s, box-shadow .25s, transform .25s, opacity .35s ease;
 }
 .form-group input:focus, .form-group select:focus{
   box-shadow:0 0 0 3px rgba(17,17,17,.1);
@@ -3994,7 +4007,12 @@ header.scrolled{
     transition-duration:.55s,.55s;
   }
   .hero::before,
-  .hero::after{animation:none !important}
+  .hero::after{
+    content:none !important;
+    animation:none !important;
+    will-change:auto !important;
+    display:none !important;
+  }
   .hero-badge,
   .hero h1,
   .hero-desc,
