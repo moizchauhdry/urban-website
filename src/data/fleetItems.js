@@ -1,15 +1,18 @@
-import firstClassSedan from '../assets/fleet/fleet/first-class-sedan.webp'
-import luxurySedan from '../assets/fleet/fleet/luxury-sedan.webp'
-import economySedan from '../assets/fleet/fleet/economy-sedan.webp'
-import fullSizeSuv from '../assets/fleet/fleet/full-size-suv.webp'
-import premiumSuv from '../assets/fleet/fleet/full-size-suv2.webp'
-import miniSuv from '../assets/fleet/fleet/mini_suv.webp'
-import limo from '../assets/fleet/fleet/limo-final.webp'
-import escaladeLimo from '../assets/fleet/fleet/esclade_limo.jpg'
-import sprinter from '../assets/fleet/fleet/sprinter.webp'
-import jetSprinter from '../assets/fleet/fleet/jet_sprinter.png'
-import partyBus from '../assets/fleet/fleet/party-bus.webp'
-import motorCoach from '../assets/fleet/fleet/moto-coach.webp'
+/**
+ * Fleet catalog — metadata only. Images load via dynamic import when a card mounts.
+ * Keeps MarketingBelowFold / FleetSection off the critical image graph until viewport.
+ */
+
+const fleetImageModules = import.meta.glob('../assets/fleet/*.{webp,jpg,jpeg,png}')
+
+/** @param {string} fileName */
+function loadFleetImage(fileName) {
+  const key = Object.keys(fleetImageModules).find((path) => path.endsWith(`/${fileName}`))
+  if (!key) {
+    throw new Error(`Unknown fleet image: ${fileName}`)
+  }
+  return () => fleetImageModules[key]()
+}
 
 /** @typedef {{ src?: string, loadSrc?: () => Promise<{ default: string }>, alt: string }} FleetImage */
 
@@ -33,7 +36,7 @@ export const fleetItems = [
     title: 'Sedan',
     description:
       'A budget-friendly, comfortable option for solo travelers and couples.',
-    images: [{ src: economySedan, alt: 'Sedan' }],
+    images: [{ loadSrc: loadFleetImage('economy-sedan.webp'), alt: 'Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '3 Luggage' },
@@ -46,9 +49,10 @@ export const fleetItems = [
     category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
+    badge: 'Popular',
     description:
       'Perfect for solo travelers and airport transfers, meetings, and city travel.',
-    images: [{ src: luxurySedan, alt: 'Luxury Sedan' }],
+    images: [{ loadSrc: loadFleetImage('luxury-sedan.webp'), alt: 'Luxury Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '3 Luggage' },
@@ -63,7 +67,7 @@ export const fleetItems = [
     title: 'First Class Sedan',
     description:
       'Perfect for executives, business travelers, and couples seeking a smooth, private ride.',
-    images: [{ src: firstClassSedan, alt: 'First Class Sedan' }],
+    images: [{ loadSrc: loadFleetImage('first-class-sedan.webp'), alt: 'First Class Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '3 Luggage' },
@@ -79,7 +83,7 @@ export const fleetItems = [
     badge: 'Popular',
     description:
       'Perfect for small families or groups who need comfort and space without going full-size.',
-    images: [{ src: miniSuv, alt: 'Mini SUV' }],
+    images: [{ loadSrc: loadFleetImage('mini_suv.webp'), alt: 'Mini SUV' }],
     specs: [
       { icon: 'user', text: '4 Passengers' },
       { icon: 'suitcase', text: '4 Luggage' },
@@ -94,7 +98,7 @@ export const fleetItems = [
     title: 'Premium SUV',
     description:
       'Elevated SUV comfort for executives and families who want extra space and premium amenities.',
-    images: [{ src: premiumSuv, alt: 'Premium SUV' }],
+    images: [{ loadSrc: loadFleetImage('full-size-suv2.webp'), alt: 'Premium SUV' }],
     specs: [
       { icon: 'user', text: '5 Passengers' },
       { icon: 'suitcase', text: '5 Luggage' },
@@ -109,7 +113,7 @@ export const fleetItems = [
     title: 'Full Size SUV',
     badge: 'Popular',
     description: 'Perfect for corporate teams, tours, or larger families.',
-    images: [{ src: fullSizeSuv, alt: 'Full Size SUV' }],
+    images: [{ loadSrc: loadFleetImage('full-size-suv.webp'), alt: 'Full Size SUV' }],
     specs: [
       { icon: 'user', text: '6 Passengers' },
       { icon: 'suitcase', text: '5 Luggages' },
@@ -124,7 +128,7 @@ export const fleetItems = [
     title: 'Limousine',
     description:
       'Premium choice for weddings, red-carpet events, proms, and VIP nights out.',
-    images: [{ src: limo, alt: 'Limousine' }],
+    images: [{ loadSrc: loadFleetImage('limo-final.webp'), alt: 'Limousine' }],
     specs: [
       { icon: 'wine-glass', text: 'Bar Console' },
       { icon: 'lightbulb', text: 'Lighting Cabin' },
@@ -139,7 +143,7 @@ export const fleetItems = [
     title: 'Escalade Limo',
     description:
       'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
-    images: [{ src: escaladeLimo, alt: 'Escalade Limo' }],
+    images: [{ loadSrc: loadFleetImage('esclade_limo.webp'), alt: 'Escalade Limo' }],
     specs: [
       { icon: 'user', text: '17 Passengers' },
       { icon: 'wine-glass', text: 'Bar Console' },
@@ -154,7 +158,7 @@ export const fleetItems = [
     title: 'Sprinter Van',
     description:
       'Perfect for group travel, corporate events, parties, and long-distance trips.',
-    images: [{ src: sprinter, alt: 'Sprinter Van' }],
+    images: [{ loadSrc: loadFleetImage('sprinter.webp'), alt: 'Sprinter Van' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -169,7 +173,7 @@ export const fleetItems = [
     title: 'Jet Sprinter',
     description:
       'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
-    images: [{ src: jetSprinter, alt: 'Jet Sprinter' }],
+    images: [{ loadSrc: loadFleetImage('jet_sprinter.webp'), alt: 'Jet Sprinter' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -184,7 +188,7 @@ export const fleetItems = [
     title: 'Party Bus',
     description:
       'Perfect for large group travel, corporate events, parties and wine tours.',
-    images: [{ src: partyBus, alt: 'Party Bus' }],
+    images: [{ loadSrc: loadFleetImage('party-bus.webp'), alt: 'Party Bus' }],
     specs: [
       { icon: 'user', text: '24 Passengers' },
       { icon: 'suitcase', text: '20 Luggage' },
@@ -199,7 +203,7 @@ export const fleetItems = [
     title: 'Motor Coach',
     description:
       'Perfect for large group travel, corporate events, parties and wine tours.',
-    images: [{ src: motorCoach, alt: 'Motor Coach' }],
+    images: [{ loadSrc: loadFleetImage('moto-coach.webp'), alt: 'Motor Coach' }],
     specs: [
       { icon: 'user', text: '32–55 Passengers' },
       { icon: 'suitcase', text: 'Larger Luggage Space' },
@@ -209,7 +213,7 @@ export const fleetItems = [
   },
 ]
 
-/** Dedicated fleet page grid — same static SVG artwork, alternate vehicle order. */
+/** Dedicated fleet page grid — same artwork, alternate vehicle order. */
 export const fleetPageItems = [
   {
     id: 'full-size-suv',
@@ -218,7 +222,7 @@ export const fleetPageItems = [
     title: 'Full Size SUV',
     badge: 'Popular',
     description: 'Perfect for corporate teams, tours, or larger families.',
-    images: [{ src: fullSizeSuv, alt: 'Full Size SUV' }],
+    images: [{ loadSrc: loadFleetImage('full-size-suv.webp'), alt: 'Full Size SUV' }],
     specs: [
       { icon: 'user', text: '6 Passengers' },
       { icon: 'suitcase', text: '5 Luggage' },
@@ -233,7 +237,7 @@ export const fleetPageItems = [
     title: 'Sedan',
     description:
       'A budget-friendly, comfortable option for solo travelers and couples.',
-    images: [{ src: economySedan, alt: 'Sedan' }],
+    images: [{ loadSrc: loadFleetImage('economy-sedan.webp'), alt: 'Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '3 Luggage' },
@@ -246,9 +250,10 @@ export const fleetPageItems = [
     category: 'sedan',
     imgClass: 'luxury',
     title: 'Luxury Sedan',
+    badge: 'Popular',
     description:
       'Perfect for solo travelers and airport transfers, meetings, and city travel.',
-    images: [{ src: luxurySedan, alt: 'Luxury Sedan' }],
+    images: [{ loadSrc: loadFleetImage('luxury-sedan.webp'), alt: 'Luxury Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '2 Luggage' },
@@ -263,7 +268,7 @@ export const fleetPageItems = [
     title: 'First Class Sedan',
     description:
       'Perfect for executives, business travelers, and couples seeking a smooth, private ride.',
-    images: [{ src: firstClassSedan, alt: 'First Class Sedan' }],
+    images: [{ loadSrc: loadFleetImage('first-class-sedan.webp'), alt: 'First Class Sedan' }],
     specs: [
       { icon: 'user', text: '3 Passengers' },
       { icon: 'suitcase', text: '2 Luggage' },
@@ -278,7 +283,7 @@ export const fleetPageItems = [
     title: 'Sprinter Van',
     description:
       'Perfect for group travel, corporate events, parties, and long-distance trips.',
-    images: [{ src: sprinter, alt: 'Sprinter Van' }],
+    images: [{ loadSrc: loadFleetImage('sprinter.webp'), alt: 'Sprinter Van' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -293,7 +298,7 @@ export const fleetPageItems = [
     title: 'Jet Sprinter',
     description:
       'Premium sprinter with jet-style comfort for executive groups and VIP travel.',
-    images: [{ src: jetSprinter, alt: 'Jet Sprinter' }],
+    images: [{ loadSrc: loadFleetImage('jet_sprinter.webp'), alt: 'Jet Sprinter' }],
     specs: [
       { icon: 'user', text: '14 Passengers' },
       { icon: 'suitcase', text: '14 Luggage' },
@@ -308,7 +313,7 @@ export const fleetPageItems = [
     title: 'Premium SUV',
     description:
       'Elevated SUV comfort for executives and families who want extra space and premium amenities.',
-    images: [{ src: premiumSuv, alt: 'Premium SUV' }],
+    images: [{ loadSrc: loadFleetImage('full-size-suv2.webp'), alt: 'Premium SUV' }],
     specs: [
       { icon: 'user', text: '5 Passengers' },
       { icon: 'suitcase', text: '5 Luggage' },
@@ -324,7 +329,7 @@ export const fleetPageItems = [
     badge: 'Popular',
     description:
       'Perfect for small families or groups who need comfort and space without going full-size.',
-    images: [{ src: miniSuv, alt: 'Mini SUV' }],
+    images: [{ loadSrc: loadFleetImage('mini_suv.webp'), alt: 'Mini SUV' }],
     specs: [
       { icon: 'user', text: '4 Passengers' },
       { icon: 'suitcase', text: '4 Luggage' },
@@ -339,7 +344,7 @@ export const fleetPageItems = [
     title: 'Motor Coach',
     description:
       'Perfect for large-group travel, corporate events, parties, and wine tours.',
-    images: [{ src: motorCoach, alt: 'Motor Coach' }],
+    images: [{ loadSrc: loadFleetImage('moto-coach.webp'), alt: 'Motor Coach' }],
     specs: [
       { icon: 'user', text: '30–55 Pass.' },
       { icon: 'suitcase', text: 'Larger Luggage Space' },
@@ -354,7 +359,7 @@ export const fleetPageItems = [
     title: 'Party Bus',
     description:
       'Perfect for large-group travel, corporate events, parties, and wine tours.',
-    images: [{ src: partyBus, alt: 'Party Bus' }],
+    images: [{ loadSrc: loadFleetImage('party-bus.webp'), alt: 'Party Bus' }],
     specs: [
       { icon: 'user', text: '24 Passengers' },
       { icon: 'suitcase', text: '20 Luggage' },
@@ -369,7 +374,7 @@ export const fleetPageItems = [
     title: 'Limousine',
     description:
       'Premium choice for weddings, red-carpet events, proms, and VIP nights out.',
-    images: [{ src: limo, alt: 'Limousine' }],
+    images: [{ loadSrc: loadFleetImage('limo-final.webp'), alt: 'Limousine' }],
     specs: [
       { icon: 'wine-glass', text: 'Bar Console' },
       { icon: 'lightbulb', text: 'Lighting Cabin' },
@@ -384,7 +389,7 @@ export const fleetPageItems = [
     title: 'Escalade Limo',
     description:
       'Spacious Escalade-style stretch limo for larger groups celebrating in style.',
-    images: [{ src: escaladeLimo, alt: 'Escalade Limo' }],
+    images: [{ loadSrc: loadFleetImage('esclade_limo.webp'), alt: 'Escalade Limo' }],
     specs: [
       { icon: 'user', text: '17 Passengers' },
       { icon: 'wine-glass', text: 'Bar Console' },

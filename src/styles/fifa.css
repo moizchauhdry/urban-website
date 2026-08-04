@@ -251,7 +251,7 @@
 }
 
 .fifa-hero__trust-icon {
-  filter: brightness(0) invert(1);
+  color: #fff;
 }
 
 .fifa-hero__booking {

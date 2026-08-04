@@ -8,6 +8,8 @@ export default function AirportCard({ code, image }) {
         className="home-airport-card__img"
         src={image}
         alt=""
+        width={400}
+        height={240}
         loading="lazy"
         decoding="async"
         draggable={false}

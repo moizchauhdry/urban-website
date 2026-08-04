@@ -21,14 +21,6 @@
 
     <title>Urban Elite Limo</title>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N6657T6P');</script>
-    <!-- End Google Tag Manager -->
-
     <!-- Critical shell: avoids blank flash before app CSS loads -->
 
     <style>
@@ -49,7 +41,29 @@
 
     <script type="module" src="/src/main.jsx"></script>
 
+    <!-- Defer GTM until first interaction or long after load — keeps GA/Ads off the LCP path -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function loadGtm() {
+        if (window.__gtmLoaded) return;
+        window.__gtmLoaded = true;
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+          window.removeEventListener(type, loadGtm, { capture: true });
+        });
+        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var j = document.createElement('script');
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N6657T6P';
+        document.head.appendChild(j);
+      }
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+        window.addEventListener(type, loadGtm, { once: true, passive: true, capture: true });
+      });
+      window.addEventListener('load', function () {
+        setTimeout(loadGtm, 8000);
+      });
+    </script>
+
   </body>
 
 </html>
-

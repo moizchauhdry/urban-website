@@ -1,5 +1,5 @@
-import leftCar from '../../../assets/connecticut/journey/left-img.webp'
-import rightCar from '../../../assets/connecticut/journey/right-img.webp'
+import leftCar from '../../../assets/journey/left.webp'
+import rightCar from '../../../assets/journey/right.webp'
 import BookNowLink from '../../../components/layout/BookNowLink.jsx'
 
 /** Custom route CTA — same layout as the home journey section. */

@@ -20,7 +20,7 @@
 .brand-logo--header{aspect-ratio:104/38}
 .brand-logo--footer{aspect-ratio:104/38}
 .quote-icon svg{width:36px;height:36px;flex-shrink:0;color:var(--accent)}
-.review-star-icon{width:14px;height:14px;flex-shrink:0;object-fit:contain;display:block}
+.review-star-icon{width:14px;height:14px;flex-shrink:0;display:block}
 .why-star-icon{width:28px;height:28px;flex-shrink:0;display:block}
 .footer-skeleton{min-height:280px;background:var(--dark-section-gradient)}
 .fleet-image-slider{--fleet-fade-ms:500ms}
@@ -174,110 +174,6 @@ header{
   z-index:2;
 }
 
-/* FIFA promo banner — below header on all pages */
-.fifa-promo-banner{
-  background:var(--dark-section-gradient);
-  color:var(--white);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  position:relative;
-  z-index:1;
-}
-.fifa-promo-banner__inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:12px var(--container-padding-x);
-  min-height:44px;
-}
-.fifa-promo-banner__text{
-  flex:1;
-  min-width:0;
-  display:flex;
-  align-items:center;
-}
-.fifa-promo-banner__message{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-size:13px;
-  line-height:1.45;
-  font-weight:500;
-  white-space:nowrap;
-}
-.fifa-promo-banner__icon{
-  width:18px;
-  height:18px;
-  object-fit:contain;
-  flex-shrink:0;
-}
-.fifa-promo-banner__copy{font-weight:500}
-.fifa-promo-banner__marquee{display:none}
-.fifa-promo-banner__actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-shrink:0;
-}
-.fifa-promo-banner__cta{
-  display:inline-block;
-  background:var(--white);
-  color:var(--deep);
-  font-size:12px;
-  font-weight:700;
-  padding:7px 14px;
-  border-radius:6px;
-  white-space:nowrap;
-  transition:background .2s,color .2s,transform .2s;
-}
-.fifa-promo-banner__cta:hover{
-  background:var(--cyan);
-  color:var(--deep);
-  transform:translateY(-1px);
-}
-.fifa-promo-banner__close{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:28px;
-  height:28px;
-  padding:0;
-  border:none;
-  background:transparent;
-  color:var(--white);
-  font-size:20px;
-  line-height:1;
-  cursor:pointer;
-  border-radius:4px;
-  opacity:.85;
-  transition:opacity .2s,background .2s;
-}
-.fifa-promo-banner__close:hover{
-  opacity:1;
-  background:rgba(255,255,255,.12);
-}
-@keyframes fifa-promo-marquee{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-@media (max-width:720px){
-  .fifa-promo-banner__inner{
-    gap:12px;
-    padding:12px var(--container-padding-x);
-  }
-  .fifa-promo-banner__message--static{display:none}
-  .fifa-promo-banner__marquee{
-    display:block;
-    overflow:hidden;
-    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  }
-  .fifa-promo-banner__marquee-track{
-    display:flex;
-    width:max-content;
-    animation:fifa-promo-marquee 22s linear infinite;
-  }
-  .fifa-promo-banner__marquee-track .fifa-promo-banner__message{padding-right:48px}
-}
 .nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:18px 12px;
@@ -414,11 +310,15 @@ header{
   .menu-toggle{flex-shrink:0}
   .hero:not(.fifa-hero) .hero-phone{display:none}
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
-  .hero:not(.fifa-hero) .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center;margin-top:0}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -666,7 +566,7 @@ header{
 .nav-phone:hover{background:var(--lime-hover);color:var(--deep)}
 .nav-phone .nav-phone-icon{
   width:16px;height:16px;flex-shrink:0;display:block;
-  filter:brightness(0);
+  color:inherit;
 }
 .hero-title-line{display:inline}
 .hero-title-line--accent{
@@ -688,14 +588,14 @@ header{
   isolation:isolate;
   transition:background .2s,transform .2s,box-shadow .2s;
 }
-.hero:not(.fifa-hero) .hero-phone:hover .hero-phone-icon{filter:brightness(0)}
+.hero:not(.fifa-hero) .hero-phone:hover .hero-phone-icon{color:inherit}
 .hero.fifa-hero .hero-phone:hover{background:var(--cyan);color:var(--deep);transform:translateY(-2px)}
-.hero.fifa-hero .hero-phone:hover .hero-phone-icon{filter:brightness(0)}
+.hero.fifa-hero .hero-phone:hover .hero-phone-icon{color:inherit}
 .hero-phone .hero-phone-icon{
   width:20px;height:20px;flex-shrink:0;display:block;
   position:relative;
   z-index:1;
-  filter:brightness(0);
+  color:inherit;
 }
 .hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:540px}
 .hero-features .feat{
@@ -705,8 +605,8 @@ header{
   padding:12px 18px;border-radius:8px;font-size:14px;
 }
 .hero-features .feat .feat-icon{
-  width:20px;height:20px;flex-shrink:0;display:block;object-fit:contain;
-  filter:brightness(0) invert(1);
+  width:20px;height:20px;flex-shrink:0;display:block;
+  color:#fff;
 }
 .hero-mobile-benefits{display:none;list-style:none;margin:0;padding:0}
 .hero-mobile-benefits li{display:flex;align-items:flex-start;gap:10px;min-width:0}
@@ -735,6 +635,87 @@ header{
 .booking-card--shell{
   pointer-events:none;
   user-select:none;
+}
+/* Shine effect inside fields while options load: a bright band sweeps left to right. */
+.booking-card--shell .form-group input,
+.booking-card--shell .form-group select,
+.booking-card--shell .booking-phone-shell,
+.form-group .field-loading{
+  background-color:#ececec;
+  background-image:linear-gradient(
+    100deg,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.9) 50%,
+    rgba(255,255,255,0) 80%
+  );
+  background-size:120px 100%;
+  background-repeat:no-repeat;
+  background-position:left -120px top 0;
+  animation:booking-shine 1.3s ease-in-out infinite;
+  color:transparent;
+}
+.booking-card--shell .form-group input::placeholder{
+  color:transparent;
+}
+@keyframes booking-shine{
+  to{background-position:left calc(100% + 120px) top 0}
+}
+/* Soften shell → live form and loading → ready field handoffs (no hard cuts). */
+.booking-card-slot .booking-card{
+  transition:opacity .45s ease, transform .45s ease;
+}
+.booking-card-slot--activated .booking-card:not(.booking-card--shell){
+  animation:booking-settle .5s ease both;
+}
+@keyframes booking-settle{
+  from{opacity:.55;transform:translate3d(0,6px,0)}
+  to{opacity:1;transform:none}
+}
+.form-group input,
+.form-group select,
+.booking-phone-shell,
+.hero-phone-input.PhoneInput{
+  transition:
+    background-color .4s ease,
+    color .35s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    opacity .35s ease;
+}
+.form-group .field-loading{
+  transition:background-color .4s ease, color .35s ease, opacity .35s ease;
+}
+.hero-content,
+.hero-badge,
+.hero-title,
+.hero-desc,
+.hero-phone,
+.hero-mobile-benefits{
+  transition:opacity .4s ease, transform .4s ease;
+}
+@media (prefers-reduced-motion: reduce){
+  .booking-card--shell .form-group input,
+  .booking-card--shell .form-group select,
+  .booking-card--shell .booking-phone-shell,
+  .form-group .field-loading{
+    animation:none;
+  }
+  .booking-card-slot--activated .booking-card:not(.booking-card--shell){
+    animation:none;
+  }
+  .booking-card-slot .booking-card,
+  .form-group input,
+  .form-group select,
+  .booking-phone-shell,
+  .hero-phone-input.PhoneInput,
+  .hero-content,
+  .hero-badge,
+  .hero-title,
+  .hero-desc,
+  .hero-phone,
+  .hero-mobile-benefits{
+    transition:none;
+  }
 }
 .booking-card--shell .form-tabs{
   pointer-events:auto;
@@ -810,6 +791,25 @@ header{
 .form-group input:focus,
 .form-group select:focus{border-color:var(--accent)}
 .form-group input::placeholder{color:#aaa}
+/* Show red borders on missing/invalid fields after Book Now is pressed */
+.booking-card .form-grid--attempted .form-group input:invalid,
+.booking-card .form-grid--attempted .form-group select:invalid{
+  border-color:#e53935;
+  box-shadow:0 0 0 1px rgba(229,57,53,.22);
+}
+.booking-card .form-grid--attempted .form-group input:invalid:focus,
+.booking-card .form-grid--attempted .form-group select:invalid:focus{
+  border-color:#e53935;
+  box-shadow:0 0 0 3px rgba(229,57,53,.18);
+}
+.booking-card .form-grid--attempted .form-group-phone:has(input:invalid) .hero-phone-input.PhoneInput{
+  border-color:#e53935;
+  box-shadow:0 0 0 1px rgba(229,57,53,.22);
+}
+.booking-card .form-grid--attempted .form-group-phone:has(input:invalid) .PhoneInput--focus{
+  border-color:#e53935;
+  box-shadow:0 0 0 3px rgba(229,57,53,.18);
+}
 /* Hero booking: single-border phone field (react-phone-number-input) */
 .booking-card .form-group-phone .hero-phone-input.PhoneInput{
   border:1px solid #e0e0e0;border-radius:6px;background:#fff;
@@ -1004,9 +1004,165 @@ header{
   text-transform:capitalize;
 }
 
-/* Privacy Policy page */
+/* Privacy / Terms legal pages */
 .privacy-page{
   padding:56px 0 90px;
+  background:var(--white);
+}
+.legal-doc{
+  padding:40px 0 90px;
+  background:var(--cloud);
+}
+.legal-page-hero{
+  width:100%;
+  height:clamp(220px,32vw,420px);
+  overflow:hidden;
+  background:var(--dark-section-gradient);
+}
+.legal-page-hero__img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 45%;
+}
+.legal-doc__container{
+  display:grid;
+  grid-template-columns:minmax(220px,280px) minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+.legal-doc__sidebar{
+  position:sticky;
+  top:96px;
+  max-height:calc(100vh - 112px);
+  overflow:auto;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 12px 18px;
+  scrollbar-width:thin;
+}
+.legal-doc__tabs-label{
+  margin:0 8px 10px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+.legal-doc__doc-tab{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 4px 14px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:var(--pearl);
+  color:var(--deep);
+  font-size:14px;
+  font-weight:600;
+}
+.legal-doc__doc-tab-icon{
+  width:16px;
+  height:16px;
+  flex-shrink:0;
+  border:1.5px solid var(--deep);
+  border-radius:3px;
+  position:relative;
+}
+.legal-doc__doc-tab-icon::after{
+  content:'';
+  position:absolute;
+  left:3px;right:3px;top:5px;
+  border-top:1.5px solid var(--deep);
+  box-shadow:0 3px 0 var(--deep),0 6px 0 var(--deep);
+}
+.legal-doc__nav-list,
+.legal-doc__nav-sublist{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.legal-doc__nav-item{margin:0}
+.legal-doc__nav-sublist{
+  margin:2px 0 6px 10px;
+  padding-left:8px;
+  border-left:1px solid var(--border);
+}
+.legal-doc__nav-link{
+  display:block;
+  padding:7px 10px;
+  border-radius:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  text-decoration:none;
+  border-left:2px solid transparent;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.legal-doc__nav-link:hover{
+  color:var(--deep);
+  background:var(--pearl);
+  text-decoration:none;
+}
+.legal-doc__nav-link.is-active{
+  color:var(--deep);
+  font-weight:600;
+  background:rgba(186,232,29,.18);
+  border-left-color:var(--lime);
+}
+.legal-doc__nav-link--sub{
+  font-size:12px;
+  padding:5px 10px;
+}
+.legal-doc__nav-link.is-section-active{
+  color:var(--deep);
+}
+.legal-doc__main{
+  min-width:0;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px clamp(18px,3vw,36px) 40px;
+  box-shadow:0 8px 28px rgba(11,14,20,.04);
+}
+.legal-doc__mobile-nav{display:none;margin-bottom:18px}
+.legal-doc__mobile-toggle{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--pearl);
+  color:var(--deep);
+  cursor:pointer;
+  text-align:left;
+}
+.legal-doc__mobile-toggle-label{
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.legal-doc__mobile-toggle-current{
+  font-size:14px;
+  font-weight:600;
+  line-height:1.35;
+}
+.legal-doc__mobile-panel{
+  margin-top:8px;
+  max-height:min(50vh,360px);
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px;
   background:var(--white);
 }
 .privacy-page__title{
@@ -1017,11 +1173,24 @@ header{
   line-height:1.15;
 }
 .privacy-page__body{
-  max-width:920px;
+  max-width:none;
   color:var(--muted);
   font-size:var(--section-body-size);
   font-weight:400;
   line-height:1.85;
+}
+@media (max-width:900px){
+  .legal-doc__container{grid-template-columns:1fr;gap:0}
+  .legal-doc__sidebar{display:none}
+  .legal-doc__mobile-nav{display:block}
+  .legal-doc__main{
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+    background:transparent;
+  }
+  .legal-doc{background:var(--white);padding:40px 0 80px}
 }
 .privacy-page__body p{
   margin-bottom:18px;
@@ -1032,9 +1201,60 @@ header{
 .privacy-page__heading{
   margin:28px 0 12px;
   font-size:var(--section-subheading-size);
-  font-weight:400;
+  font-weight:600;
   color:var(--deep);
   line-height:1.6;
+  scroll-margin-top:110px;
+}
+.privacy-page__subheading{
+  margin:22px 0 10px;
+  font-size:1.05em;
+  font-weight:600;
+  color:var(--deep);
+  line-height:1.5;
+  scroll-margin-top:110px;
+}
+.privacy-page__list{
+  margin:0 0 18px;
+  padding-left:1.25rem;
+  list-style:disc;
+}
+.privacy-page__body ol.privacy-page__list{
+  list-style:decimal;
+}
+.privacy-page__list li{
+  margin-bottom:10px;
+}
+.privacy-page__list--contact{
+  list-style:none;
+  padding-left:0;
+}
+.privacy-page__table-wrap{
+  overflow-x:auto;
+  margin:0 0 18px;
+  border:1px solid var(--border,#e5e5e5);
+  border-radius:10px;
+}
+.privacy-page__table{
+  width:100%;
+  min-width:640px;
+  border-collapse:collapse;
+  font-size:0.95em;
+}
+.privacy-page__table th,
+.privacy-page__table td{
+  padding:12px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid var(--border,#e5e5e5);
+}
+.privacy-page__table th{
+  background:#f7f7f7;
+  color:var(--deep);
+  font-weight:600;
+}
+.privacy-page__table tr:last-child td{
+  border-bottom:none;
 }
 .privacy-page__body a{
   color:var(--deep);
@@ -1923,8 +2143,9 @@ header{
   display:flex;align-items:center;gap:2px;margin-bottom:12px;
   flex-shrink:0;
 }
+.review-stars .review-star-icon,
 .review-stars img{
-  flex-shrink:0;width:14px;height:14px;object-fit:contain;display:block;
+  flex-shrink:0;width:14px;height:14px;display:block;
 }
 .review-text-wrap{
   position:relative;
@@ -2131,28 +2352,12 @@ header{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.4));
 }
-.service-img.s1{background-image:url('../assets/connecticut/services/service1.webp')}
-.service-img.s2{background-image:url('../assets/connecticut/services/service2.webp')}
-.service-img.s3{background-image:url('../assets/connecticut/services/service3.webp')}
-.service-img.s4{background-image:url('../assets/connecticut/services/service4.webp')}
-.service-img.s5{background-image:url('../assets/connecticut/services/service5.webp')}
-.service-img.s6{background-image:url('../assets/connecticut/services/service6.webp')}
-
-/* Florida state page assets */
-.service-img.fl-s1{background-image:url('../assets/florida/services/service1.webp')}
-.service-img.fl-s2{background-image:url('../assets/florida/services/service2.webp')}
-.service-img.fl-s3{background-image:url('../assets/florida/services/service3.webp')}
-.service-img.fl-s4{background-image:url('../assets/florida/services/service4.webp')}
-.service-img.fl-s5{background-image:url('../assets/florida/services/service5.webp')}
-.service-img.fl-s6{background-image:url('../assets/florida/services/service6.webp')}
-
-/* New York state page assets */
-.service-img.ny-s1{background-image:url('../assets/newyork/services/service1.webp')}
-.service-img.ny-s2{background-image:url('../assets/newyork/services/service2.webp')}
-.service-img.ny-s3{background-image:url('../assets/newyork/services/service3.webp')}
-.service-img.ny-s4{background-image:url('../assets/newyork/services/service4.webp')}
-.service-img.ny-s5{background-image:url('../assets/newyork/services/service5.webp')}
-.service-img.ny-s6{background-image:url('../assets/newyork/services/service6.webp')}
+.service-img.s1{background-image:url('../assets/services/service1.webp')}
+.service-img.s2{background-image:url('../assets/services/service2.webp')}
+.service-img.s3{background-image:url('../assets/services/service3.webp')}
+.service-img.s4{background-image:url('../assets/services/service4.webp')}
+.service-img.s5{background-image:url('../assets/services/service5.webp')}
+.service-img.s6{background-image:url('../assets/services/service6.webp')}
 .service-body{
   display:flex;
   flex-direction:column;
@@ -2315,17 +2520,9 @@ header{
   transition:background .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1),opacity .45s cubic-bezier(.22,1,.36,1);
 }
 
-.content-img.i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-
-.content-img.fl-i1{background-image:url('../assets/florida/content-blocks/car-service1.webp')}
-.content-img.fl-i2{background-image:url('../assets/florida/content-blocks/car-service2.webp')}
-.content-img.fl-i3{background-image:url('../assets/florida/content-blocks/car-service3.webp')}
-
-.content-img.ny-i1{background-image:url('../assets/newyork/content-blocks/car-service1.webp')}
-.content-img.ny-i2{background-image:url('../assets/newyork/content-blocks/car-service2.webp')}
-.content-img.ny-i3{background-image:url('../assets/newyork/content-blocks/car-service3.webp')}
+.content-img.i1{background-image:url('../assets/content-blocks/car-service1.webp')}
+.content-img.i2{background-image:url('../assets/content-blocks/car-service2.webp')}
+.content-img.i3{background-image:url('../assets/content-blocks/car-service3.webp')}
 
 /* ROUTE CARDS — image/column sizing matches .content-block + .content-img */
 .route-cards-stack{
@@ -2987,72 +3184,13 @@ header{
   transition:transform .25s;
 }
 .airport-card:hover{transform:translateY(-4px)}
-.airport-card.a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/jfk.webp')}
-.airport-card.a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/lga.webp')}
-.airport-card.a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/bradley.webp')}
-.airport-card.a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/connecticut/airports/newark.webp')}
-
-.airport-card.fl-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/mia.webp')}
-.airport-card.fl-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/fll.webp')}
-.airport-card.fl-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/mco.webp')}
-.airport-card.fl-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/florida/airports/tpa.webp')}
-
-.airport-card.ny-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/jfk.webp')}
-.airport-card.ny-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/lga.webp')}
-.airport-card.ny-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/newark.webp')}
-.airport-card.ny-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/newyork/airports/bradley.webp')}
+/* Airport card images: applied via constants/airportImages.js (central WebP map). */
 .airport-card-body{
   position:absolute;bottom:0;left:0;right:0;padding:24px;
 }
 .airport-card-body h3{font-size:var(--section-subheading-size);font-weight:700;color:#fff;margin-bottom:2px}
 .airport-card-body p{color:rgba(255,255,255,.85);font-size:var(--section-body-size)}
 
-/* Illinois region page assets (generated) */
-
-/* Illinois Car Service */
-.service-img.il-s1{background-image:url('../assets/illinois/illinois/services/service1.webp')}
-.service-img.il-s2{background-image:url('../assets/illinois/illinois/services/service2.webp')}
-.service-img.il-s3{background-image:url('../assets/illinois/illinois/services/service3.webp')}
-.service-img.il-s4{background-image:url('../assets/illinois/illinois/services/service4.webp')}
-.service-img.il-s5{background-image:url('../assets/illinois/illinois/services/service5.webp')}
-.service-img.il-s6{background-image:url('../assets/illinois/illinois/services/service6.webp')}
-.content-img.il-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/mia.webp')}
-.airport-card.il-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/fll.webp')}
-.airport-card.il-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/mco.webp')}
-.airport-card.il-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/illinois/airports/tpa.webp')}
-
-/* Chicago Chauffeur Service */
-.service-img.il-chi-chauff-s1{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service1.webp')}
-.service-img.il-chi-chauff-s2{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service2.webp')}
-.service-img.il-chi-chauff-s3{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service3.webp')}
-.service-img.il-chi-chauff-s4{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service4.webp')}
-.service-img.il-chi-chauff-s5{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service5.webp')}
-.service-img.il-chi-chauff-s6{background-image:url('../assets/illinois/chicago-chauffeur-service/services/service6.webp')}
-.content-img.il-chi-chauff-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-chi-chauff-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-chi-chauff-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-chi-chauff-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/mia.webp')}
-.airport-card.il-chi-chauff-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/fll.webp')}
-.airport-card.il-chi-chauff-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/mco.webp')}
-.airport-card.il-chi-chauff-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-chauffeur-service/airports/tpa.webp')}
-
-/* Chicago Limo Service */
-.service-img.il-chi-limo-s1{background-image:url('../assets/illinois/chicago-limo-service/services/service1.webp')}
-.service-img.il-chi-limo-s2{background-image:url('../assets/illinois/chicago-limo-service/services/service2.webp')}
-.service-img.il-chi-limo-s3{background-image:url('../assets/illinois/chicago-limo-service/services/service3.webp')}
-.service-img.il-chi-limo-s4{background-image:url('../assets/illinois/chicago-limo-service/services/service4.webp')}
-.service-img.il-chi-limo-s5{background-image:url('../assets/illinois/chicago-limo-service/services/service5.webp')}
-.service-img.il-chi-limo-s6{background-image:url('../assets/illinois/chicago-limo-service/services/service6.webp')}
-.content-img.il-chi-limo-i1{background-image:url('../assets/connecticut/content-blocks/car-service1.webp')}
-.content-img.il-chi-limo-i2{background-image:url('../assets/connecticut/content-blocks/car-service2.webp')}
-.content-img.il-chi-limo-i3{background-image:url('../assets/connecticut/content-blocks/car-service3.webp')}
-.airport-card.il-chi-limo-a1{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/mia.webp')}
-.airport-card.il-chi-limo-a2{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/fll.webp')}
-.airport-card.il-chi-limo-a3{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/mco.webp')}
-.airport-card.il-chi-limo-a4{background-image:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),url('../assets/illinois/chicago-limo-service/airports/tpa.webp')}
 /* FAQs */
 .faq-section{padding:90px 0}
 .faq-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:start}
@@ -3074,6 +3212,7 @@ details.faq-item[open] summary::after{transform:rotate(45deg)}
 details.faq-item[open] summary{background:#fafafa;border-bottom:1px solid #eee}
 details.faq-item .faq-answer{
   padding:18px 22px;font-size:var(--section-body-size);color:var(--muted);line-height:1.7;
+  overflow:hidden;
 }
 .faq-image{
   border-radius:14px;overflow:hidden;width:100%;height:580px;
@@ -3261,9 +3400,13 @@ footer{
   will-change:transform;
 }
 .booking-card.tilt-active{ animation:none }
+/* Entrance already played on the shell — settle in place instead of replaying tiltIn. */
+.booking-card-slot--activated .booking-card{ animation:booking-settle .5s ease both }
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
 .form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
-.form-group input, .form-group select{ transition:border-color .25s, box-shadow .25s, transform .25s }
+.form-group input, .form-group select{
+  transition:background-color .4s ease, color .35s ease, border-color .25s, box-shadow .25s, transform .25s, opacity .35s ease;
+}
 .form-group input:focus, .form-group select:focus{
   box-shadow:0 0 0 3px rgba(17,17,17,.1);
   transform:translate3d(0,-1px,0);
@@ -3480,7 +3623,7 @@ details.faq-item[open]{
   border-color:var(--border);
 }
 details.faq-item summary{ transition:background .25s }
-details.faq-item .faq-answer{ animation:fadeInUp .45s ease both }
+details.faq-item .faq-answer{ will-change:height,opacity }
 .faq-image{
   transition:transform .7s cubic-bezier(.2,.7,.2,1), box-shadow .7s;
   transform-style:preserve-3d;
@@ -3557,11 +3700,15 @@ header.scrolled{
   }
   .hero:not(.fifa-hero) .hero-phone{display:none}
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
-  .hero:not(.fifa-hero) .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center;margin-top:0}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -3618,15 +3765,20 @@ header.scrolled{
   .booking-card-slot{min-height:0}
   .hero h1,
   .hero-title{
-    font-size:clamp(28px,4.2vw,36px);
-    line-height:1.15;
+    font-size:clamp(24px,3.8vw + 10px,34px);
+    line-height:1.2;
   }
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center}
-  .hero-title-line{display:block;text-align:center;white-space:normal}
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;
+    text-wrap:balance;
+  }
+  .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
+    text-align:center;
+    white-space:normal;
+  }
   .hero:not(.fifa-hero) .hero-mobile-benefits{
     justify-items:center;
     text-align:center;
@@ -3662,25 +3814,26 @@ header.scrolled{
   .booking-card{padding:16px}
   .hero h1,
   .hero-title{
-    font-size:clamp(26px,7.8vw,36px);
-    line-height:1.15;
+    font-size:clamp(20px,4.6vw + 8px,32px);
+    line-height:1.2;
   }
   .hero:not(.fifa-hero) .hero-content{text-align:center;margin-bottom:24px}
-  .hero:not(.fifa-hero) .hero-title{margin-left:auto;margin-right:auto;text-align:center;max-width:100%}
+  .hero:not(.fifa-hero) .hero-title{
+    margin-left:auto;margin-right:auto;text-align:center;max-width:100%;
+    text-wrap:balance;
+  }
   .hero .hero-title,
   .hero h1{
     text-align:center;
     margin-left:auto;
     margin-right:auto;
   }
-  .hero:not(.fifa-hero) .hero-title-line{
-    display:block;
+  .hero:not(.fifa-hero) .hero-title-line,
+  .hero--home .hero-title-line--accent{
+    display:inline;
     text-align:center;
     white-space:normal;
   }
-  .hero--home .hero-title .hero-title-line:first-of-type,
-  .hero--home .hero-title .hero-title-line:nth-of-type(2){display:inline}
-  .hero--home .hero-title-line--accent{display:block;text-align:center}
   .hero-mobile-benefits li span{
     white-space:normal;
     text-align:center;
@@ -3882,8 +4035,9 @@ header.scrolled{
     min-height:0;
     overflow:visible;
   }
-  .fleet-page-hero{
-    height:clamp(260px,33.333vw,480px);
+  .fleet-page-hero,
+  .legal-page-hero{
+    height:clamp(220px,36vw,360px);
     min-height:0;
     overflow:hidden;
   }
@@ -3899,12 +4053,13 @@ header.scrolled{
   .about-page-hero__img{
     object-position:center 66%;
   }
-  .fleet-page-hero__img{
+  .fleet-page-hero__img,
+  .legal-page-hero__img{
     width:100%;
     height:100%;
     min-height:0;
     object-fit:cover;
-    object-position:center 66%;
+    object-position:center 45%;
   }
 }
 
@@ -3916,8 +4071,9 @@ header.scrolled{
     min-height:0;
     overflow:visible;
   }
-  .fleet-page-hero{
-    height:clamp(260px,33.333vw,480px);
+  .fleet-page-hero,
+  .legal-page-hero{
+    height:clamp(240px,33.333vw,400px);
     min-height:0;
     overflow:hidden;
   }
@@ -3933,50 +4089,13 @@ header.scrolled{
   .about-page-hero__img{
     object-position:center bottom;
   }
-  .fleet-page-hero__img{
+  .fleet-page-hero__img,
+  .legal-page-hero__img{
     width:100%;
     height:100%;
     min-height:0;
     object-fit:cover;
-    object-position:center 66%;
+    object-position:center 45%;
   }
 }
 
-/* ============================================
-   Site-wide loading overlay
-   ============================================ */
-.site-loader-overlay{
-  position:fixed;
-  inset:0;
-  z-index:100000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  pointer-events:all;
-}
-.loader{
-  width:60px;
-  aspect-ratio:1;
-  border:15px solid #ddd;
-  border-radius:50%;
-  position:relative;
-  transform:rotate(45deg);
-}
-.loader::before{
-  content:"";
-  position:absolute;
-  inset:-15px;
-  border-radius:50%;
-  border:15px solid #000;
-  animation:l18 2s infinite linear;
-}
-@keyframes l18{
-  0%{clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-  25%{clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-  50%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-  75%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
-  100%{clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-}

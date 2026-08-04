@@ -1,8 +1,8 @@
 
 import FleetHero from './FleetHero.jsx'
 import FleetVehicles from './FleetVehicles.jsx'
-import TrustedStats from '../connecticut/trusted-stats/TrustedStats.jsx'
-import FleetReviewsSection from './FleetReviewsSection.jsx'
+import TrustedStats from '../../components/sections/TrustedStats.jsx'
+import ReviewsSection from '../../components/sections/ReviewsSection.jsx'
 
 /** Dedicated fleet page — hero, vehicle grid, trust stats, and reviews. */
 export default function FleetPage() {
@@ -13,7 +13,7 @@ export default function FleetPage() {
       <FleetHero />
       <FleetVehicles />
       <TrustedStats />
-      <FleetReviewsSection />
+      <ReviewsSection variant="fleet" />
     </>
   )
 }

@@ -1,19 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import LuxuryServiceCard from './LuxuryServiceCard.jsx'
 import { PHONE_MAX_PX } from '../../config/breakpoints.js'
+import { gsap, ScrollTrigger } from '../../utils/gsap.js'
 
 const PHONE_MQ = `(max-width: ${PHONE_MAX_PX}px)`
-const WHEEL_SENSITIVITY = 0.00048
-const TOUCH_SENSITIVITY = 0.0011
-const VELOCITY_DAMPING = 0.9
-const VELOCITY_MAX = 0.018
-const SMOOTH_K = 9.5
 const EXIT_DISTANCE = 112
-const PIN_ZONE_BELOW = 32
-const PIN_RESET_ABOVE = 120
-/** Section top below this viewport ratio counts as "reached" for early card motion */
-const SECTION_ENGAGE_VIEW_RATIO = 0.92
-const PROGRESS_EPS = 0.002
+const SCRUB_SMOOTH = 1.35
 const MIN_VIEWPORT_HEIGHT = 480
 const MIN_VIEWPORT_HEIGHT_PHONE = 320
 const VIEWPORT_HEIGHT_BUFFER = 44
@@ -71,9 +63,17 @@ function getCardStackStyle(index, progress, count) {
   const t = easeMilky((progress - exitStart) / segmentSize)
   return {
     translateY: -EXIT_DISTANCE * t,
-    opacity: 1 - t * 0.32,
-    scale: 1 - t * 0.035,
+    opacity: 1 - t * 0.26,
+    scale: 1 - t * 0.028,
     zIndex,
+  }
+}
+
+function setScrollPinLocked(active) {
+  if (active) {
+    document.documentElement.dataset.scrollPinLocked = 'true'
+  } else {
+    delete document.documentElement.dataset.scrollPinLocked
   }
 }
 
@@ -91,16 +91,10 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
   const sectionRef = useRef(null)
   const pinRef = useRef(null)
   const measureRef = useRef(null)
-  const targetProgressRef = useRef(0)
-  const displayProgressRef = useRef(0)
-  const velocityRef = useRef(0)
-  const lastFrameRef = useRef(0)
-  const isLockedRef = useRef(false)
-  const lockYRef = useRef(0)
+  const viewportHeightRef = useRef(MIN_VIEWPORT_HEIGHT)
+  const scrollTriggerRef = useRef(null)
   const [displayProgress, setDisplayProgress] = useState(0)
   const [viewportHeight, setViewportHeight] = useState(MIN_VIEWPORT_HEIGHT)
-  const [isLocked, setIsLocked] = useState(false)
-  const [spacerHeight, setSpacerHeight] = useState(0)
   const [useScrollPin, setUseScrollPin] = useState(() => {
     if (typeof window === 'undefined') return true
     return !window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -108,21 +102,9 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
 
   const count = cards?.length ?? 0
 
-  const setTargetProgress = useCallback((value) => {
-    targetProgressRef.current = Math.min(1, Math.max(0, value))
+  const syncProgress = useCallback((progress) => {
+    setDisplayProgress(progress)
   }, [])
-
-  const syncProgressImmediate = useCallback((value) => {
-    const next = Math.min(1, Math.max(0, value))
-    targetProgressRef.current = next
-    displayProgressRef.current = next
-    velocityRef.current = 0
-    setDisplayProgress(next)
-  }, [])
-
-  useEffect(() => {
-    isLockedRef.current = isLocked
-  }, [isLocked])
 
   useEffect(() => {
     const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -160,9 +142,9 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
         node.offsetHeight,
       )
 
-      setViewportHeight(
-        Math.max(getMinViewportHeight(), Math.ceil(maxHeight + getViewportHeightBuffer())),
-      )
+      const nextHeight = Math.max(getMinViewportHeight(), Math.ceil(maxHeight + getViewportHeightBuffer()))
+      viewportHeightRef.current = nextHeight
+      setViewportHeight(nextHeight)
     }
 
     let rafId = 0
@@ -193,254 +175,75 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
   useEffect(() => {
     if (!useScrollPin || count < 2) return undefined
 
-    let rafId = 0
+    const section = sectionRef.current
+    const pin = pinRef.current
+    if (!section || !pin) return undefined
 
-    const refreshLockY = () => {
-      if (isLockedRef.current) return lockYRef.current
+    let cancelled = false
+    let gsapCtx = null
+    let setupRaf = 0
 
-      const section = sectionRef.current
-      if (!section) return lockYRef.current
+    const setup = () => {
+      if (cancelled) return
 
-      const stickyTop = getStickyTop()
-      const rect = section.getBoundingClientRect()
-      lockYRef.current = window.scrollY + rect.top - stickyTop
-      return lockYRef.current
-    }
-
-    const isSectionEngaged = () => {
-      const section = sectionRef.current
-      if (!section) return false
-
-      const stickyTop = getStickyTop()
-      const rect = section.getBoundingClientRect()
-      return (
-        rect.top < window.innerHeight * SECTION_ENGAGE_VIEW_RATIO &&
-        rect.bottom > stickyTop + 24
-      )
-    }
-
-    const isAtPinPoint = (lockY) => window.scrollY >= lockY - 2
-
-    const isInInteractionZone = (lockY) => {
-      if (!isSectionEngaged()) return false
-      return window.scrollY <= lockY + PIN_ZONE_BELOW
-    }
-
-    const isProgressActive = () => {
-      const p = targetProgressRef.current
-      return p > PROGRESS_EPS && p < 1 - PROGRESS_EPS
-    }
-
-    const shouldHoldScroll = () => {
-      if (!isLockedRef.current) return false
-      const p = targetProgressRef.current
-      if (Math.abs(velocityRef.current) > 0.00004) return true
-      return p > PROGRESS_EPS && p < 1 - PROGRESS_EPS
-    }
-
-    const resetProgressIfFarAbove = (lockY) => {
-      if (window.scrollY < lockY - PIN_RESET_ABOVE && targetProgressRef.current > PROGRESS_EPS) {
-        syncProgressImmediate(0)
-        unlockSection()
-      }
-    }
-
-    const maybeUnlockAtEnds = () => {
-      const p = targetProgressRef.current
-      const v = velocityRef.current
-      if (!isLockedRef.current) return
-      if (Math.abs(v) > 0.00004) return
-      if (p <= PROGRESS_EPS || p >= 1 - PROGRESS_EPS) {
-        unlockSection()
-      }
-    }
-
-    const lockSection = () => {
-      if (isLockedRef.current) return
-      const pin = pinRef.current
-      const height = pin?.offsetHeight ?? 0
-      lockYRef.current = window.scrollY
-      if (height > 0) setSpacerHeight(height)
-      isLockedRef.current = true
-      document.documentElement.dataset.scrollPinLocked = 'true'
-      setIsLocked(true)
-    }
-
-    const unlockSection = () => {
-      if (!isLockedRef.current) return
-      isLockedRef.current = false
-      delete document.documentElement.dataset.scrollPinLocked
-      setIsLocked(false)
-    }
-
-    const holdScroll = (lockY) => {
-      if (Math.abs(window.scrollY - lockY) > 1) {
-        document.documentElement.dataset.suppressChromeReveal = 'true'
-        window.scrollTo(0, lockY)
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            delete document.documentElement.dataset.suppressChromeReveal
-          })
+      gsapCtx = gsap.context(() => {
+        scrollTriggerRef.current = ScrollTrigger.create({
+          trigger: section,
+          start: () => `top top+=${getStickyTop()}`,
+          end: () => {
+            const perCard = Math.max(
+              window.innerHeight * 0.58,
+              viewportHeightRef.current * 0.7,
+              420,
+            )
+            return `+=${perCard * (count - 1)}`
+          },
+          pin,
+          pinSpacing: true,
+          scrub: SCRUB_SMOOTH,
+          fastScrollEnd: true,
+          anticipatePin: 1.2,
+          invalidateOnRefresh: true,
+          onToggle: (self) => setScrollPinLocked(self.isActive),
+          onUpdate: (self) => syncProgress(self.progress),
         })
-      }
+      }, section)
+
+      syncProgress(scrollTriggerRef.current?.progress ?? 0)
+      ScrollTrigger.refresh()
     }
 
-    const tickProgress = (now) => {
-      if (!lastFrameRef.current) lastFrameRef.current = now
-      const dt = Math.min((now - lastFrameRef.current) / 1000, 0.05)
-      lastFrameRef.current = now
+    setupRaf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!cancelled) setup()
+      })
+    })
 
-      if (Math.abs(velocityRef.current) > 0.00001) {
-        setTargetProgress(targetProgressRef.current + velocityRef.current)
-        velocityRef.current *= VELOCITY_DAMPING
-        if (Math.abs(velocityRef.current) < 0.00004) velocityRef.current = 0
-      }
-
-      const target = targetProgressRef.current
-      const current = displayProgressRef.current
-      const alpha = 1 - Math.exp(-SMOOTH_K * dt)
-      const next = current + (target - current) * alpha
-
-      displayProgressRef.current = next
-
-      if (Math.abs(next - current) > 0.00015) {
-        setDisplayProgress(next)
-      }
-
-      maybeUnlockAtEnds()
-
-      if (shouldHoldScroll()) {
-        holdScroll(refreshLockY())
-      }
-
-      rafId = window.requestAnimationFrame(tickProgress)
-    }
-
-    const applyWheelDelta = (deltaY, sensitivity = WHEEL_SENSITIVITY) => {
-      const section = sectionRef.current
-      if (!section) return false
-
-      const lockY = refreshLockY()
-      resetProgressIfFarAbove(lockY)
-
-      const p = targetProgressRef.current
-
-      // Scrolling up past the section when cards are at the start — allow normal scroll
-      if (deltaY < 0 && p <= PROGRESS_EPS) {
-        unlockSection()
-        velocityRef.current = 0
-        return false
-      }
-
-      // Scrolling down past the section when cards are complete — allow normal scroll
-      if (deltaY > 0 && p >= 1 - PROGRESS_EPS) {
-        unlockSection()
-        velocityRef.current = 0
-        return false
-      }
-
-      if (!isInInteractionZone(lockY)) return false
-
-      if (deltaY > 0 && p < 1 - PROGRESS_EPS) {
-        if (!isAtPinPoint(lockY)) {
-          velocityRef.current = Math.min(
-            VELOCITY_MAX,
-            velocityRef.current + deltaY * sensitivity,
-          )
-          return false
-        }
-
-        lockSection()
-        velocityRef.current = Math.min(
-          VELOCITY_MAX,
-          velocityRef.current + deltaY * sensitivity,
-        )
-        holdScroll(lockY)
-        return true
-      }
-
-      if (deltaY < 0 && p > PROGRESS_EPS) {
-        if (!isAtPinPoint(lockY)) {
-          velocityRef.current = Math.max(
-            -VELOCITY_MAX,
-            velocityRef.current + deltaY * sensitivity,
-          )
-          return false
-        }
-
-        lockSection()
-        velocityRef.current = Math.max(
-          -VELOCITY_MAX,
-          velocityRef.current + deltaY * sensitivity,
-        )
-        holdScroll(lockY)
-        return true
-      }
-
-      return false
-    }
-
-    const clampScroll = () => {
-      const section = sectionRef.current
-      if (!section) return
-
-      const lockY = refreshLockY()
-      resetProgressIfFarAbove(lockY)
-
-      if (window.scrollY < lockY - PIN_RESET_ABOVE) {
-        unlockSection()
-        return
-      }
-
-      if (!isAtPinPoint(lockY)) return
-
-      if (isProgressActive()) {
-        lockSection()
-        holdScroll(lockY)
-      } else {
-        maybeUnlockAtEnds()
-      }
-    }
-
-    const onWheel = (e) => {
-      if (applyWheelDelta(e.deltaY)) e.preventDefault()
-    }
-
-    let touchY = 0
-    const onTouchStart = (e) => {
-      touchY = e.touches[0]?.clientY ?? 0
-    }
-    const onTouchMove = (e) => {
-      const y = e.touches[0]?.clientY ?? touchY
-      const deltaY = touchY - y
-      touchY = y
-      if (Math.abs(deltaY) < 0.5) return
-      if (applyWheelDelta(deltaY, TOUCH_SENSITIVITY)) e.preventDefault()
-    }
-
-    rafId = window.requestAnimationFrame(tickProgress)
-    window.addEventListener('scroll', clampScroll, { passive: true })
-    window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: false })
-    window.addEventListener('resize', refreshLockY, { passive: true })
+    const refresh = () => ScrollTrigger.refresh()
+    window.addEventListener('resize', refresh, { passive: true })
 
     return () => {
-      window.cancelAnimationFrame(rafId)
-      window.removeEventListener('scroll', clampScroll)
-      window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove', onTouchMove)
-      window.removeEventListener('resize', refreshLockY)
-      delete document.documentElement.dataset.scrollPinLocked
+      cancelled = true
+      cancelAnimationFrame(setupRaf)
+      window.removeEventListener('resize', refresh)
+      setScrollPinLocked(false)
+      scrollTriggerRef.current?.kill()
+      scrollTriggerRef.current = null
+      gsapCtx?.revert()
     }
-  }, [useScrollPin, count, setTargetProgress, syncProgressImmediate])
+  }, [useScrollPin, count, cards, syncProgress])
+
+  useEffect(() => {
+    if (!useScrollPin || count < 2) return undefined
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh())
+    return () => cancelAnimationFrame(id)
+  }, [viewportHeight, useScrollPin, count])
 
   if (!cards?.length) return null
 
   const isLastCard = (index) => index === count - 1
 
-  if (!useScrollPin) {
+  if (!useScrollPin || count < 2) {
     return (
       <section className="section luxury-carousel-section">
         <div className="container luxury-carousel__container">
@@ -464,18 +267,10 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
   return (
     <section
       ref={sectionRef}
-      className={`section luxury-carousel-section scroll-pinned-cards${isLocked ? ' scroll-pinned-cards--locked' : ''}`}
+      className="section luxury-carousel-section scroll-pinned-cards"
       aria-label="Luxury car service highlights"
       style={{ overflowAnchor: 'none' }}
     >
-      {isLocked ? (
-        <div
-          className="scroll-pinned-cards__spacer"
-          style={{ height: spacerHeight }}
-          aria-hidden="true"
-        />
-      ) : null}
-
       <div ref={pinRef} className="scroll-pinned-cards__pin">
         <div className="container luxury-carousel__container">
           <div
@@ -496,7 +291,11 @@ export default function ScrollPinnedLuxuryCards({ cards }) {
             style={{ height: viewportHeight }}
           >
             {cards.map((card, index) => {
-              const { translateY, opacity, scale, zIndex } = getCardStackStyle(index, displayProgress, count)
+              const { translateY, opacity, scale, zIndex } = getCardStackStyle(
+                index,
+                displayProgress,
+                count,
+              )
 
               return (
                 <LuxuryServiceCard

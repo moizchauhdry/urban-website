@@ -1,6 +1,6 @@
 import Icon from '../../../components/common/Icon.jsx'
 import QuoteLink from '../../../components/layout/QuoteLink.jsx'
-import { FIFA_HERO_FEATURES } from '../hero/heroHighlights.js'
+import { FIFA_HERO_FEATURES } from '../../../data/fifaHero.js'
 
 const PHONE_HREF = 'tel:8888816610'
 const WHATSAPP_HREF = 'https://wa.me/18888816610'

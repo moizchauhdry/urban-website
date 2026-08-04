@@ -1,5 +1,5 @@
 import AboutFeatureCard from './AboutFeatureCard.jsx'
-import { ABOUT_FEATURES } from './aboutFeatures.js'
+import { ABOUT_US_PAGE } from '../../data/aboutUsPage.js'
 
 /** Three-column feature highlights below the About intro. */
 export default function AboutFeatures() {
@@ -7,7 +7,7 @@ export default function AboutFeatures() {
     <section className="about-page-features">
       <div className="container">
         <div className="about-features-grid">
-          {ABOUT_FEATURES.map((feature) => (
+          {ABOUT_US_PAGE.features.map((feature) => (
             <AboutFeatureCard key={feature.id} feature={feature} />
           ))}
         </div>
