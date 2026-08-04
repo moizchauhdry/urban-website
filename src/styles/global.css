@@ -1512,16 +1512,22 @@ header{
   gap:10px;
   padding:12px 20px;
   border-radius:999px;
-  border:none;
+  border:0;
+  outline:none;
+  box-shadow:none;
   background:var(--lime);
-  color:var(--deep);
+  color:#000;
   font-size:15px;
   font-weight:700;
-  transition:background .2s ease, color .2s ease, transform .2s ease;
+  transition:background .2s ease, transform .2s ease;
+}
+.book-now-page__phone svg{
+  color:#000;
+  stroke:currentColor;
 }
 .book-now-page__phone:hover{
   background:var(--lime-hover);
-  color:var(--deep);
+  color:#000;
   transform:translate3d(0,-1px,0);
 }
 .book-now-page__form{
