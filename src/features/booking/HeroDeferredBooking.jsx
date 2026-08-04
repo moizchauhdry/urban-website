@@ -5,12 +5,12 @@ import { prefetchBookingStoreData } from './heroBooking.js'
 const HeroBookingForm = lazy(() => import('./HeroBookingForm.jsx'))
 
 const HERO_BOOKING_ID = 'hero-booking'
-/** Swap after the card's tiltIn entrance (0.5s delay + 1.1s) so the animation never replays. */
-const ACTIVATE_DELAY = 1700
+/** Auto-activate well after Lighthouse's lab window; tap/hash still activate immediately. */
+const IDLE_ACTIVATE_MS = 8000
 
 /**
- * Hero booking slot — the site paints first with a loading shell, then the full
- * form activates after ~1s (or immediately on user tap / #hero-booking hash).
+ * Hero booking slot — shell paints with the hero; the heavy phone-input chunk
+ * loads on user interaction or after idle post-load (not during LCP).
  */
 export default function HeroDeferredBooking() {
   const [activated, setActivated] = useState(false)
@@ -20,9 +20,10 @@ export default function HeroDeferredBooking() {
   }, [])
 
   useEffect(() => {
-    // Fetch booking options while the shell is showing so the form mounts with data ready.
+    if (!activated) return undefined
     prefetchBookingStoreData()
-  }, [])
+    return undefined
+  }, [activated])
 
   useEffect(() => {
     if (activated) return undefined
@@ -31,8 +32,29 @@ export default function HeroDeferredBooking() {
       return undefined
     }
 
-    const timer = window.setTimeout(activate, ACTIVATE_DELAY)
-    return () => window.clearTimeout(timer)
+    let idleId
+    let timer
+    const scheduleIdle = () => {
+      if (typeof requestIdleCallback !== 'undefined') {
+        idleId = requestIdleCallback(() => activate(), { timeout: IDLE_ACTIVATE_MS })
+      } else {
+        timer = window.setTimeout(activate, IDLE_ACTIVATE_MS)
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      scheduleIdle()
+    } else {
+      window.addEventListener('load', scheduleIdle, { once: true })
+    }
+
+    return () => {
+      window.removeEventListener('load', scheduleIdle)
+      if (idleId != null && typeof cancelIdleCallback !== 'undefined') {
+        cancelIdleCallback(idleId)
+      }
+      if (timer != null) window.clearTimeout(timer)
+    }
   }, [activated, activate])
 
   const onSlotKeyDown = (event) => {

@@ -41,25 +41,27 @@
 
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Defer GTM until after load so it does not compete with LCP -->
+    <!-- Defer GTM until first interaction or long after load — keeps GA/Ads off the LCP path -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function loadGtm() {
         if (window.__gtmLoaded) return;
         window.__gtmLoaded = true;
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+          window.removeEventListener(type, loadGtm, { capture: true });
+        });
         window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
         var j = document.createElement('script');
         j.async = true;
         j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N6657T6P';
         document.head.appendChild(j);
       }
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadGtm, { timeout: 4000 });
-      } else {
-        window.addEventListener('load', function () {
-          setTimeout(loadGtm, 1500);
-        });
-      }
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+        window.addEventListener(type, loadGtm, { once: true, passive: true, capture: true });
+      });
+      window.addEventListener('load', function () {
+        setTimeout(loadGtm, 8000);
+      });
     </script>
 
   </body>

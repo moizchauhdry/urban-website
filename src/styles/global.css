@@ -660,12 +660,61 @@ header{
 @keyframes booking-shine{
   to{background-position:left calc(100% + 120px) top 0}
 }
+/* Soften shell → live form and loading → ready field handoffs (no hard cuts). */
+.booking-card-slot .booking-card{
+  transition:opacity .45s ease, transform .45s ease;
+}
+.booking-card-slot--activated .booking-card:not(.booking-card--shell){
+  animation:booking-settle .5s ease both;
+}
+@keyframes booking-settle{
+  from{opacity:.55;transform:translate3d(0,6px,0)}
+  to{opacity:1;transform:none}
+}
+.form-group input,
+.form-group select,
+.booking-phone-shell,
+.hero-phone-input.PhoneInput{
+  transition:
+    background-color .4s ease,
+    color .35s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    opacity .35s ease;
+}
+.form-group .field-loading{
+  transition:background-color .4s ease, color .35s ease, opacity .35s ease;
+}
+.hero-content,
+.hero-badge,
+.hero-title,
+.hero-desc,
+.hero-phone,
+.hero-mobile-benefits{
+  transition:opacity .4s ease, transform .4s ease;
+}
 @media (prefers-reduced-motion: reduce){
   .booking-card--shell .form-group input,
   .booking-card--shell .form-group select,
   .booking-card--shell .booking-phone-shell,
   .form-group .field-loading{
     animation:none;
+  }
+  .booking-card-slot--activated .booking-card:not(.booking-card--shell){
+    animation:none;
+  }
+  .booking-card-slot .booking-card,
+  .form-group input,
+  .form-group select,
+  .booking-phone-shell,
+  .hero-phone-input.PhoneInput,
+  .hero-content,
+  .hero-badge,
+  .hero-title,
+  .hero-desc,
+  .hero-phone,
+  .hero-mobile-benefits{
+    transition:none;
   }
 }
 .booking-card--shell .form-tabs{
@@ -3351,11 +3400,13 @@ footer{
   will-change:transform;
 }
 .booking-card.tilt-active{ animation:none }
-/* Entrance already played on the shell — don't replay it when the real form mounts. */
-.booking-card-slot--activated .booking-card{ animation:none }
+/* Entrance already played on the shell — settle in place instead of replaying tiltIn. */
+.booking-card-slot--activated .booking-card{ animation:booking-settle .5s ease both }
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
 .form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
-.form-group input, .form-group select{ transition:border-color .25s, box-shadow .25s, transform .25s }
+.form-group input, .form-group select{
+  transition:background-color .4s ease, color .35s ease, border-color .25s, box-shadow .25s, transform .25s, opacity .35s ease;
+}
 .form-group input:focus, .form-group select:focus{
   box-shadow:0 0 0 3px rgba(17,17,17,.1);
   transform:translate3d(0,-1px,0);

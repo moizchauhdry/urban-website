@@ -40,7 +40,7 @@ function HeroBackground({ background, onReady, deferMount = false }) {
       height={background.height}
       fetchPriority="high"
       loading="eager"
-      decoding="async"
+      decoding="sync"
       aria-hidden="true"
     />
   )
@@ -235,35 +235,48 @@ export default function LandingHero({ pageKey }) {
   )
 
   useEffect(() => {
-    if (isHome) {
+    // Non-home: drop the HTML-injected home LCP image once this route's hero owns the viewport.
+    if (!isHome) {
       const staticImg = document.getElementById('static-hero-lcp')
-      if (staticImg instanceof HTMLImageElement && staticImg.complete && staticImg.naturalWidth > 0) {
-        if (!staticRemoved.current) {
+      if (staticImg instanceof HTMLImageElement) {
+        const drop = () => {
+          if (staticRemoved.current) return
           staticRemoved.current = true
           removeStaticHeroLcp()
-          setUseReactHeroBg(true)
         }
-        return undefined
+        if (staticImg.complete && staticImg.naturalWidth > 0) drop()
+        else {
+          staticImg.addEventListener('load', drop, { once: true })
+          staticImg.addEventListener('error', drop, { once: true })
+        }
       }
-
-      const fallback = window.setTimeout(() => {
-        if (staticRemoved.current) return
-        staticRemoved.current = true
-        removeStaticHeroLcp()
-        setUseReactHeroBg(true)
-      }, 800)
-
-      return () => window.clearTimeout(fallback)
+      return undefined
     }
 
+    // Home: never tear down #static-hero-lcp until it has painted — an 800ms forced
+    // swap was aborting LCP under Slow 4G and driving ~7s Lighthouse LCP.
     const staticImg = document.getElementById('static-hero-lcp')
-    if (staticImg instanceof HTMLImageElement && staticImg.complete && staticImg.naturalWidth > 0) {
-      if (!staticRemoved.current) {
-        staticRemoved.current = true
-        removeStaticHeroLcp()
-      }
+    if (!(staticImg instanceof HTMLImageElement)) {
+      setUseReactHeroBg(true)
+      return undefined
     }
-    return undefined
+
+    const mountReactBg = () => {
+      if (staticRemoved.current) return
+      setUseReactHeroBg(true)
+    }
+
+    if (staticImg.complete && staticImg.naturalWidth > 0) {
+      mountReactBg()
+      return undefined
+    }
+
+    staticImg.addEventListener('load', mountReactBg, { once: true })
+    staticImg.addEventListener('error', mountReactBg, { once: true })
+    return () => {
+      staticImg.removeEventListener('load', mountReactBg)
+      staticImg.removeEventListener('error', mountReactBg)
+    }
   }, [isHome])
 
   useEffect(() => {
