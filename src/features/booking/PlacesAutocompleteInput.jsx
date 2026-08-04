@@ -324,12 +324,7 @@ export default function PlacesAutocompleteInput({
           <span className="places-autocomplete-status-text">Searching…</span>
         </span>
       ) : null}
-      {apiKeyMissing && import.meta.env.DEV && (
-        <p className="places-autocomplete-hint">
-          Add <code>VITE_GOOGLE_MAPS_API_KEY</code> to <code>.env</code> and restart{' '}
-          <code>npm run dev</code>. Enable Maps JavaScript API + Places API in Google Cloud.
-        </p>
-      )}
+      
       {loadError && loadError !== 'missing-key' && import.meta.env.DEV && (
         <p className="places-autocomplete-hint places-autocomplete-hint--error">{loadError}</p>
       )}

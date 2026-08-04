@@ -13,7 +13,7 @@ import {
   HERO_BOOKING_INITIAL,
   HERO_DURATION_OPTIONS,
   buildHeroBookingPayload,
-  fetchBookingFleetOptions,
+  fetchBookingStoreData,
   getMinBookingDate,
   submitHeroBooking,
 } from './heroBooking.js'
@@ -44,15 +44,22 @@ function buildLabelsWithCallingCodes() {
   return out
 }
 
-const SERVICE_TYPE_OPTIONS = [
-  'Airport Pickup',
-  'Airport Dropoff',
-  'Sight Seeing',
-  'Night Out',
-  'Wedding',
-  'Party',
-  'Others',
-]
+/** Tab keys are fixed by the submit endpoints (/distance, /hourly); labels come from the API. */
+function buildBookingTypeTabs(serviceTypes) {
+  const fromApi = (serviceTypes ?? [])
+    .map((opt) => {
+      const key = opt.label.trim().toLowerCase()
+      if (key !== 'distance' && key !== 'hourly') return null
+      return { key, label: opt.label.trim().replace(/^./, (c) => c.toUpperCase()) }
+    })
+    .filter(Boolean)
+
+  if (fromApi.length) return fromApi
+  return [
+    { key: 'distance', label: 'Distance' },
+    { key: 'hourly', label: 'Hourly' },
+  ]
+}
 
 /** Hero booking card — Distance & Hourly tabs (lazy-loaded with phone input + Google Places). */
 export default function HeroBookingForm() {
@@ -63,13 +70,19 @@ export default function HeroBookingForm() {
   const phoneLabels = useMemo(() => buildLabelsWithCallingCodes(), [])
   const phonePlaceholder = useMemo(() => nationalExamplePlaceholder(phoneCountry), [phoneCountry])
   const [formData, setFormData] = useState(HERO_BOOKING_INITIAL)
-  const [fleetOptions, setFleetOptions] = useState([])
-  const [fleetOptionsError, setFleetOptionsError] = useState('')
+  const [storeData, setStoreData] = useState(null)
+  const [storeDataError, setStoreDataError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showFieldErrors, setShowFieldErrors] = useState(false)
   const minBookingDate = useMemo(() => getMinBookingDate(), [])
 
   const isHourly = formData.bookingType === 'hourly'
+  const isLoadingOptions = !storeData && !storeDataError
+
+  const bookingTypeTabs = useMemo(() => buildBookingTypeTabs(storeData?.serviceTypes), [storeData])
+  const fleetOptions = storeData?.vehicles ?? []
+  const serviceOptions = storeData?.services ?? []
+  const travelOptions = storeData?.travelTypes ?? []
 
   useEffect(() => {
     const onPrefill = (event) => {
@@ -90,17 +103,20 @@ export default function HeroBookingForm() {
   useEffect(() => {
     let cancelled = false
 
-    fetchBookingFleetOptions()
-      .then((options) => {
+    setStoreDataError('')
+    fetchBookingStoreData()
+      .then((data) => {
         if (!cancelled) {
-          setFleetOptions(options)
-          setFleetOptionsError('')
+          setStoreData(data)
+          setStoreDataError('')
         }
       })
       .catch((err) => {
         if (!cancelled) {
-          console.error('[Hero booking] fleet options', err)
-          setFleetOptionsError('Fleet options could not be loaded. Please refresh or call (888) 881-6610.')
+          console.error('[Hero booking] store data', err)
+          setStoreDataError(
+            'Booking options could not be loaded. Please refresh or call (888) 881-6610.',
+          )
         }
       })
 
@@ -138,6 +154,8 @@ export default function HeroBookingForm() {
     const payload = buildHeroBookingPayload({
       ...formData,
       phone: phone || formData.phone,
+      // Hourly has no travel select — default to the portal's first travel type.
+      travel: formData.travel || travelOptions[0]?.value || '',
     })
 
     setIsSubmitting(true)
@@ -160,22 +178,17 @@ export default function HeroBookingForm() {
   return (
     <div className="booking-card">
       <div className="form-tabs">
-        <button
-          type="button"
-          className={`form-tab${formData.bookingType === 'distance' ? ' active' : ''}`}
-          data-tab="distance"
-          onClick={() => handleBookingType('distance')}
-        >
-          Distance
-        </button>
-        <button
-          type="button"
-          className={`form-tab${formData.bookingType === 'hourly' ? ' active' : ''}`}
-          data-tab="hourly"
-          onClick={() => handleBookingType('hourly')}
-        >
-          Hourly
-        </button>
+        {bookingTypeTabs.map((tab) => (
+          <button
+            key={tab.key}
+            type="button"
+            className={`form-tab${formData.bookingType === tab.key ? ' active' : ''}`}
+            data-tab={tab.key}
+            onClick={() => handleBookingType(tab.key)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
       <form
         className={`form-grid${showFieldErrors ? ' form-grid--attempted' : ''}`}
@@ -260,6 +273,8 @@ export default function HeroBookingForm() {
             onChange={handleChange}
             required
             disabled={fleetOptions.length === 0}
+            className={isLoadingOptions ? 'field-loading' : undefined}
+            aria-busy={isLoadingOptions}
           >
             <option value="">
               {fleetOptions.length === 0 ? 'Loading fleet options…' : '—Please choose an option—'}
@@ -270,8 +285,8 @@ export default function HeroBookingForm() {
               </option>
             ))}
           </select>
-          {fleetOptionsError ? (
-            <p className="places-autocomplete-hint places-autocomplete-hint--error">{fleetOptionsError}</p>
+          {storeDataError ? (
+            <p className="places-autocomplete-hint places-autocomplete-hint--error">{storeDataError}</p>
           ) : null}
         </div>
 
@@ -324,11 +339,16 @@ export default function HeroBookingForm() {
                 value={formData.serviceType}
                 onChange={handleChange}
                 required
+                disabled={serviceOptions.length === 0}
+                className={isLoadingOptions ? 'field-loading' : undefined}
+                aria-busy={isLoadingOptions}
               >
-                <option value="">—Please choose an option—</option>
-                {SERVICE_TYPE_OPTIONS.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
+                <option value="">
+                  {serviceOptions.length === 0 ? 'Loading options…' : '—Please choose an option—'}
+                </option>
+                {serviceOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
                   </option>
                 ))}
               </select>
@@ -366,11 +386,16 @@ export default function HeroBookingForm() {
                 value={formData.serviceType}
                 onChange={handleChange}
                 required
+                disabled={serviceOptions.length === 0}
+                className={isLoadingOptions ? 'field-loading' : undefined}
+                aria-busy={isLoadingOptions}
               >
-                <option value="">—Please choose an option—</option>
-                {SERVICE_TYPE_OPTIONS.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
+                <option value="">
+                  {serviceOptions.length === 0 ? 'Loading options…' : '—Please choose an option—'}
+                </option>
+                {serviceOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
                   </option>
                 ))}
               </select>
@@ -383,10 +408,18 @@ export default function HeroBookingForm() {
                 value={formData.travel}
                 onChange={handleChange}
                 required
+                disabled={travelOptions.length === 0}
+                className={isLoadingOptions ? 'field-loading' : undefined}
+                aria-busy={isLoadingOptions}
               >
-                <option value="">—Please choose an option—</option>
-                <option value="One way">One way</option>
-                <option value="Round Trip">Round Trip</option>
+                <option value="">
+                  {travelOptions.length === 0 ? 'Loading options…' : '—Please choose an option—'}
+                </option>
+                {travelOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
               </select>
             </div>
           </>

@@ -636,6 +636,38 @@ header{
   pointer-events:none;
   user-select:none;
 }
+/* Shine effect inside fields while options load: a bright band sweeps left to right. */
+.booking-card--shell .form-group input,
+.booking-card--shell .form-group select,
+.booking-card--shell .booking-phone-shell,
+.form-group .field-loading{
+  background-color:#ececec;
+  background-image:linear-gradient(
+    100deg,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.9) 50%,
+    rgba(255,255,255,0) 80%
+  );
+  background-size:120px 100%;
+  background-repeat:no-repeat;
+  background-position:left -120px top 0;
+  animation:booking-shine 1.3s ease-in-out infinite;
+  color:transparent;
+}
+.booking-card--shell .form-group input::placeholder{
+  color:transparent;
+}
+@keyframes booking-shine{
+  to{background-position:left calc(100% + 120px) top 0}
+}
+@media (prefers-reduced-motion: reduce){
+  .booking-card--shell .form-group input,
+  .booking-card--shell .form-group select,
+  .booking-card--shell .booking-phone-shell,
+  .form-group .field-loading{
+    animation:none;
+  }
+}
 .booking-card--shell .form-tabs{
   pointer-events:auto;
 }
@@ -3319,6 +3351,8 @@ footer{
   will-change:transform;
 }
 .booking-card.tilt-active{ animation:none }
+/* Entrance already played on the shell — don't replay it when the real form mounts. */
+.booking-card-slot--activated .booking-card{ animation:none }
 .form-tab{ transition:all .3s cubic-bezier(.4,1.4,.6,1) }
 .form-tab:hover:not(.active){ background:var(--cyan); color:var(--deep) }
 .form-group input, .form-group select{ transition:border-color .25s, box-shadow .25s, transform .25s }

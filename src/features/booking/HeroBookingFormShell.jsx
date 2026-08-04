@@ -1,6 +1,7 @@
 /**
  * Inert booking layout matching HeroBookingForm (distance tab) for stable slot height
  * while the lazy phone-input chunk loads — same classes, no interaction.
+ * Fields shimmer as a skeleton until the real form activates.
  */
 export default function HeroBookingFormShell() {
   return (
@@ -73,7 +74,6 @@ export default function HeroBookingFormShell() {
         <button type="button" className="btn-submit full" tabIndex={-1}>
           Book Now !
         </button>
-        <p className="booking-shell-hint">Tap anywhere on this form to start booking</p>
       </div>
     </div>
   )

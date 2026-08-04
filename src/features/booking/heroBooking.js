@@ -112,66 +112,88 @@ function getBookingStoreDataUrl() {
 /** Fleet labels excluded from the booking form dropdown. */
 const EXCLUDED_BOOKING_FLEET_LABELS = new Set(['economy sedan'])
 
-/** Last-resort fleet list when the portal store-data request fails. */
-export const HERO_FLEET_FALLBACK_OPTIONS = [
-  { value: 'Luxury Sedan', label: 'Luxury Sedan' },
-  { value: 'Mini SUV', label: 'Mini SUV' },
-  { value: 'Full-Size SUVs', label: 'Full-Size SUVs' },
-  { value: 'Premium SUV', label: 'Premium SUV' },
-  { value: 'Sprinter Van', label: 'Sprinter Van' },
-  { value: 'Stretch Limo', label: 'Stretch Limo' },
-  { value: 'Mini Bus', label: 'Mini Bus' },
-  { value: 'Sedan', label: 'Sedan' },
-  { value: 'Mid size SUV', label: 'Mid size SUV' },
-  { value: 'Party BUS', label: 'Party BUS' },
-  { value: 'Mercedes Benz', label: 'Mercedes Benz' },
-  { value: 'Limo Sprinter', label: 'Limo Sprinter' },
-]
-
 /**
- * @param {unknown} json
- * @returns {Array<{ value: string, label: string }>}
+ * Normalize a portal option list ({ value, label, image? }) into select options.
+ * The portal submit API matches on names, so the label doubles as the option value.
+ * @param {unknown} list
+ * @returns {Array<{ value: string, label: string, id: number|string|null, image: string|null }>}
  */
-function parseFleetOptionsFromStoreData(json) {
-  const vehicles = json?.data?.vehicles ?? json?.vehicles
-  if (!Array.isArray(vehicles) || vehicles.length === 0) {
-    throw new Error('No fleet options available from the booking portal.')
-  }
-
-  return vehicles
-    .map((vehicle) => {
-      const label = String(vehicle?.label ?? vehicle?.name ?? '').trim()
+function parseStoreOptionList(list) {
+  if (!Array.isArray(list)) return []
+  return list
+    .map((item) => {
+      const label = String(item?.label ?? item?.name ?? '').trim()
       if (!label) return null
-      return { value: label, label }
+      return {
+        value: label,
+        label,
+        id: item?.value ?? null,
+        image: item?.image ?? null,
+      }
     })
     .filter(Boolean)
-    .filter(({ label }) => !EXCLUDED_BOOKING_FLEET_LABELS.has(label.toLowerCase()))
 }
 
 /**
- * Fleet labels from the portal (vehicle_id must match these names exactly).
- * @returns {Promise<Array<{ value: string, label: string }>>}
+ * @typedef {Object} HeroBookingStoreData
+ * @property {Array<{ value: string, label: string, id: number|string|null, image: string|null }>} vehicles
+ * @property {Array<{ value: string, label: string }>} services
+ * @property {Array<{ value: string, label: string }>} travelTypes
+ * @property {Array<{ value: string, label: string }>} serviceTypes
  */
-export async function fetchBookingFleetOptions() {
-  const url = getBookingStoreDataUrl()
 
-  try {
-    const res = await fetch(url, {
-      headers: { Accept: 'application/json' },
+/** @type {Promise<HeroBookingStoreData>|null} */
+let storeDataPromise = null
+
+/**
+ * Booking options (vehicles, services, travel types, tabs) from the portal store-data
+ * endpoint. Cached for the session so the prefetch and the form share one request.
+ *
+ * Note: the response also contains `google_map_api_key` — it is intentionally ignored;
+ * the Maps key must come from VITE_GOOGLE_MAPS_API_KEY in .env (see lib/loadGoogleMaps.js).
+ *
+ * @returns {Promise<HeroBookingStoreData>}
+ */
+export function fetchBookingStoreData() {
+  if (!storeDataPromise) {
+    storeDataPromise = (async () => {
+      const res = await fetch(getBookingStoreDataUrl(), {
+        headers: { Accept: 'application/json' },
+      })
+
+      if (!res.ok) {
+        throw new Error(`Could not load booking options (${res.status})`)
+      }
+
+      const json = await res.json()
+      const data = json?.data ?? json
+
+      const vehicles = parseStoreOptionList(data?.vehicles).filter(
+        ({ label }) => !EXCLUDED_BOOKING_FLEET_LABELS.has(label.toLowerCase()),
+      )
+      const services = parseStoreOptionList(data?.services)
+      const travelTypes = parseStoreOptionList(data?.travel_types)
+      const serviceTypes = parseStoreOptionList(data?.service_types)
+
+      if (!vehicles.length || !services.length || !travelTypes.length) {
+        throw new Error('Booking options are missing from the portal response.')
+      }
+
+      return { vehicles, services, travelTypes, serviceTypes }
+    })().catch((err) => {
+      // Reset so a later mount/retry can attempt the request again.
+      storeDataPromise = null
+      throw err
     })
-
-    if (!res.ok) {
-      throw new Error(`Could not load fleet options (${res.status})`)
-    }
-
-    const json = await res.json()
-    return parseFleetOptionsFromStoreData(json)
-  } catch (err) {
-    if (import.meta.env.DEV) {
-      console.warn('[Hero booking] Using fallback fleet options:', err)
-    }
-    return HERO_FLEET_FALLBACK_OPTIONS
   }
+  return storeDataPromise
+}
+
+/** Kick off the store-data request early (e.g. while the form chunk is still loading). */
+export function prefetchBookingStoreData() {
+  fetchBookingStoreData().catch(() => {
+    /* errors are surfaced when the form calls fetchBookingStoreData() */
+  })
 }
 
 /** Canonical site URL sent to the portal (must match a website registered in the portal). */
@@ -181,17 +203,8 @@ function getBookingLiveUrl(fallbackUrl) {
 }
 
 /**
- * Map form travel value to portal travel_type (matches areacarservice booking-form.js).
- * @param {string} travel
- */
-function mapTravelType(travel) {
-  const normalized = travel.trim().toLowerCase()
-  if (normalized === 'round trip') return 'Round Trip'
-  return 'One Way'
-}
-
-/**
  * Request body for the booking API (field names must match portal expectations).
+ * Travel/service/vehicle values are the portal store-data labels as-is.
  * @param {ReturnType<typeof buildHeroBookingPayload>} payload
  */
 function buildApiRequestBody(payload) {
@@ -206,7 +219,7 @@ function buildApiRequestBody(payload) {
     pickup_location: payload.pickup,
     drop_location: payload.destination,
     service: payload.serviceType,
-    travel_type: mapTravelType(payload.travel || 'One way'),
+    travel_type: payload.travel?.trim() || '',
     no_of_passengers: payload.passengers,
     no_of_luggage: payload.luggage,
     live_url: getBookingLiveUrl(payload.liveUrl),
