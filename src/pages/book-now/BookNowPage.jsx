@@ -18,7 +18,7 @@ export default function BookNowPage() {
         <div className="book-now-page__copy">
           <h1 id="book-now-title" className="book-now-page__title">
             Book Your
-            <span className="book-now-page__title-accent">Fleet</span>
+            <span className="book-now-page__title-accent">Chauffeur</span>
           </h1>
 
           <p className="book-now-page__lead">
