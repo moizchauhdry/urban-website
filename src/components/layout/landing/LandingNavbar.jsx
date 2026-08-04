@@ -1,14 +1,10 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavMenuItems from '../../nav/NavMenuItems.jsx'
 import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
 
-const DesktopNavMenuItems = lazy(() =>
-  import('../../nav/NavMenuItems.jsx').then((mod) => ({ default: mod.default })),
-)
-
 /**
  * @param {{ variant?: 'connecticut' | 'standard' }} props
- * - connecticut: hide desktop nav at ≤984px (lazy-loaded menu items)
+ * - connecticut: hide desktop nav at ≤984px
  * - standard: always show desktop nav above hamburger breakpoint
  */
 export default function LandingNavbar({ variant = 'standard' }) {
@@ -33,11 +29,7 @@ export default function LandingNavbar({ variant = 'standard' }) {
 
   return (
     <nav className="menu" aria-label="Primary">
-      {isCompact ? null : (
-        <Suspense fallback={null}>
-          <DesktopNavMenuItems variant="desktop" />
-        </Suspense>
-      )}
+      {isCompact ? null : <NavMenuItems variant="desktop" />}
     </nav>
   )
 }
