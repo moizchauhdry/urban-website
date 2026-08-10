@@ -52,12 +52,6 @@ export default function LandingFooter({ logoPath = '/' }) {
               <li>
                 <Link to={CONTACT_US}>Contact Us</Link>
               </li>
-              <li>
-                <Link to={PRIVACY_POLICY}>Privacy Policy</Link>
-              </li>
-              <li>
-                <Link to={TERMS_OF_SERVICE}>Terms of Service</Link>
-              </li>
             </ul>
           </div>
           <div className="footer-col">
@@ -92,7 +86,15 @@ export default function LandingFooter({ logoPath = '/' }) {
             </div>
           </div>
         </div>
-        <div className="footer-bottom">© 2025 Urban Elite Limo. All Rights Reserved.</div>
+        <div className="footer-bottom">
+          <span className="footer-bottom__copy">© 2026 Urban Elite Limo</span>
+          <Link to={TERMS_OF_SERVICE} className="footer-bottom__link">
+            Terms
+          </Link>
+          <Link to={PRIVACY_POLICY} className="footer-bottom__link">
+            Privacy policy
+          </Link>
+        </div>
       </div>
       <script
         dangerouslySetInnerHTML={{

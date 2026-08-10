@@ -91,13 +91,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{
   scroll-behavior:smooth;
-  overflow-x:hidden;
+  /* clip (not hidden) so position:sticky still works site-wide */
+  overflow-x:clip;
   font-family:var(--font-family);
 }
 body{
   font-family:inherit;color:var(--text);line-height:1.6;background:var(--white);
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;
 }
 button,input,select,textarea{
   font-family:inherit;
@@ -969,8 +970,11 @@ header{
 .legal-doc__sidebar{
   position:sticky;
   top:96px;
+  align-self:start;
+  z-index:2;
   max-height:calc(100vh - 112px);
   overflow:auto;
+  overscroll-behavior:contain;
   background:var(--white);
   border:1px solid var(--border);
   border-radius:12px;
@@ -3416,12 +3420,29 @@ footer{
 }
 .footer-social a:hover{background:var(--white);color:var(--deep)}
 .footer-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
   margin-top:48px;
   padding-top:28px;
   border-top:1px solid #2a2a2a;
-  text-align:center;
-  color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.02em;
+  font-size:12px;
+  letter-spacing:.02em;
 }
+.footer-bottom__copy{
+  color:rgba(255,255,255,.85);
+  font-weight:600;
+}
+.footer-bottom__link{
+  color:rgba(255,255,255,.5);
+  font-weight:400;
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer-bottom__link:hover{color:var(--white)}
+
 /* ============================================
    3D EFFECTS & ANIMATIONS
    ============================================ */
