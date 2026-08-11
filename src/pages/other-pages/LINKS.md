@@ -28,6 +28,10 @@ Base URL: `http://localhost:5173`
 - **Chicago Airport Car Service** — http://localhost:5173/chicago-airport-car-service
 - **Milwaukee Airport Limo Service** — http://localhost:5173/milwaukee-airport-limo-service
 - **BDL Airport Car Service** — http://localhost:5173/bdl-airport-car-service
+- **BOS Airport Car Service** — http://localhost:5173/bos-airport-car-service
+- **Boston Chauffeur Service** — http://localhost:5173/boston-chauffeur-service
+- **Boston Limo Service** — http://localhost:5173/boston-limo-service
+- **Connecticut to Boston Car Service** — http://localhost:5173/connecticut-to-boston-car-service
 - **JFK Airport Car Service** — http://localhost:5173/jfk-airport-car-service
 - **Manhattan Car Service** — http://localhost:5173/manhattan-car-service
 - **Atlanta Car Service** — http://localhost:5173/atlanta-car-service

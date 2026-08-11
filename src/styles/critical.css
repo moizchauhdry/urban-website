@@ -4,6 +4,7 @@ body{font-family:'Space Grotesk',system-ui,sans-serif;color:var(--text);line-hei
 #root{min-height:100vh;position:relative;z-index:1}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
+html.route-not-home #static-hero-lcp{display:none!important}
 .container{max-width:1240px;margin:0 auto;padding:0 var(--container-padding-x)}
 header{background:var(--white);box-shadow:0 1px 3px rgba(11,14,20,.06);position:sticky;top:0;z-index:100}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 12px}
@@ -62,6 +63,9 @@ header{background:var(--white);box-shadow:0 1px 3px rgba(11,14,20,.06);position:
   .booking-card-slot{min-height:0}
   .booking-card{padding:16px}
   .form-grid{grid-template-columns:1fr}
+  .hero-title--pending{min-height:2.4em;visibility:hidden}
+  .hero-desc--pending{min-height:4.8em;visibility:hidden}
+  .hero-phone--pending{min-height:48px;visibility:hidden;pointer-events:none}
 }
 @media (max-width:720px){
   :root{--container-padding-x:20px}
@@ -90,4 +94,7 @@ header{background:var(--white);box-shadow:0 1px 3px rgba(11,14,20,.06);position:
   .booking-card-slot{min-height:0}
   .booking-card{padding:16px}
   .form-grid{grid-template-columns:1fr}
+  .hero-title--pending{min-height:2.4em;visibility:hidden}
+  .hero-desc--pending{min-height:4.8em;visibility:hidden}
+  .hero-phone--pending{min-height:48px;visibility:hidden;pointer-events:none}
 }

@@ -68,11 +68,13 @@ function injectHeroLcp() {
       const { smHref, lgHref } = hero
       const srcset = `${smHref} 800w, ${lgHref} 1440w`
       const sizes = '(max-width: 720px) 100vw, (max-width: 1024px) 800px, 1440px'
-      const preload = `<link rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
+      const preload = `<link id="home-lcp-preload" rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
+      const dropHomeLcp = `<script>if(document.documentElement.classList.contains('route-not-home')){document.getElementById('home-lcp-preload')?.remove()}</script>`
       const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="sync" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+      const dropHomeImg = `<script>if(document.documentElement.classList.contains('route-not-home')){document.getElementById('static-hero-lcp')?.remove()}</script>`
       out = out
-        .replace('<meta name="viewport"', `${preload}\n    <meta name="viewport"`)
-        .replace('<div id="root"></div>', `${staticHero}\n    <div id="root"></div>`)
+        .replace('<meta name="viewport"', `${preload}\n    ${dropHomeLcp}\n    <meta name="viewport"`)
+        .replace('<div id="root"></div>', `${staticHero}\n    ${dropHomeImg}\n    <div id="root"></div>`)
     }
 
     return out

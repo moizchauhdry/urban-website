@@ -135,6 +135,30 @@ const CUSTOM_SERVICE_PAGE_METADATA = [
     description:
       'Book Danbury CT Car Service for airport transfers, private rides, and professional transportation. Serving Danbury, JFK trips, Manhattan, and luxury limo service in Connecticut.',
   },
+  {
+    path: '/boston-chauffeur-service',
+    title: 'Boston Chauffeur Service | Professional Black Car & Logan Transfers',
+    description:
+      'Book Boston chauffeur service for Logan Airport transfers, hourly bookings, and corporate travel. Licensed chauffeurs, luxury vehicles, flight tracking, and 24/7 reliable black-car transportation across Greater Boston.',
+  },
+  {
+    path: '/boston-limo-service',
+    title: 'Boston Limo Service | Luxury Limousine & Airport Transfers',
+    description:
+      'Reserve Boston limo service for Logan Airport, corporate events, and special occasions. Enjoy polished limousine transportation with professional chauffeurs, upfront pricing, and stress-free luxury travel in Boston.',
+  },
+  {
+    path: '/connecticut-to-boston-car-service',
+    title: 'Connecticut to Boston Car Service | Private CT to Boston Transfers',
+    description:
+      'Book Connecticut to Boston car service for private door-to-door transfers from Hartford, Stamford, Greenwich, and across CT to Boston, Cambridge, and Logan Airport. Comfortable long-distance chauffeur travel with punctual pickups.',
+  },
+  {
+    path: '/bos-airport-car-service',
+    title: 'BOS Airport Car Service | Boston Logan Airport Limo & Transfers',
+    description:
+      'Travel to and from Boston Logan International Airport with BOS airport car service. Professional chauffeurs, flight tracking, luxury vehicles, and reliable 24/7 airport limo transfers across Boston and nearby cities.',
+  },
 ]
 
 for (const page of CUSTOM_SERVICE_PAGE_METADATA) {

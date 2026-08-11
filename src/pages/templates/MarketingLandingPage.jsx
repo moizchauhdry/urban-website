@@ -21,7 +21,8 @@ export default function MarketingLandingPage({
   return (
     <>
       <LandingHero pageKey={heroKey} />
-      <ViewportLazy minHeight={800}>
+      {/* Tight rootMargin + delayed observe keeps gsap/fleet off the LCP path */}
+      <ViewportLazy minHeight={800} rootMargin="0px 0px" deferMs={2500}>
         <Suspense fallback={null}>
           <MarketingBelowFold
             routeCardsKey={routeCardsKey}

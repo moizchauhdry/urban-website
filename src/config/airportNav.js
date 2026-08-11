@@ -18,15 +18,7 @@ export const AIRPORT_NAV_ITEMS = [
     path: '/bdl-airport-car-service',
   },
   {
-    label: 'Miami International Airport (MIA) Car Service',
-    path: '/miami-airport-car-service',
-  },
-  {
-    label: "O'Hare International Airport (ORD) Car Service",
-    path: '/chicago-airport-car-service',
-  },
-  {
-    label: 'Milwaukee Mitchell International Airport (MKE) Limo Service',
-    path: '/milwaukee-airport-limo-service',
+    label: 'Boston Logan International Airport (BOS) Car Service',
+    path: '/bos-airport-car-service',
   },
 ]
