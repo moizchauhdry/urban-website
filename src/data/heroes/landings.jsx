@@ -22,7 +22,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a Connecticut car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to JFK , LGA or NYC without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -43,7 +43,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a Florida car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to MIA, FLL or Orlando without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -62,7 +62,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a New York car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to JFK, LaGuardia or Newark without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -81,7 +81,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a Florida car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to MIA, FLL or Orlando without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -100,7 +100,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a Florida car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to MIA, FLL or Orlando without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -119,7 +119,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with a Florida car service designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport to MIA, FLL or Orlando without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned.
       </>
@@ -154,7 +154,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Atlanta Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Atlanta"}.
       </>
@@ -191,7 +191,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Boston Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Boston"}.
       </>
@@ -210,7 +210,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Chicago Airport Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Chicago Airport"}.
       </>
@@ -229,7 +229,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Connecticut Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Connecticut"}.
       </>
@@ -303,7 +303,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Florida Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Florida"}.
       </>
@@ -360,7 +360,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Illinois Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Illinois"}.
       </>
@@ -416,7 +416,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Luxury New Jersey Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Luxury New Jersey"}.
       </>
@@ -435,7 +435,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Manhattan Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Manhattan"}.
       </>
@@ -454,7 +454,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami Airport Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami Airport"}.
       </>
@@ -473,7 +473,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami Airport Limo Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami Airport"}.
       </>
@@ -492,7 +492,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami"}.
       </>
@@ -511,7 +511,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami Chauffeur Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami"}.
       </>
@@ -530,7 +530,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami to Fort Lauderdale car service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami to Fort Lauderdale"}.
       </>
@@ -549,7 +549,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami to Naples Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami to Naples"}.
       </>
@@ -568,7 +568,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Miami to Orlando Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Miami to Orlando"}.
       </>
@@ -587,7 +587,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee Airport Limo Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee Airport"}.
       </>
@@ -606,7 +606,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee"}.
       </>
@@ -625,7 +625,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee Chauffeur Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee"}.
       </>
@@ -644,7 +644,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee Limo Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee"}.
       </>
@@ -663,7 +663,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee to Chicago Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee to Chicago"}.
       </>
@@ -682,7 +682,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Milwaukee to O'Hare Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Milwaukee to O'Hare"}.
       </>
@@ -720,7 +720,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"New York Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"New York"}.
       </>
@@ -757,7 +757,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Norwalk CT Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Norwalk CT"}.
       </>
@@ -776,7 +776,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"NYC Limo Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"NYC"}.
       </>
@@ -814,7 +814,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Texas Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Texas"}.
       </>
@@ -833,7 +833,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"West palm beach to Miami Limo Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"West palm beach to Miami"}.
       </>
@@ -852,7 +852,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Westchester County Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Westchester County"}.
       </>
@@ -871,7 +871,7 @@ export const HERO_PAGES = {
     descriptionInner: (
       <>
         Travel in comfort with {"Wisconsin Car Service"} designed for people who want a smooth and stress free
-                    experience. From local trips to airport rides our drivers make every journey easy. Enjoy calm pickups,
+                    experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Wisconsin"}.
       </>

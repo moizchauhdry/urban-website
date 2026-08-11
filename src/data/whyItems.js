@@ -15,7 +15,7 @@ export const WHY_ITEMS = [
     icon: 'car',
     title: 'Latest Fleet Models',
     description:
-      'Complete protection with comprehensive insurance coverage for all our vehicles.',
+      'Complete protection with comprehensive insurance coverage for all vehicles.',
   },
   {
     id: 'availability',

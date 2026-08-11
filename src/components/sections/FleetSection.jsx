@@ -8,7 +8,7 @@ const DEFAULT_SUBTITLE =
  * @param {{ tag?: string, title?: import('react').ReactNode, subtitle?: string }} props
  */
 export default function FleetSection({
-  tag = 'Our Fleet',
+  tag = 'Fleet',
   title = (
     <>
       Find Your Perfect

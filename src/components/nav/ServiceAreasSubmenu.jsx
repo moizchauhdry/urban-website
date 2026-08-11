@@ -1,7 +1,5 @@
 import Icon from '../common/Icon.jsx'
 import { ConnecticutDesktopSubmenu, ConnecticutMobileSubmenu } from './ConnecticutServiceAreasMenu.jsx'
-import { FloridaDesktopSubmenu, FloridaMobileSubmenu } from './FloridaServiceAreasMenu.jsx'
-import { IllinoisDesktopSubmenu, IllinoisMobileSubmenu } from './IllinoisServiceAreasMenu.jsx'
 import { NewYorkDesktopSubmenu, NewYorkMobileSubmenu } from './NewYorkServiceAreasMenu.jsx'
 
 /** Desktop Service Areas submenu links (shared across all regions). */
@@ -10,8 +8,6 @@ export function ServiceAreasDesktopSubmenu() {
     <div className="submenu">
       <ConnecticutDesktopSubmenu />
       <NewYorkDesktopSubmenu />
-      <FloridaDesktopSubmenu />
-      <IllinoisDesktopSubmenu />
     </div>
   )
 }
@@ -29,8 +25,6 @@ export function ServiceAreasMobileSubmenu({ onNavigate }) {
       <div className="mobile-menu__sub">
         <ConnecticutMobileSubmenu onNavigate={close} />
         <NewYorkMobileSubmenu onNavigate={close} />
-        <FloridaMobileSubmenu onNavigate={close} />
-        <IllinoisMobileSubmenu onNavigate={close} />
       </div>
     </details>
   )
