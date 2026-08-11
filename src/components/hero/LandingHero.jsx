@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getHomeHero, loadLandingHero, LANDING_BACKGROUND } from '../../data/heroes/index.js'
+import { getHomeHero, loadLandingHero, getLandingBackground } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
 import trustPilotLogo from '../../assets/reviews/trust-pilot.svg'
@@ -329,7 +329,7 @@ export default function LandingHero({ pageKey }) {
       aria-busy={isPendingLanding ? true : undefined}
     >
       <HeroBackground
-        background={config?.background ?? LANDING_BACKGROUND}
+        background={config?.background ?? getLandingBackground(pageKey)}
         onReady={config ? onHeroBgReady : undefined}
         deferMount={isHome && !showBg}
       />

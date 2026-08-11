@@ -434,6 +434,7 @@ export default function HeroBookingForm() {
             value={formData.passengers}
             onChange={handleChange}
             min="1"
+            placeholder="e.g. 2"
             required
           />
         </div>
@@ -446,6 +447,7 @@ export default function HeroBookingForm() {
             value={formData.luggage}
             onChange={handleChange}
             min="0"
+            placeholder="e.g. 1"
             required
           />
         </div>

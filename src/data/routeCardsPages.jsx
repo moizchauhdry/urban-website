@@ -2,8 +2,28 @@ import { buildLuxuryRouteCards } from '../utils/buildLuxuryRouteCards.js'
 import img1 from '../assets/content-blocks/car-service1.webp'
 import img2 from '../assets/content-blocks/car-service2.webp'
 import img3 from '../assets/content-blocks/car-service3.webp'
+import miami1 from '../assets/content-blocks/miami-1.webp'
+import miami2 from '../assets/content-blocks/miami-2.webp'
+import miami3 from '../assets/content-blocks/miami-3.webp'
 
 const IMAGES = [img1, img2, img3]
+
+const MIAMI_IMAGES = [miami1, miami2, miami3]
+
+/** Miami-area pages — keep in sync with the hero art list in landingBackground.js. */
+const MIAMI_PAGES = [
+  'miami-car-service',
+  'miami-chauffeur-service',
+  'miami-airport-car-service',
+  'miami-airport-limo-service',
+  'miami-to-orlando-car-service',
+  'miami-to-naples-car-service',
+  'miami-to-fort-lauderdale-car-service',
+  'west-palm-beach-to-miami-limo-service',
+]
+
+/** Pages that use their own city photography instead of the shared set. */
+const PAGE_IMAGES = Object.fromEntries(MIAMI_PAGES.map((key) => [key, MIAMI_IMAGES]))
 
 /** Slugs whose rail label is not a straight hyphen-to-space uppercase conversion. */
 const RAIL_LABEL_OVERRIDES = {
@@ -122,6 +142,122 @@ const CUSTOM_ROUTE_CARDS = {
         'Whether you are at home, a hotel, office, or meeting point, our BDL airport car service ensures your pickup is coordinated exactly as scheduled. The chauffeur arrives at the designated spot with full trip details already confirmed.',
       description2:
         'This approach keeps every Bradley airport car service organized and reduces the need for back-and-forth communication during travel.',
+    },
+  ],
+  'bos-airport-car-service': [
+    {
+      id: 'everyday',
+      railLabel: 'BOSTON AIRPORT CAR SERVICE',
+      title: 'Premium BOS Airport Limo Service',
+      description:
+        'Our BOS airport limo service delivers a premium travel experience with professional chauffeurs and luxury vehicles that uplifts your travel experience. From real-time flight tracking to punctual pickups and drop-offs, every detail is carefully managed to ensure a smooth and stress-free journey.',
+      description2:
+        "Whether it's a standard BOS car service or an executive limousine experience, every journey is delivered with unmatched comfort, reliability, and professionalism.",
+    },
+    {
+      id: 'airport',
+      railLabel: 'BOS AIRPORT CAR SERVICE',
+      title: 'BOS Car Service Across Boston & Nearby Areas',
+      description:
+        'We provide fast and reliable BOS car service across major locations including Boston, Cambridge, Brookline, and nearby Massachusetts cities. Our BOS car service offers premium airport transfers from Boston Logan International Airport to any city or state in the USA. Wherever your destination is, we deliver consistent luxury, comfort, and reliability.',
+      description2:
+        'From short-distance rides to long interstate journeys, every trip is carefully planned to ensure a seamless travel experience.',
+    },
+    {
+      id: 'long-distance',
+      railLabel: 'BOS AIRPORT CAR SERVICE',
+      title: 'Why Choose Our Logan Airport Car Service',
+      description:
+        'Choosing our Logan Airport car service means choosing professionalism, safety, and luxury combined. From luxury sedans and SUVs to spacious executive vehicles, our fleet is designed to meet every travel need with comfort, safety, and style. Each vehicle is well-maintained, clean, and equipped to ensure a smooth BOS airport transportation experience for both individuals and groups.',
+      description2:
+        'Our dedicated support team is available 24/7 to assist with bookings, schedule changes, and real-time travel updates. From the moment you reserve your ride until you reach your destination, we ensure a responsive and reliable service experience at every step.',
+    },
+  ],
+  'boston-chauffeur-service': [
+    {
+      id: 'everyday',
+      railLabel: 'BOSTON CHAUFFEUR SERVICE',
+      title: 'Your Professional Boston Chauffeur Alternative to Taxis',
+      description:
+        'Boston is a city of meetings, campuses, and historic neighborhoods — and a professional chauffeur keeps every stop on schedule. Urban Elite Boston chauffeur service gives you a dedicated driver, a late-model luxury vehicle, and the freedom to work or relax while we handle parking, traffic, and timing.',
+      description2:
+        'Choose Business Class for back-to-back meetings, an SUV for groups and luggage, or First Class when the occasion calls for a polished arrival at the Boston Symphony, a Back Bay dinner, or a corporate event.',
+    },
+    {
+      id: 'airport',
+      railLabel: 'BOSTON CHAUFFEUR SERVICE',
+      title: 'Logan Airport & City Chauffeur Transfers',
+      description:
+        'Count on a reliable Boston chauffeur every time you fly. We track your Logan flight in real time, adjust for delays, and meet you with a coordinated greet so you never wait at the curb. Complimentary wait time is built into every airport pickup — punctual, professional, and ready when you are.',
+      description2:
+        'We cover transfers across Boston, Cambridge, Brookline, Seaport, and nearby Massachusetts destinations, plus private rides toward Cape Cod, Connecticut, and New York when your itinerary extends beyond the city.',
+    },
+    {
+      id: 'hourly',
+      railLabel: 'BOSTON CHAUFFEUR SERVICE',
+      title: 'Hourly Chauffeur Service Across Greater Boston',
+      description:
+        'Reserve a chauffeur by the hour when you need a car on standby. Shop Newbury Street, tour Harvard and MIT, attend meetings in the Financial District, or catch a game at Fenway — your driver waits while you do, then takes you to the next stop without rideshare uncertainty.',
+      description2:
+        'Transparent pricing, licensed chauffeurs, and 24/7 booking support make Urban Elite a dependable Boston chauffeur partner for business travelers, families, and visitors who want a calm, premium ride every time.',
+    },
+  ],
+  'boston-limo-service': [
+    {
+      id: 'everyday',
+      railLabel: 'BOSTON LIMO SERVICE',
+      title: 'Refined Boston Limo Service for Every Occasion',
+      description:
+        'A Boston limo service should feel intentional — clean presentation, a professional chauffeur, and a cabin built for comfort. Urban Elite delivers black-car and limousine transportation for airport runs, hotel transfers, corporate travel, weddings, and nights at the ballet or Symphony Hall.',
+      description2:
+        'Whether you need a sedan for two or an SUV for your group, every vehicle is detailed, late-model, and ready to make your arrival feel effortless.',
+    },
+    {
+      id: 'airport',
+      railLabel: 'BOSTON LIMO SERVICE',
+      title: 'Logan Airport Limousine Transfers',
+      description:
+        'Avoid the taxi line at Boston Logan with a pre-booked limousine transfer. Your chauffeur tracks your flight, manages luggage, and provides a private ride into downtown Boston, Cambridge, or your hotel — with clear, upfront rates and no surge pricing.',
+      description2:
+        'From early departures to late arrivals, our Boston limo service keeps airport travel punctual, private, and stress-free for executives, families, and leisure travelers alike.',
+    },
+    {
+      id: 'events',
+      railLabel: 'BOSTON LIMO SERVICE',
+      title: 'Executive & Event Limo Service in Boston',
+      description:
+        'Customize your Boston limousine experience for the moment: First Class for a Michelin-star dinner, SUV class for teams heading to a conference, or hourly service for multi-stop evenings across Back Bay, Seaport, and the North End.',
+      description2:
+        'Fifteen minutes of complimentary wait time on standard bookings, professional chauffeurs who know the city, and 24/7 support mean your Boston limo service stays reliable from the first confirmation to the final drop-off.',
+    },
+  ],
+  'connecticut-to-boston-car-service': [
+    {
+      id: 'transfers',
+      railLabel: 'CONNECTICUT TO BOSTON CAR SERVICE',
+      title: 'Private Connecticut to Boston Transfers',
+      description:
+        'Long-distance travel between Connecticut and Boston should feel calm, not exhausting. Our Connecticut to Boston car service provides door-to-door private transfers with professional chauffeurs, spacious luxury vehicles, and carefully planned routing so you arrive ready — not drained from highway traffic.',
+      description2:
+        'Ideal for business trips, campus visits, medical appointments, and weekend getaways when you want a direct ride without train connections or parking hassles.',
+    },
+    {
+      id: 'coverage',
+      railLabel: 'CONNECTICUT TO BOSTON CAR SERVICE',
+      title: 'Serving Hartford, Stamford, Greenwich & All of CT',
+      description:
+        'We pick up across Connecticut — including Hartford, Stamford, Greenwich, New Haven, Fairfield, Norwalk, and Danbury — and take you to downtown Boston, Cambridge, Brookline, Logan Airport, or your hotel. Return trips from Boston to Connecticut are available on the same professional standard.',
+      description2:
+        'Every ride includes a clean cabin, luggage assistance, and a chauffeur focused on punctuality so your Connecticut to Boston transfer stays on schedule from start to finish.',
+    },
+    {
+      id: 'comfort',
+      railLabel: 'CONNECTICUT TO BOSTON CAR SERVICE',
+      title: 'Comfortable Intercity Travel You Can Plan Ahead',
+      description:
+        'Book your Connecticut to Boston car service in advance and lock in a clear pickup time. Whether you need an early start to Logan, a midday meeting in the Financial District, or an evening arrival for a show, we coordinate the trip details so you can focus on what matters.',
+      description2:
+        'With 24/7 support, luxury sedans and SUVs, and reliable long-distance chauffeurs, Urban Elite is a trusted choice for Connecticut travelers who expect a premium ride into Boston.',
     },
   ],
   'ct-to-jfk-airport-car-service': [
@@ -403,7 +539,7 @@ function buildLuxuryPages() {
       const variant = typeof entry === 'object' ? entry.variant : undefined
       const railLabel =
         (typeof entry === 'object' && entry.railLabel) || railLabelFor(key)
-      return [key, buildLuxuryRouteCards({ railLabel, images: IMAGES, variant })]
+      return [key, buildLuxuryRouteCards({ railLabel, images: PAGE_IMAGES[key] ?? IMAGES, variant })]
     }),
   )
 }

@@ -5,7 +5,7 @@ const STEPS = [
   {
     icon: 'car',
     title: 'Choose Your Car',
-    description: 'Browse premium fleet and select the perfect vehicle for your needs.',
+    description: 'Browse premium fleet cars and select the perfect vehicle for your needs.',
   },
   {
     icon: 'calendar-check',

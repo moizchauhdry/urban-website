@@ -1,9 +1,10 @@
 import heroFifa from '../../assets/hero/pages/fifa-800.webp'
 import heroFifaLg from '../../assets/hero/pages/fifa-1440.webp'
-import { LANDING_BACKGROUND } from './landingBackground.js'
+import { LANDING_BACKGROUND, MIAMI_BACKGROUND } from './landingBackground.js'
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
 
 const LANDING_BG = LANDING_BACKGROUND
+const MIAMI_BG = MIAMI_BACKGROUND
 
 /** Landing + FIFA heroes — dynamically imported off the home critical path. */
 export const HERO_PAGES = {
@@ -194,6 +195,85 @@ export const HERO_PAGES = {
                     experience. From local trips to airport rides drivers make every journey easy. Enjoy calm pickups,
                     friendly service and dependable transport without rushing or worrying about traffic.
                     Your ride stays simple, safe and well planned throughout {"Boston"}.
+      </>
+    ),
+  },
+  'bos-airport-car-service': {
+    variant: 'landing',
+    sectionClass: 'hero',
+    background: LANDING_BG,
+    titleInner: (
+      <>
+        <span className="hero-title-line hero-title-line--highlight">{"Boston Airport"}</span>{' '}
+                    <span className="hero-title-line">{"Car Service You Can Trust"}</span>
+      </>
+    ),
+    descriptionInner: (
+      <>
+        Travel to and from Boston Logan International Airport with complete comfort, punctuality, and luxury. Our BOS
+                    airport limo service is designed for travelers who value reliability, clean vehicles, and professional
+                    chauffeurs available 24/7. Whether you are flying for business or leisure, we ensure a smooth,
+                    stress-free airport transfer experience every time.{' '}
+                    <strong>Book your BOS limousine service today and travel without delays or uncertainty.</strong>
+      </>
+    ),
+  },
+  'boston-chauffeur-service': {
+    variant: 'landing',
+    sectionClass: 'hero',
+    background: LANDING_BG,
+    titleInner: (
+      <>
+        <span className="hero-title-line hero-title-line--highlight">Boston</span>{' '}
+        <span className="hero-title-line">Chauffeur Service</span>
+      </>
+    ),
+    descriptionInner: (
+      <>
+        A professional Boston chauffeur service for travelers who want more than a taxi. Urban Elite pairs licensed
+        local chauffeurs with late-model luxury vehicles for airport transfers, corporate meetings, hourly bookings,
+        and evenings out across Boston, Cambridge, and Greater Boston. Your driver tracks your plans, arrives on time,
+        and keeps the ride calm from door to door.{' '}
+        <strong>Reserve your Boston chauffeur today and move through the city without the stress.</strong>
+      </>
+    ),
+  },
+  'boston-limo-service': {
+    variant: 'landing',
+    sectionClass: 'hero',
+    background: LANDING_BG,
+    titleInner: (
+      <>
+        <span className="hero-title-line hero-title-line--highlight">Boston</span>{' '}
+        <span className="hero-title-line">Limo Service</span>
+      </>
+    ),
+    descriptionInner: (
+      <>
+        Elevate every arrival with a refined Boston limo service built for comfort, privacy, and presentation. From
+        Logan Airport transfers and Back Bay hotel pickups to Fenway nights, corporate events, and special occasions,
+        our chauffeurs deliver a polished black-car experience with upfront pricing and no surge fees.{' '}
+        <strong>Book your Boston limousine service and travel in style with total peace of mind.</strong>
+      </>
+    ),
+  },
+  'connecticut-to-boston-car-service': {
+    variant: 'landing',
+    sectionClass: 'hero',
+    background: LANDING_BG,
+    titleInner: (
+      <>
+        <span className="hero-title-line hero-title-line--highlight">Connecticut to Boston</span>{' '}
+        <span className="hero-title-line">Car Service</span>
+      </>
+    ),
+    descriptionInner: (
+      <>
+        Skip the drive and arrive rested with private Connecticut to Boston car service. Urban Elite provides
+        door-to-door transfers from Hartford, Stamford, Greenwich, New Haven, and across Connecticut to downtown
+        Boston, Cambridge, Logan Airport, and beyond. Enjoy a clean luxury vehicle, a professional chauffeur, and a
+        smooth intercity ride with clear timing from pickup to drop-off.{' '}
+        <strong>Book your Connecticut to Boston transfer and travel without the highway stress.</strong>
       </>
     ),
   },
@@ -444,7 +524,7 @@ export const HERO_PAGES = {
   'miami-airport-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -463,7 +543,7 @@ export const HERO_PAGES = {
   'miami-airport-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami Airport"}</span>{' '}
@@ -482,7 +562,7 @@ export const HERO_PAGES = {
   'miami-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -501,7 +581,7 @@ export const HERO_PAGES = {
   'miami-chauffeur-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami"}</span>{' '}
@@ -520,7 +600,7 @@ export const HERO_PAGES = {
   'miami-to-fort-lauderdale-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Fort Lauderdale"}</span>{' '}
@@ -539,7 +619,7 @@ export const HERO_PAGES = {
   'miami-to-naples-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Naples"}</span>{' '}
@@ -558,7 +638,7 @@ export const HERO_PAGES = {
   'miami-to-orlando-car-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"Miami to Orlando"}</span>{' '}
@@ -823,7 +903,7 @@ export const HERO_PAGES = {
   'west-palm-beach-to-miami-limo-service': {
     variant: 'landing',
     sectionClass: 'hero',
-    background: LANDING_BG,
+    background: MIAMI_BG,
     titleInner: (
       <>
         <span className="hero-title-line hero-title-line--highlight">{"West palm beach to Miami"}</span>{' '}

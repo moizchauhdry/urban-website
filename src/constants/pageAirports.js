@@ -39,6 +39,10 @@ export const AIRPORT_REGIONS = {
     central: ['ATL', 'MIA', 'FLL', 'MCO'],
     extras: [],
   },
+  boston: {
+    central: ['BOS', 'JFK', 'LGA', 'BDL'],
+    extras: [],
+  },
   texas: {
     central: ['DFW', 'AUS', 'DAL'],
     extras: ['IAH'],
@@ -140,6 +144,30 @@ export const PAGE_AIRPORT_CONFIG = {
     region: 'connecticut',
     legacyOrder: ['BDL', 'JFK', 'LGA', 'EWR'],
     slugPrefix: 'op-bdl-airport-car-service',
+    variant: 'short',
+  },
+  'other-pages/bos-airport-car-service': {
+    region: 'boston',
+    legacyOrder: ['BOS', 'JFK', 'LGA', 'BDL'],
+    slugPrefix: 'op-bos-airport-car-service',
+    variant: 'short',
+  },
+  'other-pages/boston-chauffeur-service': {
+    region: 'boston',
+    legacyOrder: ['BOS', 'JFK', 'LGA', 'BDL'],
+    slugPrefix: 'op-boston-chauffeur-service',
+    variant: 'short',
+  },
+  'other-pages/boston-limo-service': {
+    region: 'boston',
+    legacyOrder: ['BOS', 'JFK', 'LGA', 'BDL'],
+    slugPrefix: 'op-boston-limo-service',
+    variant: 'short',
+  },
+  'other-pages/connecticut-to-boston-car-service': {
+    region: 'boston',
+    legacyOrder: ['BOS', 'BDL', 'JFK', 'LGA'],
+    slugPrefix: 'op-connecticut-to-boston-car-service',
     variant: 'short',
   },
   'other-pages/ct-to-jfk-airport-car-service': {

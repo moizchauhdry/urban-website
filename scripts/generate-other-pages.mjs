@@ -38,6 +38,10 @@ const PAGE_TITLES = [
   'Chicago Airport Car Service',
   'Milwaukee Airport Limo Service',
   'BDL Airport Car Service',
+  'BOS Airport Car Service',
+  'Boston Chauffeur Service',
+  'Boston Limo Service',
+  'Connecticut to Boston Car Service',
   'JFK Airport Car Service',
   // State landing pages
   'Manhattan Car Service',
@@ -111,7 +115,10 @@ function getAirports(title) {
     return ['DFW', 'IAH', 'AUS', 'DAL'].map(airportEntry)
   }
   if (t.startsWith('manhattan') || t.startsWith('new york') || t.startsWith('boston') || t.startsWith('nyc') || t.includes('westchester')) {
-    return ['JFK', 'LGA', 'EWR', 'BDL'].map(airportEntry)
+    return ['BOS', 'JFK', 'LGA', 'BDL'].map(airportEntry)
+  }
+  if (t.includes('connecticut to boston') || t.includes('ct to boston')) {
+    return ['BOS', 'BDL', 'JFK', 'LGA'].map(airportEntry)
   }
   if (t.includes('newark')) {
     return ['EWR', 'JFK', 'LGA', 'BDL'].map(airportEntry)
@@ -134,6 +141,9 @@ function getAirports(title) {
   }
   if (t.includes('bdl')) {
     return ['BDL', 'JFK', 'LGA', 'EWR'].map(airportEntry)
+  }
+  if (t.includes('bos airport') || t.startsWith('bos ') || t.includes('boston chauffeur') || t.includes('boston limo')) {
+    return ['BOS', 'JFK', 'LGA', 'BDL'].map(airportEntry)
   }
   return ['JFK', 'LGA', 'BDL', 'EWR'].map(airportEntry)
 }
@@ -437,8 +447,6 @@ export default function AirportsSection() {
 }
 
 
-`
-}
 
 async function generatePage(title) {
   const slug = slugify(title)

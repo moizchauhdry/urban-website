@@ -13,7 +13,7 @@ export function getHeroPage(pageKey) {
   )
 }
 
-export { LANDING_BACKGROUND } from './landingBackground.js'
+export { LANDING_BACKGROUND, getLandingBackground } from './landingBackground.js'
 
 /** @param {string} pageKey */
 export async function loadLandingHero(pageKey) {

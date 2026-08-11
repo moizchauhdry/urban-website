@@ -1,4 +1,5 @@
 import Icon from '../common/Icon.jsx'
+import { BostonDesktopSubmenu, BostonMobileSubmenu } from './BostonServiceAreasMenu.jsx'
 import { ConnecticutDesktopSubmenu, ConnecticutMobileSubmenu } from './ConnecticutServiceAreasMenu.jsx'
 import { NewYorkDesktopSubmenu, NewYorkMobileSubmenu } from './NewYorkServiceAreasMenu.jsx'
 
@@ -8,6 +9,7 @@ export function ServiceAreasDesktopSubmenu() {
     <div className="submenu">
       <ConnecticutDesktopSubmenu />
       <NewYorkDesktopSubmenu />
+      <BostonDesktopSubmenu />
     </div>
   )
 }
@@ -25,6 +27,7 @@ export function ServiceAreasMobileSubmenu({ onNavigate }) {
       <div className="mobile-menu__sub">
         <ConnecticutMobileSubmenu onNavigate={close} />
         <NewYorkMobileSubmenu onNavigate={close} />
+        <BostonMobileSubmenu onNavigate={close} />
       </div>
     </details>
   )

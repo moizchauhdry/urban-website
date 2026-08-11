@@ -131,6 +131,26 @@ export const OTHER_PAGES = [
     "pageHome": "/bdl-airport-car-service"
   },
   {
+    "slug": "bos-airport-car-service",
+    "title": "BOS Airport Car Service",
+    "pageHome": "/bos-airport-car-service"
+  },
+  {
+    "slug": "boston-chauffeur-service",
+    "title": "Boston Chauffeur Service",
+    "pageHome": "/boston-chauffeur-service"
+  },
+  {
+    "slug": "boston-limo-service",
+    "title": "Boston Limo Service",
+    "pageHome": "/boston-limo-service"
+  },
+  {
+    "slug": "connecticut-to-boston-car-service",
+    "title": "Connecticut to Boston Car Service",
+    "pageHome": "/connecticut-to-boston-car-service"
+  },
+  {
     "slug": "jfk-airport-car-service",
     "title": "JFK Airport Car Service",
     "pageHome": "/jfk-airport-car-service"

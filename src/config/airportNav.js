@@ -17,4 +17,8 @@ export const AIRPORT_NAV_ITEMS = [
     label: 'Bradley International Airport (BDL) Car Service',
     path: '/bdl-airport-car-service',
   },
+  {
+    label: 'Boston Logan International Airport (BOS) Car Service',
+    path: '/bos-airport-car-service',
+  },
 ]
