@@ -11,25 +11,21 @@ const BookNowPageInner = lazy(() => import('../pages/book-now/BookNowPage.jsx'))
 const PrivacyPolicyPageInner = lazy(() => import('../pages/privacy-policy/PrivacyPolicyPage.jsx'))
 const TermsOfServicePageInner = lazy(() => import('../pages/terms-of-service/TermsOfServicePage.jsx'))
 const ThankYouPageInner = lazy(() => import('../pages/thank-you/ThankYouPage.jsx'))
-const HubLandingPage = lazy(() => import('../pages/templates/HubLandingPage.jsx'))
-const OtherPageLayout = lazy(() => import('../pages/other-pages/PageLayout.jsx'))
+const MarketingLandingShell = lazy(() => import('../pages/templates/MarketingLandingShell.jsx'))
 const FifaHome = lazy(() => import('../pages/fifa/Home.jsx'))
 
 function SuspenseRoute({ children }) {
   return <Suspense fallback={null}>{children}</Suspense>
 }
 
-function HubRoute({ hub }) {
-  return (
-    <SuspenseRoute>
-      <HubLandingPage hub={hub} />
-    </SuspenseRoute>
-  )
-}
-
 function OtherPageLegacyRedirect() {
   const { slug } = useParams()
   return <Navigate to={slug ? `/${slug}` : '/'} replace />
+}
+
+/** Empty child — parent MarketingLandingShell reads pathname and swaps data. */
+function LandingProbe() {
+  return null
 }
 
 export default function AppRoutes() {
@@ -47,22 +43,34 @@ export default function AppRoutes() {
         <Route path="/terms-of-service" element={<SuspenseRoute><TermsOfServicePageInner /></SuspenseRoute>} />
         <Route path="/thank-you" element={<SuspenseRoute><ThankYouPageInner /></SuspenseRoute>} />
 
-        <Route path="/connecticut-car-service" element={<HubRoute hub="connecticut" />} />
-        <Route path="/florida-car-service" element={<HubRoute hub="florida" />} />
-        <Route path="/new-york-car-service" element={<HubRoute hub="newyork" />} />
-        <Route path="/illinois-car-service" element={<HubRoute hub="illinois" />} />
-        <Route
-          path="/illinois-car-service/chicago-chauffeur-service"
-          element={<HubRoute hub="chicago-chauffeur" />}
-        />
-        <Route
-          path="/illinois-car-service/chicago-limo-service"
-          element={<HubRoute hub="chicago-limo" />}
-        />
-
         <Route path="/fifa" element={<SuspenseRoute><FifaHome /></SuspenseRoute>} />
         <Route path="/other-pages/:slug" element={<OtherPageLegacyRedirect />} />
-        <Route path="/:slug" element={<SuspenseRoute><OtherPageLayout /></SuspenseRoute>} />
+
+        {/*
+          One layout element for all marketing landings. Navigating between these
+          paths keeps MarketingLandingShell mounted and only probes new page data.
+        */}
+        <Route
+          element={
+            <SuspenseRoute>
+              <MarketingLandingShell />
+            </SuspenseRoute>
+          }
+        >
+          <Route path="connecticut-car-service" element={<LandingProbe />} />
+          <Route path="florida-car-service" element={<LandingProbe />} />
+          <Route path="new-york-car-service" element={<LandingProbe />} />
+          <Route path="illinois-car-service" element={<LandingProbe />} />
+          <Route
+            path="illinois-car-service/chicago-chauffeur-service"
+            element={<LandingProbe />}
+          />
+          <Route
+            path="illinois-car-service/chicago-limo-service"
+            element={<LandingProbe />}
+          />
+          <Route path=":slug" element={<LandingProbe />} />
+        </Route>
       </Route>
     </Routes>
   )

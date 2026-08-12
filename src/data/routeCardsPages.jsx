@@ -1,14 +1,54 @@
 import { buildLuxuryRouteCards } from '../utils/buildLuxuryRouteCards.js'
+import { DESTINATION_PAGES } from './destinationPacks.js'
 import img1 from '../assets/content-blocks/car-service1.webp'
 import img2 from '../assets/content-blocks/car-service2.webp'
 import img3 from '../assets/content-blocks/car-service3.webp'
 import miami1 from '../assets/content-blocks/miami-1.webp'
 import miami2 from '../assets/content-blocks/miami-2.webp'
 import miami3 from '../assets/content-blocks/miami-3.webp'
+import connecticut1 from '../assets/content-blocks/connecticut-1.webp'
+import connecticut2 from '../assets/content-blocks/connecticut-2.webp'
+import connecticut3 from '../assets/content-blocks/connecticut-3.webp'
+import newyork1 from '../assets/content-blocks/newyork-1.webp'
+import newyork2 from '../assets/content-blocks/newyork-2.webp'
+import newyork3 from '../assets/content-blocks/newyork-3.webp'
+import newjersey1 from '../assets/content-blocks/newjersey-1.webp'
+import newjersey2 from '../assets/content-blocks/newjersey-2.webp'
+import newjersey3 from '../assets/content-blocks/newjersey-3.webp'
+import boston1 from '../assets/content-blocks/boston-1.webp'
+import boston2 from '../assets/content-blocks/boston-2.webp'
+import boston3 from '../assets/content-blocks/boston-3.webp'
+import chicago1 from '../assets/content-blocks/chicago-1.webp'
+import chicago2 from '../assets/content-blocks/chicago-2.webp'
+import chicago3 from '../assets/content-blocks/chicago-3.webp'
+import milwaukee1 from '../assets/content-blocks/milwaukee-1.webp'
+import milwaukee2 from '../assets/content-blocks/milwaukee-2.webp'
+import milwaukee3 from '../assets/content-blocks/milwaukee-3.webp'
+import atlanta1 from '../assets/content-blocks/atlanta-1.webp'
+import atlanta2 from '../assets/content-blocks/atlanta-2.webp'
+import atlanta3 from '../assets/content-blocks/atlanta-3.webp'
+import texas1 from '../assets/content-blocks/texas-1.webp'
+import texas2 from '../assets/content-blocks/texas-2.webp'
+import texas3 from '../assets/content-blocks/texas-3.webp'
+import florida1 from '../assets/content-blocks/florida-1.webp'
+import florida2 from '../assets/content-blocks/florida-2.webp'
+import florida3 from '../assets/content-blocks/florida-3.webp'
 
 const IMAGES = [img1, img2, img3]
 
 const MIAMI_IMAGES = [miami1, miami2, miami3]
+
+const DESTINATION_IMAGES = {
+  connecticut: [connecticut1, connecticut2, connecticut3],
+  newyork: [newyork1, newyork2, newyork3],
+  newjersey: [newjersey1, newjersey2, newjersey3],
+  boston: [boston1, boston2, boston3],
+  chicago: [chicago1, chicago2, chicago3],
+  milwaukee: [milwaukee1, milwaukee2, milwaukee3],
+  atlanta: [atlanta1, atlanta2, atlanta3],
+  texas: [texas1, texas2, texas3],
+  florida: [florida1, florida2, florida3],
+}
 
 /** Miami-area pages — keep in sync with the hero art list in landingBackground.js. */
 const MIAMI_PAGES = [
@@ -23,7 +63,14 @@ const MIAMI_PAGES = [
 ]
 
 /** Pages that use their own city photography instead of the shared set. */
-const PAGE_IMAGES = Object.fromEntries(MIAMI_PAGES.map((key) => [key, MIAMI_IMAGES]))
+const PAGE_IMAGES = {
+  ...Object.fromEntries(MIAMI_PAGES.map((key) => [key, MIAMI_IMAGES])),
+  ...Object.fromEntries(
+    Object.entries(DESTINATION_PAGES).flatMap(([id, pages]) =>
+      pages.map((page) => [page, DESTINATION_IMAGES[id]]),
+    ),
+  ),
+}
 
 /** Slugs whose rail label is not a straight hyphen-to-space uppercase conversion. */
 const RAIL_LABEL_OVERRIDES = {
@@ -39,8 +86,8 @@ function railLabelFor(slug) {
 }
 
 /** @param {Array<object>} cards */
-function withImages(cards) {
-  return cards.map((card, index) => ({ ...card, imageSrc: IMAGES[index] }))
+function withImages(cards, images = IMAGES) {
+  return cards.map((card, index) => ({ ...card, imageSrc: images[index % images.length] }))
 }
 
 /**
@@ -546,7 +593,10 @@ function buildLuxuryPages() {
 
 function buildCustomPages() {
   return Object.fromEntries(
-    Object.entries(CUSTOM_ROUTE_CARDS).map(([key, cards]) => [key, withImages(cards)]),
+    Object.entries(CUSTOM_ROUTE_CARDS).map(([key, cards]) => [
+      key,
+      withImages(cards, PAGE_IMAGES[key] ?? IMAGES),
+    ]),
   )
 }
 

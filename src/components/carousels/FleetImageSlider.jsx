@@ -1,9 +1,8 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { FleetCarouselDots } from './FleetCarouselDots.jsx'
+import Icon from '../common/Icon.jsx'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
-const AUTOPLAY_MS = 4500
-const FADE_MS = 500
 /** Matches .fleet-slider-viewport aspect-ratio 5/4 at 800px reference width */
 const FLEET_IMG_WIDTH = 800
 const FLEET_IMG_HEIGHT = 640
@@ -17,8 +16,9 @@ function FleetSliderSlideImage({ src, loadSrc, alt, isPrimary, shouldLoad, prior
   const [dynamicSrc, setDynamicSrc] = useState(null)
   const [loadedSrc, setLoadedSrc] = useState(null)
 
-  const canLoad = shouldLoad && (priorityLoad || !isPrimary)
-  const staticSrc = src && !(isPrimary && !priorityLoad) ? src : null
+  // priorityLoad only controls eager vs lazy — never whether the primary exterior can load.
+  const canLoad = shouldLoad
+  const staticSrc = src && canLoad ? src : null
   const resolvedSrc = staticSrc ?? dynamicSrc
   const loaded = Boolean(resolvedSrc && loadedSrc === resolvedSrc)
 
@@ -71,6 +71,7 @@ function FleetSliderSlideImage({ src, loadSrc, alt, isPrimary, shouldLoad, prior
       alt={alt}
       width={FLEET_IMG_WIDTH}
       height={FLEET_IMG_HEIGHT}
+      sizes="(max-width: 720px) 100vw, 360px"
       loading={isPrimary && priorityLoad ? 'eager' : 'lazy'}
       decoding="async"
       draggable={false}
@@ -98,11 +99,10 @@ function FleetSliderSlideImage({ src, loadSrc, alt, isPrimary, shouldLoad, prior
 }
 
 /**
- * In-card image gallery: crossfade, drag/swipe, dots, autoplay.
+ * In-card image gallery: crossfade, drag/swipe, arrows, dots. No autoplay.
  */
 function FleetImageSliderInner({ images, priorityLoad = true }) {
   const [index, setIndex] = useState(0)
-  const pausedRef = useRef(false)
   const n = images.length
 
   const goTo = useCallback((i) => {
@@ -117,39 +117,12 @@ function FleetImageSliderInner({ images, priorityLoad = true }) {
     setIndex((i) => (i - 1 + n) % n)
   }, [n])
 
-  useEffect(() => {
-    if (n < 2) return undefined
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (reduceMotion.matches) return undefined
-
-    const id = window.setInterval(() => {
-      if (pausedRef.current) return
-      goNext()
-    }, AUTOPLAY_MS)
-
-    return () => window.clearInterval(id)
-  }, [goNext, n])
-
   const swipe = usePointerSwipe(goNext, goPrev, n >= 2, 36)
 
   if (n === 0) return null
 
   return (
-    <div
-      className="fleet-slider-root"
-      onMouseEnter={() => {
-        pausedRef.current = true
-      }}
-      onMouseLeave={() => {
-        pausedRef.current = false
-      }}
-      onFocus={() => {
-        pausedRef.current = true
-      }}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) pausedRef.current = false
-      }}
-    >
+    <div className="fleet-slider-root">
       <div
         className="fleet-slider-viewport fleet-slider-viewport--draggable fleet-image-slider"
         onPointerDown={(e) => {
@@ -192,6 +165,33 @@ function FleetImageSliderInner({ images, priorityLoad = true }) {
             </div>
           )
         })}
+
+        {n > 1 ? (
+          <>
+            <button
+              type="button"
+              className="fleet-slider-arrow fleet-slider-arrow--prev"
+              aria-label="Previous photo"
+              onClick={(e) => {
+                e.stopPropagation()
+                goPrev()
+              }}
+            >
+              <Icon name="arrow-left" size={16} />
+            </button>
+            <button
+              type="button"
+              className="fleet-slider-arrow fleet-slider-arrow--next"
+              aria-label="Next photo"
+              onClick={(e) => {
+                e.stopPropagation()
+                goNext()
+              }}
+            >
+              <Icon name="arrow-right" size={16} />
+            </button>
+          </>
+        ) : null}
       </div>
 
       {n > 1 ? (

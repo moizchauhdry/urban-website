@@ -1,6 +1,6 @@
 import heroFifa from '../../assets/hero/pages/fifa-800.webp'
 import heroFifaLg from '../../assets/hero/pages/fifa-1440.webp'
-import { LANDING_BACKGROUND, MIAMI_BACKGROUND } from './landingBackground.js'
+import { LANDING_BACKGROUND, MIAMI_BACKGROUND, getLandingBackground } from './landingBackground.js'
 /** @typedef {'landing' | 'home' | 'fifa'} HeroVariant */
 
 const LANDING_BG = LANDING_BACKGROUND
@@ -523,7 +523,7 @@ export const HERO_PAGES = {
   },
   'miami-airport-car-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -542,7 +542,7 @@ export const HERO_PAGES = {
   },
   'miami-airport-limo-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -561,7 +561,7 @@ export const HERO_PAGES = {
   },
   'miami-car-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -580,7 +580,7 @@ export const HERO_PAGES = {
   },
   'miami-chauffeur-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -599,7 +599,7 @@ export const HERO_PAGES = {
   },
   'miami-to-fort-lauderdale-car-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -618,7 +618,7 @@ export const HERO_PAGES = {
   },
   'miami-to-naples-car-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -637,7 +637,7 @@ export const HERO_PAGES = {
   },
   'miami-to-orlando-car-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -902,7 +902,7 @@ export const HERO_PAGES = {
   },
   'west-palm-beach-to-miami-limo-service': {
     variant: 'landing',
-    sectionClass: 'hero',
+    sectionClass: 'hero hero--miami',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -963,5 +963,14 @@ export const HERO_PAGES = {
 export function getLandingHeroPage(pageKey) {
   const config = HERO_PAGES[pageKey]
   if (!config) throw new Error(`Unknown landing hero page key: ${pageKey}`)
-  return config
+  if (config.variant === 'fifa') return config
+
+  const background = getLandingBackground(pageKey)
+  const isMiami = background === MIAMI_BACKGROUND
+  let sectionClass = config.sectionClass.replace(/\bhero--florida\b/, '').replace(/\s+/g, ' ').trim()
+  if (!isMiami && background !== LANDING_BACKGROUND && !sectionClass.includes('hero--destination')) {
+    sectionClass = `${sectionClass} hero--destination`.trim()
+  }
+
+  return { ...config, background, sectionClass }
 }

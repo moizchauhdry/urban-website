@@ -21,8 +21,9 @@ export default function TopDestinationsSection() {
           renderItem={(item) => (
             <DestinationCard city={item.city} state={item.state} image={item.image} />
           )}
-          startDelayMs={1000}
-          stepIntervalMs={1000}
+          startDelayMs={800}
+          stepIntervalMs={2800}
+          loop
         />
       </div>
     </section>

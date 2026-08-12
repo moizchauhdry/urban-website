@@ -18,7 +18,7 @@ export default function MainLayout() {
 
   const content = (
     <>
-      <LandingHeader key={location.pathname} homePath={MAIN_HOME} variant={headerVariant} />
+      <LandingHeader homePath={MAIN_HOME} variant={headerVariant} />
       <Outlet />
       <DeferredFooter />
     </>

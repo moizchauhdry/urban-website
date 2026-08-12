@@ -19,10 +19,11 @@ function hasStaticHeroLcp() {
 }
 
 function buildSrcSet(background) {
+  const lgW = background.width || 1440
   if (background.sm && background.lg) {
-    return `${background.sm} 800w, ${background.lg} 1440w`
+    return `${background.sm} 800w, ${background.lg} ${lgW}w`
   }
-  return `${background.default} 800w, ${background.default} 1440w`
+  return `${background.default} 800w, ${background.default} ${lgW}w`
 }
 
 function HeroBackground({ background, onReady, deferMount = false }) {
@@ -40,7 +41,7 @@ function HeroBackground({ background, onReady, deferMount = false }) {
       height={background.height}
       fetchPriority="high"
       loading="eager"
-      decoding="sync"
+      decoding="async"
       aria-hidden="true"
     />
   )
@@ -184,8 +185,8 @@ function useHeroConfig(pageKey) {
     }
 
     let cancelled = false
-    setConfig(null)
     setError(null)
+    // Keep prior landing copy/background visible while the next pageKey probes in.
     loadLandingHero(pageKey)
       .then((next) => {
         if (!cancelled) setConfig(next)

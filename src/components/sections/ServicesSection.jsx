@@ -1,4 +1,4 @@
-import ServicesCarousel from '../carousels/ServicesCarousel.jsx'
+import ServicesShowcase from './ServicesShowcase.jsx'
 import { buildServiceItems } from '../../data/serviceItems.js'
 
 /** @param {{ items?: Array<{ id: string, title: string, description: string, imageClass: string }> }} props */
@@ -8,7 +8,7 @@ export default function ServicesSection({ items }) {
   return (
     <section className="section bg-muted-services">
       <div className="container">
-        <ServicesCarousel items={resolvedItems} />
+        <ServicesShowcase items={resolvedItems} />
       </div>
     </section>
   )

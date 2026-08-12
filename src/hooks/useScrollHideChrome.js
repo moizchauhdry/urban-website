@@ -23,10 +23,8 @@ export function useScrollHideChrome(pathname) {
     const getChrome = () => document.querySelector('.site-top-chrome')
 
     const syncChromeHeight = (chrome) => {
-      if (!chrome) {
-        document.documentElement.style.removeProperty('--site-chrome-height')
-        return
-      }
+      if (!chrome) return
+      // Keep the CSS fallback when chrome is missing — clearing to 0 causes CLS.
       document.documentElement.style.setProperty('--site-chrome-height', `${chrome.offsetHeight}px`)
     }
 
@@ -37,10 +35,7 @@ export function useScrollHideChrome(pathname) {
       resizeObserver?.disconnect()
       observedChrome = chrome
 
-      if (!chrome) {
-        document.documentElement.style.removeProperty('--site-chrome-height')
-        return
-      }
+      if (!chrome) return
 
       resizeObserver = new ResizeObserver(() => syncChromeHeight(chrome))
       resizeObserver.observe(chrome)
@@ -60,7 +55,6 @@ export function useScrollHideChrome(pathname) {
     }
 
     const onScroll = () => {
-      observeChrome()
       if (ticking) return
       ticking = true
 
@@ -125,7 +119,7 @@ export function useScrollHideChrome(pathname) {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('wheel', onWheel)
       resizeObserver?.disconnect()
-      document.documentElement.style.removeProperty('--site-chrome-height')
+      // Leave --site-chrome-height set so the next route does not flash padding:0.
       getChrome()?.classList.remove('site-top-chrome--scroll-hidden')
     }
   }, [pathname])

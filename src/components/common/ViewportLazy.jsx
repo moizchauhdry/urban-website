@@ -10,9 +10,12 @@ export default function ViewportLazy({
   rootMargin = '240px 0px',
   minHeight = 0,
   deferMs = 0,
+  onVisible,
 }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
+  const onVisibleRef = useRef(onVisible)
+  onVisibleRef.current = onVisible
 
   useEffect(() => {
     const node = ref.current
@@ -49,6 +52,10 @@ export default function ViewportLazy({
       io?.disconnect()
     }
   }, [rootMargin, visible, deferMs])
+
+  useEffect(() => {
+    if (visible) onVisibleRef.current?.()
+  }, [visible])
 
   return (
     <div ref={ref} style={minHeight ? { minHeight } : undefined}>
