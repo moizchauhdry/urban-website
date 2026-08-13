@@ -5,7 +5,7 @@ import QuoteLink from '../layout/QuoteLink.jsx'
 /**
  * @param {{
  *   railLabel: string,
- *   title: string,
+ *   title: import('react').ReactNode,
  *   description: import('react').ReactNode,
  *   description2?: import('react').ReactNode,
  *   listItems?: string[],

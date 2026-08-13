@@ -16,11 +16,6 @@ header{background:var(--white);box-shadow:0 1px 3px rgba(11,14,20,.06);position:
 .btn-book{background:var(--accent);color:var(--white);font-weight:600;padding:11px 26px;border-radius:30px;border:none;font-size:14px;display:inline-block}
 .menu-toggle{display:none}
 .hero{position:relative;color:#fff;padding:48px 0 56px;min-height:520px;isolation:isolate}
-.hero--miami{background:var(--deep)}
-.hero--miami::before{content:'';position:absolute;inset:0;top:0;right:0;bottom:0;left:0;width:auto;height:auto;border-radius:0;z-index:0;pointer-events:none;animation:none;will-change:auto;contain:none;background:linear-gradient(90deg,rgba(11,14,20,.72) 0%,rgba(11,14,20,.48) 34%,rgba(11,14,20,.12) 58%,transparent 78%)}
-.hero--miami .container{position:relative;z-index:1}
-.hero--miami .hero-badge{background:rgba(11,14,20,.55);border-color:rgba(255,255,255,.35)}
-.hero--miami .hero-title,.hero--miami .hero-title-line,.hero--miami .hero-desc,.hero--miami .hero-badge{text-shadow:0 1px 0 rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.9),0 2px 10px rgba(0,0,0,.55)}
 .hero--destination{background:var(--deep)}
 .hero--destination::before{content:'';position:absolute;inset:0;top:0;right:0;bottom:0;left:0;width:auto;height:auto;border-radius:0;z-index:0;pointer-events:none;animation:none;will-change:auto;contain:none;background:linear-gradient(90deg,rgba(11,14,20,.72) 0%,rgba(11,14,20,.48) 34%,rgba(11,14,20,.12) 58%,transparent 78%)}
 .hero--destination .container{position:relative;z-index:1}

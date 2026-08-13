@@ -49,7 +49,7 @@ const LANDING_HERO_STEM_BY_PATH = {
   '/newyork': 'newyork',
   '/new-york-car-service': 'newyork',
   '/manhattan-car-service': 'manhattan',
-  '/nyc-limo-service': 'newyork',
+  '/nyc-limo-service': 'nyc-limo',
   '/jfk-airport-car-service': 'jfk',
   '/lga-airport-car-service': 'lga',
   '/westchester-county-car-service': 'newyork',

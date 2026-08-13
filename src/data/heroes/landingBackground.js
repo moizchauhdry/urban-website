@@ -22,6 +22,8 @@ import heroFloridaSm from '../../assets/hero/pages/florida-800.webp'
 import heroFloridaLg from '../../assets/hero/pages/florida-1440.webp'
 import heroManhattanSm from '../../assets/hero/pages/manhattan-800.webp'
 import heroManhattanLg from '../../assets/hero/pages/manhattan-1440.webp'
+import heroNycLimoSm from '../../assets/hero/pages/nyc-limo-800.webp'
+import heroNycLimoLg from '../../assets/hero/pages/nyc-limo-1440.webp'
 import heroHartfordSm from '../../assets/hero/pages/hartford-800.webp'
 import heroHartfordLg from '../../assets/hero/pages/hartford-1440.webp'
 import heroNewhavenSm from '../../assets/hero/pages/newhaven-800.webp'
@@ -104,6 +106,7 @@ const DESTINATION_BACKGROUNDS = {
 
 const PAGE_HERO_OVERRIDES = {
   'manhattan-car-service': destBackground(heroManhattanSm, heroManhattanLg),
+  'nyc-limo-service': destBackground(heroNycLimoSm, heroNycLimoLg),
   'hartford-ct-car-service': destBackground(heroHartfordSm, heroHartfordLg),
   'new-haven-ct-car-service': destBackground(heroNewhavenSm, heroNewhavenLg),
   'stamford-ct-car-service': destBackground(heroStamfordSm, heroStamfordLg),

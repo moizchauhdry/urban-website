@@ -19,7 +19,13 @@ export default function TopDestinationsSection() {
           controlsClassName="home-destinations-nav"
           items={DESTINATION_ITEMS}
           renderItem={(item) => (
-            <DestinationCard city={item.city} state={item.state} image={item.image} />
+            <DestinationCard
+              city={item.city}
+              state={item.state}
+              image={item.image}
+              blurb={item.blurb}
+              href={item.href}
+            />
           )}
           startDelayMs={800}
           stepIntervalMs={2800}

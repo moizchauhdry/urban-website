@@ -523,7 +523,7 @@ export const HERO_PAGES = {
   },
   'miami-airport-car-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -542,7 +542,7 @@ export const HERO_PAGES = {
   },
   'miami-airport-limo-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -561,7 +561,7 @@ export const HERO_PAGES = {
   },
   'miami-car-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -580,7 +580,7 @@ export const HERO_PAGES = {
   },
   'miami-chauffeur-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -599,7 +599,7 @@ export const HERO_PAGES = {
   },
   'miami-to-fort-lauderdale-car-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -618,7 +618,7 @@ export const HERO_PAGES = {
   },
   'miami-to-naples-car-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -637,7 +637,7 @@ export const HERO_PAGES = {
   },
   'miami-to-orlando-car-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>
@@ -902,7 +902,7 @@ export const HERO_PAGES = {
   },
   'west-palm-beach-to-miami-limo-service': {
     variant: 'landing',
-    sectionClass: 'hero hero--miami',
+    sectionClass: 'hero',
     background: MIAMI_BG,
     titleInner: (
       <>

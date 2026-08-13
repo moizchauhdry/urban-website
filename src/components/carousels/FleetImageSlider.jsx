@@ -166,41 +166,39 @@ function FleetImageSliderInner({ images, priorityLoad = true }) {
           )
         })}
 
-        {n > 1 ? (
-          <>
-            <button
-              type="button"
-              className="fleet-slider-arrow fleet-slider-arrow--prev"
-              aria-label="Previous photo"
-              onClick={(e) => {
-                e.stopPropagation()
-                goPrev()
-              }}
-            >
-              <Icon name="arrow-left" size={16} />
-            </button>
-            <button
-              type="button"
-              className="fleet-slider-arrow fleet-slider-arrow--next"
-              aria-label="Next photo"
-              onClick={(e) => {
-                e.stopPropagation()
-                goNext()
-              }}
-            >
-              <Icon name="arrow-right" size={16} />
-            </button>
-          </>
-        ) : null}
       </div>
 
       {n > 1 ? (
-        <FleetCarouselDots
-          count={n}
-          active={index}
-          onSelect={goTo}
-          ariaLabel="Vehicle photos"
-        />
+        <div className="fleet-slider-controls">
+          <button
+            type="button"
+            className="fleet-slider-arrow fleet-slider-arrow--prev"
+            aria-label="Previous photo"
+            onClick={(e) => {
+              e.stopPropagation()
+              goPrev()
+            }}
+          >
+            <Icon name="arrow-left" size={16} />
+          </button>
+          <FleetCarouselDots
+            count={n}
+            active={index}
+            onSelect={goTo}
+            ariaLabel="Vehicle photos"
+          />
+          <button
+            type="button"
+            className="fleet-slider-arrow fleet-slider-arrow--next"
+            aria-label="Next photo"
+            onClick={(e) => {
+              e.stopPropagation()
+              goNext()
+            }}
+          >
+            <Icon name="arrow-right" size={16} />
+          </button>
+        </div>
       ) : null}
     </div>
   )
