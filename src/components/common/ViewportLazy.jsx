@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
  */
 export default function ViewportLazy({
   children,
-  rootMargin = '240px 0px',
+  rootMargin = '480px 0px',
   minHeight = 0,
   deferMs = 0,
   onVisible,

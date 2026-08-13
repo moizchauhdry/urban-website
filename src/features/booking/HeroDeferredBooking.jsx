@@ -10,10 +10,10 @@ export default function HeroDeferredBooking() {
   useEffect(() => {
     const run = () => prefetchBookingStoreData()
     if (typeof window.requestIdleCallback === 'function') {
-      const id = window.requestIdleCallback(run, { timeout: 4000 })
+      const id = window.requestIdleCallback(run, { timeout: 1800 })
       return () => window.cancelIdleCallback?.(id)
     }
-    const t = window.setTimeout(run, 2000)
+    const t = window.setTimeout(run, 700)
     return () => window.clearTimeout(t)
   }, [])
 

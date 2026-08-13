@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 /** Run an effect after the browser is idle — keeps first paint / LCP off the critical path. */
-export function useDeferredEffect(effect, deps, timeout = 2000) {
+export function useDeferredEffect(effect, deps, timeout = 900) {
   useEffect(() => {
     let active = true
     let dispose

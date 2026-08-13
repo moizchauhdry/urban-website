@@ -329,7 +329,7 @@ export default function PlacesAutocompleteInput({
         <p className="places-autocomplete-hint places-autocomplete-hint--error">{loadError}</p>
       )}
       {showList && (
-        <ul id={listId} className="places-suggestions" role="listbox">
+        <ul id={listId} className="places-suggestions" role="listbox" data-lenis-prevent>
           {suggestions.map((item, index) => (
             <li key={item.id} role="option" aria-selected={index === activeIndex}>
               <button

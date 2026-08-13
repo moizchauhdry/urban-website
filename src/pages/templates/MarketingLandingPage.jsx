@@ -27,8 +27,8 @@ export default function MarketingLandingPage({
       <LandingHero pageKey={heroKey} />
       <ViewportLazy
         minHeight={800}
-        rootMargin="0px 0px"
-        deferMs={belowFoldUnlocked.current ? 0 : 2500}
+        rootMargin="720px 0px"
+        deferMs={belowFoldUnlocked.current ? 0 : 700}
         onVisible={() => {
           belowFoldUnlocked.current = true
         }}

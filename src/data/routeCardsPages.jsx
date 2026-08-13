@@ -2,52 +2,49 @@ import { buildLuxuryRouteCards } from '../utils/buildLuxuryRouteCards.js'
 import { DESTINATION_PAGES } from './destinationPacks.js'
 import img1 from '../assets/content-blocks/car-service1.webp'
 import img2 from '../assets/content-blocks/car-service2.webp'
-import img3 from '../assets/content-blocks/car-service3.webp'
 import miami1 from '../assets/content-blocks/miami-1.webp'
 import miami2 from '../assets/content-blocks/miami-2.webp'
-import miami3 from '../assets/content-blocks/miami-3.webp'
 import connecticut1 from '../assets/content-blocks/connecticut-1.webp'
 import connecticut2 from '../assets/content-blocks/connecticut-2.webp'
-import connecticut3 from '../assets/content-blocks/connecticut-3.webp'
 import newyork1 from '../assets/content-blocks/newyork-1.webp'
 import newyork2 from '../assets/content-blocks/newyork-2.webp'
-import newyork3 from '../assets/content-blocks/newyork-3.webp'
 import newjersey1 from '../assets/content-blocks/newjersey-1.webp'
 import newjersey2 from '../assets/content-blocks/newjersey-2.webp'
-import newjersey3 from '../assets/content-blocks/newjersey-3.webp'
 import boston1 from '../assets/content-blocks/boston-1.webp'
 import boston2 from '../assets/content-blocks/boston-2.webp'
-import boston3 from '../assets/content-blocks/boston-3.webp'
 import chicago1 from '../assets/content-blocks/chicago-1.webp'
 import chicago2 from '../assets/content-blocks/chicago-2.webp'
-import chicago3 from '../assets/content-blocks/chicago-3.webp'
 import milwaukee1 from '../assets/content-blocks/milwaukee-1.webp'
 import milwaukee2 from '../assets/content-blocks/milwaukee-2.webp'
-import milwaukee3 from '../assets/content-blocks/milwaukee-3.webp'
 import atlanta1 from '../assets/content-blocks/atlanta-1.webp'
 import atlanta2 from '../assets/content-blocks/atlanta-2.webp'
-import atlanta3 from '../assets/content-blocks/atlanta-3.webp'
 import texas1 from '../assets/content-blocks/texas-1.webp'
 import texas2 from '../assets/content-blocks/texas-2.webp'
-import texas3 from '../assets/content-blocks/texas-3.webp'
 import florida1 from '../assets/content-blocks/florida-1.webp'
 import florida2 from '../assets/content-blocks/florida-2.webp'
-import florida3 from '../assets/content-blocks/florida-3.webp'
+import journey1 from '../assets/content-blocks/journey-1.webp'
+import journey2 from '../assets/content-blocks/journey-2.webp'
+import journey3 from '../assets/content-blocks/journey-3.webp'
+import journey4 from '../assets/content-blocks/journey-4.webp'
+import journey5 from '../assets/content-blocks/journey-5.webp'
 
-const IMAGES = [img1, img2, img3]
+const IMAGES = [img1, img2]
 
-const MIAMI_IMAGES = [miami1, miami2, miami3]
+/** Third content-block images — passenger journey / chauffeur vibe. */
+const JOURNEY_IMAGES = [journey1, journey2, journey3, journey4, journey5]
+
+const MIAMI_IMAGES = [miami1, miami2]
 
 const DESTINATION_IMAGES = {
-  connecticut: [connecticut1, connecticut2, connecticut3],
-  newyork: [newyork1, newyork2, newyork3],
-  newjersey: [newjersey1, newjersey2, newjersey3],
-  boston: [boston1, boston2, boston3],
-  chicago: [chicago1, chicago2, chicago3],
-  milwaukee: [milwaukee1, milwaukee2, milwaukee3],
-  atlanta: [atlanta1, atlanta2, atlanta3],
-  texas: [texas1, texas2, texas3],
-  florida: [florida1, florida2, florida3],
+  connecticut: [connecticut1, connecticut2],
+  newyork: [newyork1, newyork2],
+  newjersey: [newjersey1, newjersey2],
+  boston: [boston1, boston2],
+  chicago: [chicago1, chicago2],
+  milwaukee: [milwaukee1, milwaukee2],
+  atlanta: [atlanta1, atlanta2],
+  texas: [texas1, texas2],
+  florida: [florida1, florida2],
 }
 
 /** Miami-area pages — keep in sync with the hero art list in landingBackground.js. */
@@ -729,6 +726,27 @@ const CUSTOM_ROUTE_CARDS = {
   ],
 }
 
+/** Evenly rotate the 5 journey photos as each page's third content-block image. */
+const JOURNEY_BY_PAGE = (() => {
+  const keys = [
+    ...LUXURY_ROUTE_PAGES.map((entry) => (typeof entry === 'string' ? entry : entry.key)),
+    ...Object.keys(CUSTOM_ROUTE_CARDS),
+    ...Object.keys(PAGE_IMAGES),
+  ]
+  return Object.fromEntries(
+    [...new Set(keys)]
+      .sort()
+      .map((key, index) => [key, JOURNEY_IMAGES[index % JOURNEY_IMAGES.length]]),
+  )
+})()
+
+/** @param {string[]} base @param {string} pageKey */
+function imagesForPage(base, pageKey) {
+  const images = [...base]
+  images[2] = JOURNEY_BY_PAGE[pageKey] ?? JOURNEY_IMAGES[0]
+  return images
+}
+
 function buildLuxuryPages() {
   return Object.fromEntries(
     LUXURY_ROUTE_PAGES.map((entry) => {
@@ -736,7 +754,8 @@ function buildLuxuryPages() {
       const variant = typeof entry === 'object' ? entry.variant : undefined
       const railLabel =
         (typeof entry === 'object' && entry.railLabel) || railLabelFor(key)
-      return [key, buildLuxuryRouteCards({ railLabel, images: PAGE_IMAGES[key] ?? IMAGES, variant })]
+      const images = imagesForPage(PAGE_IMAGES[key] ?? IMAGES, key)
+      return [key, buildLuxuryRouteCards({ railLabel, images, variant })]
     }),
   )
 }
@@ -745,7 +764,7 @@ function buildCustomPages() {
   return Object.fromEntries(
     Object.entries(CUSTOM_ROUTE_CARDS).map(([key, cards]) => [
       key,
-      withImages(cards, PAGE_IMAGES[key] ?? IMAGES),
+      withImages(cards, imagesForPage(PAGE_IMAGES[key] ?? IMAGES, key)),
     ]),
   )
 }

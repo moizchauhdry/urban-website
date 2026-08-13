@@ -23,7 +23,6 @@ export default function TopDestinationsSection() {
               city={item.city}
               state={item.state}
               image={item.image}
-              blurb={item.blurb}
               href={item.href}
             />
           )}

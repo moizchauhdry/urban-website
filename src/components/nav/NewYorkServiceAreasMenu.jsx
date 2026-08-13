@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Icon from '../common/Icon.jsx'
 import { NEW_YORK_HOME, NEW_YORK_SUBPAGES } from '../../pages/newyork/routes.js'
+import { desktopSubmenuLinkClass, mobileSubmenuLinkClass } from './navActive.js'
 
 /**
  * New York entry in Service Areas — desktop nested flyout + mobile nested details.
@@ -8,15 +9,17 @@ import { NEW_YORK_HOME, NEW_YORK_SUBPAGES } from '../../pages/newyork/routes.js'
 export function NewYorkDesktopSubmenu() {
   return (
     <div className="has-sub-nested">
-      <Link to={NEW_YORK_HOME} className="has-sub-nested__trigger">
+      <NavLink to={NEW_YORK_HOME} className={({ isActive }) =>
+        `has-sub-nested__trigger${isActive ? ' menu-link--active' : ''}`
+      }>
         New York Car Service
         <Icon name="arrow-right" size={10} className="nav-chevron nav-chevron--right" />
-      </Link>
+      </NavLink>
       <div className="submenu-nested">
         {NEW_YORK_SUBPAGES.map((item) => (
-          <Link key={item.path} to={item.path}>
+          <NavLink key={item.path} to={item.path} className={desktopSubmenuLinkClass}>
             {item.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </div>
@@ -33,13 +36,18 @@ export function NewYorkMobileSubmenu({ onNavigate }) {
         <Icon name="chevron-down" size={12} className="mobile-menu__chev" />
       </summary>
       <div className="mobile-menu__sub">
-        <Link className="mobile-menu__sublink" to={NEW_YORK_HOME} onClick={close}>
+        <NavLink className={mobileSubmenuLinkClass} to={NEW_YORK_HOME} end onClick={close}>
           New York Car Service
-        </Link>
+        </NavLink>
         {NEW_YORK_SUBPAGES.map((item) => (
-          <Link key={item.path} className="mobile-menu__sublink" to={item.path} onClick={close}>
+          <NavLink
+            key={item.path}
+            className={mobileSubmenuLinkClass}
+            to={item.path}
+            onClick={close}
+          >
             {item.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </details>

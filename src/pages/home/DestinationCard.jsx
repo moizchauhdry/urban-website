@@ -1,7 +1,7 @@
 /**
- * @param {{ city: string, state: string, image: string, blurb: string, href: string }} props
+ * @param {{ city: string, state: string, image: string, href: string }} props
  */
-export default function DestinationCard({ city, state, image, blurb, href }) {
+export default function DestinationCard({ city, state, image, href }) {
   return (
     <article className="home-destination-card">
       <a className="home-destination-card__link" href={href}>
@@ -25,7 +25,6 @@ export default function DestinationCard({ city, state, image, blurb, href }) {
           <p className="home-destination-card__menu-title">
             {city} car service
           </p>
-          <p className="home-destination-card__menu-text">{blurb}</p>
           <span className="home-destination-card__menu-cta">View service</span>
         </div>
       </a>
