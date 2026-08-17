@@ -787,6 +787,75 @@ header{
     transition:none;
   }
 }
+
+/* Service-area / airport page swaps — text fades, images slide (not on first paint). */
+@keyframes page-swap-text-in{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes page-swap-image-from-right{
+  from{opacity:0;transform:translate3d(40px,0,0) scale(1.08)}
+  to{opacity:1;transform:none}
+}
+@keyframes page-swap-image-from-left{
+  from{opacity:0;transform:translate3d(-40px,0,0) scale(1.08)}
+  to{opacity:1;transform:none}
+}
+.page-swap-text{
+  animation:page-swap-text-in .55s ease both;
+  transition:none;
+}
+.hero-bg-img.page-swap-image{
+  animation:page-swap-image-from-right .7s cubic-bezier(.22,1,.36,1) both;
+}
+.route-cards-stack.page-swap .route-card__media{
+  overflow:hidden;
+}
+.route-cards-stack.page-swap .route-card__body{
+  animation:page-swap-text-in .55s ease both;
+}
+.route-cards-stack.page-swap .route-card__img{
+  animation:page-swap-image-from-right .7s cubic-bezier(.22,1,.36,1) both;
+}
+@media (min-width:1025px){
+  .route-cards-stack.page-swap .route-card--image-left .route-card__img{
+    animation-name:page-swap-image-from-left;
+  }
+}
+.route-cards-stack.page-swap .route-card:nth-child(1) .route-card__body,
+.route-cards-stack.page-swap .route-card:nth-child(1) .route-card__img{animation-delay:.04s}
+.route-cards-stack.page-swap .route-card:nth-child(2) .route-card__body,
+.route-cards-stack.page-swap .route-card:nth-child(2) .route-card__img{animation-delay:.12s}
+.route-cards-stack.page-swap .route-card:nth-child(3) .route-card__body,
+.route-cards-stack.page-swap .route-card:nth-child(3) .route-card__img{animation-delay:.2s}
+.airports.page-swap .airports-grid{
+  overflow:hidden;
+}
+.airports.page-swap .section-sub{
+  animation:page-swap-text-in .55s ease both;
+}
+.airports.page-swap .airport-card{
+  animation:page-swap-image-from-right .7s cubic-bezier(.22,1,.36,1) backwards;
+}
+.airports.page-swap .airport-card-body{
+  animation:page-swap-text-in .55s ease .12s both;
+}
+.airports.page-swap .airport-card:nth-child(1){animation-delay:.04s}
+.airports.page-swap .airport-card:nth-child(2){animation-delay:.1s}
+.airports.page-swap .airport-card:nth-child(3){animation-delay:.16s}
+.airports.page-swap .airport-card:nth-child(4){animation-delay:.22s}
+@media (prefers-reduced-motion:reduce){
+  .page-swap-text,
+  .hero-bg-img.page-swap-image,
+  .route-cards-stack.page-swap .route-card__body,
+  .route-cards-stack.page-swap .route-card__img,
+  .airports.page-swap .section-sub,
+  .airports.page-swap .airport-card,
+  .airports.page-swap .airport-card-body{
+    animation:none!important;
+  }
+}
+
 .booking-card-slot{
   min-height:560px;
   contain:layout style;
@@ -2635,7 +2704,8 @@ header{
   .reviews-carousel-track{ transition:none !important }
   .fleet-mobile-carousel-track,
   .fleet-desktop-carousel-track,
-  .why-carousel-track{ transition:none !important }
+  .why-carousel-track,
+  .services-mobile-carousel-track{ transition:none !important }
 }
 
 /* SERVICES */
@@ -2730,9 +2800,43 @@ header{
   .services-showcase__grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
 }
 @media (max-width:720px){
-  .services-showcase__grid{grid-template-columns:1fr;gap:16px}
   .services-showcase__sub{margin-bottom:22px}
-  .services-showcase .service-img{height:200px}
+  .services-showcase .service-img{height:220px}
+}
+.services-mobile-carousel{width:100%}
+.services-mobile-carousel-viewport{
+  width:100%;overflow:hidden;
+  touch-action:pan-y pinch-zoom;
+  box-sizing:border-box;
+}
+.services-mobile-carousel-track{
+  display:flex;will-change:transform;
+  backface-visibility:hidden;
+  transition:transform .65s cubic-bezier(.33,1,.68,1);
+}
+.services-mobile-carousel-track.is-snapping{transition:none !important}
+.services-mobile-carousel-slide{
+  flex-shrink:0;box-sizing:border-box;
+  min-width:0;
+}
+.services-mobile-carousel-slide-inner{
+  display:flex;width:100%;
+  box-sizing:border-box;
+}
+.services-mobile-carousel-slide-inner .service-card{
+  width:100%;
+  flex:1 1 auto;
+}
+.services-mobile-carousel-nav{margin-top:18px}
+.services-mobile-carousel-nav.review-nav button{
+  background:transparent;
+  border-color:rgba(255,255,255,.35);
+  color:#fff;
+}
+.services-mobile-carousel-nav.review-nav button:hover{
+  background:var(--lime);
+  border-color:var(--lime);
+  color:var(--deep);
 }
 .services-intro .section-sub{
   margin-bottom:28px;

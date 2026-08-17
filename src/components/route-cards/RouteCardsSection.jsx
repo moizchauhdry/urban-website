@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import LuxuryServiceCard from '../luxury-carousel/LuxuryServiceCard.jsx'
 import { getRouteCards } from '../../data/routeCardsPages.jsx'
 import { getPopularRoutesForPage } from '../../data/popularRoutesByState.js'
+import { usePageSwapAnimation } from '../../hooks/usePageSwapAnimation.js'
 
 const DESKTOP_STACK_MQ = '(min-width: 1025px)'
 
@@ -24,6 +25,7 @@ function useDesktopStackLayout() {
 /** Static content blocks — image left/right alternating on desktop; image-first on mobile. */
 export default function RouteCardsSection({ pageKey }) {
   const isDesktop = useDesktopStackLayout()
+  const swap = usePageSwapAnimation(pageKey)
   let cards
   try {
     cards = getRouteCards(pageKey)
@@ -39,7 +41,10 @@ export default function RouteCardsSection({ pageKey }) {
   return (
     <section className="section luxury-carousel-section" aria-label="Service highlights">
       <div className="container luxury-carousel__container">
-        <div className="route-cards-stack">
+        <div
+          key={pageKey}
+          className={swap ? 'route-cards-stack page-swap' : 'route-cards-stack'}
+        >
           {cards.map((card, index) => {
             const isLast = index === cards.length - 1
             // On mobile/tablet always image-left so the photo sits above the copy.
