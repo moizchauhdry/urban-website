@@ -2083,7 +2083,7 @@ header{
 
 /* FLEET */
 #fleet{
-  background:#fafafa;
+  background:#fff;
   padding-bottom:36px;
 }
 #fleet + .why{
@@ -2112,12 +2112,12 @@ header{
     0 22px 44px rgba(0,0,0,.12);
 }
 .fleet-img{
-  background:#fff;height:240px;
+  background:transparent;height:240px;
   display:flex;align-items:center;justify-content:center;
 }
 .fleet-img:not(.fleet-img--with-slider) img{
   width:100%;height:100%;
-  object-fit:contain;object-position:center;
+  object-fit:cover;object-position:center;
   display:block;
 }
 .fleet-img.economy:not(.fleet-img--with-slider) img{
@@ -2165,7 +2165,7 @@ header{
   display:block;
   padding:0;
   overflow:hidden;
-  background:#fff;
+  background:transparent;
 }
 .fleet-slider-root{
   width:100%;
@@ -2209,14 +2209,14 @@ header{
   height:auto;
   min-height:0;
   overflow:hidden;
-  background:#fff;
+  background:transparent;
   contain:layout style;
 }
 /* Rounded clip per slide — only this wrapper, not the outer viewport */
 .fleet-slider-image-wrap{
   position:absolute;
-  inset:14px;
-  border-radius:20px;
+  inset:0;
+  border-radius:0;
   overflow:hidden;
   opacity:0;
   transition:opacity var(--fleet-fade-ms, 500ms) ease-out;
@@ -2239,7 +2239,7 @@ header{
 
 /* All slides: full-frame contain so exteriors, interiors, details, and trunks share the same zoom */
 .fleet-slider-image-wrap--primary{
-  background:#fff;
+  background:transparent;
 }
 .fleet-slider-primary-stage{
   position:absolute;
@@ -2271,14 +2271,14 @@ header{
   width:100%;
   height:100%;
   max-width:none;
-  object-fit:contain;
+  object-fit:cover;
   object-position:center;
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
 }
 
 .fleet-slider-image-wrap--photo{
-  background:#fff;
+  background:transparent;
 }
 
 /* Fleet carousel dots (section + in-card galleries) */

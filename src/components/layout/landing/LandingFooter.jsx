@@ -8,9 +8,7 @@ import {
   FLORIDA_HOME,
   ILLINOIS_HOME,
   NEW_YORK_HOME,
-  ABOUT_US,
   BOOK_NOW,
-  CONTACT_US,
   OUR_SERVICES,
   PRIVACY_POLICY,
   TERMS_OF_SERVICE,
@@ -44,13 +42,7 @@ export default function LandingFooter({ logoPath = '/' }) {
                 <Link to={BOOK_NOW}>Book Now</Link>
               </li>
               <li>
-                <Link to={ABOUT_US}>About Us</Link>
-              </li>
-              <li>
                 <Link to={OUR_SERVICES}>Services</Link>
-              </li>
-              <li>
-                <Link to={CONTACT_US}>Contact Us</Link>
               </li>
             </ul>
           </div>

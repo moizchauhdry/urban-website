@@ -1,10 +1,8 @@
 import { useCallback, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import {
-  ABOUT_US,
   BOSTON_HOME,
   CONNECTICUT_HOME,
-  CONTACT_US,
   FLEET,
   ILLINOIS_HOME,
   MAIN_HOME,
@@ -103,9 +101,6 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
         <NavLink to={MAIN_HOME} end className={desktopMenuLinkClass}>
           Home
         </NavLink>
-        <NavLink to={ABOUT_US} className={desktopMenuLinkClass}>
-          About Us
-        </NavLink>
         <NavLink to={FLEET} className={desktopMenuLinkClass}>
           Fleet
         </NavLink>
@@ -142,9 +137,6 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
         <NavLink to={OUR_SERVICES} className={desktopMenuLinkClass}>
           Our Services
         </NavLink>
-        <NavLink to={CONTACT_US} className={desktopMenuLinkClass}>
-          Contact Us
-        </NavLink>
       </>
     )
   }
@@ -153,9 +145,6 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
     <>
       <NavLink className={mobileMenuLinkClass} to={MAIN_HOME} end onClick={close}>
         Home
-      </NavLink>
-      <NavLink className={mobileMenuLinkClass} to={ABOUT_US} onClick={close}>
-        About Us
       </NavLink>
       <NavLink className={mobileMenuLinkClass} to={FLEET} onClick={close}>
         Fleet
@@ -167,9 +156,6 @@ export default function NavMenuItems({ variant = 'desktop', onNavigate }) {
 
       <NavLink className={mobileMenuLinkClass} to={OUR_SERVICES} onClick={close}>
         Our Services
-      </NavLink>
-      <NavLink className={mobileMenuLinkClass} to={CONTACT_US} onClick={close}>
-        Contact Us
       </NavLink>
     </>
   )

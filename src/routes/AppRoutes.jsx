@@ -3,9 +3,7 @@ import { Navigate, Routes, Route, useParams } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
 
-const AboutUsPage = lazy(() => import('../pages/about-us/AboutUsPage.jsx'))
 const OurServicesPage = lazy(() => import('../pages/our-services/OurServicesPage.jsx'))
-const ContactUsPage = lazy(() => import('../pages/contact-us/ContactUsPage.jsx'))
 const FleetPageInner = lazy(() => import('../pages/fleet/FleetPage.jsx'))
 const BookNowPageInner = lazy(() => import('../pages/book-now/BookNowPage.jsx'))
 const PrivacyPolicyPageInner = lazy(() => import('../pages/privacy-policy/PrivacyPolicyPage.jsx'))
@@ -34,9 +32,9 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/about-us" element={<SuspenseRoute><AboutUsPage /></SuspenseRoute>} />
+        <Route path="/about-us" element={<Navigate to="/" replace />} />
         <Route path="/our-services" element={<SuspenseRoute><OurServicesPage /></SuspenseRoute>} />
-        <Route path="/contact-us" element={<SuspenseRoute><ContactUsPage /></SuspenseRoute>} />
+        <Route path="/contact-us" element={<Navigate to="/" replace />} />
         <Route path="/fleet" element={<SuspenseRoute><FleetPageInner /></SuspenseRoute>} />
         <Route path="/book-now" element={<SuspenseRoute><BookNowPageInner /></SuspenseRoute>} />
         <Route path="/privacy-policy" element={<SuspenseRoute><PrivacyPolicyPageInner /></SuspenseRoute>} />

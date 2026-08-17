@@ -3,7 +3,7 @@ import { DESTINATION_PAGES } from './destinationPacks.js'
 import img1 from '../assets/content-blocks/car-service1.webp'
 import img2 from '../assets/content-blocks/car-service2.webp'
 import miami1 from '../assets/content-blocks/miami-1.webp'
-import miami2 from '../assets/content-blocks/miami-2.webp'
+import miami3 from '../assets/content-blocks/miami-3.webp'
 import connecticut1 from '../assets/content-blocks/connecticut-1.webp'
 import connecticut2 from '../assets/content-blocks/connecticut-2.webp'
 import newyork1 from '../assets/content-blocks/newyork-1.webp'
@@ -33,7 +33,7 @@ const IMAGES = [img1, img2]
 /** Third content-block images — passenger journey / chauffeur vibe. */
 const JOURNEY_IMAGES = [journey1, journey2, journey3, journey4, journey5]
 
-const MIAMI_IMAGES = [miami1, miami2]
+const MIAMI_IMAGES = [miami1, miami3]
 
 const DESTINATION_IMAGES = {
   connecticut: [connecticut1, connecticut2],
