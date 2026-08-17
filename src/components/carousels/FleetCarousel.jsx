@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { FleetCard } from './FleetCard.jsx'
-import { FleetCarouselDots } from './FleetCarouselDots.jsx'
 import FleetCategoryTabs from '../fleet/FleetCategoryTabs.jsx'
 import { filterFleetByCategory } from '../../constants/fleetCategories.js'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
@@ -188,8 +187,6 @@ function FleetCarouselSingle({ items }) {
           ))}
         </div>
       </div>
-
-      <FleetCarouselDots count={n} active={logicalIndex} onSelect={goToLogical} />
     </div>
   )
 }
@@ -337,8 +334,6 @@ function FleetCarouselWindow({ items, visible }) {
           ))}
         </div>
       </div>
-
-      <FleetCarouselDots count={n} active={focusIndex} onSelect={goTo} />
     </div>
   )
 }

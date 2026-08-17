@@ -23,7 +23,7 @@ function useStepVisibleCount(variant = 'destinations') {
 
   if (w <= 720) return 1
   if (w <= 1024) return 2
-  return 4
+  return 3
 }
 
 /**

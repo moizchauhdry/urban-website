@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { smoothScrollTo } from '../layout/SmoothScroll.jsx'
 
 /**
  * Sticky document-tabs layout for Privacy Policy and Terms of Service.
@@ -66,9 +67,7 @@ export default function LegalDocumentLayout({ title, navItems, children }) {
     if (!el) return
     setActiveId(id)
     setMobileOpen(false)
-    const headerOffset = 96
-    const top = el.getBoundingClientRect().top + window.scrollY - headerOffset
-    window.scrollTo({ top, behavior: 'smooth' })
+    smoothScrollTo(el, { offset: -96 })
   }, [])
 
   const onNavClick = useCallback(

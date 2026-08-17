@@ -14,14 +14,14 @@ export default function HomeBelowFold() {
   return (
     <>
       <FleetSection />
-      <ReviewsSection />
+      <TopDestinationsSection />
       <ServicesSection />
       <WhyDifferentSection />
       <TrustedStats />
       <HowItWorks />
       <JourneySection />
-      <TopDestinationsSection />
       <TopAirportsSection />
+      <ReviewsSection />
       <FaqSection variant="home" />
     </>
   )

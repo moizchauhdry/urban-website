@@ -23,7 +23,7 @@ export function useScrollReveal() {
     if (isMobile || reducedMotion) {
       const markVisible = () => revealAllSectionsImmediately()
       markVisible()
-      const rescan = window.setTimeout(markVisible, 700)
+      const rescan = window.setTimeout(markVisible, 250)
       return () => window.clearTimeout(rescan)
     }
 
@@ -58,7 +58,7 @@ export function useScrollReveal() {
       })
     mo?.observe(rootEl, { childList: true, subtree: true })
 
-    const rescanTimers = [150, 500, 1200, 2500].map((ms) => window.setTimeout(scan, ms))
+    const rescanTimers = [80, 280, 700].map((ms) => window.setTimeout(scan, ms))
 
     return () => {
       window.clearTimeout(debounceId)
@@ -67,5 +67,5 @@ export function useScrollReveal() {
       io.disconnect()
       unbindScrollRevealScanner(scan)
     }
-  }, [], 1200)
+  }, [], 400)
 }

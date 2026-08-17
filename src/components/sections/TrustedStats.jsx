@@ -76,23 +76,25 @@ export default function TrustedStats() {
   return (
     <section ref={sectionRef} className="trusted">
       <div className="trusted-inner">
-        <h2>Trusted by Thousands Worldwide</h2>
-        <p>
-          Join our growing community of satisfied customers who choose Urban Elite for reliable, premium car Service for
-          their Travel Needs
-        </p>
+        <div className="trusted-copy">
+          <h2>Trusted by Thousands Worldwide</h2>
+          <p>
+            Join our growing community of satisfied customers who choose Urban Elite for reliable, premium car Service for
+            their Travel Needs
+          </p>
+          <QuoteLink className="btn-yellow" />
+        </div>
         <div className="trusted-grid">
           {STATS.map((s, i) => (
             <div className="trusted-stat" key={s.target}>
               <div className="ic">
-                <Icon name={s.icon} size={28} />
+                <Icon name={s.icon} size={32} />
               </div>
               <h3 data-stat={s.statKey}>{displayLines[i]}</h3>
               <p>{s.label}</p>
             </div>
           ))}
         </div>
-        <QuoteLink className="btn-yellow" />
       </div>
     </section>
   )

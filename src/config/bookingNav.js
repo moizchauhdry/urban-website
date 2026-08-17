@@ -58,7 +58,13 @@ export function getBookNowTarget(pathname) {
 export function scrollToHeroBooking() {
   const el = document.getElementById(HERO_BOOKING_ID)
   if (!el) return false
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  import('../components/layout/SmoothScroll.jsx')
+    .then(({ smoothScrollTo }) => {
+      smoothScrollTo(el, { offset: -24 })
+    })
+    .catch(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
   return true
 }
 

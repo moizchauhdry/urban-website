@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Icon from '../common/Icon.jsx'
 import { CONNECTICUT_HOME, CONNECTICUT_SUBPAGES } from '../../pages/connecticut/routes.js'
+import { desktopSubmenuLinkClass, mobileSubmenuLinkClass } from './navActive.js'
 
 /**
  * Connecticut entry in Service Areas — desktop nested flyout + mobile nested details.
@@ -8,15 +9,17 @@ import { CONNECTICUT_HOME, CONNECTICUT_SUBPAGES } from '../../pages/connecticut/
 export function ConnecticutDesktopSubmenu() {
   return (
     <div className="has-sub-nested">
-      <Link to={CONNECTICUT_HOME} className="has-sub-nested__trigger">
+      <NavLink to={CONNECTICUT_HOME} className={({ isActive }) =>
+        `has-sub-nested__trigger${isActive ? ' menu-link--active' : ''}`
+      }>
         Connecticut Car Service
         <Icon name="arrow-right" size={10} className="nav-chevron nav-chevron--right" />
-      </Link>
+      </NavLink>
       <div className="submenu-nested">
         {CONNECTICUT_SUBPAGES.map((item) => (
-          <Link key={item.path} to={item.path}>
+          <NavLink key={item.path} to={item.path} className={desktopSubmenuLinkClass}>
             {item.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </div>
@@ -33,13 +36,18 @@ export function ConnecticutMobileSubmenu({ onNavigate }) {
         <Icon name="chevron-down" size={12} className="mobile-menu__chev" />
       </summary>
       <div className="mobile-menu__sub">
-        <Link className="mobile-menu__sublink" to={CONNECTICUT_HOME} onClick={close}>
+        <NavLink className={mobileSubmenuLinkClass} to={CONNECTICUT_HOME} end onClick={close}>
           Connecticut Car Service
-        </Link>
+        </NavLink>
         {CONNECTICUT_SUBPAGES.map((item) => (
-          <Link key={item.path} className="mobile-menu__sublink" to={item.path} onClick={close}>
+          <NavLink
+            key={item.path}
+            className={mobileSubmenuLinkClass}
+            to={item.path}
+            onClick={close}
+          >
             {item.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </details>

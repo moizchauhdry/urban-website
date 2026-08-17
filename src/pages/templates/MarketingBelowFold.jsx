@@ -25,13 +25,13 @@ export default function MarketingBelowFold({
   return (
     <>
       <FleetSection />
+      <RouteCardsSection pageKey={routeCardsKey} />
       <WhyDifferentSection />
       <PlanningBanner />
       <ReviewsSection />
       <ServicesSection />
-      <RouteCardsSection pageKey={routeCardsKey} />
-      <TrustedStats />
       <HowItWorks />
+      <TrustedStats />
       <JourneySection />
       <RegionalAirportsSection pageKey={airportsKey} />
       <FaqSection />

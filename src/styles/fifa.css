@@ -1207,7 +1207,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 80px 0;
+  padding: 52px 0;
 }
 
 .fifa-beautiful-game__bg {
@@ -1268,7 +1268,7 @@
 @media (max-width: 640px) {
   .fifa-beautiful-game {
     min-height: 360px;
-    padding: 64px 0;
+    padding: 40px 0;
   }
 }
 
@@ -1277,7 +1277,7 @@
   background: var(--dark-section-gradient);
   color: var(--white);
   text-align: center;
-  padding: 72px 0 80px;
+  padding: 48px 0 52px;
 }
 
 .fifa-dont-miss-out__tag {

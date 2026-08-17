@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { smoothScrollTo } from '../components/layout/SmoothScroll.jsx'
 
 export const SITE_HOME_PATH = '/'
 
@@ -25,13 +26,13 @@ export function useHomeLogoClick() {
       }
       event.preventDefault()
       if (location.pathname === SITE_HOME_PATH) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        smoothScrollTo(0)
         return
       }
       navigate(SITE_HOME_PATH)
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
+          smoothScrollTo(0, { immediate: true })
         })
       })
     },

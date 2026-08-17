@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom'
 import Icon from '../common/Icon.jsx'
 import QuoteLink from '../layout/QuoteLink.jsx'
 
 /**
  * @param {{
  *   railLabel: string,
- *   title: string,
+ *   title: import('react').ReactNode,
  *   description: import('react').ReactNode,
  *   description2?: import('react').ReactNode,
  *   listItems?: string[],
  *   imageSrc: string,
+ *   layout?: 'image-left' | 'image-right',
  *   phase?: 'idle' | 'enter' | 'exit' | 'stack',
  *   style?: import('react').CSSProperties,
  *   showQuoteButton?: boolean,
+ *   popularRoutes?: { label: string, path: string }[] | null,
  * }} props
  */
 export default function LuxuryServiceCard({
@@ -21,13 +24,18 @@ export default function LuxuryServiceCard({
   description2,
   listItems,
   imageSrc,
+  layout = 'image-right',
   phase = 'idle',
   style,
   showQuoteButton = true,
+  popularRoutes = null,
 }) {
+  const layoutClass =
+    layout === 'image-left' ? 'route-card--image-left' : 'route-card--image-right'
+
   return (
     <article
-      className={`luxury-carousel__card route-card route-card--image-right luxury-carousel__card--${phase}`}
+      className={`luxury-carousel__card route-card ${layoutClass} luxury-carousel__card--${phase}`}
       style={style}
     >
       <div className="route-card__media luxury-carousel__media">
@@ -51,7 +59,18 @@ export default function LuxuryServiceCard({
           </ul>
         ) : null}
         {description2 ? <p className="route-card__desc luxury-carousel__desc">{description2}</p> : null}
-        {showQuoteButton ? (
+        {popularRoutes?.length ? (
+          <div className="route-card__popular">
+            <p className="route-card__popular-heading">Popular routes include:</p>
+            <ul className="route-card__popular-list">
+              {popularRoutes.map((route) => (
+                <li key={route.path}>
+                  <Link to={route.path}>{route.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : showQuoteButton ? (
           <QuoteLink className="luxury-carousel__btn">
             Get a free quote
             <Icon name="arrow-right" size={16} />

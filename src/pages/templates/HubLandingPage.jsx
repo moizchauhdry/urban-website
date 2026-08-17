@@ -2,9 +2,7 @@ import MarketingLandingPage from './MarketingLandingPage.jsx'
 import { HUB_LANDING_CONFIG } from './landingConfigs.js'
 
 /**
- * Shared entry for dedicated region hub routes (CT / FL / NY / IL / Chicago).
- * One chunk instead of six identical Home.jsx wrappers.
- *
+ * @deprecated Prefer MarketingLandingShell — kept for explicit hub props if needed.
  * @param {{ hub: keyof typeof HUB_LANDING_CONFIG }} props
  */
 export default function HubLandingPage({ hub }) {

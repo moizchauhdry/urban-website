@@ -21,7 +21,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="section">
+    <section className="section how-it-works">
       <div className="container">
         <h2 className="section-title">How It Works</h2>
         <p className="section-sub">Book a Ride in 3 simple steps. It&apos;s that easy!</p>
@@ -29,7 +29,7 @@ export default function HowItWorks() {
           {STEPS.map((step) => (
             <div className="step" key={step.title}>
               <div className="step-icon">
-                <Icon name={step.icon} size={28} />
+                <Icon name={step.icon} size={24} />
               </div>
               <h3>{step.title}</h3>
               <p>{step.description}</p>

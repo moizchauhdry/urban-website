@@ -10,6 +10,7 @@ export default function RegionalAirportsSection({ pageKey, subtitle, variant }) 
 
   return (
     <PageAirportsSection
+      pageKey={pageKey}
       airports={airports}
       subtitle={subtitle}
       variant={resolvedVariant}

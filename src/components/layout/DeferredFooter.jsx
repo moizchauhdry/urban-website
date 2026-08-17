@@ -8,10 +8,10 @@ export default function DeferredFooter(props) {
 
   useEffect(() => {
     if (typeof requestIdleCallback !== 'undefined') {
-      const id = requestIdleCallback(() => setReady(true), { timeout: 2500 })
+      const id = requestIdleCallback(() => setReady(true), { timeout: 1000 })
       return () => cancelIdleCallback(id)
     }
-    const timer = window.setTimeout(() => setReady(true), 1200)
+    const timer = window.setTimeout(() => setReady(true), 450)
     return () => window.clearTimeout(timer)
   }, [])
 

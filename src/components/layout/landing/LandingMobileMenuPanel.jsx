@@ -52,6 +52,7 @@ export default function LandingMobileMenuPanel({ open, onClose, anchorRef }) {
         aria-modal="true"
         aria-hidden={!open}
         aria-labelledby="mobile-menu-heading"
+        data-lenis-prevent
       >
         <div className="container mobile-menu-panel__inner">
           <h2 id="mobile-menu-heading" className="mobile-menu-panel__title">

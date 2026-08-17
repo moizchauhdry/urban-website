@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { usePageSwapAnimation } from '../../hooks/usePageSwapAnimation.js'
 import { getHomeHero, loadLandingHero, getLandingBackground } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
@@ -19,13 +20,14 @@ function hasStaticHeroLcp() {
 }
 
 function buildSrcSet(background) {
+  const lgW = background.width || 1440
   if (background.sm && background.lg) {
-    return `${background.sm} 800w, ${background.lg} 1440w`
+    return `${background.sm} 800w, ${background.lg} ${lgW}w`
   }
-  return `${background.default} 800w, ${background.default} 1440w`
+  return `${background.default} 800w, ${background.default} ${lgW}w`
 }
 
-function HeroBackground({ background, onReady, deferMount = false }) {
+function HeroBackground({ background, onReady, deferMount = false, className }) {
   if (deferMount) return null
 
   return (
@@ -35,26 +37,27 @@ function HeroBackground({ background, onReady, deferMount = false }) {
       srcSet={buildSrcSet(background)}
       sizes={background.sizes}
       alt=""
-      className="hero-bg-img"
+      className={className ? `hero-bg-img ${className}` : 'hero-bg-img'}
       width={background.width}
       height={background.height}
       fetchPriority="high"
       loading="eager"
-      decoding="sync"
+      decoding="async"
       aria-hidden="true"
     />
   )
 }
 
-function LandingHeroContent({ config, showDesktopExtras }) {
+function LandingHeroContent({ config, showDesktopExtras, animateSwap = false }) {
   const { titleInner, descriptionInner, titleClassName = 'hero-title' } = config
+  const textClass = animateSwap ? ' page-swap-text' : ''
 
   return (
     <>
       <HeroLiveBadge />
-      <h1 className={titleClassName}>{titleInner}</h1>
+      <h1 className={`${titleClassName}${textClass}`}>{titleInner}</h1>
       <HeroMobileBenefits />
-      <p className={config.descClassName ?? 'hero-desc'}>{descriptionInner}</p>
+      <p className={`${config.descClassName ?? 'hero-desc'}${textClass}`}>{descriptionInner}</p>
       <a href={HERO_PHONE.href} className="hero-phone">
         <Icon name={HERO_PHONE.icon} size={20} className="hero-phone-icon" />
         {HERO_PHONE.label}
@@ -174,21 +177,26 @@ function FifaHeroContent({ config }) {
 function useHeroConfig(pageKey) {
   const isHome = pageKey === 'home'
   const [config, setConfig] = useState(() => (isHome ? getHomeHero() : null))
+  const [contentKey, setContentKey] = useState(() => (isHome ? pageKey : null))
   const [error, setError] = useState(null)
 
   useEffect(() => {
     if (pageKey === 'home') {
       setConfig(getHomeHero())
+      setContentKey(pageKey)
       setError(null)
       return undefined
     }
 
     let cancelled = false
-    setConfig(null)
     setError(null)
+    // Keep prior landing copy/background visible while the next pageKey probes in.
     loadLandingHero(pageKey)
       .then((next) => {
-        if (!cancelled) setConfig(next)
+        if (!cancelled) {
+          setConfig(next)
+          setContentKey(pageKey)
+        }
       })
       .catch((err) => {
         if (!cancelled) setError(err)
@@ -198,12 +206,14 @@ function useHeroConfig(pageKey) {
     }
   }, [pageKey])
 
-  return { config, error }
+  return { config, error, contentKey }
 }
 
 /** Shared hero for landing pages, home, and FIFA — content keyed by pageKey. */
 export default function LandingHero({ pageKey }) {
-  const { config, error } = useHeroConfig(pageKey)
+  const { config, error, contentKey } = useHeroConfig(pageKey)
+  const swap = usePageSwapAnimation(contentKey)
+  const prevBgSrcRef = useRef(null)
 
   const isHome = pageKey === 'home'
   const isFifa = config?.variant === 'fifa'
@@ -300,6 +310,11 @@ export default function LandingHero({ pageKey }) {
   const showBg = !isHome || useReactHeroBg
   const desktopFeatures = isHome ? (showDesktopExtras ? 'lazy' : false) : true
   const isPendingLanding = !config && !isHome
+  const bgSrc = config?.background?.default
+  const bgChanged = Boolean(prevBgSrcRef.current && bgSrc && prevBgSrcRef.current !== bgSrc)
+  if (bgSrc) prevBgSrcRef.current = bgSrc
+  const animateHeroImage = swap && bgChanged && !isHome && !isFifa
+  const animateHeroText = swap && !isHome && !isFifa
 
   if (isFifa) {
     return (
@@ -329,12 +344,14 @@ export default function LandingHero({ pageKey }) {
       aria-busy={isPendingLanding ? true : undefined}
     >
       <HeroBackground
+        key={animateHeroImage ? contentKey : 'hero-bg'}
         background={config?.background ?? getLandingBackground(pageKey)}
         onReady={config ? onHeroBgReady : undefined}
         deferMount={isHome && !showBg}
+        className={animateHeroImage ? 'page-swap-image' : undefined}
       />
       <div className="container">
-        <div className="hero-content">
+        <div key={contentKey || 'hero-copy'} className="hero-content">
           {isPendingLanding ? (
             <>
               <HeroLiveBadge />
@@ -351,7 +368,11 @@ export default function LandingHero({ pageKey }) {
               </span>
             </>
           ) : (
-            <LandingHeroContent config={config} showDesktopExtras={desktopFeatures} />
+            <LandingHeroContent
+              config={config}
+              showDesktopExtras={desktopFeatures}
+              animateSwap={animateHeroText}
+            />
           )}
         </div>
 

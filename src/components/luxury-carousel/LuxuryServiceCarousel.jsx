@@ -128,7 +128,7 @@ export default function LuxuryServiceCarousel({ cards }) {
                 type="button"
                 role="tab"
                 className={`luxury-carousel__dot${index === activeIndex ? ' is-active' : ''}`}
-                aria-label={`Slide ${index + 1}: ${card.title}`}
+                aria-label={`Slide ${index + 1}: ${typeof card.title === 'string' ? card.title : card.id}`}
                 aria-selected={index === activeIndex}
                 onClick={() => goTo(index)}
               />

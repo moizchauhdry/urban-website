@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <LandingHero pageKey="home" />
-      <ViewportLazy minHeight={800}>
+      <ViewportLazy minHeight={800} rootMargin="640px 0px">
         <Suspense fallback={null}>
           <HomeBelowFold />
         </Suspense>
