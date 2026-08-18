@@ -85,7 +85,6 @@ const PAGE_HERO_STEM_BY_PATH = {
   '/florida': 'florida',
   '/florida-car-service': 'florida',
   '/about-us': 'about',
-  '/our-services': 'services',
   '/fleet': 'fleet',
   '/privacy-policy': 'privacy',
   '/terms-of-service': 'privacy',
