@@ -11,10 +11,14 @@ const SKIP_MODULE_PRELOAD = [
   'phone-input',
   'google-maps',
   'lucide',
+  'gsap',
+  'lenis',
   '/Icon-',
   'bookingNav',
   'useScrollToBookingHash',
   'HomeBelowFold',
+  'FifaBelowFold',
+  'MarketingBelowFold',
   'DeferredFooter',
   'HeroBookingForm',
   'HeroDeferredBooking',
@@ -22,12 +26,13 @@ const SKIP_MODULE_PRELOAD = [
   'ReviewsCarousel',
   'ServicesCarousel',
   'NavMenuItems',
+  'SmoothScroll',
   'routes-dLtvg4Ff',
   'useHomeLogoClick',
 ]
 
 /** Pathname (no trailing slash) → hero asset stem used in src/assets/hero/pages/{stem}-800.webp */
-const LANDING_HERO_STEM_BY_PATH = {
+const PAGE_HERO_STEM_BY_PATH = {
   '/miami-car-service': 'miami',
   '/miami-chauffeur-service': 'miami',
   '/miami-to-orlando-car-service': 'miami',
@@ -79,6 +84,13 @@ const LANDING_HERO_STEM_BY_PATH = {
   '/texas-car-service': 'texas',
   '/florida': 'florida',
   '/florida-car-service': 'florida',
+  '/about-us': 'about',
+  '/our-services': 'services',
+  '/fleet': 'fleet',
+  '/privacy-policy': 'privacy',
+  '/terms-of-service': 'privacy',
+  '/contact-us': 'contact',
+  '/fifa': 'fifa',
 }
 
 /**
@@ -90,12 +102,13 @@ function injectHeroLcp() {
   const devHeroSm = '/src/assets/hero/pages/home-800.webp'
   const devHeroLg = '/src/assets/hero/pages/home-1440.webp'
 
-  const landingSizes = '(max-width: 720px) 800px, (max-width: 1024px) 800px, 1440px'
+  const landingSizes = '100vw'
 
   const buildLandingPreloadScript = (stemHrefs) => {
     const assetsJson = JSON.stringify(stemHrefs)
-    const pathsJson = JSON.stringify(LANDING_HERO_STEM_BY_PATH)
-    return `<script>(function(){var p=location.pathname.replace(/\\/$/, '')||'/';if(p==='/')return;var paths=${pathsJson};var assets=${assetsJson};var stem=paths[p]||'landing';var a=assets[stem]||assets.landing;if(!a||!a.sm)return;var l=document.createElement('link');l.id='landing-lcp-preload';l.rel='preload';l.as='image';l.href=a.sm;l.setAttribute('imagesrcset',a.sm+' 800w, '+a.lg+' 1440w');l.setAttribute('imagesizes','${landingSizes}');l.fetchPriority='high';document.head.appendChild(l);})();</script>`
+    const pathsJson = JSON.stringify(PAGE_HERO_STEM_BY_PATH)
+    // Media-split preloads: phones/tablets get 800w only; desktop gets 1440w.
+    return `<script>(function(){var p=location.pathname.replace(/\\/$/, '')||'/';if(p==='/')return;var paths=${pathsJson};var assets=${assetsJson};var stem=paths[p]||'landing';var a=assets[stem]||assets.landing;if(!a||!a.sm)return;function add(id,href,media){var l=document.createElement('link');l.id=id;l.rel='preload';l.as='image';l.type='image/webp';l.href=href;l.media=media;l.fetchPriority='high';document.head.appendChild(l)}add('page-lcp-preload-sm',a.sm,'(max-width: 1024px)');add('page-lcp-preload-lg',a.lg||a.sm,'(min-width: 1025px)');})();</script>`
   }
 
   const applyOptimizations = (html, hero, fontHrefs = [], landingPreloadScript = '') => {
@@ -133,7 +146,7 @@ function injectHeroLcp() {
         (match) => `${match}\n    ${landingPreloadScript}`,
       )
       // Fallback if HTML formatting differs
-      if (!out.includes('landing-lcp-preload') && !out.includes(landingPreloadScript.slice(0, 40))) {
+      if (!out.includes('page-lcp-preload-sm') && !out.includes(landingPreloadScript.slice(0, 40))) {
         out = out.replace(
           "document.documentElement.classList.add('route-not-home');",
           `document.documentElement.classList.add('route-not-home');`,
@@ -146,9 +159,9 @@ function injectHeroLcp() {
       const { smHref, lgHref } = hero
       const srcset = `${smHref} 800w, ${lgHref} 1440w`
       const sizes = landingSizes
-      const preload = `<link id="home-lcp-preload" rel="preload" as="image" href="${smHref}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`
-      const dropHomeLcp = `<script>if(document.documentElement.classList.contains('route-not-home')){document.getElementById('home-lcp-preload')?.remove()}</script>`
-      const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
+      const preload = `<link id="home-lcp-preload-sm" rel="preload" as="image" type="image/webp" href="${smHref}" media="(max-width: 1024px)" fetchpriority="high" /><link id="home-lcp-preload-lg" rel="preload" as="image" type="image/webp" href="${lgHref}" media="(min-width: 1025px)" fetchpriority="high" />`
+      const dropHomeLcp = `<script>if(document.documentElement.classList.contains('route-not-home')){document.getElementById('home-lcp-preload-sm')?.remove();document.getElementById('home-lcp-preload-lg')?.remove()}</script>`
+      const staticHero = `<img id="static-hero-lcp" src="${smHref}" srcset="${srcset}" sizes="${sizes}" alt="" width="1440" height="810" fetchpriority="high" decoding="sync" style="position:absolute;top:0;left:0;width:100%;height:min(680px,85vh);object-fit:cover;object-position:center;z-index:0;pointer-events:none" />`
       const dropHomeImg = `<script>if(document.documentElement.classList.contains('route-not-home')){document.getElementById('static-hero-lcp')?.remove()}</script>`
       out = out
         .replace('<meta name="viewport"', `${preload}\n    ${dropHomeLcp}\n    <meta name="viewport"`)
@@ -191,7 +204,16 @@ function injectHeroLcp() {
             )
             .map((item) => toHref(item.fileName))
 
-          const stems = new Set(['landing', ...Object.values(LANDING_HERO_STEM_BY_PATH)])
+          const stems = new Set([
+            'landing',
+            'about',
+            'services',
+            'fleet',
+            'privacy',
+            'contact',
+            'fifa',
+            ...Object.values(PAGE_HERO_STEM_BY_PATH),
+          ])
           const stemHrefs = {}
           for (const stem of stems) {
             const sm = findHeroAsset(new RegExp(`${stem}-800[^/]*\\.webp$`, 'i'))

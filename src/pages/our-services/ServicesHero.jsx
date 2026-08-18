@@ -15,7 +15,7 @@ export default function ServicesHero() {
         height={810}
         fetchPriority="high"
         loading="eager"
-        decoding="async"
+        decoding="sync"
         aria-hidden="true"
       />
     </section>

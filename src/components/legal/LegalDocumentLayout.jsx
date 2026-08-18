@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { smoothScrollTo } from '../layout/SmoothScroll.jsx'
+import { smoothScrollTo } from '../../utils/smoothScroll.js'
 
 /**
  * Sticky document-tabs layout for Privacy Policy and Terms of Service.

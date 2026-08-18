@@ -1,13 +1,24 @@
-import LegalDocumentLayout from '../../components/legal/LegalDocumentLayout.jsx'
+import { lazy, Suspense } from 'react'
 import LegalPageHero from '../../components/legal/LegalPageHero.jsx'
+import ViewportLazy from '../../components/common/ViewportLazy.jsx'
 import { TERMS_NAV } from '../../data/legalNav.js'
+
+const LegalDocumentLayout = lazy(() => import('../../components/legal/LegalDocumentLayout.jsx'))
 
 /** Terms of Service — legal page linked from the site footer. */
 export default function TermsOfServicePage() {
   return (
     <>
       <LegalPageHero label="Terms of Service hero" />
-      <LegalDocumentLayout title="Terms of Service" navItems={TERMS_NAV}>
+      <ViewportLazy
+        minHeight={800}
+        rootMargin="480px 0px"
+        deferMs={0}
+        mobileRootMargin="120px 0px"
+        mobileDeferMs={2800}
+      >
+        <Suspense fallback={null}>
+          <LegalDocumentLayout title="Terms of Service" navItems={TERMS_NAV}>
           <h2 id="introduction" className="privacy-page__heading">1. Introduction and Acceptance</h2>
 
           <p>
@@ -723,6 +734,8 @@ export default function TermsOfServicePage() {
             For privacy-related requests, refer to the Company&apos;s separate Privacy Policy. For driver or Transportation Provider terms, applicable providers should refer to the separate Driver or Transportation Provider Agreement. For internal data handling, employee access, and payment-security procedures, Company personnel should refer to the separate Internal Data Handling and Payment Security Policy.
           </p>
       </LegalDocumentLayout>
+        </Suspense>
+      </ViewportLazy>
     </>
   )
 }

@@ -3,6 +3,7 @@ import { Navigate, Routes, Route, useParams } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
 
+const AboutUsPage = lazy(() => import('../pages/about-us/AboutUsPage.jsx'))
 const OurServicesPage = lazy(() => import('../pages/our-services/OurServicesPage.jsx'))
 const FleetPageInner = lazy(() => import('../pages/fleet/FleetPage.jsx'))
 const BookNowPageInner = lazy(() => import('../pages/book-now/BookNowPage.jsx'))
@@ -32,7 +33,7 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/about-us" element={<Navigate to="/" replace />} />
+        <Route path="/about-us" element={<SuspenseRoute><AboutUsPage /></SuspenseRoute>} />
         <Route path="/our-services" element={<SuspenseRoute><OurServicesPage /></SuspenseRoute>} />
         <Route path="/contact-us" element={<Navigate to="/" replace />} />
         <Route path="/fleet" element={<SuspenseRoute><FleetPageInner /></SuspenseRoute>} />

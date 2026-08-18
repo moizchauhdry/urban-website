@@ -5,11 +5,11 @@ import aboutStoryImg from '../assets/about/story.webp'
 /** Shared About Us page content — edit here when updating copy or assets. */
 export const ABOUT_US_PAGE = {
   hero: {
-    default: aboutHeroLg,
+    default: aboutHeroSm,
     srcSet: `${aboutHeroSm} 800w, ${aboutHeroLg} 1440w`,
     sizes: '100vw',
-    width: 1920,
-    height: 1080,
+    width: 1440,
+    height: 810,
   },
   intro: {
     title: 'About Us',
@@ -45,9 +45,9 @@ export const ABOUT_US_PAGE = {
     ],
     image: {
       src: aboutStoryImg,
-      alt: 'Professional chauffeur with luxury vehicle',
-      width: 560,
-      height: 420,
+      alt: 'Professional chauffeur standing beside a luxury black sedan',
+      width: 1120,
+      height: 840,
     },
   },
 }

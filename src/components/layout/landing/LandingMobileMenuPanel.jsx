@@ -1,6 +1,7 @@
-import { useLayoutEffect } from 'react'
+import { lazy, Suspense, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
-import NavMenuItems from '../../nav/NavMenuItems.jsx'
+
+const NavMenuItems = lazy(() => import('../../nav/NavMenuItems.jsx'))
 
 const PANEL_ID = 'site-mobile-menu'
 
@@ -59,7 +60,11 @@ export default function LandingMobileMenuPanel({ open, onClose, anchorRef }) {
             Menu
           </h2>
           <nav className="mobile-menu-panel__nav" aria-label="Primary">
-            <NavMenuItems variant="mobile" onNavigate={onClose} />
+            {open ? (
+              <Suspense fallback={null}>
+                <NavMenuItems variant="mobile" onNavigate={onClose} />
+              </Suspense>
+            ) : null}
           </nav>
         </div>
       </div>
