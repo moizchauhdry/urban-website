@@ -1,15 +1,35 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { usePageSwapAnimation } from '../../hooks/usePageSwapAnimation.js'
 import { getHomeHero, loadLandingHero, getLandingBackground } from '../../data/heroes/index.js'
 import { HERO_FEATURES, HERO_PHONE } from '../../data/heroHighlights.js'
 import { FIFA_HERO_FEATURES, FIFA_HOST_FLAGS } from '../../data/fifaHero.js'
 import trustPilotLogo from '../../assets/reviews/trust-pilot.svg'
-import Icon from '../icons/Icon.jsx'
 import HeroDeferredBooking from '../../features/booking/HeroDeferredBooking.jsx'
 import HeroLiveBadge from './HeroLiveBadge.jsx'
 import HeroMobileBenefits from './HeroMobileBenefits.jsx'
 
+const Icon = lazy(() => import('../icons/Icon.jsx'))
+
 const DESKTOP_MQ = '(min-width: 721px)'
+
+function PhoneGlyph({ size = 20, className = '' }) {
+  return (
+    <svg
+      className={`icon ${className}`.trim()}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+    </svg>
+  )
+}
 
 function removeStaticHeroLcp() {
   document.getElementById('static-hero-lcp')?.remove()
@@ -42,7 +62,7 @@ function HeroBackground({ background, onReady, deferMount = false, className }) 
       height={background.height}
       fetchPriority="high"
       loading="eager"
-      decoding="async"
+      decoding="sync"
       aria-hidden="true"
     />
   )
@@ -59,14 +79,16 @@ function LandingHeroContent({ config, showDesktopExtras, animateSwap = false }) 
       <HeroMobileBenefits />
       <p className={`${config.descClassName ?? 'hero-desc'}${textClass}`}>{descriptionInner}</p>
       <a href={HERO_PHONE.href} className="hero-phone">
-        <Icon name={HERO_PHONE.icon} size={20} className="hero-phone-icon" />
+        <PhoneGlyph size={20} className="hero-phone-icon" />
         {HERO_PHONE.label}
       </a>
       {showDesktopExtras !== false ? (
         <div className="hero-features">
           {HERO_FEATURES.map((feat) => (
             <div className="feat" key={feat.label}>
-              <Icon name={feat.icon} size={20} className="feat-icon" />
+              <Suspense fallback={null}>
+                <Icon name={feat.icon} size={20} className="feat-icon" />
+              </Suspense>
               {feat.label}
             </div>
           ))}

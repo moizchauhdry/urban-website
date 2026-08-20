@@ -5,9 +5,9 @@ import {
   HERO_BOOKING_PREFILL_EVENT,
   resolveBookingHome,
 } from '../../config/bookingNav.js'
-import { getExampleNumber } from 'libphonenumber-js/max'
+import { getExampleNumber } from 'libphonenumber-js/min'
 import examples from 'libphonenumber-js/examples.mobile.json'
-import PhoneInput, { getCountries, getCountryCallingCode } from 'react-phone-number-input/max'
+import PhoneInput, { getCountries, getCountryCallingCode } from 'react-phone-number-input'
 import en from 'react-phone-number-input/locale/en.json'
 import {
   HERO_BOOKING_INITIAL,

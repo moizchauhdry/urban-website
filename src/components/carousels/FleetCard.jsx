@@ -34,7 +34,7 @@ function FleetCardImage({ image, title, priorityLoad }) {
       src={src}
       alt={image?.alt ?? title}
       width={800}
-      height={640}
+      height={427}
       sizes="(max-width: 720px) 100vw, 360px"
       loading={priorityLoad ? 'eager' : 'lazy'}
       decoding="async"

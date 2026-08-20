@@ -15,7 +15,7 @@ export default function FleetHero() {
         height={630}
         fetchPriority="high"
         loading="eager"
-        decoding="async"
+        decoding="sync"
         aria-hidden="true"
       />
     </section>

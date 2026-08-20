@@ -29,6 +29,8 @@ export default function MarketingLandingPage({
         minHeight={800}
         rootMargin="720px 0px"
         deferMs={belowFoldUnlocked.current ? 0 : 700}
+        mobileRootMargin="120px 0px"
+        mobileDeferMs={belowFoldUnlocked.current ? 0 : 2800}
         onVisible={() => {
           belowFoldUnlocked.current = true
         }}

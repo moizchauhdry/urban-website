@@ -129,7 +129,7 @@ export const HERO_PAGES = {
   'fifa': {
     variant: 'fifa',
     sectionClass: 'hero fifa-hero',
-    background: { default: heroFifa, sm: heroFifa, lg: heroFifaLg, sizes: '(max-width: 1024px) 800px, 1440px', width: 1440, height: 810 },
+    background: { default: heroFifa, sm: heroFifa, lg: heroFifaLg, sizes: '100vw', width: 1440, height: 810 },
     titleInner: (
       <>
         Your Ride To <span className="fifa-hero__accent">FIFA 2026</span> Starts Here
