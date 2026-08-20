@@ -9,7 +9,7 @@ export default function ContactHero() {
   return (
     <section className="contact-page-hero" aria-label="Contact Us hero">
       <img
-        src={contactHeroLg}
+        src={contactHeroSm}
         srcSet={CONTACT_HERO_SRCSET}
         sizes={CONTACT_HERO_SIZES}
         alt=""
@@ -18,7 +18,7 @@ export default function ContactHero() {
         height={960}
         fetchPriority="high"
         loading="eager"
-        decoding="async"
+        decoding="sync"
         aria-hidden="true"
       />
     </section>

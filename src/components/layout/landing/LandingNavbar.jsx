@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
-import NavMenuItems from '../../nav/NavMenuItems.jsx'
-import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { COMPACT_NAV_MQ, PHONE_MQ } from '../../../config/breakpoints.js'
+
+const NavMenuItems = lazy(() => import('../../nav/NavMenuItems.jsx'))
 
 /**
  * @param {{ variant?: 'connecticut' | 'standard' }} props
@@ -8,28 +9,25 @@ import { COMPACT_NAV_MQ } from '../../../config/breakpoints.js'
  * - standard: always show desktop nav above hamburger breakpoint
  */
 export default function LandingNavbar({ variant = 'standard' }) {
-  if (variant === 'standard') {
-    return (
-      <nav className="menu" aria-label="Primary">
-        <NavMenuItems variant="desktop" />
-      </nav>
-    )
-  }
-
-  const [isCompact, setIsCompact] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia(COMPACT_NAV_MQ).matches : false,
+  const hideMq = variant === 'connecticut' ? COMPACT_NAV_MQ : PHONE_MQ
+  const [hideDesktop, setHideDesktop] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(hideMq).matches : variant === 'connecticut',
   )
 
   useEffect(() => {
-    const mq = window.matchMedia(COMPACT_NAV_MQ)
-    const onChange = () => setIsCompact(mq.matches)
+    const mq = window.matchMedia(hideMq)
+    const onChange = () => setHideDesktop(mq.matches)
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
-  }, [])
+  }, [hideMq])
 
   return (
     <nav className="menu" aria-label="Primary">
-      {isCompact ? null : <NavMenuItems variant="desktop" />}
+      {hideDesktop ? null : (
+        <Suspense fallback={null}>
+          <NavMenuItems variant="desktop" />
+        </Suspense>
+      )}
     </nav>
   )
 }

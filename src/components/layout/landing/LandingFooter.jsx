@@ -4,6 +4,7 @@ import FooterBookNow from '../FooterBookNow.jsx'
 import { useHomeLogoClick } from '../../../hooks/useHomeLogoClick.js'
 import Icon from '../../common/Icon.jsx'
 import {
+  ABOUT_US,
   CONNECTICUT_HOME,
   FLORIDA_HOME,
   ILLINOIS_HOME,
@@ -38,6 +39,9 @@ export default function LandingFooter({ logoPath = '/' }) {
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
+              <li>
+                <Link to={ABOUT_US}>About Us</Link>
+              </li>
               <li>
                 <Link to={BOOK_NOW}>Book Now</Link>
               </li>

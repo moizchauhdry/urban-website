@@ -19,3 +19,9 @@ export const CONTACT_US = '/contact-us'
 export const PRIVACY_POLICY = '/privacy-policy'
 export const TERMS_OF_SERVICE = '/terms-of-service'
 export const THANK_YOU = '/thank-you'
+
+/** `/jfk-airport-car-service/` → `/jfk-airport-car-service`; `/` stays `/`. */
+export function normalizePathname(pathname) {
+  if (!pathname || pathname === '/') return '/'
+  return pathname.replace(/\/+$/, '') || '/'
+}

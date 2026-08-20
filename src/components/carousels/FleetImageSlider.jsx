@@ -3,9 +3,9 @@ import { FleetCarouselDots } from './FleetCarouselDots.jsx'
 import Icon from '../common/Icon.jsx'
 import { usePointerSwipe } from '../../hooks/usePointerSwipe.js'
 
-/** Matches .fleet-slider-viewport aspect-ratio 5/4 at 800px reference width */
+/** Matches the first (exterior) photo content after cropping studio letterbox bars */
 const FLEET_IMG_WIDTH = 800
-const FLEET_IMG_HEIGHT = 640
+const FLEET_IMG_HEIGHT = 427
 
 function cx(...parts) {
   return parts.filter(Boolean).join(' ')

@@ -16,7 +16,7 @@ export default function AboutHero() {
         height={height}
         fetchPriority="high"
         loading="eager"
-        decoding="async"
+        decoding="sync"
         aria-hidden="true"
       />
     </section>

@@ -70,8 +70,8 @@ export const LANDING_BACKGROUND = {
   default: heroLandingSm,
   sm: heroLandingSm,
   lg: heroLandingLg,
-  // Prefer 800w on phones (incl. retina) so LCP does not pull 1440/1920 on Slow 4G.
-  sizes: '(max-width: 720px) 800px, (max-width: 1024px) 800px, 1440px',
+  // 100vw so phones (DPR 1.75) pick 800w instead of 1440w.
+  sizes: '100vw',
   width: 1440,
   height: 810,
 }

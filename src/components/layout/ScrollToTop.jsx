@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { smoothScrollTo } from './SmoothScroll.jsx'
+import { smoothScrollTo } from '../../utils/smoothScroll.js'
 
 /** Scroll to the top of the page on every client-side route change. */
 export default function ScrollToTop() {

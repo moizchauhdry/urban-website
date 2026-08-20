@@ -15,7 +15,7 @@ export default function LegalPageHero({ label = 'Legal page hero' }) {
         height={810}
         fetchPriority="high"
         loading="eager"
-        decoding="async"
+        decoding="sync"
         aria-hidden="true"
       />
     </section>

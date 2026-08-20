@@ -1,13 +1,24 @@
-import LegalDocumentLayout from '../../components/legal/LegalDocumentLayout.jsx'
+import { lazy, Suspense } from 'react'
 import LegalPageHero from '../../components/legal/LegalPageHero.jsx'
+import ViewportLazy from '../../components/common/ViewportLazy.jsx'
 import { PRIVACY_NAV } from '../../data/legalNav.js'
+
+const LegalDocumentLayout = lazy(() => import('../../components/legal/LegalDocumentLayout.jsx'))
 
 /** Privacy Policy — legal page linked from the site footer. */
 export default function PrivacyPolicyPage() {
   return (
     <>
       <LegalPageHero label="Privacy Policy hero" />
-      <LegalDocumentLayout title="Privacy Policy" navItems={PRIVACY_NAV}>
+      <ViewportLazy
+        minHeight={800}
+        rootMargin="480px 0px"
+        deferMs={0}
+        mobileRootMargin="120px 0px"
+        mobileDeferMs={2800}
+      >
+        <Suspense fallback={null}>
+          <LegalDocumentLayout title="Privacy Policy" navItems={PRIVACY_NAV}>
           <h2 id="introduction" className="privacy-page__heading">1. Introduction and Scope</h2>
           <p>
             Urban Elite Limo  respects your privacy and is committed to protecting the personal information you entrust to
@@ -654,6 +665,8 @@ export default function PrivacyPolicyPage() {
             Agreement.
           </p>
       </LegalDocumentLayout>
+        </Suspense>
+      </ViewportLazy>
     </>
   )
 }

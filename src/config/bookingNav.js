@@ -58,7 +58,7 @@ export function getBookNowTarget(pathname) {
 export function scrollToHeroBooking() {
   const el = document.getElementById(HERO_BOOKING_ID)
   if (!el) return false
-  import('../components/layout/SmoothScroll.jsx')
+  import('../utils/smoothScroll.js')
     .then(({ smoothScrollTo }) => {
       smoothScrollTo(el, { offset: -24 })
     })

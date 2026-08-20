@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
+import { isPhoneViewport } from '../../config/breakpoints.js'
 
 /**
  * Mount children only after the placeholder enters (or nears) the viewport.
- * Optional deferMs waits after mount before observing — keeps below-fold JS
- * off the first Lighthouse window on short mobile heroes.
+ * Optional mobileDeferMs / mobileRootMargin apply only on phone viewports so
+ * desktop keeps snappy below-fold loading while mobile protects LCP.
  */
 export default function ViewportLazy({
   children,
   rootMargin = '480px 0px',
   minHeight = 0,
   deferMs = 0,
+  mobileRootMargin,
+  mobileDeferMs,
   onVisible,
 }) {
   const ref = useRef(null)
@@ -17,12 +20,17 @@ export default function ViewportLazy({
   const onVisibleRef = useRef(onVisible)
   onVisibleRef.current = onVisible
 
+  const phone = isPhoneViewport()
+  const effectiveRootMargin =
+    phone && mobileRootMargin != null ? mobileRootMargin : rootMargin
+  const effectiveDeferMs = phone && mobileDeferMs != null ? mobileDeferMs : deferMs
+
   useEffect(() => {
     const node = ref.current
     if (!node || visible) return undefined
 
     if (typeof IntersectionObserver === 'undefined') {
-      const fallback = window.setTimeout(() => setVisible(true), deferMs)
+      const fallback = window.setTimeout(() => setVisible(true), effectiveDeferMs)
       return () => window.clearTimeout(fallback)
     }
 
@@ -36,13 +44,13 @@ export default function ViewportLazy({
             io.disconnect()
           }
         },
-        { rootMargin, threshold: 0.01 },
+        { rootMargin: effectiveRootMargin, threshold: 0.01 },
       )
       io.observe(node)
     }
 
-    if (deferMs > 0) {
-      delayTimer = window.setTimeout(observe, deferMs)
+    if (effectiveDeferMs > 0) {
+      delayTimer = window.setTimeout(observe, effectiveDeferMs)
     } else {
       observe()
     }
@@ -51,7 +59,7 @@ export default function ViewportLazy({
       if (delayTimer != null) window.clearTimeout(delayTimer)
       io?.disconnect()
     }
-  }, [rootMargin, visible, deferMs])
+  }, [effectiveRootMargin, visible, effectiveDeferMs])
 
   useEffect(() => {
     if (visible) onVisibleRef.current?.()

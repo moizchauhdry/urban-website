@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { smoothScrollTo } from '../components/layout/SmoothScroll.jsx'
+import { smoothScrollTo } from '../utils/smoothScroll.js'
 
 export const SITE_HOME_PATH = '/'
 

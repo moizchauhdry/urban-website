@@ -10,7 +10,7 @@ export const HOME_HERO = {
     default: heroHome,
     sm: heroHomeSm,
     lg: heroHomeLg,
-    sizes: '(max-width: 720px) 800px, (max-width: 1024px) 800px, 1440px',
+    sizes: '100vw',
     width: 1440,
     height: 810,
   },
