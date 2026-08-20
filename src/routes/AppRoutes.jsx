@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
-import { Navigate, Routes, Route, useParams } from 'react-router-dom'
+import { Navigate, Routes, Route, useParams, useLocation } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout.jsx'
 import HomePage from '../pages/home/HomePage.jsx'
+import { normalizePathname } from '../config/routes.js'
 
 const AboutUsPage = lazy(() => import('../pages/about-us/AboutUsPage.jsx'))
 const OurServicesPage = lazy(() => import('../pages/our-services/OurServicesPage.jsx'))
@@ -28,6 +29,17 @@ function LandingProbe() {
 }
 
 export default function AppRoutes() {
+  const location = useLocation()
+  const canonicalPath = normalizePathname(location.pathname)
+  if (canonicalPath !== location.pathname) {
+    return (
+      <Navigate
+        to={`${canonicalPath}${location.search}${location.hash}`}
+        replace
+      />
+    )
+  }
+
   return (
     <Routes>
       <Route element={<MainLayout />}>

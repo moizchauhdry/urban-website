@@ -4,6 +4,7 @@
  */
 
 import { OTHER_PAGE_SLUGS } from '../other-pages/registry.js'
+import { normalizePathname } from '../../config/routes.js'
 
 /** @typedef {{ heroKey: string, routeCardsKey: string, airportsKey: string }} LandingConfig */
 
@@ -79,12 +80,13 @@ export function getOtherPageLandingConfig(slug) {
  * @returns {LandingConfig | null}
  */
 export function resolveLandingConfig(pathname) {
-  const hubKey = HUB_PATH_TO_KEY[pathname]
+  const path = normalizePathname(pathname)
+  const hubKey = HUB_PATH_TO_KEY[path]
   if (hubKey) {
     return HUB_LANDING_CONFIG[hubKey] ?? null
   }
 
-  const slug = pathname.startsWith('/') ? pathname.slice(1) : pathname
+  const slug = path.startsWith('/') ? path.slice(1) : path
   if (!slug || slug.includes('/')) return null
   if (!OTHER_PAGE_SLUGS.has(slug)) return null
 
